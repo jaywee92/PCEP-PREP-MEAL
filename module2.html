@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modul 2 - PCEP-PREP-MEAL</title>
+<title>Module 2 - PCEP-PREP-MEAL</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -371,16 +371,16 @@
 <div class="container">
   <header>
     <div class="header-left">
-      <h1>Modul 2: Control Flow</h1>
-      <p>29% Prüfungsgewicht - Beherrsche if/elif/else und Schleifen</p>
+      <h1>Module 2: Control Flow</h1>
+      <p>29% Exam Weight - Master if/elif/else and loops</p>
     </div>
-    <a href="index.html" class="back-btn">← Zurück zur Übersicht</a>
+    <a href="index.html" class="back-btn">← Back to Overview</a>
   </header>
 
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('theory')">Theory</button>
     <button class="tab-btn" onclick="switchTab('cheatsheet')">Cheatsheet</button>
-    <button class="tab-btn" onclick="switchTab('mistakes')">Häufige Fehler</button>
+    <button class="tab-btn" onclick="switchTab('mistakes')">Common Mistakes</button>
     <button class="tab-btn" onclick="switchTab('flashcards')">Flashcards</button>
     <button class="tab-btn" onclick="switchTab('quiz')">Quiz</button>
   </div>
@@ -390,59 +390,59 @@
     <div class="content-box">
       <h2>📚 Theory: Control Flow</h2>
       
-      <h3>Bedingte Anweisungen (if/elif/else)</h3>
-      <p>Bedingte Anweisungen ermöglichen es, Code nur unter bestimmten Bedingungen auszuführen. Die grundlegende Syntax ist:</p>
+      <h3>Conditional Statements (if/elif/else)</h3>
+      <p>Conditional statements allow code to be executed only under certain conditions. The basic syntax is:</p>
       <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>if condition:
-    # Code wird ausgeführt, wenn condition True ist
+    # Code executes if condition is True
 elif other_condition:
-    # Code wird ausgeführt, wenn other_condition True ist
+    # Code executes if other_condition is True
 else:
-    # Code wird ausgeführt, wenn keine Bedingung True ist</code></pre>
+    # Code executes if no condition is True</code></pre>
       
-      <h3>Vergleichsoperatoren</h3>
-      <p>Die wichtigsten Vergleichsoperatoren in Python:</p>
+      <h3>Comparison Operators</h3>
+      <p>The most important comparison operators in Python:</p>
       <ul style="margin-left: 2rem; margin-bottom: 1rem;">
-        <li><code>==</code> - Gleichheit</li>
-        <li><code>!=</code> - Ungleichheit</li>
-        <li><code>&lt;</code> - Kleiner als</li>
-        <li><code>&gt;</code> - Größer als</li>
-        <li><code>&lt;=</code> - Kleiner oder gleich</li>
-        <li><code>&gt;=</code> - Größer oder gleich</li>
+        <li><code>==</code> - Equality</li>
+        <li><code>!=</code> - Inequality</li>
+        <li><code>&lt;</code> - Less than</li>
+        <li><code>&gt;</code> - Greater than</li>
+        <li><code>&lt;=</code> - Less than or equal</li>
+        <li><code>&gt;=</code> - Greater than or equal</li>
       </ul>
       
-      <h3>Boolesche Logik</h3>
-      <p>Die Operatoren <code>and</code>, <code>or</code>, und <code>not</code> werden verwendet, um komplexe Bedingungen zu erstellen:</p>
+      <h3>Boolean Logic</h3>
+      <p>The operators <code>and</code>, <code>or</code>, and <code>not</code> are used to create complex conditions:</p>
       <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>if age >= 18 and age < 65:
-    print("Sie sind berufstätig")
+    print("You are working age")
 
 if status == "student" or status == "teacher":
-    print("Sie sind in der Bildung")
+    print("You are in education")
 
 if not admin:
-    print("Sie sind kein Administrator")</code></pre>
+    print("You are not an administrator")</code></pre>
       
-      <h3>for-Schleifen</h3>
-      <p>Die <code>for</code>-Schleife iteriert über eine Sequenz:</p>
+      <h3>for Loops</h3>
+      <p>The <code>for</code> loop iterates over a sequence:</p>
       <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>for i in range(5):
-    print(i)  # Gibt 0, 1, 2, 3, 4 aus
+    print(i)  # Prints 0, 1, 2, 3, 4
 
 for name in ["Alice", "Bob", "Charlie"]:
-    print(f"Hallo, {name}!")</code></pre>
+    print(f"Hello, {name}!")</code></pre>
       
-      <h3>while-Schleifen</h3>
-      <p>Die <code>while</code>-Schleife läuft, solange eine Bedingung erfüllt ist:</p>
+      <h3>while Loops</h3>
+      <p>The <code>while</code> loop runs as long as a condition is met:</p>
       <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>x = 0
 while x < 5:
     print(x)
     x += 1</code></pre>
       
-      <h3>Schleifenkontrolle: break und continue</h3>
-      <p><code>break</code> beendet die Schleife sofort, <code>continue</code> springt zum nächsten Iterationsschritt:</p>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code">for i in range(10):
+      <h3>Loop Control: break and continue</h3>
+      <p><code>break</code> exits the loop immediately, <code>continue</code> skips to the next iteration:</p>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>for i in range(10):
     if i == 5:
-        break  # Beendet die Schleife
+        break  # Exits the loop
     if i % 2 == 0:
-        continue  # Springt zum nächsten Schritt
+        continue  # Skips to next step
     print(i)</code></pre>
     </div>
   </div>
@@ -450,125 +450,125 @@ while x < 5:
   <!-- Cheatsheet Tab -->
   <div id="cheatsheet" class="tab-content">
     <div class="content-box">
-      <h2>📋 Cheatsheet: Control Flow Schnellreferenz</h2>
+      <h2>📋 Cheatsheet: Control Flow Quick Reference</h2>
       
       <h3>if/elif/else Syntax</h3>
       <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>if x > 10:
-    print("Größer als 10")
+    print("Greater than 10")
 elif x > 5:
-    print("Größer als 5")
+    print("Greater than 5")
 else:
-    print("5 oder weniger")</code></pre>
+    print("5 or less")</code></pre>
       
-      <h3>Vergleichsoperatoren</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>x == y      # Gleichheit
-x != y      # Ungleichheit
-x < y       # Kleiner
-x > y       # Größer
-x <= y      # Kleiner oder gleich
-x >= y      # Größer oder gleich</code></pre>
+      <h3>Comparison Operators</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>x == y      # Equality
+x != y      # Inequality
+x < y       # Less than
+x > y       # Greater than
+x <= y      # Less than or equal
+x >= y      # Greater than or equal</code></pre>
       
-      <h3>Boolesche Logik</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>x and y     # Wahr, wenn beide wahr sind
-x or y      # Wahr, wenn mindestens eine wahr ist
+      <h3>Boolean Logic</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>x and y     # True if both are true
+x or y      # True if at least one is true
 not x       # Negation
 
 # Chained comparison
-1 < x < 10  # Äquivalent zu: (1 < x) and (x < 10)</code></pre>
+1 < x < 10  # Equivalent to: (1 < x) and (x < 10)</code></pre>
       
-      <h3>for-Schleifen</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code">for i in range(5):
+      <h3>for Loops</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>for i in range(5):
     print(i)  # 0, 1, 2, 3, 4
 
 for i in range(2, 8):
     print(i)  # 2, 3, 4, 5, 6, 7
 
 for i in range(0, 10, 2):
-    print(i)  # 0, 2, 4, 6, 8 (mit Schritt 2)</code></pre>
+    print(i)  # 0, 2, 4, 6, 8 (step 2)</code></pre>
       
-      <h3>while-Schleifen</h3>
+      <h3>while Loops</h3>
       <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>count = 0
 while count < 10:
     print(count)
     count += 1
 
-# Ohne Abbruch: Endlosschleife!
+# Without exit: infinite loop!
 # while True:
 #     print("Forever")</code></pre>
       
-      <h3>break und continue</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code">for i in range(10):
+      <h3>break and continue</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>for i in range(10):
     if i == 5:
-        break       # Beendet die Schleife
+        break       # Exits the loop
     if i % 2 == 0:
-        continue    # Springt zum nächsten Schritt
+        continue    # Skips to next step
     print(i)</code></pre>
       
-      <h3>else mit Schleifen</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code">for i in range(5):
+      <h3>else with Loops</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>for i in range(5):
     if i == 3:
         break
 else:
     print("Loop completed without break")
 
-# Die else wird NUR ausgeführt, wenn die Schleife
-# ohne break beendet wird!</code></pre>
+# The else is ONLY executed if the loop
+# ends without break!</code></pre>
     </div>
   </div>
 
   <!-- Mistakes Tab -->
   <div id="mistakes" class="tab-content">
     <div class="content-box">
-      <h2>⚠️ Häufige Fehler in Control Flow</h2>
+      <h2>⚠️ Common Mistakes in Control Flow</h2>
       
       <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Fehler 1: Zuweisen statt Vergleichen</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Falsch:</strong></p>
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 1: Assignment instead of Comparison</h3>
+        <p style="margin-bottom: 0.75rem;"><strong>Wrong:</strong></p>
         <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>if x = 5:  # SyntaxError!
     print("Yes")</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Richtig:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>if x == 5:  # Vergleich
+        <p style="margin-bottom: 0.75rem;"><strong>Correct:</strong></p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>if x == 5:  # Comparison
     print("Yes")</code></pre>
       </div>
       
       <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Fehler 2: Fehlender Doppelpunkt</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Falsch:</strong></p>
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 2: Missing Colon</h3>
+        <p style="margin-bottom: 0.75rem;"><strong>Wrong:</strong></p>
         <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>if x > 5
     print("Greater")  # IndentationError!</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Richtig:</strong></p>
+        <p style="margin-bottom: 0.75rem;"><strong>Correct:</strong></p>
         <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>if x > 5:
     print("Greater")</code></pre>
       </div>
       
       <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Fehler 3: Missverstehen von range()</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Problem:</strong> range(5) geht von 0 bis 4, NICHT bis 5!</p>
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 3: Misunderstanding range()</h3>
+        <p style="margin-bottom: 0.75rem;"><strong>Problem:</strong> range(5) goes from 0 to 4, NOT to 5!</p>
         <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>for i in range(5):
-    print(i)  # Gibt 0, 1, 2, 3, 4 aus (nicht 5!)</code></pre>
-        <p style="color: var(--muted);">Die obere Grenze ist EXKLUSIV!</p>
+    print(i)  # Prints 0, 1, 2, 3, 4 (not 5!)</code></pre>
+        <p style="color: var(--muted);">The upper bound is EXCLUSIVE!</p>
       </div>
       
       <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Fehler 4: else in Schleifen missverstanden</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Problem:</strong> Die else-Klausel wird nur ausgeführt, wenn die Schleife OHNE break endet!</p>
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 4: else in Loops Misunderstood</h3>
+        <p style="margin-bottom: 0.75rem;"><strong>Problem:</strong> The else clause is only executed if the loop ends WITHOUT break!</p>
         <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>for i in range(5):
     if i == 3:
         break
 else:
-    print("Done")  # Dies wird NICHT gedruckt!</code></pre>
-        <p style="color: var(--muted);">Die else wird wegen break NICHT ausgeführt!</p>
+    print("Done")  # This will NOT print!</code></pre>
+        <p style="color: var(--muted);">The else is NOT executed because of break!</p>
       </div>
       
       <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Fehler 5: Endlosschleifen</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Problem:</strong> Eine while-Schleife ohne Abbruchbedingung läuft unendlich!</p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code">x = 0
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 5: Infinite Loops</h3>
+        <p style="margin-bottom: 0.75rem;"><strong>Problem:</strong> A while loop without an exit condition runs forever!</p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>x = 0
 while x < 10:
     print(x)
-    # Fehler: x wird nie erhöht!
-    # Die Schleife läuft ewig...</code></pre>
-        <p style="color: var(--muted);">Vergiss nicht, die Schleifenvariable zu aktualisieren!</p>
+    # Mistake: x never increases!
+    # Loop runs forever...</code></pre>
+        <p style="color: var(--muted);">Don't forget to update the loop variable!</p>
       </div>
     </div>
   </div>
@@ -578,11 +578,11 @@ while x < 10:
     <div class="progress">
       <div class="progress-item">
         <div class="progress-number" id="correct-count">0</div>
-        <div class="progress-label">Richtig</div>
+        <div class="progress-label">Correct</div>
       </div>
       <div class="progress-item">
         <div class="progress-number" id="total-count">8</div>
-        <div class="progress-label">Gesamt</div>
+        <div class="progress-label">Total</div>
       </div>
     </div>
 
@@ -602,13 +602,13 @@ while x < 10:
     <div id="quiz-container">
     </div>
 
-    <button onclick="resetQuiz()" style="margin-top: 2rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, rgba(62, 224, 161, 0.2), rgba(62, 224, 161, 0.1)); border: 1px solid var(--m2); color: var(--m2); border-radius: var(--radius); cursor: pointer; font-weight: 600; font-size: 1rem;">Quiz zurücksetzen</button>
+    <button onclick="resetQuiz()" style="margin-top: 2rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, rgba(62, 224, 161, 0.2), rgba(62, 224, 161, 0.1)); border: 1px solid var(--m2); color: var(--m2); border-radius: var(--radius); cursor: pointer; font-weight: 600; font-size: 1rem;">Reset Quiz</button>
   </div>
 </div>
 
 <script>
-const flashcardsData = [{"q": "Was ist der Unterschied zwischen == und =?", "a": "= ist der Zuweisungsoperator (assignment), um Variablen zu setzen. == ist ein Vergleichsoperator, um zwei Werte zu vergleichen."}, {"q": "Wann wird die else-Klausel in Schleifen ausgeführt?", "a": "Die else-Klausel in einer for oder while Schleife wird ausgeführt, wenn die Schleife normal zu Ende geht (ohne break)."}, {"q": "Was macht range(5)?", "a": "range(5) erzeugt eine Sequenz von Zahlen von 0 bis 4 (nicht inklusive 5). Oft in for-Schleifen verwendet: for i in range(5):"}, {"q": "Was ist der Unterschied zwischen break und continue?", "a": "break beendet die Schleife vollständig. continue springt zum nächsten Iterationsschritt, ohne den Rest des Schleifenkörpers auszuführen."}, {"q": "Wie funktioniert chained comparison (1 < x < 10)?", "a": "Chained comparison prüft mehrere Bedingungen auf einmal. 1 < x < 10 ist äquivalent zu (1 < x) and (x < 10)."}, {"q": "Was ist short-circuit evaluation?", "a": "Bei 'and' und 'or' wird nicht die ganze Expression evaluiert. 'False and X' ist immer False, 'True or X' ist immer True - X wird nicht evaluiert."}, {"q": "Was gibt bool(\"False\") zurück?", "a": "bool(\"False\") gibt True zurück! Ein nicht-leerer String ist immer True. Nur leere Strings (\"\") sind False."}, {"q": "Was ist der Unterschied zwischen for und while?", "a": "for iteriert über eine Sequenz (Liste, range). while wiederholt solange eine Bedingung True ist. for ist sicherer vor Endlosschleifen."}];
-const quizData = [{"q": "Welcher Code ist syntaktisch korrekt?", "options": ["if x = 5: print('yes')", "if x == 5 print('yes')", "if x == 5: print('yes')", "if x == 5 { print('yes') }"], "correct": 2, "explanation": "if-Blöcke benötigen einen Doppelpunkt (:) und Einrückung. x == 5 ist richtig für Vergleich."}, {"q": "Was ist die Ausgabe von range(1, 5)?", "options": ["[1, 2, 3, 4, 5]", "[1, 2, 3, 4]", "[0, 1, 2, 3, 4]", "[2, 3, 4]"], "correct": 1, "explanation": "range(1, 5) startet bei 1 und endet bei 4 (5 ist exclusive)."}, {"q": "Welche Variable ist nach dieser Schleife der Wert von x?", "options": ["x = 0\\nwhile x < 5:\\n    x += 1", "4", "5", "1", "0"], "correct": 2, "explanation": "Die while-Schleife läuft, solange x < 5. Wenn x = 5, wird die Bedingung False und die Schleife endet. x = 5."}, {"q": "Was ist die Ausgabe dieses Codes?", "options": ["for i in range(3):\\n    if i == 1:\\n        break\\n    print(i)", "0", "0\\n1", "0\\n1\\n2", "1"], "correct": 0, "explanation": "Die Schleife druckt nur 0, weil bei i=1 break aufgerufen wird und die Schleife endet."}, {"q": "Was ist die Ausgabe?", "options": ["x = 5\\nif x > 0 and x < 10:\\n    print('in range')", "in range", "Fehler", "x > 0 and x < 10", "False"], "correct": 0, "explanation": "x=5 erfüllt beide Bedingungen: 5 > 0 (True) und 5 < 10 (True). Das Ergebnis ist True, also wird 'in range' gedruckt."}, {"q": "Was gibt dieser Code aus?", "options": ["for i in range(5):\\n    if i % 2 == 0:\\n        continue\\n    print(i)", "0\\n2\\n4", "1\\n3", "Fehler", "Nichts"], "correct": 1, "explanation": "continue springt zum nächsten Schritt, wenn i gerade ist. Nur ungerade Zahlen (1, 3) werden gedruckt."}, {"q": "Was ist die Ausgabe?", "options": ["x = 0\\nwhile x < 3:\\n    print(x)\\nelse:\\n    print('done')", "0\\n1\\n2", "0\\n1\\n2\\ndone", "done", "Fehler"], "correct": 2, "explanation": "Die while-Schleife läuft von 0 bis 2, dann wird die else-Klausel ausgeführt, da die Schleife ohne break endete."}, {"q": "Welche Aussage ist WAHR?", "options": ["range() gibt eine Liste zurück", "range(10) enthält die Zahl 10", "for i in range(3): iteriert über 0, 1, 2", "range() kann nur in for-Schleifen verwendet werden"], "correct": 2, "explanation": "range(3) erzeugt die Zahlen 0, 1, 2. range() gibt eigentlich ein range-Objekt zurück, nicht eine Liste."}, {"q": "Was ist das Ergebnis?", "options": ["True and False or True", "True", "False", "Fehler", "1"], "correct": 0, "explanation": "True and False = False. False or True = True. Ausgabe: True"}, {"q": "Welcher Code verursacht eine Endlosschleife?", "options": ["while True:", "for i in range(10):", "while i < 10: i += 1", "while True: break"], "correct": 0, "explanation": "while True: wird nie False, also läuft die Schleife unendlich (es sei denn, es gibt ein break)."}];
+const flashcardsData = [{"q": "What is the difference between == and =?", "a": "= is the assignment operator (assignment), to set variables. == is a comparison operator, to compare two values."}, {"q": "When is the else clause in loops executed?", "a": "The else clause in a for or while loop is executed when the loop ends normally (without break)."}, {"q": "What does range(5) do?", "a": "range(5) generates a sequence of numbers from 0 to 4 (not including 5). Often used in for loops: for i in range(5):"}, {"q": "What is the difference between break and continue?", "a": "break ends the loop completely. continue skips to the next iteration without executing the rest of the loop body."}, {"q": "How does chained comparison work (1 < x < 10)?", "a": "Chained comparison checks multiple conditions at once. 1 < x < 10 is equivalent to (1 < x) and (x < 10)."}, {"q": "What is short-circuit evaluation?", "a": "With 'and' and 'or', not the whole expression is evaluated. 'False and X' is always False, 'True or X' is always True - X is not evaluated."}, {"q": "What does bool(\\\"False\\\") return?", "a": "bool(\\\"False\\\") returns True! A non-empty string is always True. Only empty strings (\\\"\\\") are False."}, {"q": "What is the difference between for and while?", "a": "for iterates over a sequence (list, range). while repeats as long as a condition is True. for is safer against infinite loops."}];
+const quizData = [{"q": "Which code is syntactically correct?", "options": ["if x = 5: print('yes')", "if x == 5 print('yes')", "if x == 5: print('yes')", "if x == 5 { print('yes') }"], "correct": 2, "explanation": "if blocks need a colon (:) and indentation. x == 5 is correct for comparison."}, {"q": "What is the output of range(1, 5)?", "options": ["[1, 2, 3, 4, 5]", "[1, 2, 3, 4]", "[0, 1, 2, 3, 4]", "[2, 3, 4]"], "correct": 1, "explanation": "range(1, 5) starts at 1 and ends at 4 (5 is exclusive)."}, {"q": "What is the value of x after this loop?", "options": ["x = 0\\nwhile x < 5:\\n    x += 1", "4", "5", "1", "0"], "correct": 2, "explanation": "The while loop runs while x < 5. When x = 5, the condition becomes False and the loop ends. x = 5."}, {"q": "What is the output of this code?", "options": ["for i in range(3):\\n    if i == 1:\\n        break\\n    print(i)", "0", "0\\n1", "0\\n1\\n2", "1"], "correct": 0, "explanation": "The loop only prints 0, because when i=1 break is called and the loop ends."}, {"q": "What is the output?", "options": ["x = 5\\nif x > 0 and x < 10:\\n    print('in range')", "in range", "Error", "x > 0 and x < 10", "False"], "correct": 0, "explanation": "x=5 satisfies both conditions: 5 > 0 (True) and 5 < 10 (True). Result is True, so 'in range' is printed."}, {"q": "What does this code output?", "options": ["for i in range(5):\\n    if i % 2 == 0:\\n        continue\\n    print(i)", "0\\n2\\n4", "1\\n3", "Error", "Nothing"], "correct": 1, "explanation": "continue skips to the next step when i is even. Only odd numbers (1, 3) are printed."}, {"q": "What is the output?", "options": ["x = 0\\nwhile x < 3:\\n    print(x)\\nelse:\\n    print('done')", "0\\n1\\n2", "0\\n1\\n2\\ndone", "done", "Error"], "correct": 2, "explanation": "The while loop runs from 0 to 2, then the else clause is executed because the loop ended without break."}, {"q": "Which statement is TRUE?", "options": ["range() returns a list", "range(10) contains the number 10", "for i in range(3): iterates over 0, 1, 2", "range() can only be used in for loops"], "correct": 2, "explanation": "range(3) generates the numbers 0, 1, 2. range() actually returns a range object, not a list."}, {"q": "What is the result?", "options": ["True and False or True", "True", "False", "Error", "1"], "correct": 0, "explanation": "True and False = False. False or True = True. Output: True"}, {"q": "Which code causes an infinite loop?", "options": ["while True:", "for i in range(10):", "while i < 10: i += 1", "while True: break"], "correct": 0, "explanation": "while True: never becomes False, so the loop runs infinitely (unless there's a break)."}];
 
 let quizAnswered = {};
 let correctAnswers = 0;
@@ -634,7 +634,7 @@ function initFlashcards() {
     div.dataset.flipped = 'false';
     div.innerHTML = `
       <div class="flashcard-content">
-        <div class="flashcard-label">Frage</div>
+        <div class="flashcard-label">Question</div>
         <div class="flashcard-text">${card.q}</div>
       </div>
     `;
@@ -647,12 +647,12 @@ function initFlashcards() {
       const content = this.querySelector('.flashcard-content');
       if (!flipped) {
         content.innerHTML = `
-          <div class="flashcard-label">Antwort</div>
+          <div class="flashcard-label">Answer</div>
           <div class="flashcard-text">${card.a}</div>
         `;
       } else {
         content.innerHTML = `
-          <div class="flashcard-label">Frage</div>
+          <div class="flashcard-label">Question</div>
           <div class="flashcard-text">${card.q}</div>
         `;
       }
@@ -669,7 +669,7 @@ function initQuiz() {
   quizData.forEach((q, qIdx) => {
     const div = document.createElement('div');
     div.className = 'quiz-question';
-    div.innerHTML = `<h3>Frage ${qIdx + 1}: ${q.q}</h3>`;
+    div.innerHTML = `<h3>Question ${qIdx + 1}: ${q.q}</h3>`;
     
     q.options.forEach((opt, oIdx) => {
       const label = document.createElement('label');

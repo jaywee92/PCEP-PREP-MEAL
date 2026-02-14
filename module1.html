@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modul 1 - PCEP-PREP-MEAL</title>
+<title>Module 1 - PCEP-PREP-MEAL</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -371,16 +371,16 @@
 <div class="container">
   <header>
     <div class="header-left">
-      <h1>Modul 1: Grundlagen der Programmierung</h1>
-      <p>Verstehe die Grundlagen von Python und Programmierkonzepten</p>
+      <h1>Module 1: Programming Fundamentals</h1>
+      <p>Master the basics of Python and programming concepts</p>
     </div>
-    <a href="index.html" class="back-btn">← Zurück zur Übersicht</a>
+    <a href="index.html" class="back-btn">← Back to Overview</a>
   </header>
 
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('theory')">Theory</button>
     <button class="tab-btn" onclick="switchTab('cheatsheet')">Cheatsheet</button>
-    <button class="tab-btn" onclick="switchTab('mistakes')">Häufige Fehler</button>
+    <button class="tab-btn" onclick="switchTab('mistakes')">Common Mistakes</button>
     <button class="tab-btn" onclick="switchTab('flashcards')">Flashcards</button>
     <button class="tab-btn" onclick="switchTab('quiz')">Quiz</button>
   </div>
@@ -388,19 +388,19 @@
   <!-- Theory Tab -->
   <div id="theory" class="tab-content active">
     <div class="content-box">
-      <h2>📚 Theory: Grundlagen der Programmierung</h2>
+      <h2>📚 Theory: Programming Fundamentals</h2>
       
-      <h3>Was ist ein Compiler?</h3>
-      <p>Ein Compiler ist ein Programm, das den gesamten Quellcode auf einmal in Maschinencode übersetzt, bevor das Programm ausgeführt wird. Beispiele: C, C++, Java (zu Bytecode).</p>
+      <h3>What is a Compiler?</h3>
+      <p>A compiler is a program that translates the entire source code to machine code at once before the program is executed. Examples: C, C++, Java (to bytecode).</p>
       
-      <h3>Was ist ein Interpreter?</h3>
-      <p>Ein Interpreter führt den Quellcode Zeile für Zeile aus und übersetzt ihn während der Ausführung. Beispiele: Python, JavaScript, Ruby.</p>
+      <h3>What is an Interpreter?</h3>
+      <p>An interpreter executes the source code line by line and translates it during execution. Examples: Python, JavaScript, Ruby.</p>
       
-      <h3>Python: Ein hybrides System</h3>
-      <p>Python kombiniert beide Ansätze:</p>
+      <h3>Python: A Hybrid System</h3>
+      <p>Python combines both approaches:</p>
       <ul style="margin-left: 2rem; margin-bottom: 1rem;">
-        <li><strong>Kompilierung:</strong> Der Code wird zu Bytecode kompiliert (.pyc Dateien)</li>
-        <li><strong>Interpretation:</strong> Die Python Virtual Machine (PVM) interpretiert den Bytecode</li>
+        <li><strong>Compilation:</strong> The code is compiled to bytecode (.pyc files)</li>
+        <li><strong>Interpretation:</strong> The Python Virtual Machine (PVM) interprets the bytecode</li>
       </ul>
       
       <h3>Python 2 vs Python 3</h3>
@@ -422,19 +422,19 @@
         </tr>
         <tr style="border-bottom: 1px solid var(--border);">
           <td style="padding: 0.5rem;">Unicode</td>
-          <td style="padding: 0.5rem;">Standard: str (bytes)</td>
-          <td style="padding: 0.5rem;">Standard: str (Unicode)</td>
+          <td style="padding: 0.5rem;">Default: str (bytes)</td>
+          <td style="padding: 0.5rem;">Default: str (Unicode)</td>
         </tr>
       </table>
       
-      <h3>Variablen und Datentypen</h3>
-      <p><strong>Variable:</strong> Ein benannter Behälter für einen Wert. In Python sind Variablen dynamisch typisiert.</p>
-      <p><strong>Wichtige Datentypen:</strong></p>
+      <h3>Variables and Data Types</h3>
+      <p><strong>Variable:</strong> A named container for a value. In Python, variables are dynamically typed.</p>
+      <p><strong>Basic Data Types:</strong></p>
       <ul style="margin-left: 2rem;">
-        <li><code>int</code> - Ganzzahlen (z.B. 42, -17)</li>
-        <li><code>float</code> - Dezimalzahlen (z.B. 3.14, -2.5)</li>
-        <li><code>str</code> - Strings/Text (z.B. "Hello", 'World')</li>
-        <li><code>bool</code> - Boolesche Werte (True, False)</li>
+        <li><code>int</code> - Integers (e.g., 42, -17)</li>
+        <li><code>float</code> - Decimals (e.g., 3.14, -2.5)</li>
+        <li><code>str</code> - Strings/Text (e.g., "Hello", 'World')</li>
+        <li><code>bool</code> - Boolean values (True, False)</li>
       </ul>
     </div>
   </div>
@@ -442,101 +442,101 @@
   <!-- Cheatsheet Tab -->
   <div id="cheatsheet" class="tab-content">
     <div class="content-box">
-      <h2>📋 Cheatsheet: Schnellreferenz</h2>
+      <h2>📋 Cheatsheet: Quick Reference</h2>
       
-      <h3>Variable und Zuweisung</h3>
+      <h3>Variables and Assignment</h3>
       <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>name = "Alice"
-alter = 25
-gewicht = 65.5
-aktiv = True</code></pre>
+age = 25
+weight = 65.5
+active = True</code></pre>
       
-      <h3>Grundlegende Operationen</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># Arithmetik
+      <h3>Basic Operations</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># Arithmetic
 x = 10 + 5      # Addition: 15
-x = 10 - 5      # Subtraktion: 5
-x = 10 * 5      # Multiplikation: 50
+x = 10 - 5      # Subtraction: 5
+x = 10 * 5      # Multiplication: 50
 x = 10 / 5      # Division: 2.0
 x = 10 // 3     # Integer Division: 3
 x = 10 % 3      # Modulo: 1
 
-# Vergleiche
+# Comparisons
 10 == 10        # True
 10 != 5         # True
 10 > 5          # True
 10 <= 10        # True</code></pre>
       
-      <h3>Input und Output</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># Ausgabe
+      <h3>Input and Output</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># Output
 print("Hello World")
 print(42)
 
-# Eingabe
-name = input("Dein Name: ")
-alter = int(input("Dein Alter: "))</code></pre>
+# Input
+name = input("Your name: ")
+age = int(input("Your age: "))</code></pre>
       
-      <h3>String Operationen</h3>
+      <h3>String Operations</h3>
       <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>text = "Python"
-print(len(text))           # Länge: 6
+print(len(text))           # Length: 6
 print(text.upper())        # PYTHON
 print(text.lower())        # python
-print("Hello" + " World")  # Konkatenation</code></pre>
+print("Hello" + " World")  # Concatenation</code></pre>
       
-      <h3>Kommentare</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># Das ist ein Kommentar
-x = 5  # Inline Kommentar</code></pre>
+      <h3>Comments</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># This is a comment
+x = 5  # Inline comment</code></pre>
     </div>
   </div>
 
   <!-- Mistakes Tab -->
   <div id="mistakes" class="tab-content">
     <div class="content-box">
-      <h2>⚠️ Häufige Fehler in Modul 1</h2>
+      <h2>⚠️ Common Mistakes in Module 1</h2>
       
       <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Fehler 1: Verwechselung von Python 2 und 3</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Falsch (Python 2):</strong></p>
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 1: Confusing Python 2 and 3</h3>
+        <p style="margin-bottom: 0.75rem;"><strong>Wrong (Python 2):</strong></p>
         <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>print "Hello"  # SyntaxError in Python 3!</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Richtig (Python 3):</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>print("Hello")  # Korrekt!</code></pre>
+        <p style="margin-bottom: 0.75rem;"><strong>Correct (Python 3):</strong></p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>print("Hello")  # Correct!</code></pre>
       </div>
       
       <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Fehler 2: Integer Division verwechseln</h3>
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 2: Confusing Integer Division</h3>
         <p style="margin-bottom: 0.75rem;"><strong>In Python 3:</strong></p>
         <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>5 / 2 = 2.5   # True Division
 5 // 2 = 2    # Floor Division</code></pre>
-        <p style="color: var(--muted);">Vergiss nicht: In Python 2 ist 5/2 = 2, aber in Python 3 ist 5/2 = 2.5!</p>
+        <p style="color: var(--muted);">Remember: In Python 2, 5/2 = 2, but in Python 3, 5/2 = 2.5!</p>
       </div>
       
       <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Fehler 3: Ungültige Variablennamen</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Ungültig:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>123var = 5      # Kann nicht mit Ziffer beginnen
-var-name = 10   # Bindestrich ist nicht erlaubt
-var name = 15   # Leerzeichen nicht erlaubt</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Gültig:</strong></p>
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 3: Invalid Variable Names</h3>
+        <p style="margin-bottom: 0.75rem;"><strong>Invalid:</strong></p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>123var = 5      # Cannot start with digit
+var-name = 10   # Hyphen not allowed
+var name = 15   # Spaces not allowed</code></pre>
+        <p style="margin-bottom: 0.75rem;"><strong>Valid:</strong></p>
         <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>var123 = 5          # OK
 _var_name = 10      # OK
 varName = 15        # OK (camelCase)</code></pre>
       </div>
       
       <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Fehler 4: Type Confusion</h3>
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 4: Type Confusion</h3>
         <p style="margin-bottom: 0.75rem;"><strong>Problem:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>age = "25"  # String, nicht Integer!
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>age = "25"  # String, not integer!
 print(age + 5)  # TypeError!</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Lösung:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>age = int("25")  # Konvertierung zu int
+        <p style="margin-bottom: 0.75rem;"><strong>Solution:</strong></p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>age = int("25")  # Convert to int
 print(age + 5)   # OK: 30</code></pre>
       </div>
       
       <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Fehler 5: Unterschied zwischen Compiler und Interpreter</h3>
-        <p style="margin-bottom: 0.75rem;">Viele denken, Python ist rein interpretiert. Tatsächlich:</p>
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 5: Misunderstanding Compiler vs Interpreter</h3>
+        <p style="margin-bottom: 0.75rem;">Many think Python is purely interpreted. Actually:</p>
         <ul style="margin-left: 2rem;">
-          <li>Python kompiliert zu Bytecode (.pyc)</li>
-          <li>Die Python VM (PVM) interpretiert dann diesen Bytecode</li>
-          <li>Dies ist ein <strong>hybrider</strong> Ansatz</li>
+          <li>Python compiles to bytecode (.pyc)</li>
+          <li>The Python VM (PVM) then interprets this bytecode</li>
+          <li>This is a <strong>hybrid</strong> approach</li>
         </ul>
       </div>
     </div>
@@ -547,11 +547,11 @@ print(age + 5)   # OK: 30</code></pre>
     <div class="progress">
       <div class="progress-item">
         <div class="progress-number" id="correct-count">0</div>
-        <div class="progress-label">Richtig</div>
+        <div class="progress-label">Correct</div>
       </div>
       <div class="progress-item">
         <div class="progress-number" id="total-count">8</div>
-        <div class="progress-label">Gesamt</div>
+        <div class="progress-label">Total</div>
       </div>
     </div>
 
@@ -571,13 +571,13 @@ print(age + 5)   # OK: 30</code></pre>
     <div id="quiz-container">
     </div>
 
-    <button onclick="resetQuiz()" style="margin-top: 2rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, rgba(84, 199, 255, 0.2), rgba(84, 199, 255, 0.1)); border: 1px solid var(--m1); color: var(--m1); border-radius: var(--radius); cursor: pointer; font-weight: 600; font-size: 1rem;">Quiz zurücksetzen</button>
+    <button onclick="resetQuiz()" style="margin-top: 2rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, rgba(84, 199, 255, 0.2), rgba(84, 199, 255, 0.1)); border: 1px solid var(--m1); color: var(--m1); border-radius: var(--radius); cursor: pointer; font-weight: 600; font-size: 1rem;">Reset Quiz</button>
   </div>
 </div>
 
 <script>
-const flashcardsData = [{"q": "Was ist ein Compiler?", "a": "Ein Compiler ist ein Programm, das den gesamten Quellcode auf einmal in Maschinencode \u00fcbersetzt, bevor die Ausf\u00fchrung beginnt."}, {"q": "Was ist ein Interpreter?", "a": "Ein Interpreter f\u00fchrt den Quellcode Zeile f\u00fcr Zeile aus und \u00fcbersetzt ihn w\u00e4hrend der Ausf\u00fchrung in Maschinencode."}, {"q": "Welcher Ansatz verwendet Python?", "a": "Python verwendet eine Kombination aus Interpretation und Kompilierung. Der Code wird zuerst zu Bytecode kompiliert, dann von einer virtuellen Maschine interpretiert."}, {"q": "Was ist der Hauptunterschied zwischen Python 2 und Python 3?", "a": "Python 3 unterscheidet sich durch: print() als Funktion statt statement, Unicode als Standard, integer Division (/), verbesserte Unicode-Unterst\u00fctzung und entfernte veraltete Features."}, {"q": "Was ist eine Variable?", "a": "Eine Variable ist ein benannter Speicherplatz, der einen Wert speichert. In Python ist dynamisches Typen m\u00f6glich."}, {"q": "Nenne drei grundlegende Datentypen in Python.", "a": "int (Ganzzahlen), float (Dezimalzahlen) und str (Strings/Text)."}, {"q": "Was ist ein Literal?", "a": "Ein Literal ist ein direkter Wert im Code, der sich selbst darstellt (z.B. 42, \"Hello\", 3.14)."}, {"q": "Erkl\u00e4re die Namenskonvention f\u00fcr Variablen in Python.", "a": "Variablennamen sollten mit Buchstaben oder _ beginnen, d\u00fcrfen Zahlen enthalten, aber nicht mit einer Zahl beginnen. Konvention: snake_case f\u00fcr Variablen."}];
-const quizData = [{"q": "Welche Aussage \u00fcber Python ist FALSCH?", "options": ["Python ist eine interpretierte Sprache", "Python verwendet automatische Speicherverwaltung", "Python ist statisch typisiert", "Python wird h\u00e4ufig f\u00fcr Skripte und Data Science verwendet"], "correct": 2, "explanation": "Python ist dynamisch typisiert, nicht statisch. Variablentypen k\u00f6nnen sich zur Laufzeit \u00e4ndern."}, {"q": "Welcher Befehl gibt eine Nachricht auf dem Bildschirm aus?", "options": ["output(\"Hello\")", "print(\"Hello\")", "write(\"Hello\")", "display(\"Hello\")"], "correct": 1, "explanation": "Die print()-Funktion gibt Text auf der Konsole aus."}, {"q": "Welche Variable ist g\u00fcltig?", "options": ["123var", "var-name", "_private_var", "var name"], "correct": 2, "explanation": "Variablennamen d\u00fcrfen mit Ziffern beginnen, Bindestriche oder Leerzeichen enthalten. _private_var ist das einzige g\u00fcltige Beispiel."}, {"q": "Was ist der Unterschied zwischen Python 2 und Python 3 bei der print-Anweisung?", "options": ["Es gibt keinen Unterschied", "In Python 2 ist print ein Statement, in Python 3 eine Funktion", "In Python 3 ist print ein Statement, in Python 2 eine Funktion", "Python 2 unterst\u00fctzt print nicht"], "correct": 1, "explanation": "Python 2: print \"text\" | Python 3: print(\"text\")"}, {"q": "Welcher Datentyp wird f\u00fcr die Zahl 3.14 verwendet?", "options": ["int", "string", "float", "double"], "correct": 2, "explanation": "float wird f\u00fcr Dezimalzahlen verwendet."}, {"q": "Welches Zeichen wird in Python verwendet, um einen Kommentar zu starten?", "options": ["//", "/*", "#", "--"], "correct": 2, "explanation": "Das Hash-Zeichen (#) leitet einen Kommentar ein."}, {"q": "Was ist ein Bytecode?", "options": ["Der vom Compiler erzeugte Maschinencode", "Ein plattformunabh\u00e4ngiger Zwischencode", "Ein Fehlercode bei der Compilation", "Ein spezieller String-Typ in Python"], "correct": 1, "explanation": "Bytecode ist ein plattformunabh\u00e4ngiger Zwischencode, den die Python-VM (Virtual Machine) ausf\u00fchrt."}, {"q": "Welche Aussage ist korrekt?", "options": ["Alle Variablen m\u00fcssen vor Verwendung deklariert werden", "Python erfordert explizite Typdeklarationen", "Variablen werden durch Zuweisung erstellt", "Variablennamen d\u00fcrfen Leerzeichen enthalten"], "correct": 2, "explanation": "In Python werden Variablen durch Zuweisung erstellt. name = \"Alice\" erstellt die Variable automatisch."}];
+const flashcardsData = [{"q": "What is a Compiler?", "a": "A compiler is a program that translates the entire source code to machine code at once before execution begins."}, {"q": "What is an Interpreter?", "a": "An interpreter executes the source code line by line and translates it during execution to machine code."}, {"q": "Which approach does Python use?", "a": "Python uses a combination of compilation and interpretation. The code is first compiled to bytecode, then a virtual machine interprets it."}, {"q": "What is the main difference between Python 2 and Python 3?", "a": "Python 3 differs by: print() as function instead of statement, Unicode as default, true division (/), improved Unicode support and removed deprecated features."}, {"q": "What is a Variable?", "a": "A variable is a named storage location that holds a value. In Python, dynamic typing is possible."}, {"q": "Name three basic data types in Python.", "a": "int (integers), float (decimals) and str (strings/text)."}, {"q": "What is a Literal?", "a": "A literal is a direct value in code that represents itself (e.g., 42, \"Hello\", 3.14)."}, {"q": "Explain the naming convention for variables in Python.", "a": "Variable names should start with letters or _, can contain numbers, but not start with a number. Convention: snake_case for variables."}];
+const quizData = [{"q": "Which statement about Python is FALSE?", "options": ["Python is an interpreted language", "Python uses automatic memory management", "Python is statically typed", "Python is commonly used for scripts and data science"], "correct": 2, "explanation": "Python is dynamically typed, not statically. Variable types can change during runtime."}, {"q": "Which command outputs a message to the screen?", "options": ["output(\"Hello\")", "print(\"Hello\")", "write(\"Hello\")", "display(\"Hello\")"], "correct": 1, "explanation": "The print() function outputs text to the console."}, {"q": "Which variable name is valid?", "options": ["123var", "var-name", "_private_var", "var name"], "correct": 2, "explanation": "Variable names cannot start with digits, contain hyphens or spaces. _private_var is the only valid example."}, {"q": "What is the difference between print in Python 2 and Python 3?", "options": ["There is no difference", "In Python 2 print is a statement, in Python 3 it's a function", "In Python 3 print is a statement, in Python 2 it's a function", "Python 2 doesn't support print"], "correct": 1, "explanation": "Python 2: print \"text\" | Python 3: print(\"text\")"}, {"q": "Which data type is used for the number 3.14?", "options": ["int", "string", "float", "double"], "correct": 2, "explanation": "float is used for decimal numbers."}, {"q": "Which character starts a comment in Python?", "options": ["//", "/*", "#", "--"], "correct": 2, "explanation": "The hash symbol (#) starts a comment."}, {"q": "What is bytecode?", "options": ["Machine code produced by the compiler", "A platform-independent intermediate code", "An error code during compilation", "A special string type in Python"], "correct": 1, "explanation": "Bytecode is a platform-independent intermediate code that the Python VM (Virtual Machine) executes."}, {"q": "Which statement is correct?", "options": ["All variables must be declared before use", "Python requires explicit type declarations", "Variables are created through assignment", "Variable names can contain spaces"], "correct": 2, "explanation": "In Python, variables are created through assignment. name = \"Alice\" creates the variable automatically."}];
 
 let quizAnswered = {};
 let correctAnswers = 0;
@@ -603,7 +603,7 @@ function initFlashcards() {
     div.dataset.flipped = 'false';
     div.innerHTML = `
       <div class="flashcard-content">
-        <div class="flashcard-label">Frage</div>
+        <div class="flashcard-label">Question</div>
         <div class="flashcard-text">${card.q}</div>
       </div>
     `;
@@ -616,12 +616,12 @@ function initFlashcards() {
       const content = this.querySelector('.flashcard-content');
       if (!flipped) {
         content.innerHTML = `
-          <div class="flashcard-label">Antwort</div>
+          <div class="flashcard-label">Answer</div>
           <div class="flashcard-text">${card.a}</div>
         `;
       } else {
         content.innerHTML = `
-          <div class="flashcard-label">Frage</div>
+          <div class="flashcard-label">Question</div>
           <div class="flashcard-text">${card.q}</div>
         `;
       }
@@ -638,7 +638,7 @@ function initQuiz() {
   quizData.forEach((q, qIdx) => {
     const div = document.createElement('div');
     div.className = 'quiz-question';
-    div.innerHTML = `<h3>Frage ${qIdx + 1}: ${q.q}</h3>`;
+    div.innerHTML = `<h3>Question ${qIdx + 1}: ${q.q}</h3>`;
     
     q.options.forEach((opt, oIdx) => {
       const label = document.createElement('label');
