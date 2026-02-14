@@ -258,124 +258,6 @@
     color: var(--muted);
   }
 
-  .overview-panel {
-    margin-top: 20px;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 22px;
-    background: linear-gradient(180deg, rgba(20, 27, 40, 0.82), rgba(14, 20, 30, 0.82));
-    backdrop-filter: blur(10px);
-  }
-
-  .overview-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .overview-head h2 {
-    font-size: clamp(22px, 3vw, 31px);
-    letter-spacing: -0.02em;
-  }
-
-  .overview-head span {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: var(--muted);
-    padding: 5px 10px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.04);
-  }
-
-  .overview-grid {
-    margin-top: 14px;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .overview-card {
-    border-radius: var(--radius);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.03);
-    padding: 14px;
-  }
-
-  .overview-card h3 {
-    font-size: 14px;
-    letter-spacing: 0.03em;
-  }
-
-  .overview-card ul {
-    margin-top: 8px;
-    padding-left: 18px;
-    color: #d7e1f1;
-    font-size: 14px;
-  }
-
-  .overview-card ul li + li {
-    margin-top: 5px;
-  }
-
-  .topic-pills {
-    margin-top: 14px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-  }
-
-  .topic-pills span {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    padding: 6px 9px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.03);
-    color: #d6e3f8;
-  }
-
-  .study-plan {
-    margin-top: 14px;
-    border-radius: var(--radius);
-    border: 1px dashed rgba(255, 255, 255, 0.2);
-    overflow: hidden;
-  }
-
-  .study-row {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .study-row:last-child {
-    border-bottom: none;
-  }
-
-  .study-week {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    background: rgba(84, 199, 255, 0.08);
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 10px;
-    color: #bfe8ff;
-  }
-
-  .study-content {
-    padding: 12px 14px;
-    font-size: 14px;
-    color: #dbe7fa;
-  }
-
-  .study-content strong {
-    color: #ffffff;
-  }
-
   .module-deep {
     margin-top: 14px;
     display: grid;
@@ -422,6 +304,48 @@
     font-size: 12px;
     color: #dce8fb;
     white-space: pre-wrap;
+  }
+
+  .module-toolkit {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .tool-card {
+    border-radius: var(--radius);
+    padding: 14px;
+    border: 1px solid color-mix(in srgb, var(--accent) 36%, var(--border));
+    background: color-mix(in srgb, var(--accent) 7%, #111a2a 93%);
+  }
+
+  .tool-card h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+  }
+
+  .tool-card ul {
+    margin-top: 8px;
+    padding-left: 18px;
+    color: #d6e4f9;
+    font-size: 14px;
+  }
+
+  .tool-card ul li + li {
+    margin-top: 5px;
+  }
+
+  .tool-card.mistake {
+    border-color: rgba(255, 153, 108, 0.38);
+    background: rgba(255, 153, 108, 0.08);
+  }
+
+  .tool-card.mistake h4 {
+    color: #ffc39b;
   }
 
   .topic-tags {
@@ -895,11 +819,11 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .overview-grid {
+    .module-deep {
       grid-template-columns: 1fr;
     }
 
-    .module-deep {
+    .module-toolkit {
       grid-template-columns: 1fr;
     }
 
@@ -927,16 +851,6 @@
 
     .module-nav {
       grid-template-columns: 1fr;
-    }
-
-    .study-row {
-      grid-template-columns: 1fr;
-    }
-
-    .study-week {
-      justify-content: flex-start;
-      border-right: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .module {
@@ -1023,150 +937,6 @@
     </nav>
   </header>
 
-  <section class="overview-panel">
-    <div class="overview-head">
-      <h2>Complete PCEP Blueprint</h2>
-      <span>Based on your full prep documents (01-20 + cheatsheets)</span>
-    </div>
-    <div class="overview-grid">
-      <article class="overview-card">
-        <h3>Section 1 - Fundamentals (~20%)</h3>
-        <ul>
-          <li>Programming basics: compilation vs interpretation, Python ecosystem, Python 2 vs 3</li>
-          <li>Syntax rules: indentation, identifiers, keywords, statement continuation</li>
-          <li>Literals and variables: numeric bases, booleans, None, dynamic typing</li>
-          <li>Operators and conversions: precedence, floor division, truthiness, casting</li>
-          <li>I/O: <code>input()</code>, <code>print()</code>, separators, formatting, f-strings</li>
-        </ul>
-      </article>
-      <article class="overview-card">
-        <h3>Section 2 + 3 - Flow + Collections (~45%)</h3>
-        <ul>
-          <li>Conditionals: <code>if/elif/else</code>, chaining, truth-based branching</li>
-          <li>Loops: <code>for</code>, <code>while</code>, <code>range()</code>, <code>break/continue/else</code></li>
-          <li>Strings: indexing, slicing, search/replace, split/join, immutability</li>
-          <li>Lists: mutation methods, in-place sorting trap, copy vs reference</li>
-          <li>Tuples/dicts: unpacking, hashable keys, safe dict access patterns</li>
-        </ul>
-      </article>
-      <article class="overview-card">
-        <h3>Section 4 - Functions + Exceptions (~35%)</h3>
-        <ul>
-          <li>Function design: parameters, return behavior, default values, LEGB scope</li>
-          <li>Advanced signatures: <code>*args</code>, <code>**kwargs</code>, unpacking calls</li>
-          <li>Built-ins: <code>len</code>, <code>sorted</code>, <code>enumerate</code>, <code>zip</code>, <code>map</code>, <code>filter</code></li>
-          <li>Exception handling: <code>try/except/else/finally</code>, ordering, <code>raise</code></li>
-          <li>Recursion/generators: base case, <code>yield</code>, lazy iteration basics</li>
-        </ul>
-      </article>
-    </div>
-    <div class="topic-pills">
-      <span>30 questions</span><span>40 minutes</span><span>Pass at 70% (21/30)</span>
-      <span>Python 3 only</span><span>Single-choice + code tracing</span><span>Trap-heavy wording</span>
-    </div>
-  </section>
-
-  <section class="overview-panel">
-    <div class="overview-head">
-      <h2>4-Week Study Plan + Trap Radar</h2>
-      <span>Condensed from 00_Index.md, 99_Summary.md, 19_Common_Mistakes.md</span>
-    </div>
-
-    <div class="study-plan">
-      <div class="study-row">
-        <div class="study-week">Week 1</div>
-        <div class="study-content"><strong>Fundamentals + syntax:</strong> execution model, literals, operators, types, I/O, then quick drills on precedence and conversion traps.</div>
-      </div>
-      <div class="study-row">
-        <div class="study-week">Week 2</div>
-        <div class="study-content"><strong>Control flow + strings/lists:</strong> focus on <code>range()</code> exclusivity, loop <code>else</code>, slicing, list methods, and reference vs copy behavior.</div>
-      </div>
-      <div class="study-row">
-        <div class="study-week">Week 3</div>
-        <div class="study-content"><strong>Functions + exceptions:</strong> defaults, <code>*args/**kwargs</code>, scope, built-ins, exception order, and <code>finally</code> behavior.</div>
-      </div>
-      <div class="study-row">
-        <div class="study-week">Week 4</div>
-        <div class="study-content"><strong>Exam simulation:</strong> mixed sets under time pressure, analyze every miss, reinforce high-yield mistakes list.</div>
-      </div>
-    </div>
-
-    <div class="overview-grid">
-      <article class="overview-card">
-        <h3>Top Exam Traps</h3>
-        <ul>
-          <li><code>10 / 2 = 5.0</code> and <code>-7 // 2 = -4</code></li>
-          <li><code>-2 ** 2</code> vs <code>(-2) ** 2</code></li>
-          <li><code>input()</code> returns string, always</li>
-          <li><code>sort()</code> returns <code>None</code></li>
-          <li><code>in dict</code> checks keys, not values</li>
-        </ul>
-      </article>
-      <article class="overview-card">
-        <h3>Must-Remember Truthiness</h3>
-        <ul>
-          <li>Falsy: <code>0</code>, <code>0.0</code>, <code>""</code>, <code>[]</code>, <code>{}</code>, <code>()</code>, <code>None</code></li>
-          <li>Truthy: non-empty string/list/dict, including <code>"0"</code> and <code>[0]</code></li>
-          <li><code>all([])</code> is <code>True</code>, <code>any([])</code> is <code>False</code></li>
-        </ul>
-      </article>
-      <article class="overview-card">
-        <h3>Execution Hygiene</h3>
-        <ul>
-          <li>Read code top-down exactly as interpreter does</li>
-          <li>Use parentheses in ambiguous precedence questions</li>
-          <li>Track mutation separately from returned values</li>
-          <li>Specific exceptions before generic handlers</li>
-          <li>Re-check stop values in slicing and range</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <section class="overview-panel">
-    <div class="overview-head">
-      <h2>Rapid Reference Wall</h2>
-      <span>Key snippets from 00_Cheatsheet.md and 18_Quick_Reference.md</span>
-    </div>
-    <div class="overview-grid">
-      <article class="overview-card">
-        <h3>Operator Precedence (High - Low)</h3>
-        <pre><code>()  **  +x -x  * / // %  + -
-== != &lt; &gt; &lt;= &gt;=  not  and  or</code></pre>
-        <ul>
-          <li><code>2 ** 3 ** 2 = 512</code> (right-to-left)</li>
-          <li><code>-2 ** 2 = -4</code> (power before unary minus)</li>
-        </ul>
-      </article>
-      <article class="overview-card">
-        <h3>Conversion + Truthiness</h3>
-        <pre><code>int(3.9) -> 3
-bool("") -> False
-bool("0") -> True
-bool([0]) -> True</code></pre>
-        <ul>
-          <li>Falsy only for empty containers and zero/None values</li>
-          <li><code>input()</code> output must be cast for numeric operations</li>
-        </ul>
-      </article>
-      <article class="overview-card">
-        <h3>Exception Skeleton</h3>
-        <pre><code>try:
-    risky()
-except ValueError as e:
-    handle(e)
-else:
-    success()
-finally:
-    cleanup()</code></pre>
-        <ul>
-          <li>Order handlers from specific to general</li>
-          <li><code>finally</code> always executes</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
   <section class="module m1" id="module1" data-module="m1">
     <div class="module-head">
       <div>
@@ -1248,6 +1018,29 @@ finally:
 
     <div class="deep-snippet">
       <code>Quick trace pattern: evaluate precedence -> evaluate conversion -> check truthiness -> predict output line by line.</code>
+    </div>
+
+    <div class="module-toolkit">
+      <article class="tool-card">
+        <h4>Module 1 Cheatsheet</h4>
+        <ul>
+          <li><code>() > ** > unary > * / // % > + - > comparisons > not > and > or</code></li>
+          <li><code>/</code> always float, <code>//</code> floors toward negative infinity</li>
+          <li><code>input()</code> always returns string, cast with <code>int()</code>/<code>float()</code></li>
+          <li><code>int(3.9) -> 3</code>, <code>bool(\"0\") -> True</code>, <code>bool(\"\") -> False</code></li>
+          <li><code>print(a,b,sep=\"-\",end=\"!\")</code> controls output formatting</li>
+        </ul>
+      </article>
+      <article class="tool-card mistake">
+        <h4>Module 1 Common Mistakes</h4>
+        <ul>
+          <li><code>-2 ** 2</code> misunderstood; correct is <code>-4</code></li>
+          <li>Assuming <code>10/2</code> is int; it is <code>5.0</code></li>
+          <li>Using invalid identifiers starting with digits</li>
+          <li>Forgetting Python keywords cannot be variable names</li>
+          <li>Confusing <code>is</code> with <code>==</code> in value comparisons</li>
+        </ul>
+      </article>
     </div>
 
     <div class="quiz-launch">
@@ -1352,6 +1145,29 @@ finally:
       <code>Loop debugging tactic: write the sequence of values first, then overlay break/continue decisions, then decide if else runs.</code>
     </div>
 
+    <div class="module-toolkit">
+      <article class="tool-card">
+        <h4>Module 2 Cheatsheet</h4>
+        <ul>
+          <li><code>if/elif/else</code>: only first true branch executes</li>
+          <li><code>range(stop)</code> is exclusive, <code>range(start,stop,step)</code> respects step direction</li>
+          <li><code>break</code> exits loop, <code>continue</code> skips current iteration</li>
+          <li>Loop <code>else</code> runs only if loop ends without break</li>
+          <li>Use <code>enumerate()</code> for index+value iteration</li>
+        </ul>
+      </article>
+      <article class="tool-card mistake">
+        <h4>Module 2 Common Mistakes</h4>
+        <ul>
+          <li>Off-by-one mistakes with <code>range()</code> stop value</li>
+          <li>Wrong step sign causing empty ranges</li>
+          <li>Assuming <code>break</code> exits all nested loops</li>
+          <li>Expecting loop variable to disappear after loop</li>
+          <li>Expecting loop <code>else</code> to run after a break</li>
+        </ul>
+      </article>
+    </div>
+
     <div class="quiz-launch">
       <h3>Module Test Lab</h3>
       <p>Practice real trace-style questions and check reasoning instantly.</p>
@@ -1454,6 +1270,29 @@ finally:
       <code>Collection trace tactic: identify mutability first, then decide whether operation returns new object or mutates in place.</code>
     </div>
 
+    <div class="module-toolkit">
+      <article class="tool-card">
+        <h4>Module 3 Cheatsheet</h4>
+        <ul>
+          <li>Strings are immutable; slicing is safe and stop index is exclusive</li>
+          <li><code>append(x)</code> adds one item, <code>extend(iter)</code> adds many</li>
+          <li><code>sort()</code> mutates list and returns <code>None</code>; <code>sorted()</code> returns new list</li>
+          <li>Single-item tuple syntax is <code>(x,)</code></li>
+          <li>For dicts, <code>key in d</code> checks keys; use <code>d.get(key, default)</code> for safe access</li>
+        </ul>
+      </article>
+      <article class="tool-card mistake">
+        <h4>Module 3 Common Mistakes</h4>
+        <ul>
+          <li>Reference trap: <code>b = a</code> links same list object</li>
+          <li>Confusing <code>find()</code> (-1) and <code>index()</code> (ValueError)</li>
+          <li>Using <code>{}</code> expecting empty set (it is dict)</li>
+          <li>Assuming tuple/list methods are interchangeable</li>
+          <li>Expecting <code>in</code> to search dict values automatically</li>
+        </ul>
+      </article>
+    </div>
+
     <div class="quiz-launch">
       <h3>Module Test Lab</h3>
       <p>Collection-heavy traps with hints and immediate correction feedback.</p>
@@ -1554,6 +1393,29 @@ finally:
 
     <div class="deep-snippet">
       <code>Function trace tactic: bind arguments -> evaluate locals vs globals -> check explicit return; if absent, return is None.</code>
+    </div>
+
+    <div class="module-toolkit">
+      <article class="tool-card">
+        <h4>Module 4 Cheatsheet</h4>
+        <ul>
+          <li><code>*args</code> is tuple, <code>**kwargs</code> is dict</li>
+          <li>Parameter order: positional -> default -> <code>*args</code> -> keyword-only -> <code>**kwargs</code></li>
+          <li>No explicit return means <code>None</code></li>
+          <li><code>try/except/else/finally</code>: else on success, finally always</li>
+          <li>Common exceptions: <code>ValueError</code>, <code>TypeError</code>, <code>ZeroDivisionError</code>, <code>KeyError</code></li>
+        </ul>
+      </article>
+      <article class="tool-card mistake">
+        <h4>Module 4 Common Mistakes</h4>
+        <ul>
+          <li>Mutable default argument reuse across calls</li>
+          <li>Function prints value but caller receives <code>None</code></li>
+          <li>Generic <code>except</code> before specific handlers</li>
+          <li>Forgetting <code>finally</code> runs even after return/raise</li>
+          <li>Scope confusion: local shadowing vs <code>global</code> updates</li>
+        </ul>
+      </article>
     </div>
 
     <div class="quiz-launch">
