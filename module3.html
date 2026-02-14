@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modul 3 - PCEP-PREP-MEAL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b1018;
+    --surface: #141b28;
+    --surface-soft: #1b2434;
+    --surface-strong: #202c3f;
+    --border: #2c3a53;
+    --text: #e6edf8;
+    --muted: #9aa7be;
+    --ok: #3bd48f;
+    --bad: #ff6b6b;
+    --warn: #f9bb50;
+    --code-bg: #0f1624;
+    --radius: 14px;
+    --m3: #f6b44d;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    min-height: 100%;
+  }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: radial-gradient(circle at 10% 10%, #111b2c 0%, #0b1018 45%, #090d14 100%);
+    color: var(--text);
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  .bg-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(90px);
+    opacity: 0.14;
+    animation: floatOrb 22s ease-in-out infinite;
+  }
+
+  .orb.one {
+    width: 420px;
+    height: 420px;
+    background: var(--m3);
+    top: -120px;
+    left: -90px;
+  }
+
+  @keyframes floatOrb {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(40px, -40px); }
+    50% { transform: translate(-20px, 20px); }
+    75% { transform: translate(30px, 10px); }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background: rgba(20, 27, 40, 0.5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    backdrop-filter: blur(10px);
+  }
+
+  .header-left h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--m3);
+    margin-bottom: 0.3rem;
+  }
+
+  .header-left p {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, rgba(246, 180, 77, 0.1), rgba(246, 180, 77, 0.05));
+    border: 1px solid var(--m3);
+    color: var(--m3);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .back-btn:hover {
+    background: linear-gradient(135deg, rgba(246, 180, 77, 0.2), rgba(246, 180, 77, 0.1));
+    transform: translateX(-3px);
+  }
+
+  .tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .tab-btn {
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: 2px solid var(--border);
+    color: var(--muted);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+  }
+
+  .tab-btn:hover {
+    border-color: var(--m3);
+    color: var(--m3);
+  }
+
+  .tab-btn.active {
+    background: linear-gradient(135deg, rgba(246, 180, 77, 0.15), rgba(246, 180, 77, 0.05));
+    border-color: var(--m3);
+    color: var(--m3);
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  .card {
+    background: rgba(20, 27, 40, 0.5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .card h3 {
+    color: var(--m3);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .card h4 {
+    color: var(--text);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .card ul, .card ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .card li {
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--ok);
+  }
+
+  .flashcard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .flashcard {
+    background: linear-gradient(135deg, rgba(246, 180, 77, 0.1), rgba(246, 180, 77, 0.05));
+    border: 2px solid var(--m3);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    cursor: pointer;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .flashcard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(246, 180, 77, 0.2);
+  }
+
+  .flashcard.flipped {
+    background: linear-gradient(135deg, rgba(246, 180, 77, 0.2), rgba(246, 180, 77, 0.1));
+  }
+
+  .flashcard-content {
+    text-align: center;
+    color: var(--text);
+    word-wrap: break-word;
+  }
+
+  .quiz-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .question {
+    background: rgba(20, 27, 40, 0.5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .question h4 {
+    color: var(--m3);
+    margin-bottom: 1rem;
+  }
+
+  .option {
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    background: rgba(60, 80, 110, 0.3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .option:hover {
+    background: rgba(60, 80, 110, 0.5);
+  }
+
+  .option input[type="radio"] {
+    margin-right: 0.75rem;
+  }
+
+  .option.selected {
+    background: linear-gradient(135deg, rgba(246, 180, 77, 0.2), rgba(246, 180, 77, 0.1));
+    border-color: var(--m3);
+  }
+
+  .option.correct {
+    background: linear-gradient(135deg, rgba(59, 212, 143, 0.2), rgba(59, 212, 143, 0.1));
+    border-color: var(--ok);
+  }
+
+  .option.incorrect {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 107, 107, 0.1));
+    border-color: var(--bad);
+  }
+
+  .submit-btn {
+    padding: 0.75rem 2rem;
+    background: linear-gradient(135deg, var(--m3), rgba(246, 180, 77, 0.8));
+    border: none;
+    color: #000;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(246, 180, 77, 0.3);
+  }
+
+  .result {
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin-top: 1rem;
+    display: none;
+  }
+
+  .result.show {
+    display: block;
+  }
+
+  .result.success {
+    background: linear-gradient(135deg, rgba(59, 212, 143, 0.2), rgba(59, 212, 143, 0.1));
+    border: 1px solid var(--ok);
+    color: var(--ok);
+  }
+
+  .result.failure {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 107, 107, 0.1));
+    border: 1px solid var(--bad);
+    color: var(--bad);
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
+    }
+
+    header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .tabs {
+      flex-wrap: wrap;
+    }
+
+    .flashcard-container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="bg-canvas">
+  <div class="orb one"></div>
+</div>
+
+<div class="container">
+  <header>
+    <div class="header-left">
+      <h1>Modul 3</h1>
+      <p>Data Collections (25% Prüfungsgewicht)</p>
+    </div>
+    <a href="/mnt/PCEP-PREP-MEAL/index.html" class="back-btn">← Zurück</a>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('theory')">Theorie</button>
+    <button class="tab-btn" onclick="switchTab('cheatsheet')">Cheatsheet</button>
+    <button class="tab-btn" onclick="switchTab('mistakes')">Häufige Fehler</button>
+    <button class="tab-btn" onclick="switchTab('flashcards')">Flashcards</button>
+    <button class="tab-btn" onclick="switchTab('quiz')">Quiz</button>
+  </div>
+
+  <!-- THEORY TAB -->
+  <div id="theory" class="tab-content active">
+    <div class="card">
+      <h3>Data Collections in Python</h3>
+      <p>Strings, Listen, Tuples und Dictionaries sind die fundamentalen Datentypen in Python für die Verwaltung von Sammlungen von Daten.</p>
+    </div>
+
+    <div class="card">
+      <h4>Strings</h4>
+      <p>Strings sind unveränderliche Sequenzen von Zeichen. Sie unterstützen Indexierung, Slicing und zahlreiche Methoden zur Manipulation von Text.</p>
+      <div class="code-block">str1 = "Hello"
+str2 = str1[0]     # Indexierung: 'H'
+str3 = str1[1:4]   # Slicing: 'ell'
+str4 = str1[::-1]  # Umkehrung: 'olleH'</div>
+      <h4>Wichtige String-Methoden:</h4>
+      <ul>
+        <li><strong>upper(), lower():</strong> Umwandlung in Groß-/Kleinbuchstaben</li>
+        <li><strong>find(x):</strong> Gibt Index von x zurück, -1 wenn nicht gefunden</li>
+        <li><strong>index(x):</strong> Gibt Index zurück, ValueError wenn nicht gefunden</li>
+        <li><strong>split(sep):</strong> Teilt String in Liste auf</li>
+        <li><strong>join(list):</strong> Verbindet Liste-Elemente mit String</li>
+        <li><strong>replace(old, new):</strong> Ersetzt Substrings</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h4>Listen (Lists)</h4>
+      <p>Listen sind veränderliche Sequenzen, die verschiedene Datentypen speichern können. Änderungen an Listen sind vor Ort möglich.</p>
+      <div class="code-block">list1 = [1, 2, 3]
+list1.append(4)      # Fügt am Ende hinzu
+list1.extend([5, 6]) # Fügt mehrere Elemente hinzu
+list1.insert(0, 0)   # Fügt an Position 0 hinzu
+list1.remove(2)      # Entfernt Wert 2
+list1.pop()          # Entfernt letztes Element</div>
+      <h4>Wichtige Listen-Methoden:</h4>
+      <ul>
+        <li><strong>append(x):</strong> Fügt x am Ende ein</li>
+        <li><strong>extend(iter):</strong> Fügt alle Elemente aus iter hinzu</li>
+        <li><strong>insert(i, x):</strong> Fügt x an Position i ein</li>
+        <li><strong>remove(x):</strong> Entfernt das erste x</li>
+        <li><strong>pop(i):</strong> Entfernt Element an Position i</li>
+        <li><strong>sort():</strong> Sortiert die Liste (ändert sie vor Ort)</li>
+        <li><strong>reverse():</strong> Kehrt die Reihenfolge um</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h4>Tuples</h4>
+      <p>Tuples sind unveränderliche Sequenzen. Nach der Erstellung können sie nicht mehr geändert werden. Sie sind schneller und können als Dictionary-Keys verwendet werden.</p>
+      <div class="code-block">tuple1 = (1, 2, 3)
+tuple2 = (1,)        # Single-Element Tuple
+tuple3 = 1, 2, 3     # Auch gültig ohne Klammern
+x = tuple1[0]        # Indexierung funktioniert
+# tuple1[0] = 5      # FEHLER: Tuples sind unveränderlich</div>
+      <h4>Unterschiede zu Listen:</h4>
+      <ul>
+        <li>Tuples sind unveränderlich (immutable)</li>
+        <li>Tuples können als Dictionary-Keys verwendet werden</li>
+        <li>Tuples sind schneller als Listen</li>
+        <li>Tuples belegen weniger Speicher</li>
+        <li>Single-Element Tuples brauchen ein Komma: (1,)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h4>Dictionaries</h4>
+      <p>Dictionaries sind ungeordnete Sammlungen von Schlüssel-Wert-Paaren. Schlüssel müssen unveränderlich sein und sind eindeutig.</p>
+      <div class="code-block">dict1 = {"name": "Alice", "alter": 30}
+dict1["stadt"] = "Berlin"  # Neues Key-Value-Paar
+value = dict1.get("name")  # Sicher abrufen
+value = dict1["name"]      # Direkt abrufen
+if "name" in dict1:        # Prüft Keys, nicht Values!</div>
+      <h4>Wichtige Dictionary-Methoden:</h4>
+      <ul>
+        <li><strong>get(key, default):</strong> Gibt Value zurück oder default wenn nicht vorhanden</li>
+        <li><strong>keys():</strong> Gibt alle Keys zurück</li>
+        <li><strong>values():</strong> Gibt alle Values zurück</li>
+        <li><strong>items():</strong> Gibt Key-Value-Paare zurück</li>
+        <li><strong>pop(key):</strong> Entfernt und gibt Value zurück</li>
+        <li><strong>update(dict):</strong> Aktualisiert mit Paaren aus dict</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CHEATSHEET TAB -->
+  <div id="cheatsheet" class="tab-content">
+    <div class="card">
+      <h3>Cheatsheet: Data Collections</h3>
+    </div>
+
+    <div class="card">
+      <h4>Strings (str)</h4>
+      <ul>
+        <li><strong>Typ:</strong> Unveränderlich (immutable)</li>
+        <li><strong>Indexierung:</strong> s[0] gibt erstes Zeichen zurück</li>
+        <li><strong>Slicing:</strong> s[1:3] gibt Zeichen 1-2 zurück</li>
+        <li><strong>Umkehrung:</strong> s[::-1] kehrt String um</li>
+        <li><strong>Länge:</strong> len(s) gibt Anzahl Zeichen zurück</li>
+        <li><strong>Prüfung:</strong> "x" in s prüft auf Substring</li>
+      </ul>
+      <div class="code-block">s = "Python"
+s[0]      # 'P'
+s[1:4]    # 'yth'
+s[::-1]   # 'nohtyP'
+len(s)    # 6
+"th" in s # True</div>
+    </div>
+
+    <div class="card">
+      <h4>Listen (list)</h4>
+      <ul>
+        <li><strong>Typ:</strong> Veränderlich (mutable)</li>
+        <li><strong>append(x):</strong> Fügt x am Ende ein</li>
+        <li><strong>extend(iter):</strong> Fügt alle Elemente hinzu</li>
+        <li><strong>insert(i, x):</strong> Fügt x bei Index i ein</li>
+        <li><strong>remove(x):</strong> Entfernt erste Vorkommen von x</li>
+        <li><strong>pop(i):</strong> Entfernt und gibt Element zurück</li>
+        <li><strong>sort():</strong> Sortiert vor Ort (returns None!)</li>
+      </ul>
+      <div class="code-block">lst = [1, 2, 3]
+lst.append(4)      # [1, 2, 3, 4]
+lst.extend([5])    # [1, 2, 3, 4, 5]
+lst.insert(0, 0)   # [0, 1, 2, 3, 4, 5]
+lst.remove(3)      # [0, 1, 2, 4, 5]
+lst.pop()          # [0, 1, 2, 4], gibt 5 zurück
+lst.sort()         # [0, 1, 2, 4] (returns None)</div>
+    </div>
+
+    <div class="card">
+      <h4>Tuples (tuple)</h4>
+      <ul>
+        <li><strong>Typ:</strong> Unveränderlich (immutable)</li>
+        <li><strong>Erstellung:</strong> (1, 2, 3) oder tuple([1, 2, 3])</li>
+        <li><strong>Single-Element:</strong> (1,) - Komma ist erforderlich!</li>
+        <li><strong>Indexierung:</strong> t[0] funktioniert</li>
+        <li><strong>Slicing:</strong> t[1:] funktioniert</li>
+        <li><strong>count(x):</strong> Zählt Vorkommen von x</li>
+        <li><strong>index(x):</strong> Gibt Index von x zurück</li>
+      </ul>
+      <div class="code-block">t = (1, 2, 3)
+t[0]      # 1
+(1,)      # Single-Element Tuple
+(1)       # Das ist KEIN Tuple, nur int!
+t.count(2)   # 1
+t.index(2)   # 1</div>
+    </div>
+
+    <div class="card">
+      <h4>Dictionaries (dict)</h4>
+      <ul>
+        <li><strong>Typ:</strong> Veränderlich (mutable)</li>
+        <li><strong>Erstellung:</strong> {"key": "value"}</li>
+        <li><strong>Zugriff:</strong> d["key"] oder d.get("key")</li>
+        <li><strong>Zuweisen:</strong> d["key"] = value</li>
+        <li><strong>"in" prüft Keys:</strong> "key" in d prüft auf Key, nicht Value</li>
+        <li><strong>get() ist sicher:</strong> d.get("missing") gibt None zurück</li>
+        <li><strong>[] wirft Exception:</strong> d["missing"] wirft KeyError</li>
+      </ul>
+      <div class="code-block">d = {"name": "Alice", "alter": 30}
+d["name"]           # 'Alice'
+d.get("stadt")      # None
+d.get("stadt", "-") # '-' (default)
+d["stadt"] = "Berlin"  # Fügt neuen Key hinzu
+"name" in d         # True (prüft Keys!)
+"Alice" in d        # False (prüft Values nicht!)</div>
+    </div>
+
+    <div class="card">
+      <h4>Kopien erstellen</h4>
+      <ul>
+        <li><strong>Listen:</strong> list_copy = list.copy() oder list_copy = list[:]</li>
+        <li><strong>Shallow Copy:</strong> Kopiert nur das äußere Objekt</li>
+        <li><strong>Deep Copy:</strong> import copy; copy.deepcopy(list)</li>
+        <li><strong>Warnung:</strong> list_copy = list erstellt Referenz, keine Kopie!</li>
+      </ul>
+      <div class="code-block">original = [1, 2, 3]
+copy1 = original.copy()  # Separate Liste
+copy2 = original[:]      # Auch separate Liste
+ref = original           # Nur Referenz, keine Kopie!
+copy1[0] = 999           # original[0] bleibt 1
+ref[0] = 999             # original[0] wird auch 999!</div>
+    </div>
+  </div>
+
+  <!-- COMMON MISTAKES TAB -->
+  <div id="mistakes" class="tab-content">
+    <div class="card">
+      <h3>Häufige Fehler bei Data Collections</h3>
+    </div>
+
+    <div class="card">
+      <h4>Fehler 1: Strings sind unveränderlich</h4>
+      <p>Man kann einzelne Zeichen in einem String nicht ändern:</p>
+      <div class="code-block"># FEHLER:
+s = "Hello"
+s[0] = "J"  # TypeError: 'str' object does not support item assignment
+
+# RICHTIG:
+s = "Hello"
+s = "J" + s[1:]  # "Jello"</div>
+    </div>
+
+    <div class="card">
+      <h4>Fehler 2: sort() gibt None zurück</h4>
+      <p>sort() ändert die Liste vor Ort und gibt None zurück, nicht die sortierte Liste:</p>
+      <div class="code-block"># FEHLER:
+lst = [3, 1, 2]
+new_list = lst.sort()  # new_list ist None!
+
+# RICHTIG:
+lst = [3, 1, 2]
+sorted_list = sorted(lst)  # Gibt neue sortierte Liste zurück
+lst.sort()  # Ändert die ursprüngliche Liste</div>
+    </div>
+
+    <div class="card">
+      <h4>Fehler 3: Listenzuordnung erstellt Referenz, nicht Kopie</h4>
+      <p>Wenn man eine Liste einer neuen Variable zuordnet, wird nur eine Referenz erstellt:</p>
+      <div class="code-block"># FEHLER:
+original = [1, 2, 3]
+copy = original  # Nur eine Referenz!
+copy[0] = 999
+print(original)  # [999, 2, 3] - auch geändert!
+
+# RICHTIG:
+original = [1, 2, 3]
+copy = original.copy()  # Echte Kopie
+copy[0] = 999
+print(original)  # [1, 2, 3] - nicht geändert</div>
+    </div>
+
+    <div class="card">
+      <h4>Fehler 4: append([1,2]) vs extend([1,2])</h4>
+      <p>append() fügt das gesamte Argument als ein Element hinzu, extend() fügt die einzelnen Elemente hinzu:</p>
+      <div class="code-block"># FEHLER:
+lst = [1, 2]
+lst.append([3, 4])  # [1, 2, [3, 4]] - Liste als Element!
+
+# RICHTIG:
+lst = [1, 2]
+lst.extend([3, 4])  # [1, 2, 3, 4]</div>
+    </div>
+
+    <div class="card">
+      <h4>Fehler 5: "in" prüft Keys, nicht Values</h4>
+      <p>Bei Dictionaries prüft der "in" Operator Keys, nicht Values:</p>
+      <div class="code-block"># FEHLER:
+d = {"name": "Alice", "alter": 30}
+if "Alice" in d:  # False! (prüft Keys)
+    print("Gefunden")
+
+# RICHTIG:
+if "Alice" in d.values():
+    print("Gefunden")
+if "name" in d:  # True
+    print("Gefunden")</div>
+    </div>
+
+    <div class="card">
+      <h4>Fehler 6: (1) ist int, (1,) ist Tuple</h4>
+      <p>Für Single-Element Tuples ist das Komma erforderlich:</p>
+      <div class="code-block"># FEHLER:
+t = (1)  # Das ist ein int, kein Tuple!
+print(type(t))  # <class 'int'>
+
+# RICHTIG:
+t = (1,)  # Das ist ein Tuple
+print(type(t))  # <class 'tuple'></div>
+    </div>
+
+    <div class="card">
+      <h4>Fehler 7: find() vs index()</h4>
+      <p>find() gibt -1 zurück wenn nicht gefunden, index() wirft eine Exception:</p>
+      <div class="code-block">s = "Hello"
+
+# find() gibt -1 zurück:
+pos = s.find("x")  # -1 (nicht gefunden)
+if pos >= 0:
+    print("Gefunden")
+
+# index() wirft Exception:
+try:
+    pos = s.index("x")
+except ValueError:
+    print("Nicht gefunden")</div>
+    </div>
+
+    <div class="card">
+      <h4>Fehler 8: Modifizierung während Iteration</h4>
+      <p>Niemals eine Collection während der Iteration über sie ändern:</p>
+      <div class="code-block"># FEHLER:
+lst = [1, 2, 3, 4, 5]
+for item in lst:
+    if item % 2 == 0:
+        lst.remove(item)  # Kann zu skipped items führen!
+
+# RICHTIG:
+lst = [1, 2, 3, 4, 5]
+lst = [item for item in lst if item % 2 != 0]  # [1, 3, 5]</div>
+    </div>
+  </div>
+
+  <!-- FLASHCARDS TAB -->
+  <div id="flashcards" class="tab-content">
+    <div class="card">
+      <h3>Flashcards - Data Collections</h3>
+      <p style="color: var(--muted); margin-bottom: 1.5rem;">Klicken Sie auf eine Karte, um die Antwort zu sehen.</p>
+    </div>
+
+    <div class="flashcard-container">
+      <div class="flashcard" onclick="toggleFlashcard(this)">
+        <div class="flashcard-content">
+          <div class="question-side">Was ist der Unterschied zwischen append() und extend()?</div>
+          <div class="answer-side" style="display:none;">append() fügt das gesamte Argument als ein Element hinzu. extend() fügt die einzelnen Elemente hinzu. Beispiel: [1].append([2,3]) = [1,[2,3]], aber [1].extend([2,3]) = [1,2,3]</div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="toggleFlashcard(this)">
+        <div class="flashcard-content">
+          <div class="question-side">Wie erstellt man eine Kopie einer Liste?</div>
+          <div class="answer-side" style="display:none;">Mit copy(): new_list = lst.copy() oder mit Slicing: new_list = lst[:]. Nicht mit Zuweisung new_list = lst, da das nur eine Referenz erstellt!</div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="toggleFlashcard(this)">
+        <div class="flashcard-content">
+          <div class="question-side">Was ist der Unterschied zwischen sort() und sorted()?</div>
+          <div class="answer-side" style="display:none;">sort() ändert die Liste vor Ort und gibt None zurück. sorted() gibt eine neue sortierte Liste zurück und ändert nicht die ursprüngliche Liste.</div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="toggleFlashcard(this)">
+        <div class="flashcard-content">
+          <div class="question-side">Wie prüft man, ob ein Wert in einem Dictionary existiert?</div>
+          <div class="answer-side" style="display:none;">Mit "in" prüft man auf Keys: "name" in d. Für Values: "Alice" in d.values(). Der "in" Operator prüft standardmäßig Keys, nicht Values!</div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="toggleFlashcard(this)">
+        <div class="flashcard-content">
+          <div class="question-side">Was ist der Unterschied zwischen find() und index()?</div>
+          <div class="answer-side" style="display:none;">find() gibt -1 zurück wenn der Substring nicht gefunden wird. index() wirft eine ValueError Exception wenn nicht gefunden. find() ist sicherer, wenn man mit nicht-vorhandenen Substrings rechnet.</div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="toggleFlashcard(this)">
+        <div class="flashcard-content">
+          <div class="question-side">Was passiert bei s[::-1]?</div>
+          <div class="answer-side" style="display:none;">Der String wird komplett umgekehrt (reversed). Das "Slice" mit -1 als Schritt bedeutet rückwärts durch den String gehen. Beispiel: "Hello"[::-1] ergibt "olleH".</div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="toggleFlashcard(this)">
+        <div class="flashcard-content">
+          <div class="question-side">Wie erstellt man ein Single-Element Tuple?</div>
+          <div class="answer-side" style="display:none;">Mit einem Komma nach dem Element: (1,) oder ("x",). Ohne Komma wird es als regulärer Wert interpretiert: (1) ist ein int, nicht ein Tuple!</div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="toggleFlashcard(this)">
+        <div class="flashcard-content">
+          <div class="question-side">Was ist der Unterschied zwischen List und Tuple?</div>
+          <div class="answer-side" style="display:none;">Tuples sind unveränderlich (immutable), Listen sind veränderlich (mutable). Tuples können als Dictionary-Keys verwendet werden, Listen nicht. Tuples sind schneller und belegen weniger Speicher.</div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="toggleFlashcard(this)">
+        <div class="flashcard-content">
+          <div class="question-side">Warum ist list_copy = lst eine schlechte Idee?</div>
+          <div class="answer-side" style="display:none;">Das erstellt nur eine Referenz, keine Kopie. Änderungen an list_copy ändern auch lst. Man sollte list.copy() oder list[:] verwenden für echte Kopien.</div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="toggleFlashcard(this)">
+        <div class="flashcard-content">
+          <div class="question-side">Wie greift man sicher auf einen Dictionary-Wert zu?</div>
+          <div class="answer-side" style="display:none;">Mit get(): value = d.get("key") oder d.get("key", "default"). Das wirft keine Exception. Mit d["key"] wirft KeyError wenn der Key nicht existiert.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ TAB -->
+  <div id="quiz" class="tab-content">
+    <div class="card">
+      <h3>Quiz - Data Collections</h3>
+      <p style="color: var(--muted);">Testen Sie Ihr Wissen über Strings, Listen, Tuples und Dictionaries.</p>
+    </div>
+
+    <form class="quiz-container" id="quizForm">
+      <div class="question">
+        <h4>Frage 1: Was gibt dieser Code aus?</h4>
+        <div class="code-block">lst = [1, 2, 3]
+result = lst.sort()
+print(result)</div>
+        <label class="option"><input type="radio" name="q1" value="a"> A) [1, 2, 3]</label>
+        <label class="option"><input type="radio" name="q1" value="b"> B) None</label>
+        <label class="option"><input type="radio" name="q1" value="c"> C) Ein Error wird geworfen</label>
+      </div>
+
+      <div class="question">
+        <h4>Frage 2: Welches ist ein Single-Element Tuple?</h4>
+        <label class="option"><input type="radio" name="q2" value="a"> A) (1)</label>
+        <label class="option"><input type="radio" name="q2" value="b"> B) (1,)</label>
+        <label class="option"><input type="radio" name="q2" value="c"> C) [1]</label>
+      </div>
+
+      <div class="question">
+        <h4>Frage 3: Was gibt dieser Code aus?</h4>
+        <div class="code-block">lst = [1, 2, 3]
+lst.append([4, 5])
+print(len(lst))</div>
+        <label class="option"><input type="radio" name="q3" value="a"> A) 5</label>
+        <label class="option"><input type="radio" name="q3" value="b"> B) 4</label>
+        <label class="option"><input type="radio" name="q3" value="c"> C) 3</label>
+      </div>
+
+      <div class="question">
+        <h4>Frage 4: Was ist das Ergebnis?</h4>
+        <div class="code-block">s = "Hello"
+print(s.find("x"))</div>
+        <label class="option"><input type="radio" name="q4" value="a"> A) ValueError</label>
+        <label class="option"><input type="radio" name="q4" value="b"> B) None</label>
+        <label class="option"><input type="radio" name="q4" value="c"> C) -1</label>
+      </div>
+
+      <div class="question">
+        <h4>Frage 5: Was wird gedruckt?</h4>
+        <div class="code-block">d = {"a": 1, "b": 2}
+print("a" in d)</div>
+        <label class="option"><input type="radio" name="q5" value="a"> A) True</label>
+        <label class="option"><input type="radio" name="q5" value="b"> B) False</label>
+        <label class="option"><input type="radio" name="q5" value="c"> C) KeyError</label>
+      </div>
+
+      <div class="question">
+        <h4>Frage 6: Was ist das Ergebnis?</h4>
+        <div class="code-block">s = "Python"
+print(s[::-1])</div>
+        <label class="option"><input type="radio" name="q6" value="a"> A) Python</label>
+        <label class="option"><input type="radio" name="q6" value="b"> B) nohtyP</label>
+        <label class="option"><input type="radio" name="q6" value="c"> C) noh</label>
+      </div>
+
+      <div class="question">
+        <h4>Frage 7: Was ist das Ergebnis?</h4>
+        <div class="code-block">lst = [1, 2, 3]
+copy = lst
+copy[0] = 999
+print(lst[0])</div>
+        <label class="option"><input type="radio" name="q7" value="a"> A) 1</label>
+        <label class="option"><input type="radio" name="q7" value="b"> B) 999</label>
+        <label class="option"><input type="radio" name="q7" value="c"> C) IndexError</label>
+      </div>
+
+      <div class="question">
+        <h4>Frage 8: Welches gibt eine neue Liste zurück?</h4>
+        <label class="option"><input type="radio" name="q8" value="a"> A) lst.sort()</label>
+        <label class="option"><input type="radio" name="q8" value="b"> B) sorted(lst)</label>
+        <label class="option"><input type="radio" name="q8" value="c"> C) lst.reverse()</label>
+      </div>
+
+      <div class="question">
+        <h4>Frage 9: Was ist richtig?</h4>
+        <label class="option"><input type="radio" name="q9" value="a"> A) lst = [1, 2].append(3) erstellt [1, 2, 3]</label>
+        <label class="option"><input type="radio" name="q9" value="b"> B) [1, 2].extend([3]) erstellt [1, 2, [3]]</label>
+        <label class="option"><input type="radio" name="q9" value="c"> C) [1, 2].extend([3]) erstellt [1, 2, 3]</label>
+      </div>
+
+      <div class="question">
+        <h4>Frage 10: Was gibt dieser Code aus?</h4>
+        <div class="code-block">d = {"x": 1}
+print(d.get("y", "missing"))</div>
+        <label class="option"><input type="radio" name="q10" value="a"> A) None</label>
+        <label class="option"><input type="radio" name="q10" value="b"> B) "missing"</label>
+        <label class="option"><input type="radio" name="q10" value="c"> C) KeyError</label>
+      </div>
+
+      <div class="question">
+        <h4>Frage 11: Sind Strings unveränderlich?</h4>
+        <label class="option"><input type="radio" name="q11" value="a"> A) Ja, man kann Zeichen nicht mit s[0] = "x" ändern</label>
+        <label class="option"><input type="radio" name="q11" value="b"> B) Nein, Strings sind veränderlich</label>
+        <label class="option"><input type="radio" name="q11" value="c"> C) Es kommt darauf an, welche Methode man verwendet</label>
+      </div>
+
+      <div class="question">
+        <h4>Frage 12: Welcher Ausdruck ist falsch?</h4>
+        <label class="option"><input type="radio" name="q12" value="a"> A) t = (1,) ist ein Tuple</label>
+        <label class="option"><input type="radio" name="q12" value="b"> B) t = (1) ist ein Tuple</label>
+        <label class="option"><input type="radio" name="q12" value="c"> C) t = tuple([1]) ist ein Tuple</label>
+      </div>
+
+      <button type="button" class="submit-btn" onclick="submitQuiz()">Quiz einreichen</button>
+      <div class="result" id="quizResult"></div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p>PCEP-PREP-MEAL - Modul 3: Data Collections</p>
+  <p style="margin-top: 0.5rem; color: var(--muted);">Vorbereitung für die PCEP-30-02 Prüfung</p>
+</footer>
+
+<script>
+  function switchTab(tabName) {
+    // Hide all tabs
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    
+    // Remove active class from all buttons
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    // Show selected tab
+    document.getElementById(tabName).classList.add('active');
+    
+    // Add active class to clicked button
+    event.target.classList.add('active');
+  }
+
+  function toggleFlashcard(card) {
+    const content = card.querySelector('.flashcard-content');
+    const questionSide = content.querySelector('.question-side');
+    const answerSide = content.querySelector('.answer-side');
+    
+    if (answerSide.style.display === 'none') {
+      questionSide.style.display = 'none';
+      answerSide.style.display = 'block';
+      card.classList.add('flipped');
+    } else {
+      questionSide.style.display = 'block';
+      answerSide.style.display = 'none';
+      card.classList.remove('flipped');
+    }
+  }
+
+  function submitQuiz() {
+    const correctAnswers = {
+      q1: 'b',  // sort() returns None
+      q2: 'b',  // (1,) is tuple
+      q3: 'b',  // len is 4 (append adds one element)
+      q4: 'c',  // find() returns -1
+      q5: 'a',  // "a" in d is True (checks keys)
+      q6: 'b',  // "Python"[::-1] is "nohtyP"
+      q7: 'b',  // copy = lst creates reference, so lst[0] becomes 999
+      q8: 'b',  // sorted() returns new list
+      q9: 'c',  // extend([3]) adds individual element
+      q10: 'b', // get with default returns "missing"
+      q11: 'a', // Strings are immutable
+      q12: 'b'  // (1) is NOT a tuple, it's an int
+    };
+    
+    let correct = 0;
+    let total = Object.keys(correctAnswers).length;
+    
+    // Check each question
+    for (let [question, answer] of Object.entries(correctAnswers)) {
+      const selected = document.querySelector(`input[name="${question}"]:checked`);
+      const questionDiv = document.querySelector(`input[name="${question}"]`).closest('.question');
+      const options = questionDiv.querySelectorAll('.option');
+      
+      options.forEach(option => {
+        option.classList.remove('selected', 'correct', 'incorrect');
+      });
+      
+      if (selected) {
+        const selectedOption = selected.closest('.option');
+        if (selected.value === answer) {
+          correct++;
+          selectedOption.classList.add('correct');
+        } else {
+          selectedOption.classList.add('incorrect');
+          // Show correct answer
+          const correctOption = questionDiv.querySelector(`input[value="${answer}"]`).closest('.option');
+          correctOption.classList.add('correct');
+        }
+        selectedOption.classList.add('selected');
+      }
+    }
+    
+    // Show result
+    const resultDiv = document.getElementById('quizResult');
+    const percentage = Math.round((correct / total) * 100);
+    
+    if (percentage >= 80) {
+      resultDiv.className = 'result show success';
+      resultDiv.innerHTML = `<strong>Sehr gut!</strong> Sie haben ${correct}/${total} Fragen richtig beantwortet (${percentage}%)`;
+    } else if (percentage >= 60) {
+      resultDiv.className = 'result show success';
+      resultDiv.innerHTML = `<strong>Gut!</strong> Sie haben ${correct}/${total} Fragen richtig beantwortet (${percentage}%)`;
+    } else {
+      resultDiv.className = 'result show failure';
+      resultDiv.innerHTML = `<strong>Mehr üben!</strong> Sie haben ${correct}/${total} Fragen richtig beantwortet (${percentage}%). Lesen Sie noch einmal die Theorie!`;
+    }
+  }
+</script>
+</body>
+</html>

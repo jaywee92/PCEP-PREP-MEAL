@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PCEP-PREP-MEAL</title>
+<title>PCEP-PREP-MEAL - Python Zertifizierung</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0b1018;
@@ -45,10 +45,6 @@
     color: var(--text);
     line-height: 1.55;
     overflow-x: hidden;
-  }
-
-  a {
-    color: inherit;
   }
 
   .bg-canvas {
@@ -98,2417 +94,401 @@
     background: var(--m4);
     right: 14%;
     bottom: 10%;
-    animation-delay: -10s;
-  }
-
-  #particles {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
+    animation-delay: -21s;
   }
 
   @keyframes floatOrb {
-    0%,
-    100% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(70px, -35px) scale(1.08); }
-    50% { transform: translate(-35px, 75px) scale(0.92); }
-    75% { transform: translate(45px, 28px) scale(1.04); }
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -40px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 30px) scale(0.9);
+    }
   }
 
-  .content {
+  .container {
     position: relative;
     z-index: 1;
-    width: min(1180px, 100% - 36px);
+    max-width: 1200px;
     margin: 0 auto;
-    padding-bottom: 64px;
+    padding: 3rem 2rem;
   }
 
-  .hero {
-    padding: 72px 0 40px;
+  /* Header */
+  header {
     text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeInDown 0.8s ease;
   }
 
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 7px 14px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    color: var(--muted);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    background: rgba(20, 27, 40, 0.62);
-    backdrop-filter: blur(8px);
-  }
-
-  .hero-tag::before {
-    content: "";
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--m2), var(--m1));
-    box-shadow: 0 0 14px rgba(62, 224, 161, 0.7);
-  }
-
-  h1 {
-    margin-top: 18px;
-    font-size: clamp(34px, 5vw, 56px);
-    line-height: 1.06;
-    letter-spacing: -0.03em;
-  }
-
-  .h-grad {
-    background: linear-gradient(135deg, var(--m1), var(--m2), var(--m3));
+  .logo {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--m1), var(--m2), var(--m3), var(--m4));
     -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     background-clip: text;
-    color: transparent;
+    margin-bottom: 1rem;
   }
 
-  .hero-sub {
-    max-width: 780px;
-    margin: 16px auto 0;
+  .subtitle {
+    font-size: 1.25rem;
     color: var(--muted);
-    font-size: clamp(15px, 2vw, 18px);
+    max-width: 600px;
+    margin: 0 auto 2rem;
   }
 
-  .exam-bar {
-    margin-top: 26px;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(120px, 1fr));
-    gap: 12px;
-  }
-
-  .exam-card {
-    padding: 14px 12px;
-    border-radius: var(--radius);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(20, 27, 40, 0.6);
-    backdrop-filter: blur(8px);
-  }
-
-  .exam-label {
-    color: var(--muted);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .exam-value {
-    margin-top: 6px;
-    font-size: 20px;
-    font-weight: 700;
-  }
-
-  .module-nav {
-    margin-top: 36px;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .module-link {
-    text-decoration: none;
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    background: linear-gradient(180deg, rgba(32, 44, 63, 0.85), rgba(20, 27, 40, 0.85));
-    padding: 14px;
-    transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
-  }
-
-  .module-link:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.28);
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
-  }
-
-  .module-link .top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .module-link .id {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-
-  .module-link .weight {
-    font-size: 12px;
-    font-weight: 700;
-    padding: 4px 8px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.07);
-  }
-
-  .module-link h3 {
-    margin-top: 10px;
-    font-size: 16px;
-  }
-
-  .module-link p {
-    margin-top: 6px;
-    font-size: 13px;
-    color: var(--muted);
-  }
-
-  .module-deep {
-    margin-top: 14px;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .deep-card {
-    border-radius: var(--radius);
-    border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--border));
-    background: color-mix(in srgb, var(--accent) 6%, #141c2a 94%);
-    padding: 14px;
-  }
-
-  .deep-card h4 {
-    font-size: 13px;
-    font-family: 'IBM Plex Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--accent);
-  }
-
-  .deep-card ul {
-    margin-top: 8px;
-    padding-left: 18px;
-    color: #d7e3f5;
-    font-size: 14px;
-  }
-
-  .deep-card ul li + li {
-    margin-top: 5px;
-  }
-
-  .deep-snippet {
-    margin-top: 12px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(15, 22, 35, 0.84);
-    padding: 10px;
-  }
-
-  .deep-snippet code {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: #dce8fb;
-    white-space: pre-wrap;
-  }
-
-  .module-toolkit {
-    margin-top: 12px;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .tool-card {
-    border-radius: var(--radius);
-    padding: 14px;
-    border: 1px solid color-mix(in srgb, var(--accent) 36%, var(--border));
-    background: color-mix(in srgb, var(--accent) 7%, #111a2a 93%);
-  }
-
-  .tool-card h4 {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--accent);
-  }
-
-  .tool-card ul {
-    margin-top: 8px;
-    padding-left: 18px;
-    color: #d6e4f9;
-    font-size: 14px;
-  }
-
-  .tool-card ul li + li {
-    margin-top: 5px;
-  }
-
-  .tool-card.mistake {
-    border-color: rgba(255, 153, 108, 0.38);
-    background: rgba(255, 153, 108, 0.08);
-  }
-
-  .tool-card.mistake h4 {
-    color: #ffc39b;
-  }
-
-  .topic-tags {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .topic-tags span {
-    font-size: 11px;
-    border-radius: 999px;
-    padding: 5px 8px;
-    border: 1px solid color-mix(in srgb, var(--accent) 48%, #ffffff 20%);
-    background: color-mix(in srgb, var(--accent) 13%, #1a2438 87%);
-    color: #eef5ff;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .module {
-    margin-top: 28px;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    background: linear-gradient(180deg, rgba(20, 27, 40, 0.88), rgba(15, 21, 33, 0.88));
-    backdrop-filter: blur(10px);
-    padding: 24px;
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
-  }
-
-  .module.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .module.m1 { --accent: var(--m1); }
-  .module.m2 { --accent: var(--m2); }
-  .module.m3 { --accent: var(--m3); }
-  .module.m4 { --accent: var(--m4); }
-
-  .module-head {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-  }
-
-  .module-badge {
+  .exam-info {
     display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    gap: 2rem;
+    background: var(--surface);
+    padding: 1rem 2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-size: 0.9rem;
+  }
+
+  .exam-info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .exam-info-label {
+    color: var(--muted);
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--accent);
-    padding: 6px 10px;
-    border-radius: 999px;
-    border: 1px solid color-mix(in srgb, var(--accent) 50%, #ffffff 20%);
-    background: color-mix(in srgb, var(--accent) 13%, #111a27 87%);
   }
 
-  .module h2 {
-    margin-top: 10px;
-    font-size: clamp(24px, 3vw, 34px);
-    letter-spacing: -0.02em;
+  .exam-info-value {
+    color: var(--ok);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 0.25rem;
   }
 
-  .module p.intro {
-    margin-top: 10px;
-    color: var(--muted);
-    max-width: 900px;
+  /* Module Grid */
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .module-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    animation: fadeInUp 0.8s ease;
+  }
+
+  .module-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .module-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .module-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .module-card[data-module="m1"] { --accent: var(--m1); animation-delay: 0s; }
+  .module-card[data-module="m2"] { --accent: var(--m2); animation-delay: 0.1s; }
+  .module-card[data-module="m3"] { --accent: var(--m3); animation-delay: 0.2s; }
+  .module-card[data-module="m4"] { --accent: var(--m4); animation-delay: 0.3s; }
+
+  .module-number {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .module-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text);
   }
 
   .module-weight {
-    font-weight: 700;
-    color: var(--accent);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    white-space: nowrap;
-  }
-
-  .knowledge-grid {
-    margin-top: 18px;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .mini-card {
-    border-radius: var(--radius);
-    border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
-    background: color-mix(in srgb, var(--accent) 7%, #141c2a 93%);
-    padding: 14px;
-  }
-
-  .mini-card h3 {
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--accent);
-  }
-
-  .mini-card ul {
-    margin-top: 10px;
-    padding-left: 18px;
-    color: #d5deee;
-    font-size: 14px;
-  }
-
-  .mini-card ul li + li {
-    margin-top: 6px;
-  }
-
-  .mini-card.warn {
-    border-color: rgba(249, 187, 80, 0.45);
-    background: rgba(249, 187, 80, 0.09);
-  }
-
-  .mini-card.warn h3 {
-    color: var(--warn);
-  }
-
-  .rule-grid {
-    margin-top: 14px;
-    border-radius: var(--radius);
-    border: 1px dashed color-mix(in srgb, var(--accent) 38%, var(--border));
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    overflow: hidden;
-  }
-
-  .rule {
-    padding: 12px;
-    background: rgba(20, 27, 40, 0.58);
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  .rule:last-child {
-    border-right: none;
-  }
-
-  .rule-k {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: var(--accent);
-  }
-
-  .rule-v {
-    margin-top: 6px;
-    font-size: 13px;
-    color: #d8e0ef;
-  }
-
-  .quiz-launch {
-    margin-top: 16px;
-    border-radius: var(--radius);
-    border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border));
-    background: linear-gradient(180deg, rgba(26, 35, 51, 0.9), rgba(19, 27, 40, 0.9));
-    padding: 16px;
-  }
-
-  .quiz-launch h3 {
-    font-size: 17px;
-  }
-
-  .quiz-launch p {
-    margin-top: 5px;
     color: var(--muted);
-    font-size: 14px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
   }
 
-  .launch-row {
-    margin-top: 12px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 12px;
-    align-items: center;
-  }
-
-  .count-picker {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .count-custom {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+  .module-topics {
+    list-style: none;
     color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.8;
   }
 
-  .count-input {
-    width: 76px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.04);
-    color: #eff5ff;
-    padding: 7px 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-  }
-
-  .count-btn {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.04);
-    color: #d7e0ef;
-    padding: 8px 12px;
-    border-radius: 999px;
-    font-size: 13px;
-    font-family: 'IBM Plex Mono', monospace;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .count-btn.active,
-  .count-btn:hover {
-    border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 16%, #1a2436 84%);
-    color: #ffffff;
-  }
-
-  .btn {
-    border: 1px solid transparent;
-    border-radius: 10px;
-    padding: 10px 14px;
-    font-weight: 600;
-    cursor: pointer;
-    font-family: inherit;
-    transition: transform 0.2s ease, filter 0.2s ease, border-color 0.2s ease;
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.05);
-  }
-
-  .btn.start {
-    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 72%, #ffffff 0%), color-mix(in srgb, var(--accent) 45%, #ffffff 0%));
-    color: #081019;
-    min-width: 170px;
-  }
-
-  .quiz-shell {
-    margin-top: 14px;
-  }
-
-  .quiz-card {
-    border: 1px solid color-mix(in srgb, var(--accent) 36%, var(--border));
-    border-radius: var(--radius);
-    background: rgba(17, 24, 36, 0.92);
-    padding: 16px;
-  }
-
-  .quiz-top {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .meta {
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--muted);
-    font-size: 12px;
-  }
-
-  .score {
-    font-size: 13px;
-    padding: 4px 10px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.04);
-  }
-
-  .progress {
-    margin-top: 12px;
-    height: 8px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-    overflow: hidden;
-  }
-
-  .progress > span {
-    display: block;
-    height: 100%;
-    width: 0;
-    background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 65%, #ffffff 35%));
-    transition: width 0.24s ease;
-  }
-
-  .question-title {
-    margin-top: 14px;
-    font-size: 20px;
-    line-height: 1.3;
-  }
-
-  pre {
-    margin-top: 10px;
-    background: var(--code-bg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 12px;
-    overflow-x: auto;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    line-height: 1.45;
-    color: #d9e5f7;
-  }
-
-  .options {
-    margin-top: 12px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .option {
-    text-align: left;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.03);
-    color: #d9e5f7;
-    padding: 11px 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-family: inherit;
-    font-size: 14px;
-  }
-
-  .option:hover {
-    border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 11%, #1b2538 89%);
-  }
-
-  .option.correct {
-    border-color: rgba(59, 212, 143, 0.8);
-    background: rgba(59, 212, 143, 0.13);
-  }
-
-  .option.wrong {
-    border-color: rgba(255, 107, 107, 0.8);
-    background: rgba(255, 107, 107, 0.14);
-  }
-
-  .explain,
-  .hint {
-    margin-top: 12px;
-    border-radius: 10px;
-    padding: 11px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    font-size: 14px;
-  }
-
-  .hint {
-    background: rgba(84, 199, 255, 0.09);
-    border-color: rgba(84, 199, 255, 0.3);
-  }
-
-  .explain {
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .explain strong {
+  .module-topics li::before {
+    content: '→';
     color: var(--accent);
+    margin-right: 0.5rem;
   }
 
-  .actions {
-    margin-top: 12px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .left-actions,
-  .right-actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .btn.soft {
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.05);
-    color: #dbe4f3;
-    padding: 8px 11px;
-    font-size: 13px;
-  }
-
-  .btn.soft:disabled {
-    cursor: not-allowed;
-    opacity: 0.52;
-    transform: none;
-  }
-
-  .btn.nav {
-    border-color: color-mix(in srgb, var(--accent) 50%, #ffffff 20%);
-    background: color-mix(in srgb, var(--accent) 14%, #1b2537 86%);
-    color: #ebf3ff;
-    padding: 8px 12px;
-    font-size: 13px;
-  }
-
-  .btn.nav:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  .done {
-    margin-top: 12px;
-    border-radius: 12px;
-    border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
-    background: color-mix(in srgb, var(--accent) 10%, #111a28 90%);
-    padding: 16px;
-  }
-
-  .done h4 {
-    font-size: 22px;
-  }
-
-  .done p {
-    margin-top: 6px;
-    color: #d0dced;
-  }
-
-  .done .stats {
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .done .stat {
-    padding: 8px 12px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  footer {
-    width: min(1180px, 100% - 36px);
-    margin: 34px auto 28px;
-    color: var(--muted);
+  /* Exam Simulation Button */
+  .exam-sim-section {
     text-align: center;
-    font-size: 13px;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    padding-top: 16px;
-    position: relative;
-    z-index: 1;
+    margin: 4rem 0;
+    animation: fadeInUp 0.8s ease 0.4s backwards;
   }
 
-  .hidden {
-    display: none;
+  .exam-sim-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, var(--m1), var(--m2));
+    color: var(--bg);
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 1.5rem 3rem;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(84, 199, 255, 0.3);
   }
 
-  @media (max-width: 1040px) {
-    .module-nav {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+  .exam-sim-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(84, 199, 255, 0.4);
+  }
 
-    .module-deep {
-      grid-template-columns: 1fr;
-    }
+  .exam-sim-icon {
+    font-size: 1.5rem;
+  }
 
-    .module-toolkit {
-      grid-template-columns: 1fr;
-    }
+  /* Footer Resources */
+  .resources {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 4rem;
+    animation: fadeInUp 0.8s ease 0.5s backwards;
+  }
 
-    .knowledge-grid {
-      grid-template-columns: 1fr;
-    }
+  .resource-card {
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+  }
 
-    .rule-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+  .resource-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .resource-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .resource-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  /* Animations */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
-  @media (max-width: 760px) {
-    .content {
-      width: min(1180px, 100% - 24px);
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .logo {
+      font-size: 2rem;
     }
 
-    .hero {
-      padding-top: 52px;
-    }
-
-    .exam-bar {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .module-nav {
-      grid-template-columns: 1fr;
-    }
-
-    .module {
-      padding: 16px;
-    }
-
-    .module-head {
+    .exam-info {
       flex-direction: column;
+      gap: 1rem;
     }
 
-    .rule-grid {
+    .modules-grid {
       grid-template-columns: 1fr;
     }
 
-    .launch-row {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .btn.start {
-      width: 100%;
+    .exam-sim-button {
+      font-size: 1rem;
+      padding: 1.25rem 2rem;
     }
   }
 </style>
 </head>
 <body>
-<div class="bg-canvas" aria-hidden="true">
-  <div class="orb one"></div>
-  <div class="orb two"></div>
-  <div class="orb three"></div>
-  <div class="orb four"></div>
-</div>
-<canvas id="particles" aria-hidden="true"></canvas>
+  <div class="bg-canvas">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+    <div class="orb four"></div>
+  </div>
 
-<main class="content">
-  <header class="hero">
-    <div class="hero-tag">PCEP-PREP-MEAL</div>
-    <h1><span class="h-grad">Study Smart.</span> Practice Fast. Pass Confidently.</h1>
-    <p class="hero-sub">
-      Compact learning content in 4 modules plus interactive question labs with hints,
-      immediate solutions, and reasoning after each answer.
-    </p>
-
-    <div class="exam-bar">
-      <div class="exam-card">
-        <div class="exam-label">Questions</div>
-        <div class="exam-value">30</div>
-      </div>
-      <div class="exam-card">
-        <div class="exam-label">Time Limit</div>
-        <div class="exam-value">40 min</div>
-      </div>
-      <div class="exam-card">
-        <div class="exam-label">Passing Score</div>
-        <div class="exam-value">70%</div>
-      </div>
-      <div class="exam-card">
-        <div class="exam-label">Language</div>
-        <div class="exam-value">Python 3</div>
-      </div>
-    </div>
-
-    <nav class="module-nav" aria-label="Jump to modules">
-      <a class="module-link" href="#module1">
-        <div class="top"><span class="id">Module 1</span><span class="weight">~20%</span></div>
-        <h3>Fundamentals &amp; Syntax</h3>
-        <p>Core execution model, operators, types, and input/output.</p>
-      </a>
-      <a class="module-link" href="#module2">
-        <div class="top"><span class="id">Module 2</span><span class="weight">~20%</span></div>
-        <h3>Control Flow</h3>
-        <p>Conditionals, loops, range mechanics, break/continue/else.</p>
-      </a>
-      <a class="module-link" href="#module3">
-        <div class="top"><span class="id">Module 3</span><span class="weight">~25%</span></div>
-        <h3>Data Collections</h3>
-        <p>Strings, lists, tuples, dictionaries, slicing, mutability traps.</p>
-      </a>
-      <a class="module-link" href="#module4">
-        <div class="top"><span class="id">Module 4</span><span class="weight">~35%</span></div>
-        <h3>Functions &amp; Exceptions</h3>
-        <p>Parameters, scope, built-ins, try/except/finally, lambda basics.</p>
-      </a>
-    </nav>
-  </header>
-
-  <section class="module m1" id="module1" data-module="m1">
-    <div class="module-head">
-      <div>
-        <span class="module-badge">Module 1</span>
-        <h2>Fundamentals and Python Basics</h2>
-      </div>
-      <div class="module-weight">Exam weight: around 20%</div>
-    </div>
-    <p class="intro">
-      Build the mental model first: how Python executes code, how syntax and indentation define structure,
-      how literals and variables behave, and how arithmetic/boolean operators impact output. This module
-      decides whether your later tracing is accurate.
-    </p>
-
-    <div class="knowledge-grid">
-      <article class="mini-card">
-        <h3>Core Focus</h3>
-        <ul>
-          <li>Interpreter vs compiler and line-by-line execution mindset</li>
-          <li>Literals: decimal, binary, octal, hex, float, bool, None</li>
-          <li>Variables and dynamic typing (name to object reference)</li>
-          <li>Basic I/O: input, print, casting before math</li>
-        </ul>
-      </article>
-      <article class="mini-card">
-        <h3>High-Yield Rules</h3>
-        <ul>
-          <li><code>/</code> always returns float</li>
-          <li><code>//</code> floors toward negative infinity</li>
-          <li><code>**</code> is right-associative and has high precedence</li>
-          <li><code>input()</code> always returns <code>str</code></li>
-        </ul>
-      </article>
-      <article class="mini-card warn">
-        <h3>Exam Traps</h3>
-        <ul>
-          <li><code>-2 ** 2</code> is <code>-4</code>, not <code>4</code></li>
-          <li><code>bool("False")</code> is <code>True</code></li>
-          <li><code>round(2.5)</code> uses bankers rounding</li>
-          <li><code>and/or</code> can return values, not only booleans</li>
-        </ul>
-      </article>
-    </div>
-
-    <div class="rule-grid">
-      <div class="rule"><div class="rule-k">10 / 2</div><div class="rule-v">5.0 (float)</div></div>
-      <div class="rule"><div class="rule-k">-7 // 2</div><div class="rule-v">-4 (floor)</div></div>
-      <div class="rule"><div class="rule-k">2 ** 3 ** 2</div><div class="rule-v">512</div></div>
-      <div class="rule"><div class="rule-k">bool([0])</div><div class="rule-v">True</div></div>
-    </div>
-
-    <div class="module-deep">
-      <article class="deep-card">
-        <h4>Coverage Map (01-06)</h4>
-        <ul>
-          <li>01: language basics, source code, interpreter model, CPython context</li>
-          <li>02: syntax strictness, indentation errors, identifiers, keywords</li>
-          <li>03: literals, numeral systems, variable assignment, truthiness foundations</li>
-          <li>04: arithmetic/comparison/logical/bitwise, identity vs equality</li>
-          <li>05: type conversions and falsy/truthy conversion behavior</li>
-          <li>06: input/print formatting, sep/end, and conversion-safe user input</li>
-        </ul>
-      </article>
-      <article class="deep-card">
-        <h4>Must Memorize</h4>
-        <ul>
-          <li><code>int(3.9)</code> truncates to <code>3</code>, does not round</li>
-          <li><code>5 / 2 = 2.5</code> and <code>5 // 2 = 2</code></li>
-          <li><code>print()</code> returns <code>None</code></li>
-          <li>Use <code>is None</code> over <code>== None</code> for checks</li>
-          <li><code>and/or</code> short-circuit and return operands</li>
-        </ul>
-        <div class="topic-tags">
-          <span>Compilation vs Interpretation</span><span>Operator Precedence</span><span>Numeral Bases</span>
-          <span>Type Casting</span><span>input() Trap</span>
+  <div class="container">
+    <header>
+      <h1 class="logo">PCEP-PREP-MEAL</h1>
+      <p class="subtitle">
+        Interaktive Lernplattform zur Vorbereitung auf die PCEP Python-Zertifizierung
+      </p>
+      <div class="exam-info">
+        <div class="exam-info-item">
+          <span class="exam-info-label">Fragen</span>
+          <span class="exam-info-value">30</span>
         </div>
-      </article>
-    </div>
-
-    <div class="deep-snippet">
-      <code>Quick trace pattern: evaluate precedence -> evaluate conversion -> check truthiness -> predict output line by line.</code>
-    </div>
-
-    <div class="module-toolkit">
-      <article class="tool-card">
-        <h4>Module 1 Cheatsheet</h4>
-        <ul>
-          <li><code>() > ** > unary > * / // % > + - > comparisons > not > and > or</code></li>
-          <li><code>/</code> always float, <code>//</code> floors toward negative infinity</li>
-          <li><code>input()</code> always returns string, cast with <code>int()</code>/<code>float()</code></li>
-          <li><code>int(3.9) -> 3</code>, <code>bool(\"0\") -> True</code>, <code>bool(\"\") -> False</code></li>
-          <li><code>print(a,b,sep=\"-\",end=\"!\")</code> controls output formatting</li>
-        </ul>
-      </article>
-      <article class="tool-card mistake">
-        <h4>Module 1 Common Mistakes</h4>
-        <ul>
-          <li><code>-2 ** 2</code> misunderstood; correct is <code>-4</code></li>
-          <li>Assuming <code>10/2</code> is int; it is <code>5.0</code></li>
-          <li>Using invalid identifiers starting with digits</li>
-          <li>Forgetting Python keywords cannot be variable names</li>
-          <li>Confusing <code>is</code> with <code>==</code> in value comparisons</li>
-        </ul>
-      </article>
-    </div>
-
-    <div class="quiz-launch">
-      <h3>Module Test Lab</h3>
-      <p>Single-choice drills with instant feedback, hint mode, and explanations.</p>
-      <div class="launch-row">
-        <div class="count-picker" data-counts="m1">
-          <button class="count-btn active" data-count="5" type="button">5 Questions</button>
-          <button class="count-btn" data-count="10" type="button">10 Questions</button>
-          <button class="count-btn" data-count="15" type="button">15 Questions</button>
-          <button class="count-btn" data-count="all" type="button">All Questions</button>
+        <div class="exam-info-item">
+          <span class="exam-info-label">Zeit</span>
+          <span class="exam-info-value">40 Min</span>
         </div>
-        <label class="count-custom">Custom
-          <input class="count-input" data-module="m1" type="number" min="1" max="99" value="5">
-        </label>
-        <button class="btn start" data-start="m1" type="button">Start Module 1 Test</button>
+        <div class="exam-info-item">
+          <span class="exam-info-label">Bestehen</span>
+          <span class="exam-info-value">70%</span>
+        </div>
       </div>
-    </div>
+    </header>
 
-    <div class="quiz-shell" id="quiz-m1"></div>
-  </section>
+    <main>
+      <div class="modules-grid">
+        <a href="module1.html" class="module-card" data-module="m1">
+          <span class="module-number">Modul 1</span>
+          <h2 class="module-title">Fundamentals</h2>
+          <p class="module-weight">Prüfungsgewicht: 18%</p>
+          <ul class="module-topics">
+            <li>Computer Programming Basics</li>
+            <li>Python Syntax</li>
+            <li>Literals & Variables</li>
+            <li>Operators & Data Types</li>
+            <li>Input/Output Operations</li>
+          </ul>
+        </a>
 
-  <section class="module m2" id="module2" data-module="m2">
-    <div class="module-head">
-      <div>
-        <span class="module-badge">Module 2</span>
-        <h2>Control Flow</h2>
+        <a href="module2.html" class="module-card" data-module="m2">
+          <span class="module-number">Modul 2</span>
+          <h2 class="module-title">Control Flow</h2>
+          <p class="module-weight">Prüfungsgewicht: 29%</p>
+          <ul class="module-topics">
+            <li>Conditional Statements</li>
+            <li>Boolean Logic</li>
+            <li>Loops (for, while)</li>
+            <li>break & continue</li>
+            <li>Loop else Clause</li>
+          </ul>
+        </a>
+
+        <a href="module3.html" class="module-card" data-module="m3">
+          <span class="module-number">Modul 3</span>
+          <h2 class="module-title">Data Collections</h2>
+          <p class="module-weight">Prüfungsgewicht: 25%</p>
+          <ul class="module-topics">
+            <li>Strings & String Methods</li>
+            <li>Lists & List Operations</li>
+            <li>Tuples & Immutability</li>
+            <li>Dictionaries & Key-Value</li>
+            <li>Collection Methods</li>
+          </ul>
+        </a>
+
+        <a href="module4.html" class="module-card" data-module="m4">
+          <span class="module-number">Modul 4</span>
+          <h2 class="module-title">Functions & Exceptions</h2>
+          <p class="module-weight">Prüfungsgewicht: 28%</p>
+          <ul class="module-topics">
+            <li>Function Definitions</li>
+            <li>Parameters & Arguments</li>
+            <li>Return Values</li>
+            <li>Variable Scope</li>
+            <li>Exception Handling</li>
+          </ul>
+        </a>
       </div>
-      <div class="module-weight">Exam weight: around 20%</div>
-    </div>
-    <p class="intro">
-      This section tests your ability to trace execution precisely. You need to know condition ordering,
-      loop boundaries, and the exact behavior of <code>break</code>, <code>continue</code>, and loop
-      <code>else</code> clauses.
-    </p>
 
-    <div class="knowledge-grid">
-      <article class="mini-card">
-        <h3>Core Focus</h3>
-        <ul>
-          <li><code>if / elif / else</code> executes only the first matching branch</li>
-          <li><code>for</code> iteration over ranges and iterables</li>
-          <li><code>while</code> loops with explicit stop conditions</li>
-          <li>Nested logic and loop variable behavior after loops</li>
-        </ul>
-      </article>
-      <article class="mini-card">
-        <h3>High-Yield Rules</h3>
-        <ul>
-          <li><code>range(stop)</code> ends before <code>stop</code></li>
-          <li>Negative step requires descending start and stop</li>
-          <li>Loop <code>else</code> runs only if no <code>break</code> happens</li>
-          <li><code>continue</code> skips current iteration but loop keeps going</li>
-        </ul>
-      </article>
-      <article class="mini-card warn">
-        <h3>Exam Traps</h3>
-        <ul>
-          <li>Thinking every true <code>elif</code> branch runs</li>
-          <li>Forgetting that <code>break</code> only exits the innermost loop</li>
-          <li>Off-by-one errors with <code>range()</code></li>
-          <li>Assuming loop variable disappears after the loop</li>
-        </ul>
-      </article>
-    </div>
-
-    <div class="rule-grid">
-      <div class="rule"><div class="rule-k">range(5)</div><div class="rule-v">0,1,2,3,4</div></div>
-      <div class="rule"><div class="rule-k">range(5,0,-2)</div><div class="rule-v">5,3,1</div></div>
-      <div class="rule"><div class="rule-k">for..else</div><div class="rule-v">else if no break</div></div>
-      <div class="rule"><div class="rule-k">break scope</div><div class="rule-v">innermost loop only</div></div>
-    </div>
-
-    <div class="module-deep">
-      <article class="deep-card">
-        <h4>Coverage Map (07-08)</h4>
-        <ul>
-          <li>Condition chains and first-true execution principle</li>
-          <li>Nested decisions and compound boolean expressions</li>
-          <li><code>for</code> over sequences, dicts, enumerate, zip, range</li>
-          <li><code>while</code> loop control, manual state updates, break guards</li>
-          <li>Loop <code>else</code> semantics for no-break completion</li>
-        </ul>
-      </article>
-      <article class="deep-card">
-        <h4>Tracing Checklist</h4>
-        <ul>
-          <li>Check range bounds and step sign first</li>
-          <li>Mark where <code>continue</code> skips code vs where <code>break</code> exits</li>
-          <li>Validate if <code>else</code> clause is reachable</li>
-          <li>Remember loop variable persists after loop</li>
-          <li>In nested loops, only innermost loop breaks on <code>break</code></li>
-        </ul>
-        <div class="topic-tags">
-          <span>if/elif ordering</span><span>range stop exclusive</span><span>loop else</span>
-          <span>break vs continue</span><span>nested loop control</span>
-        </div>
-      </article>
-    </div>
-
-    <div class="deep-snippet">
-      <code>Loop debugging tactic: write the sequence of values first, then overlay break/continue decisions, then decide if else runs.</code>
-    </div>
-
-    <div class="module-toolkit">
-      <article class="tool-card">
-        <h4>Module 2 Cheatsheet</h4>
-        <ul>
-          <li><code>if/elif/else</code>: only first true branch executes</li>
-          <li><code>range(stop)</code> is exclusive, <code>range(start,stop,step)</code> respects step direction</li>
-          <li><code>break</code> exits loop, <code>continue</code> skips current iteration</li>
-          <li>Loop <code>else</code> runs only if loop ends without break</li>
-          <li>Use <code>enumerate()</code> for index+value iteration</li>
-        </ul>
-      </article>
-      <article class="tool-card mistake">
-        <h4>Module 2 Common Mistakes</h4>
-        <ul>
-          <li>Off-by-one mistakes with <code>range()</code> stop value</li>
-          <li>Wrong step sign causing empty ranges</li>
-          <li>Assuming <code>break</code> exits all nested loops</li>
-          <li>Expecting loop variable to disappear after loop</li>
-          <li>Expecting loop <code>else</code> to run after a break</li>
-        </ul>
-      </article>
-    </div>
-
-    <div class="quiz-launch">
-      <h3>Module Test Lab</h3>
-      <p>Practice real trace-style questions and check reasoning instantly.</p>
-      <div class="launch-row">
-        <div class="count-picker" data-counts="m2">
-          <button class="count-btn active" data-count="5" type="button">5 Questions</button>
-          <button class="count-btn" data-count="10" type="button">10 Questions</button>
-          <button class="count-btn" data-count="15" type="button">15 Questions</button>
-          <button class="count-btn" data-count="all" type="button">All Questions</button>
-        </div>
-        <label class="count-custom">Custom
-          <input class="count-input" data-module="m2" type="number" min="1" max="99" value="5">
-        </label>
-        <button class="btn start" data-start="m2" type="button">Start Module 2 Test</button>
+      <div class="exam-sim-section">
+        <a href="exam-simulation.html" class="exam-sim-button">
+          <span class="exam-sim-icon">🎯</span>
+          <span>Exam Simulation starten</span>
+        </a>
+        <p style="margin-top: 1rem; color: var(--muted);">
+          30 zufällige Fragen • 40 Minuten Timer • Realistische Prüfungsbedingungen
+        </p>
       </div>
-    </div>
 
-    <div class="quiz-shell" id="quiz-m2"></div>
-  </section>
-
-  <section class="module m3" id="module3" data-module="m3">
-    <div class="module-head">
-      <div>
-        <span class="module-badge">Module 3</span>
-        <h2>Data Collections</h2>
-      </div>
-      <div class="module-weight">Exam weight: around 25%</div>
-    </div>
-    <p class="intro">
-      Strings, lists, tuples, and dictionaries are heavily tested. Focus on indexing and slicing,
-      mutable vs immutable behavior, and method return values. Many exam questions are small snippets
-      with one hidden collection trap.
-    </p>
-
-    <div class="knowledge-grid">
-      <article class="mini-card">
-        <h3>Core Focus</h3>
-        <ul>
-          <li>String slicing, reversing, and method differences</li>
-          <li>List mutation methods: append, extend, insert, sort, pop</li>
-          <li>Tuple immutability and unpacking patterns</li>
-          <li>Dictionary key access, iteration, and safe retrieval with get</li>
-        </ul>
-      </article>
-      <article class="mini-card">
-        <h3>High-Yield Rules</h3>
-        <ul>
-          <li><code>append()</code> adds one element, <code>extend()</code> adds many</li>
-          <li><code>list.sort()</code> mutates in place and returns <code>None</code></li>
-          <li><code>in dict</code> checks keys, not values</li>
-          <li>Slicing out-of-range is safe and returns empty sequence</li>
-        </ul>
-      </article>
-      <article class="mini-card warn">
-        <h3>Exam Traps</h3>
-        <ul>
-          <li><code>a = b</code> shares same list object</li>
-          <li>Single-item tuple needs comma: <code>(1,)</code></li>
-          <li><code>find()</code> returns -1, <code>index()</code> raises ValueError</li>
-          <li><code>d[1]</code> and <code>d[1.0]</code> collide in dict keys</li>
-        </ul>
-      </article>
-    </div>
-
-    <div class="rule-grid">
-      <div class="rule"><div class="rule-k">s[::-1]</div><div class="rule-v">reverse copy</div></div>
-      <div class="rule"><div class="rule-k">a[:] </div><div class="rule-v">shallow list copy</div></div>
-      <div class="rule"><div class="rule-k">"a" in d</div><div class="rule-v">checks keys</div></div>
-      <div class="rule"><div class="rule-k">(42,)</div><div class="rule-v">one-element tuple</div></div>
-    </div>
-
-    <div class="module-deep">
-      <article class="deep-card">
-        <h4>Coverage Map (09-12)</h4>
-        <ul>
-          <li>Strings: slicing, immutability, search methods, validation methods</li>
-          <li>Lists: add/remove/sort/copy, comprehension, nested list caveats</li>
-          <li>Tuples: immutability, single-item comma, unpacking and extended unpacking</li>
-          <li>Dictionaries: creation, key lookup, get default, items iteration, update/pop</li>
-          <li>Hashability rule for keys and tuple-key usage</li>
-        </ul>
-      </article>
-      <article class="deep-card">
-        <h4>High-Yield Mistakes</h4>
-        <ul>
-          <li><code>a = b</code> copies reference; <code>a[:]</code> or <code>copy()</code> copies list</li>
-          <li><code>append([x,y])</code> vs <code>extend([x,y])</code></li>
-          <li><code>find</code> returns -1; <code>index</code> throws exception if missing</li>
-          <li><code>{}</code> is dict, not set</li>
-          <li>Dict membership tests keys, not values</li>
-        </ul>
-        <div class="topic-tags">
-          <span>String slicing</span><span>List methods</span><span>Tuple unpacking</span>
-          <span>Dict get()</span><span>Mutation traps</span>
-        </div>
-      </article>
-    </div>
-
-    <div class="deep-snippet">
-      <code>Collection trace tactic: identify mutability first, then decide whether operation returns new object or mutates in place.</code>
-    </div>
-
-    <div class="module-toolkit">
-      <article class="tool-card">
-        <h4>Module 3 Cheatsheet</h4>
-        <ul>
-          <li>Strings are immutable; slicing is safe and stop index is exclusive</li>
-          <li><code>append(x)</code> adds one item, <code>extend(iter)</code> adds many</li>
-          <li><code>sort()</code> mutates list and returns <code>None</code>; <code>sorted()</code> returns new list</li>
-          <li>Single-item tuple syntax is <code>(x,)</code></li>
-          <li>For dicts, <code>key in d</code> checks keys; use <code>d.get(key, default)</code> for safe access</li>
-        </ul>
-      </article>
-      <article class="tool-card mistake">
-        <h4>Module 3 Common Mistakes</h4>
-        <ul>
-          <li>Reference trap: <code>b = a</code> links same list object</li>
-          <li>Confusing <code>find()</code> (-1) and <code>index()</code> (ValueError)</li>
-          <li>Using <code>{}</code> expecting empty set (it is dict)</li>
-          <li>Assuming tuple/list methods are interchangeable</li>
-          <li>Expecting <code>in</code> to search dict values automatically</li>
-        </ul>
-      </article>
-    </div>
-
-    <div class="quiz-launch">
-      <h3>Module Test Lab</h3>
-      <p>Collection-heavy traps with hints and immediate correction feedback.</p>
-      <div class="launch-row">
-        <div class="count-picker" data-counts="m3">
-          <button class="count-btn active" data-count="5" type="button">5 Questions</button>
-          <button class="count-btn" data-count="10" type="button">10 Questions</button>
-          <button class="count-btn" data-count="15" type="button">15 Questions</button>
-          <button class="count-btn" data-count="all" type="button">All Questions</button>
-        </div>
-        <label class="count-custom">Custom
-          <input class="count-input" data-module="m3" type="number" min="1" max="99" value="5">
-        </label>
-        <button class="btn start" data-start="m3" type="button">Start Module 3 Test</button>
-      </div>
-    </div>
-
-    <div class="quiz-shell" id="quiz-m3"></div>
-  </section>
-
-  <section class="module m4" id="module4" data-module="m4">
-    <div class="module-head">
-      <div>
-        <span class="module-badge">Module 4</span>
-        <h2>Functions and Exceptions</h2>
-      </div>
-      <div class="module-weight">Exam weight: around 35%</div>
-    </div>
-    <p class="intro">
-      Highest-weight module. Learn function signatures, default argument behavior, scope resolution,
-      lambda and built-in usage, plus structured exception handling with <code>try/except/else/finally</code>.
-      This section often decides the pass/fail margin.
-    </p>
-
-    <div class="knowledge-grid">
-      <article class="mini-card">
-        <h3>Core Focus</h3>
-        <ul>
-          <li>Function parameters: positional, default, <code>*args</code>, <code>**kwargs</code></li>
-          <li>Return values and implicit <code>None</code></li>
-          <li>Scope basics (local, enclosing, global, built-in)</li>
-          <li>Exception flow and correct handler ordering</li>
-        </ul>
-      </article>
-      <article class="mini-card">
-        <h3>High-Yield Rules</h3>
-        <ul>
-          <li><code>*args</code> is tuple, <code>**kwargs</code> is dict</li>
-          <li><code>finally</code> always runs</li>
-          <li><code>else</code> in try runs only if no exception</li>
-          <li>Mutable default arguments persist across calls</li>
-        </ul>
-      </article>
-      <article class="mini-card warn">
-        <h3>Exam Traps</h3>
-        <ul>
-          <li>Function that prints but does not return a value</li>
-          <li>Shadowing globals with local names</li>
-          <li>Using broad <code>except:</code> too early</li>
-          <li>Re-raising exceptions after partial handling</li>
-        </ul>
-      </article>
-    </div>
-
-    <div class="rule-grid">
-      <div class="rule"><div class="rule-k">def f(a=[])</div><div class="rule-v">shared mutable default</div></div>
-      <div class="rule"><div class="rule-k">return missing</div><div class="rule-v">returns None</div></div>
-      <div class="rule"><div class="rule-k">try/else</div><div class="rule-v">only on success</div></div>
-      <div class="rule"><div class="rule-k">finally</div><div class="rule-v">always executes</div></div>
-    </div>
-
-    <div class="module-deep">
-      <article class="deep-card">
-        <h4>Coverage Map (13-17)</h4>
-        <ul>
-          <li>Function structure, parameter passing, return and no-return behavior</li>
-          <li>Scope model (local/enclosing/global/built-in) and shadowing</li>
-          <li><code>*args</code> tuple, <code>**kwargs</code> dict, unpacking calls with <code>*</code>/<code>**</code></li>
-          <li>Core built-ins frequently appearing inside trace questions</li>
-          <li>Exception hierarchy basics, <code>try/except/else/finally</code>, raising errors</li>
-        </ul>
-      </article>
-      <article class="deep-card">
-        <h4>Exception + Function Traps</h4>
-        <ul>
-          <li>Specific <code>except</code> blocks must come before generic catch-all</li>
-          <li><code>finally</code> runs even after return/exception</li>
-          <li>Mutable defaults persist across calls</li>
-          <li>Function can print value but still return <code>None</code></li>
-          <li>Re-raising with <code>raise</code> keeps original exception type</li>
-        </ul>
-        <div class="topic-tags">
-          <span>LEGB scope</span><span>*args/**kwargs</span><span>Lambda</span>
-          <span>try/except/finally</span><span>raise</span>
-        </div>
-      </article>
-    </div>
-
-    <div class="deep-snippet">
-      <code>Function trace tactic: bind arguments -> evaluate locals vs globals -> check explicit return; if absent, return is None.</code>
-    </div>
-
-    <div class="module-toolkit">
-      <article class="tool-card">
-        <h4>Module 4 Cheatsheet</h4>
-        <ul>
-          <li><code>*args</code> is tuple, <code>**kwargs</code> is dict</li>
-          <li>Parameter order: positional -> default -> <code>*args</code> -> keyword-only -> <code>**kwargs</code></li>
-          <li>No explicit return means <code>None</code></li>
-          <li><code>try/except/else/finally</code>: else on success, finally always</li>
-          <li>Common exceptions: <code>ValueError</code>, <code>TypeError</code>, <code>ZeroDivisionError</code>, <code>KeyError</code></li>
-        </ul>
-      </article>
-      <article class="tool-card mistake">
-        <h4>Module 4 Common Mistakes</h4>
-        <ul>
-          <li>Mutable default argument reuse across calls</li>
-          <li>Function prints value but caller receives <code>None</code></li>
-          <li>Generic <code>except</code> before specific handlers</li>
-          <li>Forgetting <code>finally</code> runs even after return/raise</li>
-          <li>Scope confusion: local shadowing vs <code>global</code> updates</li>
-        </ul>
-      </article>
-    </div>
-
-    <div class="quiz-launch">
-      <h3>Module Test Lab</h3>
-      <p>High-impact exam items with instant solution and explanation mode.</p>
-      <div class="launch-row">
-        <div class="count-picker" data-counts="m4">
-          <button class="count-btn active" data-count="5" type="button">5 Questions</button>
-          <button class="count-btn" data-count="10" type="button">10 Questions</button>
-          <button class="count-btn" data-count="15" type="button">15 Questions</button>
-          <button class="count-btn" data-count="all" type="button">All Questions</button>
-        </div>
-        <label class="count-custom">Custom
-          <input class="count-input" data-module="m4" type="number" min="1" max="99" value="5">
-        </label>
-        <button class="btn start" data-start="m4" type="button">Start Module 4 Test</button>
-      </div>
-    </div>
-
-    <div class="quiz-shell" id="quiz-m4"></div>
-  </section>
-</main>
-
-<footer>
-  PCEP-PREP-MEAL - Interactive training built for focused Python 3 exam practice.
-</footer>
-
-<script>
-  const QUESTION_BANK = {
-    m1: [
-      {
-        prompt: "What is the output?",
-        code: "print(10 / 4)\nprint(10 // 4)\nprint(10 % 4)",
-        options: [
-          "2.5  /  2  /  2",
-          "2  /  2  /  2",
-          "2.5  /  2.5  /  2",
-          "2  /  2.5  /  2"
-        ],
-        answer: 0,
-        hint: "Use division roles: / gives float, // gives floor integer part, % gives remainder.",
-        explanation: "10/4 is 2.5, 10//4 is 2, and 10%4 is 2."
-      },
-      {
-        prompt: "What is the output?",
-        code: "x = -7 // 2\nprint(x)",
-        options: ["-3", "-4", "3", "4"],
-        answer: 1,
-        hint: "Floor division goes toward negative infinity.",
-        explanation: "-3.5 floored is -4, not -3."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(-2 ** 2)\nprint((-2) ** 2)",
-        options: ["-4 then 4", "4 then 4", "-4 then -4", "2 then 4"],
-        answer: 0,
-        hint: "Exponentiation has higher precedence than unary minus.",
-        explanation: "-2 ** 2 means -(2**2) => -4, but (-2)**2 => 4."
-      },
-      {
-        prompt: "Which line is FALSE?",
-        code: "A) bool(\"False\")\nB) bool(\"\")\nC) bool([0])\nD) bool(\"0\")",
-        options: ["A", "B", "C", "D"],
-        answer: 1,
-        hint: "Only empty containers/strings are falsy.",
-        explanation: "bool(\"\") is False. The others are all truthy because they are non-empty."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(2 ** 3 ** 2)",
-        options: ["64", "512", "36", "256"],
-        answer: 1,
-        hint: "Power is evaluated right-to-left.",
-        explanation: "Python calculates 3**2 first (=9), then 2**9 (=512)."
-      },
-      {
-        prompt: "What is printed?",
-        code: "x = 5 and 10\ny = 0 or 20\nprint(x, y)",
-        options: ["True True", "5 20", "10 20", "10 0"],
-        answer: 2,
-        hint: "and/or return values, not always booleans.",
-        explanation: "5 and 10 returns last truthy operand (10). 0 or 20 returns first truthy value (20)."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(round(2.5))\nprint(round(3.5))",
-        options: ["3 then 4", "2 then 4", "2 then 3", "3 then 3"],
-        answer: 1,
-        hint: "Python uses round-half-to-even.",
-        explanation: "2.5 rounds to 2 (even), 3.5 rounds to 4 (even)."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(type((1)))\nprint(type((1,)))",
-        options: ["tuple then tuple", "int then tuple", "int then int", "tuple then int"],
-        answer: 1,
-        hint: "A single-item tuple needs a trailing comma.",
-        explanation: "(1) is just int grouping. (1,) is a tuple."
-      },
-      {
-        prompt: "What is the output?",
-        code: "x = 3 + 4 * 2 ** 2\nprint(x)",
-        options: ["19", "35", "28", "11"],
-        answer: 0,
-        hint: "Order: ** then * then +.",
-        explanation: "2**2=4, then 4*4=16, then 3+16=19."
-      },
-      {
-        prompt: "Which statement about input() is correct?",
-        code: "age = input(\"Age: \")",
-        options: [
-          "age is int if user types digits",
-          "age is always str",
-          "age is float by default",
-          "age is bool if user types true/false"
-        ],
-        answer: 1,
-        hint: "You must cast manually when numeric behavior is required.",
-        explanation: "input() returns str regardless of what the user types."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(int(\"42\") + float(\"3.0\"))",
-        options: ["45", "45.0", "42.3", "TypeError"],
-        answer: 1,
-        hint: "Adding int and float returns float.",
-        explanation: "42 + 3.0 = 45.0."
-      },
-      {
-        prompt: "What is the value of n?",
-        code: "n = 0x10 + 0b10\nprint(n)",
-        options: ["12", "16", "18", "20"],
-        answer: 2,
-        hint: "0x10 is 16 and 0b10 is 2.",
-        explanation: "16 + 2 = 18."
-      },
-      {
-        prompt: "Which statement about Python is correct for PCEP?",
-        code: "Choose one correct statement.",
-        options: [
-          "Python 3 uses print as a statement",
-          "Python is only a compiled language",
-          "Python 3 uses true division with /",
-          "input() returns int by default"
-        ],
-        answer: 2,
-        hint: "Think Python 3 syntax and arithmetic behavior.",
-        explanation: "In Python 3, / is true division and returns float."
-      },
-      {
-        prompt: "Which identifier is INVALID?",
-        code: "A) user_name\nB) _hidden\nC) 2nd_value\nD) value2",
-        options: ["A", "B", "C", "D"],
-        answer: 2,
-        hint: "Identifiers cannot start with a digit.",
-        explanation: "2nd_value starts with 2, so it is invalid."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(bool(\"0\"))\nprint(bool(0))\nprint(bool([0]))",
-        options: ["False, False, False", "True, False, True", "True, True, True", "False, True, False"],
-        answer: 1,
-        hint: "Non-empty string and non-empty list are truthy.",
-        explanation: "\"0\" and [0] are truthy, but numeric 0 is falsy."
-      },
-      {
-        prompt: "What happens?",
-        code: "print(int(\"3.14\"))",
-        options: ["3", "3.14", "ValueError", "TypeError"],
-        answer: 2,
-        hint: "int() cannot parse a float-formatted string directly.",
-        explanation: "int(\"3.14\") raises ValueError; convert via float first if needed."
-      },
-      {
-        prompt: "What is the output?",
-        code: "x = input(\"Enter: \")\nprint(type(x).__name__)",
-        options: ["int", "float", "str", "depends on user input"],
-        answer: 2,
-        hint: "input() behavior is fixed in Python 3.",
-        explanation: "input() always returns a string."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(5 + 2 * 3)\nprint((5 + 2) * 3)",
-        options: ["11 then 21", "21 then 11", "11 then 11", "21 then 21"],
-        answer: 0,
-        hint: "Multiplication has higher precedence than addition.",
-        explanation: "5+2*3=11, while parentheses force (5+2)*3=21."
-      },
-      {
-        prompt: "What is printed?",
-        code: "print(\"a\", \"b\", \"c\", sep=\"-\", end=\"!\")",
-        options: ["a b c!", "a-b-c!", "abc!", "a-b-c !"],
-        answer: 1,
-        hint: "sep controls between args, end controls trailing characters.",
-        explanation: "sep='-' gives a-b-c and end='!' adds ! without newline."
-      }
-    ],
-    m2: [
-      {
-        prompt: "What is the output?",
-        code: "for i in range(5):\n    if i == 3:\n        break\n    print(i, end=\" \")\nelse:\n    print(\"done\")",
-        options: ["0 1 2", "0 1 2 done", "0 1 2 3", "done"],
-        answer: 0,
-        hint: "Loop else runs only if no break occurs.",
-        explanation: "break at i==3 prevents the else block from running."
-      },
-      {
-        prompt: "What is the output?",
-        code: "for i in range(5):\n    if i == 3:\n        continue\n    print(i, end=\" \")\nelse:\n    print(\"done\")",
-        options: ["0 1 2 4 done", "0 1 2", "0 1 2 3 4", "done"],
-        answer: 0,
-        hint: "continue skips one iteration but does not terminate the loop.",
-        explanation: "Since loop finishes normally (no break), else runs and prints done."
-      },
-      {
-        prompt: "What is the output?",
-        code: "x = 10\nif x > 5:\n    print(\"A\")\nelif x > 8:\n    print(\"B\")\nelif x > 3:\n    print(\"C\")",
-        options: ["A", "B", "C", "A and B"],
-        answer: 0,
-        hint: "Only first true branch in an if/elif chain executes.",
-        explanation: "x > 5 is true, so Python runs A and skips the rest."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(list(range(5, 0, -2)))",
-        options: ["[5, 3, 1]", "[5, 3]", "[5, 3, 1, -1]", "[0, 2, 4]"],
-        answer: 0,
-        hint: "Stop value is excluded even with negative steps.",
-        explanation: "Sequence starts at 5 and steps down by 2 until just above 0."
-      },
-      {
-        prompt: "What is printed?",
-        code: "i = 0\nwhile i < 5:\n    i += 1\n    if i == 3:\n        continue\n    print(i, end=\" \")",
-        options: ["1 2 4 5", "1 2 3 4 5", "0 1 2 4", "1 2 4"],
-        answer: 0,
-        hint: "continue skips only the print for i==3.",
-        explanation: "All values except 3 are printed: 1 2 4 5."
-      },
-      {
-        prompt: "What does break affect in nested loops?",
-        code: "for x in range(3):\n    for y in range(3):\n        break",
-        options: [
-          "Both loops stop",
-          "Only the inner loop stops",
-          "Only the outer loop stops",
-          "No loop stops"
-        ],
-        answer: 1,
-        hint: "break is local to its current loop.",
-        explanation: "break exits only the innermost loop where it appears."
-      },
-      {
-        prompt: "What is the output?",
-        code: "items = []\nif items:\n    print(\"non-empty\")\nelse:\n    print(\"empty\")",
-        options: ["non-empty", "empty", "None", "IndexError"],
-        answer: 1,
-        hint: "Empty list is falsy.",
-        explanation: "items is empty, so else branch runs."
-      },
-      {
-        prompt: "What is the output?",
-        code: "x = 7\nprint(1 < x < 10)",
-        options: ["True", "False", "TypeError", "Depends on Python version"],
-        answer: 0,
-        hint: "Python supports chained comparisons.",
-        explanation: "x=7 satisfies both 1<x and x<10."
-      },
-      {
-        prompt: "What is printed?",
-        code: "for i in range(3):\n    pass\nprint(i)",
-        options: ["0", "1", "2", "NameError"],
-        answer: 2,
-        hint: "Loop variable remains defined after loop in Python.",
-        explanation: "After range(3), the last assigned value is i=2."
-      },
-      {
-        prompt: "What is the output?",
-        code: "i = 0\nwhile i < 3:\n    if i == 1:\n        break\n    i += 1\nelse:\n    print(\"done\")",
-        options: ["done", "No output", "1", "0 1"],
-        answer: 1,
-        hint: "break prevents while-else from executing.",
-        explanation: "Loop breaks at i==1 before normal completion, so else is skipped."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(list(range(1, 6, 2)))",
-        options: ["[1, 3, 5]", "[1, 3]", "[0, 2, 4]", "[1, 2, 3, 4, 5]"],
-        answer: 0,
-        hint: "Start at 1, step by 2, stop before 6.",
-        explanation: "Values are 1, 3, 5."
-      },
-      {
-        prompt: "What is the output?",
-        code: "x = 0\nif x:\n    print(\"A\")\nelif not x:\n    print(\"B\")",
-        options: ["A", "B", "A and B", "No output"],
-        answer: 1,
-        hint: "0 is falsy; not 0 is True.",
-        explanation: "First condition fails, second succeeds, so B is printed."
-      },
-      {
-        prompt: "What is the output?",
-        code: "for i in range(2):\n    for j in range(3):\n        if j == 1:\n            break\n        print(i, j)",
-        options: ["0 0 and 1 0", "0 0 0 1 1 0 1 1", "0 0 only", "No output"],
-        answer: 0,
-        hint: "break affects only the inner loop.",
-        explanation: "Each outer iteration prints j=0 then breaks at j=1."
-      },
-      {
-        prompt: "What is the output?",
-        code: "for i in range(1, 6):\n    if i % 2 == 0:\n        continue\n    print(i, end=\" \")",
-        options: ["1 2 3 4 5", "1 3 5", "2 4", "1 3 5 6"],
-        answer: 1,
-        hint: "continue skips even numbers.",
-        explanation: "Only odd values 1, 3, 5 are printed."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(list(range(0, 5, -1)))",
-        options: ["[0, -1, -2, -3, -4]", "[]", "[0, 1, 2, 3, 4]", "ValueError"],
-        answer: 1,
-        hint: "Step direction must move toward stop.",
-        explanation: "A negative step from 0 can never reach stop=5, so range is empty."
-      },
-      {
-        prompt: "Which statement is true about if/elif/else?",
-        code: "Choose one.",
-        options: [
-          "All true elif branches execute",
-          "Only first true branch executes",
-          "else executes before elif",
-          "if and else can both execute"
-        ],
-        answer: 1,
-        hint: "Python selects first matching branch and leaves the chain.",
-        explanation: "In one chain, only the first true branch runs."
-      },
-      {
-        prompt: "What is printed?",
-        code: "x = [1]\nif x and x[0] == 1:\n    print(\"ok\")",
-        options: ["ok", "True", "No output", "IndexError"],
-        answer: 0,
-        hint: "and short-circuits left to right, and [1] is truthy.",
-        explanation: "x is truthy and x[0] equals 1, so condition is True."
-      },
-      {
-        prompt: "What is the output?",
-        code: "n = 3\nwhile n > 0:\n    n -= 1\nelse:\n    print(\"done\")",
-        options: ["No output", "done", "0", "infinite loop"],
-        answer: 1,
-        hint: "while-else runs when loop finishes without break.",
-        explanation: "Loop terminates normally at n==0, so else runs."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(list(range(2, 10, 3)))",
-        options: ["[2, 5, 8]", "[2, 5, 8, 11]", "[2, 4, 6, 8]", "[3, 6, 9]"],
-        answer: 0,
-        hint: "start at 2, add step 3, stop before 10.",
-        explanation: "Generated values are 2, 5, 8."
-      }
-    ],
-    m3: [
-      {
-        prompt: "What is the output?",
-        code: "s = \"Python\"\nprint(s[1:4])\nprint(s[-2:])\nprint(s[::-1])",
-        options: [
-          "yth / on / nohtyP",
-          "ytho / on / nohtyP",
-          "yth / hn / Python",
-          "yth / on / Python"
-        ],
-        answer: 0,
-        hint: "Remember stop index in slicing is exclusive.",
-        explanation: "[1:4] gives yth, [-2:] gives on, [::-1] reverses string."
-      },
-      {
-        prompt: "What is the output?",
-        code: "lst = [1, 2, 3]\nlst.append([4, 5])\nprint(lst)\nprint(len(lst))",
-        options: [
-          "[1,2,3,4,5] and 5",
-          "[1,2,3,[4,5]] and 4",
-          "[1,2,3,[4,5]] and 5",
-          "TypeError"
-        ],
-        answer: 1,
-        hint: "append adds one element exactly as provided.",
-        explanation: "[4,5] is appended as a single nested list element."
-      },
-      {
-        prompt: "What is the output?",
-        code: "d = {\"a\": 1, \"b\": 2}\nprint(\"a\" in d)\nprint(1 in d)",
-        options: ["True then True", "True then False", "False then True", "False then False"],
-        answer: 1,
-        hint: "in on a dict checks keys.",
-        explanation: "'a' is a key, but 1 is a value so 1 in d is False."
-      },
-      {
-        prompt: "What is the output?",
-        code: "s = \"hello\"\nprint(s.find(\"x\"))",
-        options: ["0", "-1", "None", "ValueError"],
-        answer: 1,
-        hint: "find and index differ when item is missing.",
-        explanation: "find returns -1 when substring is not found."
-      },
-      {
-        prompt: "What is the output?",
-        code: "nums = [3, 1, 2]\nresult = nums.sort()\nprint(result)\nprint(nums)",
-        options: [
-          "[1,2,3] then [1,2,3]",
-          "None then [1,2,3]",
-          "None then [3,1,2]",
-          "TypeError"
-        ],
-        answer: 1,
-        hint: "sort mutates in place and returns None.",
-        explanation: "nums gets sorted, but result stores None."
-      },
-      {
-        prompt: "What is the output?",
-        code: "x = [1, 2, 3]\ny = x\ny.append(4)\nprint(x)",
-        options: ["[1, 2, 3]", "[1, 2, 3, 4]", "[4]", "TypeError"],
-        answer: 1,
-        hint: "Assignment copies reference, not list data.",
-        explanation: "x and y point to the same list object."
-      },
-      {
-        prompt: "What is the output?",
-        code: "a = [1, 2, 3]\nb = a[:]\nb[0] = 100\nprint(a[0])",
-        options: ["100", "1", "0", "TypeError"],
-        answer: 1,
-        hint: "a[:] creates a shallow copy.",
-        explanation: "b is separate list, so changing b does not affect a."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(\"hello\".replace(\"l\", \"L\", 1))",
-        options: ["heLlo", "heLLo", "hello", "Hello"],
-        answer: 0,
-        hint: "Third argument limits number of replacements.",
-        explanation: "Only the first 'l' is replaced."
-      },
-      {
-        prompt: "What is the output?",
-        code: "s = \"Python\"\nprint(s[100:200])",
-        options: ["IndexError", "None", "'' (empty string)", "Python"],
-        answer: 2,
-        hint: "Out-of-bounds slicing is safe.",
-        explanation: "Slicing beyond bounds gives empty sequence, not an error."
-      },
-      {
-        prompt: "What is the output?",
-        code: "d = {}\nd[1] = \"a\"\nd[\"1\"] = \"b\"\nd[1.0] = \"c\"\nprint(d)",
-        options: [
-          "{1: 'a', '1': 'b', 1.0: 'c'}",
-          "{1: 'c', '1': 'b'}",
-          "{'1': 'b', 1.0: 'c'}",
-          "TypeError"
-        ],
-        answer: 1,
-        hint: "1 and 1.0 are equal keys in dict hashing.",
-        explanation: "1.0 overwrites key 1, while '1' remains a separate string key."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print([x for x in range(10) if x % 2 == 0 if x % 3 == 0])",
-        options: ["[0, 2, 4, 6, 8]", "[0, 3, 6, 9]", "[0, 6]", "[6]"],
-        answer: 2,
-        hint: "Both if filters must be true (logical AND behavior).",
-        explanation: "Only numbers divisible by both 2 and 3 are 0 and 6."
-      },
-      {
-        prompt: "What is the output?",
-        code: "nums = [1, 2, 3]\nnums.insert(10, 99)\nprint(nums)",
-        options: ["[99,1,2,3]", "[1,99,2,3]", "[1,2,3]", "[1,2,3,99]"],
-        answer: 3,
-        hint: "insert with out-of-range positive index appends at end.",
-        explanation: "Index 10 is beyond length, so 99 is placed at the end."
-      },
-      {
-        prompt: "What is the output?",
-        code: "lst = [1, 2, 3, 4, 5]\nprint(lst[1:4:2])",
-        options: ["[2, 3, 4]", "[2, 4]", "[1, 3, 5]", "[4, 2]"],
-        answer: 1,
-        hint: "Indices selected are 1 and 3.",
-        explanation: "Slice starts at index 1, stops before 4, step 2 -> [2, 4]."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(\"   hello   \".strip().upper())",
-        options: ["HELLO", "   HELLO   ", "hello", "Hello"],
-        answer: 0,
-        hint: "Methods chain left to right.",
-        explanation: "strip removes outer spaces, upper converts result to uppercase."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(\"abc\" * 2 + \"def\")",
-        options: ["abcabc", "abcabcdef", "abcdefabc", "TypeError"],
-        answer: 1,
-        hint: "String repetition happens before + concatenation.",
-        explanation: "\"abc\"*2 gives \"abcabc\", then +\"def\" gives \"abcabcdef\"."
-      },
-      {
-        prompt: "What is the output?",
-        code: "d = {\"a\": 1, \"b\": 2}\nprint(d.get(\"c\", d.get(\"a\")))",
-        options: ["None", "1", "2", "KeyError"],
-        answer: 1,
-        hint: "get returns default when key is missing.",
-        explanation: "\"c\" is missing, so fallback d.get(\"a\") is used, returning 1."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(\"hello\".index(\"e\"))",
-        options: ["0", "1", "2", "-1"],
-        answer: 1,
-        hint: "index gives exact position for existing substring.",
-        explanation: "Character 'e' is at index 1."
-      },
-      {
-        prompt: "Which statement about list methods is correct?",
-        code: "Choose one.",
-        options: [
-          "append([4,5]) and extend([4,5]) always do the same",
-          "sort() returns a new sorted list",
-          "append(x) adds exactly one element",
-          "remove(i) removes by index"
-        ],
-        answer: 2,
-        hint: "Remember append vs extend and sort behavior.",
-        explanation: "append adds one element; extend iterates over an iterable."
-      },
-      {
-        prompt: "What is the output?",
-        code: "t = (1)\nprint(type(t).__name__)",
-        options: ["tuple", "int", "list", "TypeError"],
-        answer: 1,
-        hint: "Single-item tuple needs trailing comma.",
-        explanation: "(1) is just parenthesized int expression."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print({1, 2, 3} & {2, 3, 4})\nprint({1, 2, 3} | {2, 3, 4})",
-        options: ["{2, 3} and {1, 2, 3, 4}", "{1,2,3,4} and {2,3}", "{2} and {4}", "TypeError"],
-        answer: 0,
-        hint: "& is intersection and | is union for sets.",
-        explanation: "Common elements are {2,3}, combined unique elements are {1,2,3,4}."
-      },
-      {
-        prompt: "What is the output?",
-        code: "x = \"hello\"\nprint(x[1:1])\nprint(x[2:2])",
-        options: ["'e' and 'l'", "'' and ''", "None and None", "IndexError"],
-        answer: 1,
-        hint: "When start equals stop in slicing, result is empty.",
-        explanation: "Both slices have zero width, so both are empty strings."
-      }
-    ],
-    m4: [
-      {
-        prompt: "What is the output?",
-        code: "def func(a, b=10, c=20):\n    return a + b + c\n\nprint(func(1))\nprint(func(1, 2))\nprint(func(1, c=3))",
-        options: ["31, 23, 14", "31, 13, 4", "30, 22, 13", "Error"],
-        answer: 0,
-        hint: "Check which default values are overridden in each call.",
-        explanation: "Calls evaluate to 31, 23, and 14 respectively."
-      },
-      {
-        prompt: "What is the output?",
-        code: "def add(a, b):\n    print(a + b)\n\nresult = add(2, 3)\nprint(result)",
-        options: ["5 then 5", "5 then None", "None then 5", "TypeError"],
-        answer: 1,
-        hint: "Printing and returning are different operations.",
-        explanation: "Function prints 5, but with no return statement result is None."
-      },
-      {
-        prompt: "What is the output?",
-        code: "x = 10\ndef func():\n    x = 20\n    print(x)\n\nfunc()\nprint(x)",
-        options: ["20 then 20", "10 then 20", "20 then 10", "NameError"],
-        answer: 2,
-        hint: "Local variable shadows global variable inside function.",
-        explanation: "Inside func x is local 20. Global x remains 10."
-      },
-      {
-        prompt: "What is the output?",
-        code: "try:\n    x = int(\"hello\")\nexcept ValueError:\n    print(\"A\")\nexcept:\n    print(\"B\")\nelse:\n    print(\"C\")\nfinally:\n    print(\"D\")",
-        options: ["A then D", "B then D", "C then D", "A then C then D"],
-        answer: 0,
-        hint: "finally runs no matter what.",
-        explanation: "ValueError branch executes (A), else is skipped, finally prints D."
-      },
-      {
-        prompt: "What is the output?",
-        code: "double = lambda x: x * 2\nprint(double(5))\nprint(type(double))",
-        options: ["10 and <class 'lambda'>", "10 and <class 'function'>", "5 and <class 'function'>", "TypeError"],
-        answer: 1,
-        hint: "lambda creates normal function objects.",
-        explanation: "double(5) is 10 and lambda objects have function type."
-      },
-      {
-        prompt: "What is the output?",
-        code: "def func(*args, **kwargs):\n    print(type(args))\n    print(type(kwargs))\n\nfunc(1, 2, 3, a=4, b=5)",
-        options: ["list then dict", "tuple then dict", "tuple then list", "list then list"],
-        answer: 1,
-        hint: "*args and **kwargs have fixed container types.",
-        explanation: "Positional extras are tuple, named extras are dict."
-      },
-      {
-        prompt: "What is the output?",
-        code: "def f(x=[]):\n    x.append(1)\n    return x\n\nprint(f())\nprint(f())",
-        options: ["[1] then [1]", "[1] then [1, 1]", "[1, 1] then [1, 1, 1]", "TypeError"],
-        answer: 1,
-        hint: "Default mutable objects are created once at function definition.",
-        explanation: "Same list object is reused across calls, so it accumulates values."
-      },
-      {
-        prompt: "What is the output?",
-        code: "try:\n    print(\"A\")\n    raise ValueError\n    print(\"B\")\nexcept:\n    print(\"C\")\nfinally:\n    print(\"D\")",
-        options: ["A C D", "A B C D", "A D", "C D"],
-        answer: 0,
-        hint: "Code after raise in same block is unreachable.",
-        explanation: "A prints, exception jumps to except (C), finally runs (D)."
-      },
-      {
-        prompt: "What is the output?",
-        code: "x = 10\ndef outer():\n    x = 20\n    def inner():\n        print(x)\n    inner()\n\nouter()\nprint(x)",
-        options: ["20 then 10", "10 then 20", "20 then 20", "10 then 10"],
-        answer: 0,
-        hint: "inner uses enclosing scope before global scope.",
-        explanation: "inner sees x from outer (20). Global x stays 10."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(list(filter(lambda x: x > 0, [-1, 0, 1, 2])))",
-        options: ["[-1, 0, 1, 2]", "[1, 2]", "[0, 1, 2]", "[]"],
-        answer: 1,
-        hint: "filter keeps values where predicate returns True.",
-        explanation: "Only positive values pass the lambda condition."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(all([]))\nprint(any([]))",
-        options: ["False then False", "False then True", "True then False", "True then True"],
-        answer: 2,
-        hint: "Think of identity values for logical AND and OR reductions.",
-        explanation: "all([]) is vacuously True, any([]) is False."
-      },
-      {
-        prompt: "What happens?",
-        code: "try:\n    1 / 0\nexcept ZeroDivisionError:\n    print(\"A\")\n    raise",
-        options: [
-          "Prints A and then stops with ZeroDivisionError",
-          "Prints A and continues silently",
-          "Prints nothing",
-          "Prints ZeroDivisionError only"
-        ],
-        answer: 0,
-        hint: "raise without argument re-raises current exception.",
-        explanation: "Handler prints A, then raise propagates the same ZeroDivisionError again."
-      },
-      {
-        prompt: "What is the output?",
-        code: "def func(a, b, *args, c=10):\n    return a + b + sum(args) + c\n\nprint(func(1, 2, 3, 4, c=5))",
-        options: ["10", "12", "15", "TypeError"],
-        answer: 2,
-        hint: "Bind a,b first, collect remaining positional values in args.",
-        explanation: "a=1, b=2, args=(3,4), c=5 -> 1+2+7+5 = 15."
-      },
-      {
-        prompt: "What is the output?",
-        code: "a, *b, c = [1, 2, 3, 4, 5]\nprint(b)",
-        options: ["(2, 3, 4)", "[2, 3, 4]", "[1, 2, 3]", "TypeError"],
-        answer: 1,
-        hint: "Extended unpacking with * creates a list.",
-        explanation: "a=1, c=5, middle values go to b as list [2,3,4]."
-      },
-      {
-        prompt: "What is the output?",
-        code: "try:\n    print(\"start\")\nexcept Exception:\n    print(\"except\")\nelse:\n    print(\"else\")\nfinally:\n    print(\"finally\")",
-        options: ["start else finally", "start finally", "except finally", "start except finally"],
-        answer: 0,
-        hint: "No exception occurs here.",
-        explanation: "try runs, else runs on success, finally always runs."
-      },
-      {
-        prompt: "What is the output?",
-        code: "x = 10\n\ndef f():\n    global x\n    x = 20\n\nf()\nprint(x)",
-        options: ["10", "20", "NameError", "UnboundLocalError"],
-        answer: 1,
-        hint: "global binds assignment to module-level variable.",
-        explanation: "Function changes global x from 10 to 20."
-      },
-      {
-        prompt: "Which statement is correct?",
-        code: "Choose one.",
-        options: [
-          "*args is dict and **kwargs is tuple",
-          "finally runs only if exception occurs",
-          "A function without return returns None",
-          "lambda cannot be assigned to a variable"
-        ],
-        answer: 2,
-        hint: "Think core function behavior.",
-        explanation: "No explicit return means implicit return None."
-      },
-      {
-        prompt: "What is the output?",
-        code: "print(list(map(lambda x: x * 2, [1, 2, 3])))",
-        options: ["[1, 2, 3]", "[2, 4, 6]", "[2, 3, 4]", "TypeError"],
-        answer: 1,
-        hint: "map applies lambda to each element.",
-        explanation: "Each element is doubled."
-      },
-      {
-        prompt: "What is the output?",
-        code: "def check(v):\n    if v < 0:\n        raise ValueError(\"neg\")\n    return v\n\ntry:\n    print(check(-1))\nexcept ValueError:\n    print(\"caught\")",
-        options: ["-1", "neg", "caught", "No output"],
-        answer: 2,
-        hint: "Raised exception jumps to matching except.",
-        explanation: "check raises ValueError, except handles it and prints caught."
-      }
-    ]
-  };
-
-  const quizState = {
-    m1: { count: 5 },
-    m2: { count: 5 },
-    m3: { count: 5 },
-    m4: { count: 5 }
-  };
-
-  function shuffle(list) {
-    const arr = [...list];
-    for (let i = arr.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  }
-
-  function getAccent(moduleId) {
-    return getComputedStyle(document.querySelector(`section[data-module="${moduleId}"]`)).getPropertyValue("--accent").trim();
-  }
-
-  function selectQuestions(moduleId, rawCount) {
-    const pool = QUESTION_BANK[moduleId];
-    const numeric = Number(rawCount);
-    const wanted = rawCount === "all"
-      ? pool.length
-      : Math.max(1, Math.min(Number.isFinite(numeric) ? Math.floor(numeric) : 5, pool.length));
-    return shuffle(pool).slice(0, wanted).map((q) => ({ ...q }));
-  }
-
-  function getResultLine(question, response) {
-    const correctLabel = question.options[question.answer];
-    if (!response) {
-      return "";
-    }
-    if (response.revealed) {
-      return `<strong>Revealed:</strong> ${correctLabel}`;
-    }
-    if (response.choice === question.answer) {
-      return `<strong>Correct.</strong> ${correctLabel}`;
-    }
-    return `<strong>Correct answer:</strong> ${correctLabel}`;
-  }
-
-  function levelMessage(percent) {
-    if (percent >= 90) {
-      return "Excellent retention. Keep speed practice for exam timing.";
-    }
-    if (percent >= 75) {
-      return "Strong result. Review missed traps once more.";
-    }
-    if (percent >= 60) {
-      return "Solid progress. Repeat this module and focus on reasoning patterns.";
-    }
-    return "Foundation needs reinforcement. Re-read summary cards and rerun the test.";
-  }
-
-  function renderQuiz(moduleId) {
-    const shell = document.getElementById(`quiz-${moduleId}`);
-    const state = quizState[moduleId];
-    if (!state.questions || state.questions.length === 0) {
-      shell.innerHTML = "";
-      return;
-    }
-
-    const accent = getAccent(moduleId);
-    shell.style.setProperty("--accent", accent);
-
-    if (state.done) {
-      const total = state.questions.length;
-      const pct = Math.round((state.correct / total) * 100);
-      shell.innerHTML = `
-        <div class="done">
-          <h4>Module complete</h4>
-          <p>${levelMessage(pct)}</p>
-          <div class="stats">
-            <span class="stat">Score: ${state.correct}/${total}</span>
-            <span class="stat">Accuracy: ${pct}%</span>
-            <span class="stat">Answered: ${state.answered}/${total}</span>
-          </div>
-          <div class="actions">
-            <div class="left-actions">
-              <button class="btn soft" type="button" data-restart="${moduleId}">Restart same size</button>
-            </div>
-            <div class="right-actions">
-              <button class="btn nav" type="button" data-scrolltop="${moduleId}">Back to module top</button>
-            </div>
-          </div>
-        </div>
-      `;
-      return;
-    }
-
-    const total = state.questions.length;
-    const current = state.current;
-    const question = state.questions[current];
-    const response = state.responses[current];
-    const answered = Boolean(response);
-    const progress = (state.answered / total) * 100;
-
-    const optionsHtml = question.options.map((opt, idx) => {
-      let cls = "option";
-      if (answered) {
-        if (idx === question.answer) {
-          cls += " correct";
-        } else if (!response.revealed && idx === response.choice) {
-          cls += " wrong";
-        }
-      }
-      return `<button class="${cls}" type="button" data-option="${idx}">${opt}</button>`;
-    }).join("");
-
-    const hintVisible = state.hints[current];
-
-    shell.innerHTML = `
-      <article class="quiz-card">
-        <div class="quiz-top">
-          <div class="meta">Question ${current + 1}/${total} | Single-choice trainer</div>
-          <div class="score">Correct: ${state.correct} | Answered: ${state.answered}</div>
+      <div class="resources">
+        <div class="resource-card">
+          <div class="resource-icon">📚</div>
+          <h3 class="resource-title">Strukturiertes Lernen</h3>
+          <p class="resource-desc">Jedes Modul mit Theory, Cheatsheet, Common Mistakes & Quiz</p>
         </div>
 
-        <div class="progress"><span style="width:${progress}%"></span></div>
-
-        <h4 class="question-title">${question.prompt}</h4>
-        ${question.code ? `<pre><code>${question.code.replace(/</g, "&lt;")}</code></pre>` : ""}
-
-        <div class="options">${optionsHtml}</div>
-
-        ${hintVisible ? `<div class="hint"><strong>Hint:</strong> ${question.hint}</div>` : ""}
-
-        ${answered ? `<div class="explain">${getResultLine(question, response)}<br>${question.explanation}</div>` : ""}
-
-        <div class="actions">
-          <div class="left-actions">
-            <button class="btn soft" type="button" data-hint="1">${hintVisible ? "Hide Hint" : "Show Hint"}</button>
-            <button class="btn soft" type="button" data-reveal="1" ${answered ? "disabled" : ""}>Reveal Solution</button>
-          </div>
-          <div class="right-actions">
-            <button class="btn nav" type="button" data-prev="1" ${current === 0 ? "disabled" : ""}>Previous</button>
-            <button class="btn nav" type="button" data-next="1" ${!answered ? "disabled" : ""}>${current === total - 1 ? "Finish" : "Next"}</button>
-          </div>
+        <div class="resource-card">
+          <div class="resource-icon">🎴</div>
+          <h3 class="resource-title">Flashcards</h3>
+          <p class="resource-desc">Interaktive Lernkarten für wichtige Konzepte mit Wiederholungsmodus</p>
         </div>
-      </article>
-    `;
 
-    shell.dataset.module = moduleId;
-  }
+        <div class="resource-card">
+          <div class="resource-icon">⚠️</div>
+          <h3 class="resource-title">Häufige Fehler</h3>
+          <p class="resource-desc">Lerne von typischen Exam-Fallen und vermeide kritische Mistakes</p>
+        </div>
 
-  function startModuleTest(moduleId, keepCurrentCount = false) {
-    const state = quizState[moduleId];
-    const selectedCount = keepCurrentCount ? state.count : state.count;
-    state.questions = selectQuestions(moduleId, selectedCount);
-    state.responses = {};
-    state.hints = {};
-    state.current = 0;
-    state.answered = 0;
-    state.correct = 0;
-    state.done = false;
-    renderQuiz(moduleId);
-  }
-
-  function handleQuizAction(moduleId, target) {
-    const state = quizState[moduleId];
-    const question = state.questions[state.current];
-    const response = state.responses[state.current];
-
-    if (target.dataset.option !== undefined) {
-      if (response) return;
-      const choice = Number(target.dataset.option);
-      state.responses[state.current] = { choice, revealed: false };
-      state.answered += 1;
-      if (choice === question.answer) {
-        state.correct += 1;
-      }
-      renderQuiz(moduleId);
-      return;
-    }
-
-    if (target.dataset.hint !== undefined) {
-      state.hints[state.current] = !state.hints[state.current];
-      renderQuiz(moduleId);
-      return;
-    }
-
-    if (target.dataset.reveal !== undefined) {
-      if (response) return;
-      state.responses[state.current] = { choice: null, revealed: true };
-      state.answered += 1;
-      renderQuiz(moduleId);
-      return;
-    }
-
-    if (target.dataset.prev !== undefined) {
-      if (state.current > 0) {
-        state.current -= 1;
-        renderQuiz(moduleId);
-      }
-      return;
-    }
-
-    if (target.dataset.next !== undefined) {
-      if (!state.responses[state.current]) return;
-      if (state.current < state.questions.length - 1) {
-        state.current += 1;
-      } else {
-        state.done = true;
-      }
-      renderQuiz(moduleId);
-      return;
-    }
-
-    if (target.dataset.restart !== undefined) {
-      startModuleTest(moduleId, true);
-      return;
-    }
-
-    if (target.dataset.scrolltop !== undefined) {
-      document.getElementById(`module${moduleId.slice(1)}`).scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
-
-  function updateCountInputFromState(moduleId) {
-    const input = document.querySelector(`.count-input[data-module="${moduleId}"]`);
-    if (!input) return;
-    const max = QUESTION_BANK[moduleId].length;
-    input.max = String(max);
-    if (quizState[moduleId].count === "all") {
-      input.value = String(max);
-      return;
-    }
-    const val = Number(quizState[moduleId].count);
-    const safe = Math.max(1, Math.min(Number.isFinite(val) ? Math.floor(val) : 5, max));
-    input.value = String(safe);
-  }
-
-  document.querySelectorAll(".count-picker").forEach((picker) => {
-    picker.addEventListener("click", (event) => {
-      const btn = event.target.closest(".count-btn");
-      if (!btn) return;
-      const moduleId = picker.dataset.counts;
-      quizState[moduleId].count = btn.dataset.count;
-      picker.querySelectorAll(".count-btn").forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      updateCountInputFromState(moduleId);
-    });
-  });
-
-  document.querySelectorAll(".count-input").forEach((input) => {
-    const moduleId = input.dataset.module;
-    const max = QUESTION_BANK[moduleId].length;
-    input.max = String(max);
-
-    input.addEventListener("change", () => {
-      let val = Number(input.value);
-      if (!Number.isFinite(val)) {
-        updateCountInputFromState(moduleId);
-        return;
-      }
-      val = Math.floor(val);
-      val = Math.max(1, Math.min(val, max));
-      input.value = String(val);
-      quizState[moduleId].count = val;
-
-      const picker = document.querySelector(`.count-picker[data-counts="${moduleId}"]`);
-      if (picker) {
-        picker.querySelectorAll(".count-btn").forEach((b) => b.classList.remove("active"));
-        const matching = picker.querySelector(`.count-btn[data-count="${val}"]`);
-        if (matching) matching.classList.add("active");
-      }
-    });
-  });
-
-  Object.keys(quizState).forEach((moduleId) => updateCountInputFromState(moduleId));
-
-  document.querySelectorAll("[data-start]").forEach((button) => {
-    button.addEventListener("click", () => {
-      startModuleTest(button.dataset.start);
-      document.getElementById(`quiz-${button.dataset.start}`).scrollIntoView({ behavior: "smooth", block: "nearest" });
-    });
-  });
-
-  document.querySelectorAll(".quiz-shell").forEach((shell) => {
-    shell.addEventListener("click", (event) => {
-      const trigger = event.target.closest("button");
-      if (!trigger) return;
-      const moduleId = shell.id.replace("quiz-", "");
-      handleQuizAction(moduleId, trigger);
-    });
-  });
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, { threshold: 0.18 });
-
-  document.querySelectorAll(".module").forEach((section) => observer.observe(section));
-
-  (function particles() {
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d");
-    let width = 0;
-    let height = 0;
-    const points = [];
-    const palette = [
-      "rgba(84, 199, 255, 0.45)",
-      "rgba(62, 224, 161, 0.42)",
-      "rgba(246, 180, 77, 0.40)",
-      "rgba(255, 138, 90, 0.38)"
-    ];
-
-    function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }
-
-    resize();
-    window.addEventListener("resize", resize);
-
-    for (let i = 0; i < 54; i += 1) {
-      points.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.32,
-        vy: (Math.random() - 0.5) * 0.32,
-        r: Math.random() * 1.8 + 0.6,
-        c: palette[Math.floor(Math.random() * palette.length)]
-      });
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, width, height);
-
-      for (const p of points) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.c;
-        ctx.fill();
-      }
-
-      for (let i = 0; i < points.length; i += 1) {
-        for (let j = i + 1; j < points.length; j += 1) {
-          const dx = points[i].x - points[j].x;
-          const dy = points[i].y - points[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 118) {
-            const alpha = 0.07 * (1 - dist / 118);
-            ctx.beginPath();
-            ctx.moveTo(points[i].x, points[i].y);
-            ctx.lineTo(points[j].x, points[j].y);
-            ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
-            ctx.lineWidth = 0.6;
-            ctx.stroke();
-          }
-        }
-      }
-
-      requestAnimationFrame(draw);
-    }
-
-    draw();
-  })();
-</script>
+        <div class="resource-card">
+          <div class="resource-icon">📊</div>
+          <h3 class="resource-title">Fortschritt Tracking</h3>
+          <p class="resource-desc">Verfolge Deinen Lernfortschritt und identifiziere Schwachstellen</p>
+        </div>
+      </div>
+    </main>
+  </div>
 </body>
 </html>

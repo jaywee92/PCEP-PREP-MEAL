@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCEP Exam Simulation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --m1: #54c7ff;
+            --m2: #a78bfa;
+            --m3: #50c878;
+            --m4: #ff6b6b;
+            --bg: #0a0e27;
+            --surface: #111834;
+            --border: #1e2749;
+            --text: #e0e7ff;
+            --muted: #a5b4fc;
+            --ok: #50c878;
+            --warning: #ffa500;
+            --bad: #ff6b6b;
+            --radius: 8px;
+            --code-bg: #0f1219;
+        }
+
+        html, body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--m1), var(--m2), var(--m3), var(--m4));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header .subtitle {
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        /* Timer */
+        .timer-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(84, 199, 255, 0.1), rgba(167, 139, 250, 0.1));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .timer {
+            font-size: 3rem;
+            font-weight: bold;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 0.1em;
+        }
+
+        .timer.warning {
+            color: var(--warning);
+        }
+
+        .timer.critical {
+            color: var(--bad);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .timer-label {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Exam Mode */
+        .exam-mode {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .exam-left {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .exam-right {
+            width: 280px;
+        }
+
+        /* Question Panel */
+        .question-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .question-number {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid var(--border);
+            padding: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .option input[type="radio"] {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--m1);
+        }
+
+        .option:hover {
+            border-color: var(--m1);
+            background: rgba(84, 199, 255, 0.05);
+        }
+
+        .option input[type="radio"]:checked ~ label {
+            color: var(--m1);
+            font-weight: 600;
+        }
+
+        .option label {
+            cursor: pointer;
+            user-select: none;
+            display: block;
+        }
+
+        .option.correct {
+            border-color: var(--ok);
+            background: rgba(80, 200, 120, 0.1);
+        }
+
+        .option.incorrect {
+            border-color: var(--bad);
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .option input:disabled {
+            cursor: not-allowed;
+        }
+
+        /* Explanation */
+        .explanation {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 6px;
+            display: none;
+            border-left: 4px solid var(--border);
+        }
+
+        .explanation.success {
+            background: rgba(80, 200, 120, 0.1);
+            border-color: var(--ok);
+            color: var(--ok);
+        }
+
+        .explanation.error {
+            background: rgba(255, 107, 107, 0.1);
+            border-color: var(--bad);
+            color: var(--bad);
+        }
+
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--m1), var(--m2));
+            color: var(--bg);
+            border: 1px solid var(--m1);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(84, 199, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            border-color: var(--m1);
+            background: rgba(84, 199, 255, 0.1);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Question Navigator */
+        .navigator {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .navigator-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+        }
+
+        .question-number-btn {
+            aspect-ratio: 1;
+            padding: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .question-number-btn:hover {
+            border-color: var(--m1);
+            background: rgba(84, 199, 255, 0.1);
+        }
+
+        .question-number-btn.answered {
+            background: rgba(80, 200, 120, 0.2);
+            border-color: var(--ok);
+            color: var(--ok);
+        }
+
+        .question-number-btn.current {
+            background: linear-gradient(135deg, var(--m1), var(--m2));
+            border-color: var(--m1);
+            color: var(--bg);
+            transform: scale(1.1);
+        }
+
+        /* Legend */
+        .legend {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .legend-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .legend-dot.answered {
+            background: var(--ok);
+        }
+
+        .legend-dot.unanswered {
+            background: var(--muted);
+            opacity: 0.5;
+        }
+
+        .legend-dot.current {
+            background: linear-gradient(135deg, var(--m1), var(--m2));
+        }
+
+        /* Results Screen */
+        .results-screen {
+            display: none;
+        }
+
+        .results-screen.active {
+            display: block;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .score-display {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--m1), var(--m2), var(--m3), var(--m4));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .score-status {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .score-status.passed {
+            color: var(--ok);
+        }
+
+        .score-status.failed {
+            color: var(--bad);
+        }
+
+        .percentage {
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        /* Module Breakdown */
+        .breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .breakdown-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .breakdown-card.m1 { border-top: 3px solid var(--m1); }
+        .breakdown-card.m2 { border-top: 3px solid var(--m2); }
+        .breakdown-card.m3 { border-top: 3px solid var(--m3); }
+        .breakdown-card.m4 { border-top: 3px solid var(--m4); }
+
+        .breakdown-title {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .breakdown-score {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .breakdown-percentage {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        /* Review Section */
+        .review-section {
+            margin-top: 3rem;
+        }
+
+        .review-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .review-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-item.correct {
+            border-left: 4px solid var(--ok);
+        }
+
+        .review-item.incorrect {
+            border-left: 4px solid var(--bad);
+        }
+
+        .review-question {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+
+        .review-answer {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 0.75rem;
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid var(--border);
+        }
+
+        .review-answer.correct {
+            border-left-color: var(--ok);
+            background: rgba(80, 200, 120, 0.05);
+        }
+
+        .review-answer.incorrect {
+            border-left-color: var(--bad);
+            background: rgba(255, 107, 107, 0.05);
+        }
+
+        .review-label {
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .review-explanation {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .modal-content p {
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .exam-mode {
+                flex-direction: column;
+            }
+
+            .exam-right {
+                width: 100%;
+            }
+
+            .navigator {
+                position: static;
+            }
+
+            .question-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .timer {
+                font-size: 2rem;
+            }
+        }
+
+        /* Back to Home */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--m1);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: all 0.2s ease;
+        }
+
+        .back-link:hover {
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Zurück zur Übersicht</a>
+
+        <header>
+            <h1>Exam Simulation</h1>
+            <p class="subtitle">40 Minuten Prüfungsumgebung • 30 Fragen</p>
+        </header>
+
+        <!-- Timer Section -->
+        <div class="timer-section">
+            <div class="timer" id="timer">40:00</div>
+            <div class="timer-label">Verbleibende Zeit</div>
+        </div>
+
+        <!-- Exam Mode -->
+        <div id="exam-mode" class="exam-mode">
+            <!-- Left: Question Panel -->
+            <div class="exam-left">
+                <div class="question-panel">
+                    <div class="question-number" id="progress-label">Frage 1 von 30</div>
+                    <div class="question-text" id="question-text"></div>
+                    
+                    <div class="options" id="options-container"></div>
+                    
+                    <div class="explanation" id="explanation"></div>
+                    
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" id="prev-btn" onclick="previousQuestion()">← Vorherige</button>
+                        <button class="btn btn-secondary" id="skip-btn" onclick="skipQuestion()">Überspringen</button>
+                        <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()">Nächste →</button>
+                        <button class="btn btn-primary" id="submit-btn" onclick="submitExam()" style="display: none;">Abgeben</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Question Navigator -->
+            <div class="exam-right">
+                <div class="navigator">
+                    <div class="navigator-title">Fragen Navigation</div>
+                    <div class="question-grid" id="question-navigator"></div>
+                    
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-dot answered"></div>
+                            <span>Beantwortet</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot unanswered"></div>
+                            <span>Unbeantwortet</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot current"></div>
+                            <span>Aktuell</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="results-screen">
+            <div class="results-header">
+                <div class="score-display" id="final-score">0/30</div>
+                <div class="score-status" id="score-status"></div>
+                <div class="percentage" id="percentage-display">0%</div>
+            </div>
+
+            <div class="breakdown" id="breakdown-container"></div>
+
+            <div class="nav-buttons" style="justify-content: center; gap: 1rem;">
+                <button class="btn btn-secondary" onclick="goHome()">← Zurück zur Übersicht</button>
+                <button class="btn btn-primary" onclick="restartExam()">Nochmal versuchen</button>
+            </div>
+
+            <div class="review-section">
+                <h2>Detaillierte Review</h2>
+                <div id="review-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <h2>Prüfung beenden?</h2>
+            <p>Sind Sie sicher, dass Sie die Prüfung beenden möchten? Die Antworten werden nicht gespeichert.</p>
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" onclick="closeModal()">Abbrechen</button>
+                <button class="btn btn-primary" onclick="confirmSubmit()">Ja, beenden</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const examQuestions = [
+  {
+    "q": "Was ist das Ergebnis von 10 / 3 in Python 3?",
+    "options": [
+      "3",
+      "3.3333333333",
+      "3.0",
+      "Error"
+    ],
+    "correct": 1,
+    "explanation": "Der / Operator führt eine float-Division durch. Für Ganzzahldivision verwende //.",
+    "module": "M2",
+    "module_name": "Data Types & Operations",
+    "module_color": "a78bfa"
+  },
+  {
+    "q": "Wie wird eine Liste sortiert?",
+    "options": [
+      "list.order()",
+      "list.sort()",
+      "sorted(list)",
+      "Beide B und C"
+    ],
+    "correct": 3,
+    "explanation": "Sowohl list.sort() als auch sorted(list) können verwendet werden.",
+    "module": "M4",
+    "module_name": "Data Structures & Algorithms",
+    "module_color": "ff6b6b"
+  },
+  {
+    "q": "Was macht 2 ** 3?",
+    "options": [
+      "6",
+      "8",
+      "5",
+      "Error"
+    ],
+    "correct": 1,
+    "explanation": "** ist der Potenzoperator. 2 ** 3 = 2 * 2 * 2 = 8.",
+    "module": "M2",
+    "module_name": "Data Types & Operations",
+    "module_color": "a78bfa"
+  },
+  {
+    "q": "Welcher Operator wird für Modulo (Rest) verwendet?",
+    "options": [
+      "//",
+      "%",
+      "^",
+      "&"
+    ],
+    "correct": 1,
+    "explanation": "Der % Operator gibt den Rest einer Division zurück.",
+    "module": "M2",
+    "module_name": "Data Types & Operations",
+    "module_color": "a78bfa"
+  },
+  {
+    "q": "Was ist die Länge eines leeren Strings?",
+    "options": [
+      "-1",
+      "0",
+      "None",
+      "undefined"
+    ],
+    "correct": 1,
+    "explanation": "Ein leerer String hat die Länge 0.",
+    "module": "M2",
+    "module_name": "Data Types & Operations",
+    "module_color": "a78bfa"
+  },
+  {
+    "q": "Was macht das Schlüsselwort else?",
+    "options": [
+      "Wiederholt eine Bedingung",
+      "Definiert einen Code-Block, der ausgeführt wird, wenn die if-Bedingung falsch ist",
+      "Beendet die Funktion",
+      "Gibt einen Fehler aus"
+    ],
+    "correct": 1,
+    "explanation": "else führt einen Code-Block aus, wenn die if-Bedingung falsch ist.",
+    "module": "M3",
+    "module_name": "Control Flow & Functions",
+    "module_color": "50c878"
+  },
+  {
+    "q": "Was ist der Unterschied zwischen if und elif?",
+    "options": [
+      "Es gibt keinen Unterschied",
+      "elif wird nach if ausgeführt, falls die if-Bedingung falsch ist",
+      "elif ist schneller",
+      "elif ist nur für Schleifen"
+    ],
+    "correct": 1,
+    "explanation": "elif (else if) wird geprüft, wenn die vorherige if/elif-Bedingung falsch ist.",
+    "module": "M3",
+    "module_name": "Control Flow & Functions",
+    "module_color": "50c878"
+  },
+  {
+    "q": "Welcher Datentyp wird für die Zahl 3.14 verwendet?",
+    "options": [
+      "int",
+      "string",
+      "float",
+      "double"
+    ],
+    "correct": 2,
+    "explanation": "float wird für Dezimalzahlen verwendet.",
+    "module": "M1",
+    "module_name": "Introduction to Python",
+    "module_color": "54c7ff"
+  },
+  {
+    "q": "Welcher Code ist gültig?",
+    "options": [
+      "x = 5; y = 10; z = x + y",
+      "x = 5 y = 10 z = x + y",
+      "x = 5, y = 10, z = x + y",
+      "x = 5 && y = 10 && z = x + y"
+    ],
+    "correct": 0,
+    "explanation": "Python verwendet Semikolons als Anweisung-Trennzeichen (optional), nicht &&.",
+    "module": "M2",
+    "module_name": "Data Types & Operations",
+    "module_color": "a78bfa"
+  },
+  {
+    "q": "Welches Schlüsselwort wird verwendet, um eine Funktion zu beenden?",
+    "options": [
+      "exit",
+      "end",
+      "return",
+      "break"
+    ],
+    "correct": 2,
+    "explanation": "return beendet eine Funktion und gibt optional einen Wert zurück.",
+    "module": "M3",
+    "module_name": "Control Flow & Functions",
+    "module_color": "50c878"
+  },
+  {
+    "q": "Was ist der Unterschied zwischen List und Tuple?",
+    "options": [
+      "Tuples sind schneller",
+      "Lists sind veränderbar, Tuples sind unveränderbar",
+      "Es gibt keinen Unterschied",
+      "Tuples können nur Zahlen enthalten"
+    ],
+    "correct": 1,
+    "explanation": "Lists sind mutable (veränderbar), Tuples sind immutable (unveränderbar).",
+    "module": "M4",
+    "module_name": "Data Structures & Algorithms",
+    "module_color": "ff6b6b"
+  },
+  {
+    "q": "Welche Aussage über Python ist FALSCH?",
+    "options": [
+      "Python ist eine interpretierte Sprache",
+      "Python verwendet automatische Speicherverwaltung",
+      "Python ist statisch typisiert",
+      "Python wird häufig für Skripte und Data Science verwendet"
+    ],
+    "correct": 2,
+    "explanation": "Python ist dynamisch typisiert, nicht statisch. Variablentypen können sich zur Laufzeit ändern.",
+    "module": "M1",
+    "module_name": "Introduction to Python",
+    "module_color": "54c7ff"
+  },
+  {
+    "q": "Was ist das Ergebnis von bool(0)?",
+    "options": [
+      "True",
+      "False",
+      "None",
+      "Error"
+    ],
+    "correct": 1,
+    "explanation": "Die Zahl 0 wird als False interpretiert.",
+    "module": "M2",
+    "module_name": "Data Types & Operations",
+    "module_color": "a78bfa"
+  },
+  {
+    "q": "Wie werden mehrere Strings zusammengefügt?",
+    "options": [
+      "merge()",
+      "+",
+      "&",
+      "concat()"
+    ],
+    "correct": 1,
+    "explanation": "Der + Operator wird verwendet, um Strings zu verketten.",
+    "module": "M2",
+    "module_name": "Data Types & Operations",
+    "module_color": "a78bfa"
+  },
+  {
+    "q": "Welcher Typ hat das Ergebnis von 5 + 2.0?",
+    "options": [
+      "int",
+      "float",
+      "str",
+      "bool"
+    ],
+    "correct": 1,
+    "explanation": "int + float = float (die größere Genauigkeit gewinnt).",
+    "module": "M2",
+    "module_name": "Data Types & Operations",
+    "module_color": "a78bfa"
+  },
+  {
+    "q": "Welche Methode fügt ein Element zu einer Liste hinzu?",
+    "options": [
+      "add()",
+      "insert()",
+      "append()",
+      "push()"
+    ],
+    "correct": 2,
+    "explanation": "append() fügt ein Element am Ende einer Liste hinzu.",
+    "module": "M4",
+    "module_name": "Data Structures & Algorithms",
+    "module_color": "ff6b6b"
+  },
+  {
+    "q": "Was ist eine lokale Variable?",
+    "options": [
+      "Eine Variable auf dem Computer",
+      "Eine Variable, die nur innerhalb einer Funktion sichtbar ist",
+      "Eine Variable mit Local als Namen",
+      "Eine Variable, die global ist"
+    ],
+    "correct": 1,
+    "explanation": "Lokale Variablen sind auf den Bereich beschränkt, in dem sie definiert werden.",
+    "module": "M3",
+    "module_name": "Control Flow & Functions",
+    "module_color": "50c878"
+  },
+  {
+    "q": "Wie wird auf das erste Element einer Liste zugegriffen?",
+    "options": [
+      "list[1]",
+      "list[0]",
+      "list.first()",
+      "list.get(0)"
+    ],
+    "correct": 1,
+    "explanation": "Python verwendet 0-basierte Indizierung. Das erste Element ist bei Index 0.",
+    "module": "M4",
+    "module_name": "Data Structures & Algorithms",
+    "module_color": "ff6b6b"
+  },
+  {
+    "q": "Welche Datenstruktur ist sortiert?",
+    "options": [
+      "Dictionary",
+      "Set",
+      "List",
+      "Tuple (ungeordnet)"
+    ],
+    "correct": 2,
+    "explanation": "Listen (Lists) erhalten die Reihenfolge der Elemente bei.",
+    "module": "M4",
+    "module_name": "Data Structures & Algorithms",
+    "module_color": "ff6b6b"
+  },
+  {
+    "q": "Welche Bedingung ist korrekt?",
+    "options": [
+      "if x = 5:",
+      "if x == 5:",
+      "if x => 5:",
+      "if x === 5:"
+    ],
+    "correct": 1,
+    "explanation": "== ist der Vergleichsoperator. = ist für Zuweisungen.",
+    "module": "M3",
+    "module_name": "Control Flow & Functions",
+    "module_color": "50c878"
+  },
+  {
+    "q": "Welche Methode konvertiert einen String in eine Ganzzahl?",
+    "options": [
+      "string()",
+      "convert()",
+      "int()",
+      "parse()"
+    ],
+    "correct": 2,
+    "explanation": "Die int() Funktion konvertiert einen String in einen Integer.",
+    "module": "M2",
+    "module_name": "Data Types & Operations",
+    "module_color": "a78bfa"
+  },
+  {
+    "q": "Welche Funktion gibt einen Wert zurück?",
+    "options": [
+      "def func(): print(\"x\")",
+      "def func(): return 5",
+      "def func(): x = 5",
+      "def func(): pass"
+    ],
+    "correct": 1,
+    "explanation": "return gibt einen Wert aus der Funktion zurück.",
+    "module": "M3",
+    "module_name": "Control Flow & Functions",
+    "module_color": "50c878"
+  },
+  {
+    "q": "Was ist ein Set?",
+    "options": [
+      "Eine geordnete Liste",
+      "Eine Sammlung von eindeutigen Elementen",
+      "Ein Konfigurationsobjekt",
+      "Eine mathematische Funktion"
+    ],
+    "correct": 1,
+    "explanation": "Ein Set ist eine ungeordnete Sammlung eindeutiger Elemente.",
+    "module": "M4",
+    "module_name": "Data Structures & Algorithms",
+    "module_color": "ff6b6b"
+  },
+  {
+    "q": "Welche Aussage ist korrekt?",
+    "options": [
+      "Alle Variablen müssen vor Verwendung deklariert werden",
+      "Python erfordert explizite Typdeklarationen",
+      "Variablen werden durch Zuweisung erstellt",
+      "Variablennamen dürfen Leerzeichen enthalten"
+    ],
+    "correct": 2,
+    "explanation": "In Python werden Variablen durch Zuweisung erstellt. name = \"Alice\" erstellt die Variable automatisch.",
+    "module": "M1",
+    "module_name": "Introduction to Python",
+    "module_color": "54c7ff"
+  },
+  {
+    "q": "Was ist ein Dictionary?",
+    "options": [
+      "Eine geordnete Liste von Zahlen",
+      "Eine Sammlung von Schlüssel-Wert-Paaren",
+      "Ein Wörterbuch zum Übersetzen",
+      "Eine Funktion"
+    ],
+    "correct": 1,
+    "explanation": "Ein Dictionary speichert Daten als Schlüssel-Wert-Paare.",
+    "module": "M4",
+    "module_name": "Data Structures & Algorithms",
+    "module_color": "ff6b6b"
+  },
+  {
+    "q": "Was ist das Ergebnis der folgenden Bedingung? 5 > 3 and 2 < 1",
+    "options": [
+      "True",
+      "False",
+      "None",
+      "Error"
+    ],
+    "correct": 1,
+    "explanation": "and erfordert, dass BEIDE Bedingungen wahr sind. 2 < 1 ist falsch.",
+    "module": "M3",
+    "module_name": "Control Flow & Functions",
+    "module_color": "50c878"
+  },
+  {
+    "q": "Welche Methode entfernt ein Element aus einer Liste?",
+    "options": [
+      "delete()",
+      "remove()",
+      "pop()",
+      "clear()"
+    ],
+    "correct": 1,
+    "explanation": "remove() entfernt das erste Vorkommen eines Elements.",
+    "module": "M4",
+    "module_name": "Data Structures & Algorithms",
+    "module_color": "ff6b6b"
+  },
+  {
+    "q": "Welche Variable ist gültig?",
+    "options": [
+      "123var",
+      "var-name",
+      "_private_var",
+      "var name"
+    ],
+    "correct": 2,
+    "explanation": "Variablennamen dürfen mit Ziffern beginnen, Bindestriche oder Leerzeichen enthalten. _private_var ist das einzige gültige Beispiel.",
+    "module": "M1",
+    "module_name": "Introduction to Python",
+    "module_color": "54c7ff"
+  },
+  {
+    "q": "Wie viele Parameter kann eine Funktion haben?",
+    "options": [
+      "Maximal 5",
+      "Maximal 10",
+      "So viele wie nötig",
+      "Nur 1"
+    ],
+    "correct": 2,
+    "explanation": "Eine Funktion kann beliebig viele Parameter haben.",
+    "module": "M3",
+    "module_name": "Control Flow & Functions",
+    "module_color": "50c878"
+  },
+  {
+    "q": "Was ist ein Bytecode?",
+    "options": [
+      "Der vom Compiler erzeugte Maschinencode",
+      "Ein plattformunabhängiger Zwischencode",
+      "Ein Fehlercode bei der Compilation",
+      "Ein spezieller String-Typ in Python"
+    ],
+    "correct": 1,
+    "explanation": "Bytecode ist ein plattformunabhängiger Zwischencode, den die Python-VM (Virtual Machine) ausführt.",
+    "module": "M1",
+    "module_name": "Introduction to Python",
+    "module_color": "54c7ff"
+  }
+];
+
+        let currentQuestion = 0;
+        let answers = {};
+        let timerInterval = null;
+        let timeRemaining = 40 * 60; // 40 minutes in seconds
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeExam();
+            startTimer();
+            setupEventListeners();
+        });
+
+        function initializeExam() {
+            renderQuestion();
+            buildQuestionNavigator();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(function() {
+                timeRemaining--;
+                updateTimer();
+
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    submitExam(true);
+                }
+            }, 1000);
+        }
+
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const display = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            const timerEl = document.getElementById('timer');
+            timerEl.textContent = display;
+
+            // Update color
+            timerEl.classList.remove('warning', 'critical');
+            if (timeRemaining <= 5 * 60) {
+                timerEl.classList.add('critical');
+            } else if (timeRemaining <= 10 * 60) {
+                timerEl.classList.add('warning');
+            }
+        }
+
+        function renderQuestion() {
+            const q = examQuestions[currentQuestion];
+            
+            // Update progress
+            document.getElementById('progress-label').textContent = `Frage ${currentQuestion + 1} von ${examQuestions.length}`;
+
+            // Question text
+            document.getElementById('question-text').textContent = q.q;
+
+            // Options
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+            
+            q.options.forEach((option, idx) => {
+                const label = document.createElement('label');
+                label.className = 'option';
+                
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = `q${currentQuestion}`;
+                input.value = idx;
+                input.checked = answers[currentQuestion] === idx;
+                input.onchange = () => selectAnswer(idx);
+                
+                const text = document.createElement('label');
+                text.textContent = option;
+                text.style.cursor = 'pointer';
+                
+                label.appendChild(input);
+                label.appendChild(text);
+                container.appendChild(label);
+            });
+
+            // Explanation
+            const exp = document.getElementById('explanation');
+            exp.style.display = 'none';
+            exp.textContent = '';
+
+            // Update navigator
+            updateNavigator();
+
+            // Update button states
+            updateButtonStates();
+        }
+
+        function selectAnswer(idx) {
+            answers[currentQuestion] = idx;
+            updateNavigator();
+            updateButtonStates();
+        }
+
+        function skipQuestion() {
+            nextQuestion();
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < examQuestions.length - 1) {
+                currentQuestion++;
+                renderQuestion();
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function updateNavigator() {
+            const navigator = document.getElementById('question-navigator');
+            if (navigator.children.length === 0) {
+                buildQuestionNavigator();
+            }
+
+            document.querySelectorAll('.question-number-btn').forEach((btn, idx) => {
+                btn.classList.remove('answered', 'current');
+                if (idx === currentQuestion) {
+                    btn.classList.add('current');
+                } else if (answers[idx] !== undefined) {
+                    btn.classList.add('answered');
+                }
+            });
+        }
+
+        function buildQuestionNavigator() {
+            const navigator = document.getElementById('question-navigator');
+            navigator.innerHTML = '';
+            
+            for (let i = 0; i < examQuestions.length; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'question-number-btn';
+                btn.textContent = i + 1;
+                btn.onclick = () => goToQuestion(i);
+                
+                if (i === currentQuestion) {
+                    btn.classList.add('current');
+                } else if (answers[i] !== undefined) {
+                    btn.classList.add('answered');
+                }
+                
+                navigator.appendChild(btn);
+            }
+        }
+
+        function goToQuestion(idx) {
+            currentQuestion = idx;
+            renderQuestion();
+            window.scrollTo(0, 0);
+        }
+
+        function updateButtonStates() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const skipBtn = document.getElementById('skip-btn');
+            const submitBtn = document.getElementById('submit-btn');
+
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.style.display = currentQuestion < examQuestions.length - 1 ? 'block' : 'none';
+            skipBtn.style.display = currentQuestion < examQuestions.length - 1 ? 'block' : 'none';
+            submitBtn.style.display = currentQuestion === examQuestions.length - 1 ? 'block' : 'none';
+        }
+
+        function submitExam(autoSubmit = false) {
+            clearInterval(timerInterval);
+            
+            if (!autoSubmit) {
+                showModal();
+                return;
+            }
+            
+            calculateAndShowResults();
+        }
+
+        function confirmSubmit() {
+            closeModal();
+            calculateAndShowResults();
+        }
+
+        function calculateAndShowResults() {
+            // Calculate results
+            let correctCount = 0;
+            const moduleScores = {'M1': {'correct': 0, 'total': 0}, 'M2': {'correct': 0, 'total': 0}, 'M3': {'correct': 0, 'total': 0}, 'M4': {'correct': 0, 'total': 0}};
+            
+            examQuestions.forEach((q, idx) => {
+                const module = q.module;
+                moduleScores[module].total++;
+                
+                if (answers[idx] === q.correct) {
+                    correctCount++;
+                    moduleScores[module].correct++;
+                }
+            });
+
+            const percentage = Math.round((correctCount / examQuestions.length) * 100);
+            const passed = percentage >= 70;
+
+            // Show results screen
+            document.getElementById('exam-mode').style.display = 'none';
+            document.getElementById('results-screen').classList.add('active');
+
+            // Score display
+            document.getElementById('final-score').textContent = `${correctCount}/${examQuestions.length}`;
+            document.getElementById('score-status').textContent = passed ? '✓ BESTANDEN' : '✗ NICHT BESTANDEN';
+            document.getElementById('score-status').classList.add(passed ? 'passed' : 'failed');
+            document.getElementById('percentage-display').textContent = `${percentage}%`;
+
+            // Module breakdown
+            const breakdownHTML = Object.entries(moduleScores).map(([module, scores]) => {
+                const moduleNames = {'M1': 'Introduction to Python', 'M2': 'Data Types & Operations', 'M3': 'Control Flow & Functions', 'M4': 'Data Structures & Algorithms'};
+                const moduleScore = scores.total > 0 ? Math.round((scores.correct / scores.total) * 100) : 0;
+                return `
+                    <div class="breakdown-card ${module.toLowerCase()}">
+                        <div class="breakdown-title">${moduleNames[module]}</div>
+                        <div class="breakdown-score">${scores.correct}/${scores.total}</div>
+                        <div class="breakdown-percentage">${moduleScore}%</div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('breakdown-container').innerHTML = breakdownHTML;
+
+            // Review
+            const reviewHTML = examQuestions.map((q, idx) => {
+                const isCorrect = answers[idx] === q.correct;
+                const selectedAnswer = answers[idx] !== undefined ? q.options[answers[idx]] : 'Nicht beantwortet';
+                const correctAnswer = q.options[q.correct];
+                
+                return `
+                    <div class="review-item ${isCorrect ? 'correct' : 'incorrect'}">
+                        <div class="review-question">${idx + 1}. ${q.q}</div>
+                        <div class="review-answer ${isCorrect ? 'correct' : 'incorrect'}">
+                            <div class="review-label">${isCorrect ? '✓ Ihre Antwort' : '✗ Ihre Antwort'}</div>
+                            <div>${selectedAnswer}</div>
+                        </div>
+                        ${!isCorrect ? `
+                            <div class="review-answer correct">
+                                <div class="review-label">✓ Korrekte Antwort</div>
+                                <div>${correctAnswer}</div>
+                            </div>
+                        ` : ''}
+                        <div class="review-explanation">
+                            <strong>Erklärung:</strong> ${q.explanation}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('review-container').innerHTML = reviewHTML;
+
+            window.scrollTo(0, 0);
+        }
+
+        function restartExam() {
+            location.reload();
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        function showModal() {
+            document.getElementById('confirm-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('confirm-modal').classList.remove('active');
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && document.getElementById('exam-mode').style.display !== 'none') {
+                if (document.getElementById('next-btn').style.display !== 'none') {
+                    nextQuestion();
+                } else {
+                    submitExam();
+                }
+            }
+        });
+
+        // Warn on leave
+        window.addEventListener('beforeunload', function(e) {
+            if (document.getElementById('exam-mode').style.display !== 'none') {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        // Close modal on click outside
+        document.getElementById('confirm-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
