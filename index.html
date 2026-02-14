@@ -258,6 +258,189 @@
     color: var(--muted);
   }
 
+  .overview-panel {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 22px;
+    background: linear-gradient(180deg, rgba(20, 27, 40, 0.82), rgba(14, 20, 30, 0.82));
+    backdrop-filter: blur(10px);
+  }
+
+  .overview-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .overview-head h2 {
+    font-size: clamp(22px, 3vw, 31px);
+    letter-spacing: -0.02em;
+  }
+
+  .overview-head span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .overview-grid {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .overview-card {
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 14px;
+  }
+
+  .overview-card h3 {
+    font-size: 14px;
+    letter-spacing: 0.03em;
+  }
+
+  .overview-card ul {
+    margin-top: 8px;
+    padding-left: 18px;
+    color: #d7e1f1;
+    font-size: 14px;
+  }
+
+  .overview-card ul li + li {
+    margin-top: 5px;
+  }
+
+  .topic-pills {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .topic-pills span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    padding: 6px 9px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.03);
+    color: #d6e3f8;
+  }
+
+  .study-plan {
+    margin-top: 14px;
+    border-radius: var(--radius);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+  }
+
+  .study-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .study-row:last-child {
+    border-bottom: none;
+  }
+
+  .study-week {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    background: rgba(84, 199, 255, 0.08);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 10px;
+    color: #bfe8ff;
+  }
+
+  .study-content {
+    padding: 12px 14px;
+    font-size: 14px;
+    color: #dbe7fa;
+  }
+
+  .study-content strong {
+    color: #ffffff;
+  }
+
+  .module-deep {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .deep-card {
+    border-radius: var(--radius);
+    border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--border));
+    background: color-mix(in srgb, var(--accent) 6%, #141c2a 94%);
+    padding: 14px;
+  }
+
+  .deep-card h4 {
+    font-size: 13px;
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+  }
+
+  .deep-card ul {
+    margin-top: 8px;
+    padding-left: 18px;
+    color: #d7e3f5;
+    font-size: 14px;
+  }
+
+  .deep-card ul li + li {
+    margin-top: 5px;
+  }
+
+  .deep-snippet {
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(15, 22, 35, 0.84);
+    padding: 10px;
+  }
+
+  .deep-snippet code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #dce8fb;
+    white-space: pre-wrap;
+  }
+
+  .topic-tags {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .topic-tags span {
+    font-size: 11px;
+    border-radius: 999px;
+    padding: 5px 8px;
+    border: 1px solid color-mix(in srgb, var(--accent) 48%, #ffffff 20%);
+    background: color-mix(in srgb, var(--accent) 13%, #1a2438 87%);
+    color: #eef5ff;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
   .module {
     margin-top: 28px;
     border: 1px solid var(--border);
@@ -427,6 +610,26 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+  }
+
+  .count-custom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .count-input {
+    width: 76px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.04);
+    color: #eff5ff;
+    padding: 7px 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
   }
 
   .count-btn {
@@ -692,6 +895,14 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .overview-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .module-deep {
+      grid-template-columns: 1fr;
+    }
+
     .knowledge-grid {
       grid-template-columns: 1fr;
     }
@@ -716,6 +927,16 @@
 
     .module-nav {
       grid-template-columns: 1fr;
+    }
+
+    .study-row {
+      grid-template-columns: 1fr;
+    }
+
+    .study-week {
+      justify-content: flex-start;
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .module {
@@ -802,6 +1023,150 @@
     </nav>
   </header>
 
+  <section class="overview-panel">
+    <div class="overview-head">
+      <h2>Complete PCEP Blueprint</h2>
+      <span>Based on your full prep documents (01-20 + cheatsheets)</span>
+    </div>
+    <div class="overview-grid">
+      <article class="overview-card">
+        <h3>Section 1 - Fundamentals (~20%)</h3>
+        <ul>
+          <li>Programming basics: compilation vs interpretation, Python ecosystem, Python 2 vs 3</li>
+          <li>Syntax rules: indentation, identifiers, keywords, statement continuation</li>
+          <li>Literals and variables: numeric bases, booleans, None, dynamic typing</li>
+          <li>Operators and conversions: precedence, floor division, truthiness, casting</li>
+          <li>I/O: <code>input()</code>, <code>print()</code>, separators, formatting, f-strings</li>
+        </ul>
+      </article>
+      <article class="overview-card">
+        <h3>Section 2 + 3 - Flow + Collections (~45%)</h3>
+        <ul>
+          <li>Conditionals: <code>if/elif/else</code>, chaining, truth-based branching</li>
+          <li>Loops: <code>for</code>, <code>while</code>, <code>range()</code>, <code>break/continue/else</code></li>
+          <li>Strings: indexing, slicing, search/replace, split/join, immutability</li>
+          <li>Lists: mutation methods, in-place sorting trap, copy vs reference</li>
+          <li>Tuples/dicts: unpacking, hashable keys, safe dict access patterns</li>
+        </ul>
+      </article>
+      <article class="overview-card">
+        <h3>Section 4 - Functions + Exceptions (~35%)</h3>
+        <ul>
+          <li>Function design: parameters, return behavior, default values, LEGB scope</li>
+          <li>Advanced signatures: <code>*args</code>, <code>**kwargs</code>, unpacking calls</li>
+          <li>Built-ins: <code>len</code>, <code>sorted</code>, <code>enumerate</code>, <code>zip</code>, <code>map</code>, <code>filter</code></li>
+          <li>Exception handling: <code>try/except/else/finally</code>, ordering, <code>raise</code></li>
+          <li>Recursion/generators: base case, <code>yield</code>, lazy iteration basics</li>
+        </ul>
+      </article>
+    </div>
+    <div class="topic-pills">
+      <span>30 questions</span><span>40 minutes</span><span>Pass at 70% (21/30)</span>
+      <span>Python 3 only</span><span>Single-choice + code tracing</span><span>Trap-heavy wording</span>
+    </div>
+  </section>
+
+  <section class="overview-panel">
+    <div class="overview-head">
+      <h2>4-Week Study Plan + Trap Radar</h2>
+      <span>Condensed from 00_Index.md, 99_Summary.md, 19_Common_Mistakes.md</span>
+    </div>
+
+    <div class="study-plan">
+      <div class="study-row">
+        <div class="study-week">Week 1</div>
+        <div class="study-content"><strong>Fundamentals + syntax:</strong> execution model, literals, operators, types, I/O, then quick drills on precedence and conversion traps.</div>
+      </div>
+      <div class="study-row">
+        <div class="study-week">Week 2</div>
+        <div class="study-content"><strong>Control flow + strings/lists:</strong> focus on <code>range()</code> exclusivity, loop <code>else</code>, slicing, list methods, and reference vs copy behavior.</div>
+      </div>
+      <div class="study-row">
+        <div class="study-week">Week 3</div>
+        <div class="study-content"><strong>Functions + exceptions:</strong> defaults, <code>*args/**kwargs</code>, scope, built-ins, exception order, and <code>finally</code> behavior.</div>
+      </div>
+      <div class="study-row">
+        <div class="study-week">Week 4</div>
+        <div class="study-content"><strong>Exam simulation:</strong> mixed sets under time pressure, analyze every miss, reinforce high-yield mistakes list.</div>
+      </div>
+    </div>
+
+    <div class="overview-grid">
+      <article class="overview-card">
+        <h3>Top Exam Traps</h3>
+        <ul>
+          <li><code>10 / 2 = 5.0</code> and <code>-7 // 2 = -4</code></li>
+          <li><code>-2 ** 2</code> vs <code>(-2) ** 2</code></li>
+          <li><code>input()</code> returns string, always</li>
+          <li><code>sort()</code> returns <code>None</code></li>
+          <li><code>in dict</code> checks keys, not values</li>
+        </ul>
+      </article>
+      <article class="overview-card">
+        <h3>Must-Remember Truthiness</h3>
+        <ul>
+          <li>Falsy: <code>0</code>, <code>0.0</code>, <code>""</code>, <code>[]</code>, <code>{}</code>, <code>()</code>, <code>None</code></li>
+          <li>Truthy: non-empty string/list/dict, including <code>"0"</code> and <code>[0]</code></li>
+          <li><code>all([])</code> is <code>True</code>, <code>any([])</code> is <code>False</code></li>
+        </ul>
+      </article>
+      <article class="overview-card">
+        <h3>Execution Hygiene</h3>
+        <ul>
+          <li>Read code top-down exactly as interpreter does</li>
+          <li>Use parentheses in ambiguous precedence questions</li>
+          <li>Track mutation separately from returned values</li>
+          <li>Specific exceptions before generic handlers</li>
+          <li>Re-check stop values in slicing and range</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="overview-panel">
+    <div class="overview-head">
+      <h2>Rapid Reference Wall</h2>
+      <span>Key snippets from 00_Cheatsheet.md and 18_Quick_Reference.md</span>
+    </div>
+    <div class="overview-grid">
+      <article class="overview-card">
+        <h3>Operator Precedence (High - Low)</h3>
+        <pre><code>()  **  +x -x  * / // %  + -
+== != &lt; &gt; &lt;= &gt;=  not  and  or</code></pre>
+        <ul>
+          <li><code>2 ** 3 ** 2 = 512</code> (right-to-left)</li>
+          <li><code>-2 ** 2 = -4</code> (power before unary minus)</li>
+        </ul>
+      </article>
+      <article class="overview-card">
+        <h3>Conversion + Truthiness</h3>
+        <pre><code>int(3.9) -> 3
+bool("") -> False
+bool("0") -> True
+bool([0]) -> True</code></pre>
+        <ul>
+          <li>Falsy only for empty containers and zero/None values</li>
+          <li><code>input()</code> output must be cast for numeric operations</li>
+        </ul>
+      </article>
+      <article class="overview-card">
+        <h3>Exception Skeleton</h3>
+        <pre><code>try:
+    risky()
+except ValueError as e:
+    handle(e)
+else:
+    success()
+finally:
+    cleanup()</code></pre>
+        <ul>
+          <li>Order handlers from specific to general</li>
+          <li><code>finally</code> always executes</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
   <section class="module m1" id="module1" data-module="m1">
     <div class="module-head">
       <div>
@@ -853,15 +1218,51 @@
       <div class="rule"><div class="rule-k">bool([0])</div><div class="rule-v">True</div></div>
     </div>
 
+    <div class="module-deep">
+      <article class="deep-card">
+        <h4>Coverage Map (01-06)</h4>
+        <ul>
+          <li>01: language basics, source code, interpreter model, CPython context</li>
+          <li>02: syntax strictness, indentation errors, identifiers, keywords</li>
+          <li>03: literals, numeral systems, variable assignment, truthiness foundations</li>
+          <li>04: arithmetic/comparison/logical/bitwise, identity vs equality</li>
+          <li>05: type conversions and falsy/truthy conversion behavior</li>
+          <li>06: input/print formatting, sep/end, and conversion-safe user input</li>
+        </ul>
+      </article>
+      <article class="deep-card">
+        <h4>Must Memorize</h4>
+        <ul>
+          <li><code>int(3.9)</code> truncates to <code>3</code>, does not round</li>
+          <li><code>5 / 2 = 2.5</code> and <code>5 // 2 = 2</code></li>
+          <li><code>print()</code> returns <code>None</code></li>
+          <li>Use <code>is None</code> over <code>== None</code> for checks</li>
+          <li><code>and/or</code> short-circuit and return operands</li>
+        </ul>
+        <div class="topic-tags">
+          <span>Compilation vs Interpretation</span><span>Operator Precedence</span><span>Numeral Bases</span>
+          <span>Type Casting</span><span>input() Trap</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="deep-snippet">
+      <code>Quick trace pattern: evaluate precedence -> evaluate conversion -> check truthiness -> predict output line by line.</code>
+    </div>
+
     <div class="quiz-launch">
       <h3>Module Test Lab</h3>
       <p>Single-choice drills with instant feedback, hint mode, and explanations.</p>
       <div class="launch-row">
         <div class="count-picker" data-counts="m1">
           <button class="count-btn active" data-count="5" type="button">5 Questions</button>
-          <button class="count-btn" data-count="8" type="button">8 Questions</button>
+          <button class="count-btn" data-count="10" type="button">10 Questions</button>
+          <button class="count-btn" data-count="15" type="button">15 Questions</button>
           <button class="count-btn" data-count="all" type="button">All Questions</button>
         </div>
+        <label class="count-custom">Custom
+          <input class="count-input" data-module="m1" type="number" min="1" max="99" value="5">
+        </label>
         <button class="btn start" data-start="m1" type="button">Start Module 1 Test</button>
       </div>
     </div>
@@ -920,15 +1321,50 @@
       <div class="rule"><div class="rule-k">break scope</div><div class="rule-v">innermost loop only</div></div>
     </div>
 
+    <div class="module-deep">
+      <article class="deep-card">
+        <h4>Coverage Map (07-08)</h4>
+        <ul>
+          <li>Condition chains and first-true execution principle</li>
+          <li>Nested decisions and compound boolean expressions</li>
+          <li><code>for</code> over sequences, dicts, enumerate, zip, range</li>
+          <li><code>while</code> loop control, manual state updates, break guards</li>
+          <li>Loop <code>else</code> semantics for no-break completion</li>
+        </ul>
+      </article>
+      <article class="deep-card">
+        <h4>Tracing Checklist</h4>
+        <ul>
+          <li>Check range bounds and step sign first</li>
+          <li>Mark where <code>continue</code> skips code vs where <code>break</code> exits</li>
+          <li>Validate if <code>else</code> clause is reachable</li>
+          <li>Remember loop variable persists after loop</li>
+          <li>In nested loops, only innermost loop breaks on <code>break</code></li>
+        </ul>
+        <div class="topic-tags">
+          <span>if/elif ordering</span><span>range stop exclusive</span><span>loop else</span>
+          <span>break vs continue</span><span>nested loop control</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="deep-snippet">
+      <code>Loop debugging tactic: write the sequence of values first, then overlay break/continue decisions, then decide if else runs.</code>
+    </div>
+
     <div class="quiz-launch">
       <h3>Module Test Lab</h3>
       <p>Practice real trace-style questions and check reasoning instantly.</p>
       <div class="launch-row">
         <div class="count-picker" data-counts="m2">
           <button class="count-btn active" data-count="5" type="button">5 Questions</button>
-          <button class="count-btn" data-count="8" type="button">8 Questions</button>
+          <button class="count-btn" data-count="10" type="button">10 Questions</button>
+          <button class="count-btn" data-count="15" type="button">15 Questions</button>
           <button class="count-btn" data-count="all" type="button">All Questions</button>
         </div>
+        <label class="count-custom">Custom
+          <input class="count-input" data-module="m2" type="number" min="1" max="99" value="5">
+        </label>
         <button class="btn start" data-start="m2" type="button">Start Module 2 Test</button>
       </div>
     </div>
@@ -987,15 +1423,50 @@
       <div class="rule"><div class="rule-k">(42,)</div><div class="rule-v">one-element tuple</div></div>
     </div>
 
+    <div class="module-deep">
+      <article class="deep-card">
+        <h4>Coverage Map (09-12)</h4>
+        <ul>
+          <li>Strings: slicing, immutability, search methods, validation methods</li>
+          <li>Lists: add/remove/sort/copy, comprehension, nested list caveats</li>
+          <li>Tuples: immutability, single-item comma, unpacking and extended unpacking</li>
+          <li>Dictionaries: creation, key lookup, get default, items iteration, update/pop</li>
+          <li>Hashability rule for keys and tuple-key usage</li>
+        </ul>
+      </article>
+      <article class="deep-card">
+        <h4>High-Yield Mistakes</h4>
+        <ul>
+          <li><code>a = b</code> copies reference; <code>a[:]</code> or <code>copy()</code> copies list</li>
+          <li><code>append([x,y])</code> vs <code>extend([x,y])</code></li>
+          <li><code>find</code> returns -1; <code>index</code> throws exception if missing</li>
+          <li><code>{}</code> is dict, not set</li>
+          <li>Dict membership tests keys, not values</li>
+        </ul>
+        <div class="topic-tags">
+          <span>String slicing</span><span>List methods</span><span>Tuple unpacking</span>
+          <span>Dict get()</span><span>Mutation traps</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="deep-snippet">
+      <code>Collection trace tactic: identify mutability first, then decide whether operation returns new object or mutates in place.</code>
+    </div>
+
     <div class="quiz-launch">
       <h3>Module Test Lab</h3>
       <p>Collection-heavy traps with hints and immediate correction feedback.</p>
       <div class="launch-row">
         <div class="count-picker" data-counts="m3">
           <button class="count-btn active" data-count="5" type="button">5 Questions</button>
-          <button class="count-btn" data-count="8" type="button">8 Questions</button>
+          <button class="count-btn" data-count="10" type="button">10 Questions</button>
+          <button class="count-btn" data-count="15" type="button">15 Questions</button>
           <button class="count-btn" data-count="all" type="button">All Questions</button>
         </div>
+        <label class="count-custom">Custom
+          <input class="count-input" data-module="m3" type="number" min="1" max="99" value="5">
+        </label>
         <button class="btn start" data-start="m3" type="button">Start Module 3 Test</button>
       </div>
     </div>
@@ -1054,15 +1525,50 @@
       <div class="rule"><div class="rule-k">finally</div><div class="rule-v">always executes</div></div>
     </div>
 
+    <div class="module-deep">
+      <article class="deep-card">
+        <h4>Coverage Map (13-17)</h4>
+        <ul>
+          <li>Function structure, parameter passing, return and no-return behavior</li>
+          <li>Scope model (local/enclosing/global/built-in) and shadowing</li>
+          <li><code>*args</code> tuple, <code>**kwargs</code> dict, unpacking calls with <code>*</code>/<code>**</code></li>
+          <li>Core built-ins frequently appearing inside trace questions</li>
+          <li>Exception hierarchy basics, <code>try/except/else/finally</code>, raising errors</li>
+        </ul>
+      </article>
+      <article class="deep-card">
+        <h4>Exception + Function Traps</h4>
+        <ul>
+          <li>Specific <code>except</code> blocks must come before generic catch-all</li>
+          <li><code>finally</code> runs even after return/exception</li>
+          <li>Mutable defaults persist across calls</li>
+          <li>Function can print value but still return <code>None</code></li>
+          <li>Re-raising with <code>raise</code> keeps original exception type</li>
+        </ul>
+        <div class="topic-tags">
+          <span>LEGB scope</span><span>*args/**kwargs</span><span>Lambda</span>
+          <span>try/except/finally</span><span>raise</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="deep-snippet">
+      <code>Function trace tactic: bind arguments -> evaluate locals vs globals -> check explicit return; if absent, return is None.</code>
+    </div>
+
     <div class="quiz-launch">
       <h3>Module Test Lab</h3>
       <p>High-impact exam items with instant solution and explanation mode.</p>
       <div class="launch-row">
         <div class="count-picker" data-counts="m4">
           <button class="count-btn active" data-count="5" type="button">5 Questions</button>
-          <button class="count-btn" data-count="8" type="button">8 Questions</button>
+          <button class="count-btn" data-count="10" type="button">10 Questions</button>
+          <button class="count-btn" data-count="15" type="button">15 Questions</button>
           <button class="count-btn" data-count="all" type="button">All Questions</button>
         </div>
+        <label class="count-custom">Custom
+          <input class="count-input" data-module="m4" type="number" min="1" max="99" value="5">
+        </label>
         <button class="btn start" data-start="m4" type="button">Start Module 4 Test</button>
       </div>
     </div>
@@ -1183,6 +1689,67 @@
         answer: 2,
         hint: "0x10 is 16 and 0b10 is 2.",
         explanation: "16 + 2 = 18."
+      },
+      {
+        prompt: "Which statement about Python is correct for PCEP?",
+        code: "Choose one correct statement.",
+        options: [
+          "Python 3 uses print as a statement",
+          "Python is only a compiled language",
+          "Python 3 uses true division with /",
+          "input() returns int by default"
+        ],
+        answer: 2,
+        hint: "Think Python 3 syntax and arithmetic behavior.",
+        explanation: "In Python 3, / is true division and returns float."
+      },
+      {
+        prompt: "Which identifier is INVALID?",
+        code: "A) user_name\nB) _hidden\nC) 2nd_value\nD) value2",
+        options: ["A", "B", "C", "D"],
+        answer: 2,
+        hint: "Identifiers cannot start with a digit.",
+        explanation: "2nd_value starts with 2, so it is invalid."
+      },
+      {
+        prompt: "What is the output?",
+        code: "print(bool(\"0\"))\nprint(bool(0))\nprint(bool([0]))",
+        options: ["False, False, False", "True, False, True", "True, True, True", "False, True, False"],
+        answer: 1,
+        hint: "Non-empty string and non-empty list are truthy.",
+        explanation: "\"0\" and [0] are truthy, but numeric 0 is falsy."
+      },
+      {
+        prompt: "What happens?",
+        code: "print(int(\"3.14\"))",
+        options: ["3", "3.14", "ValueError", "TypeError"],
+        answer: 2,
+        hint: "int() cannot parse a float-formatted string directly.",
+        explanation: "int(\"3.14\") raises ValueError; convert via float first if needed."
+      },
+      {
+        prompt: "What is the output?",
+        code: "x = input(\"Enter: \")\nprint(type(x).__name__)",
+        options: ["int", "float", "str", "depends on user input"],
+        answer: 2,
+        hint: "input() behavior is fixed in Python 3.",
+        explanation: "input() always returns a string."
+      },
+      {
+        prompt: "What is the output?",
+        code: "print(5 + 2 * 3)\nprint((5 + 2) * 3)",
+        options: ["11 then 21", "21 then 11", "11 then 11", "21 then 21"],
+        answer: 0,
+        hint: "Multiplication has higher precedence than addition.",
+        explanation: "5+2*3=11, while parentheses force (5+2)*3=21."
+      },
+      {
+        prompt: "What is printed?",
+        code: "print(\"a\", \"b\", \"c\", sep=\"-\", end=\"!\")",
+        options: ["a b c!", "a-b-c!", "abc!", "a-b-c !"],
+        answer: 1,
+        hint: "sep controls between args, end controls trailing characters.",
+        explanation: "sep='-' gives a-b-c and end='!' adds ! without newline."
       }
     ],
     m2: [
@@ -1286,6 +1853,67 @@
         answer: 1,
         hint: "0 is falsy; not 0 is True.",
         explanation: "First condition fails, second succeeds, so B is printed."
+      },
+      {
+        prompt: "What is the output?",
+        code: "for i in range(2):\n    for j in range(3):\n        if j == 1:\n            break\n        print(i, j)",
+        options: ["0 0 and 1 0", "0 0 0 1 1 0 1 1", "0 0 only", "No output"],
+        answer: 0,
+        hint: "break affects only the inner loop.",
+        explanation: "Each outer iteration prints j=0 then breaks at j=1."
+      },
+      {
+        prompt: "What is the output?",
+        code: "for i in range(1, 6):\n    if i % 2 == 0:\n        continue\n    print(i, end=\" \")",
+        options: ["1 2 3 4 5", "1 3 5", "2 4", "1 3 5 6"],
+        answer: 1,
+        hint: "continue skips even numbers.",
+        explanation: "Only odd values 1, 3, 5 are printed."
+      },
+      {
+        prompt: "What is the output?",
+        code: "print(list(range(0, 5, -1)))",
+        options: ["[0, -1, -2, -3, -4]", "[]", "[0, 1, 2, 3, 4]", "ValueError"],
+        answer: 1,
+        hint: "Step direction must move toward stop.",
+        explanation: "A negative step from 0 can never reach stop=5, so range is empty."
+      },
+      {
+        prompt: "Which statement is true about if/elif/else?",
+        code: "Choose one.",
+        options: [
+          "All true elif branches execute",
+          "Only first true branch executes",
+          "else executes before elif",
+          "if and else can both execute"
+        ],
+        answer: 1,
+        hint: "Python selects first matching branch and leaves the chain.",
+        explanation: "In one chain, only the first true branch runs."
+      },
+      {
+        prompt: "What is printed?",
+        code: "x = [1]\nif x and x[0] == 1:\n    print(\"ok\")",
+        options: ["ok", "True", "No output", "IndexError"],
+        answer: 0,
+        hint: "and short-circuits left to right, and [1] is truthy.",
+        explanation: "x is truthy and x[0] equals 1, so condition is True."
+      },
+      {
+        prompt: "What is the output?",
+        code: "n = 3\nwhile n > 0:\n    n -= 1\nelse:\n    print(\"done\")",
+        options: ["No output", "done", "0", "infinite loop"],
+        answer: 1,
+        hint: "while-else runs when loop finishes without break.",
+        explanation: "Loop terminates normally at n==0, so else runs."
+      },
+      {
+        prompt: "What is the output?",
+        code: "print(list(range(2, 10, 3)))",
+        options: ["[2, 5, 8]", "[2, 5, 8, 11]", "[2, 4, 6, 8]", "[3, 6, 9]"],
+        answer: 0,
+        hint: "start at 2, add step 3, stop before 10.",
+        explanation: "Generated values are 2, 5, 8."
       }
     ],
     m3: [
@@ -1404,6 +2032,83 @@
         answer: 3,
         hint: "insert with out-of-range positive index appends at end.",
         explanation: "Index 10 is beyond length, so 99 is placed at the end."
+      },
+      {
+        prompt: "What is the output?",
+        code: "lst = [1, 2, 3, 4, 5]\nprint(lst[1:4:2])",
+        options: ["[2, 3, 4]", "[2, 4]", "[1, 3, 5]", "[4, 2]"],
+        answer: 1,
+        hint: "Indices selected are 1 and 3.",
+        explanation: "Slice starts at index 1, stops before 4, step 2 -> [2, 4]."
+      },
+      {
+        prompt: "What is the output?",
+        code: "print(\"   hello   \".strip().upper())",
+        options: ["HELLO", "   HELLO   ", "hello", "Hello"],
+        answer: 0,
+        hint: "Methods chain left to right.",
+        explanation: "strip removes outer spaces, upper converts result to uppercase."
+      },
+      {
+        prompt: "What is the output?",
+        code: "print(\"abc\" * 2 + \"def\")",
+        options: ["abcabc", "abcabcdef", "abcdefabc", "TypeError"],
+        answer: 1,
+        hint: "String repetition happens before + concatenation.",
+        explanation: "\"abc\"*2 gives \"abcabc\", then +\"def\" gives \"abcabcdef\"."
+      },
+      {
+        prompt: "What is the output?",
+        code: "d = {\"a\": 1, \"b\": 2}\nprint(d.get(\"c\", d.get(\"a\")))",
+        options: ["None", "1", "2", "KeyError"],
+        answer: 1,
+        hint: "get returns default when key is missing.",
+        explanation: "\"c\" is missing, so fallback d.get(\"a\") is used, returning 1."
+      },
+      {
+        prompt: "What is the output?",
+        code: "print(\"hello\".index(\"e\"))",
+        options: ["0", "1", "2", "-1"],
+        answer: 1,
+        hint: "index gives exact position for existing substring.",
+        explanation: "Character 'e' is at index 1."
+      },
+      {
+        prompt: "Which statement about list methods is correct?",
+        code: "Choose one.",
+        options: [
+          "append([4,5]) and extend([4,5]) always do the same",
+          "sort() returns a new sorted list",
+          "append(x) adds exactly one element",
+          "remove(i) removes by index"
+        ],
+        answer: 2,
+        hint: "Remember append vs extend and sort behavior.",
+        explanation: "append adds one element; extend iterates over an iterable."
+      },
+      {
+        prompt: "What is the output?",
+        code: "t = (1)\nprint(type(t).__name__)",
+        options: ["tuple", "int", "list", "TypeError"],
+        answer: 1,
+        hint: "Single-item tuple needs trailing comma.",
+        explanation: "(1) is just parenthesized int expression."
+      },
+      {
+        prompt: "What is the output?",
+        code: "print({1, 2, 3} & {2, 3, 4})\nprint({1, 2, 3} | {2, 3, 4})",
+        options: ["{2, 3} and {1, 2, 3, 4}", "{1,2,3,4} and {2,3}", "{2} and {4}", "TypeError"],
+        answer: 0,
+        hint: "& is intersection and | is union for sets.",
+        explanation: "Common elements are {2,3}, combined unique elements are {1,2,3,4}."
+      },
+      {
+        prompt: "What is the output?",
+        code: "x = \"hello\"\nprint(x[1:1])\nprint(x[2:2])",
+        options: ["'e' and 'l'", "'' and ''", "None and None", "IndexError"],
+        answer: 1,
+        hint: "When start equals stop in slicing, result is empty.",
+        explanation: "Both slices have zero width, so both are empty strings."
       }
     ],
     m4: [
@@ -1507,6 +2212,67 @@
         answer: 0,
         hint: "raise without argument re-raises current exception.",
         explanation: "Handler prints A, then raise propagates the same ZeroDivisionError again."
+      },
+      {
+        prompt: "What is the output?",
+        code: "def func(a, b, *args, c=10):\n    return a + b + sum(args) + c\n\nprint(func(1, 2, 3, 4, c=5))",
+        options: ["10", "12", "15", "TypeError"],
+        answer: 2,
+        hint: "Bind a,b first, collect remaining positional values in args.",
+        explanation: "a=1, b=2, args=(3,4), c=5 -> 1+2+7+5 = 15."
+      },
+      {
+        prompt: "What is the output?",
+        code: "a, *b, c = [1, 2, 3, 4, 5]\nprint(b)",
+        options: ["(2, 3, 4)", "[2, 3, 4]", "[1, 2, 3]", "TypeError"],
+        answer: 1,
+        hint: "Extended unpacking with * creates a list.",
+        explanation: "a=1, c=5, middle values go to b as list [2,3,4]."
+      },
+      {
+        prompt: "What is the output?",
+        code: "try:\n    print(\"start\")\nexcept Exception:\n    print(\"except\")\nelse:\n    print(\"else\")\nfinally:\n    print(\"finally\")",
+        options: ["start else finally", "start finally", "except finally", "start except finally"],
+        answer: 0,
+        hint: "No exception occurs here.",
+        explanation: "try runs, else runs on success, finally always runs."
+      },
+      {
+        prompt: "What is the output?",
+        code: "x = 10\n\ndef f():\n    global x\n    x = 20\n\nf()\nprint(x)",
+        options: ["10", "20", "NameError", "UnboundLocalError"],
+        answer: 1,
+        hint: "global binds assignment to module-level variable.",
+        explanation: "Function changes global x from 10 to 20."
+      },
+      {
+        prompt: "Which statement is correct?",
+        code: "Choose one.",
+        options: [
+          "*args is dict and **kwargs is tuple",
+          "finally runs only if exception occurs",
+          "A function without return returns None",
+          "lambda cannot be assigned to a variable"
+        ],
+        answer: 2,
+        hint: "Think core function behavior.",
+        explanation: "No explicit return means implicit return None."
+      },
+      {
+        prompt: "What is the output?",
+        code: "print(list(map(lambda x: x * 2, [1, 2, 3])))",
+        options: ["[1, 2, 3]", "[2, 4, 6]", "[2, 3, 4]", "TypeError"],
+        answer: 1,
+        hint: "map applies lambda to each element.",
+        explanation: "Each element is doubled."
+      },
+      {
+        prompt: "What is the output?",
+        code: "def check(v):\n    if v < 0:\n        raise ValueError(\"neg\")\n    return v\n\ntry:\n    print(check(-1))\nexcept ValueError:\n    print(\"caught\")",
+        options: ["-1", "neg", "caught", "No output"],
+        answer: 2,
+        hint: "Raised exception jumps to matching except.",
+        explanation: "check raises ValueError, except handles it and prints caught."
       }
     ]
   };
@@ -1533,7 +2299,10 @@
 
   function selectQuestions(moduleId, rawCount) {
     const pool = QUESTION_BANK[moduleId];
-    const wanted = rawCount === "all" ? pool.length : Math.min(Number(rawCount), pool.length);
+    const numeric = Number(rawCount);
+    const wanted = rawCount === "all"
+      ? pool.length
+      : Math.max(1, Math.min(Number.isFinite(numeric) ? Math.floor(numeric) : 5, pool.length));
     return shuffle(pool).slice(0, wanted).map((q) => ({ ...q }));
   }
 
@@ -1728,6 +2497,20 @@
     }
   }
 
+  function updateCountInputFromState(moduleId) {
+    const input = document.querySelector(`.count-input[data-module="${moduleId}"]`);
+    if (!input) return;
+    const max = QUESTION_BANK[moduleId].length;
+    input.max = String(max);
+    if (quizState[moduleId].count === "all") {
+      input.value = String(max);
+      return;
+    }
+    const val = Number(quizState[moduleId].count);
+    const safe = Math.max(1, Math.min(Number.isFinite(val) ? Math.floor(val) : 5, max));
+    input.value = String(safe);
+  }
+
   document.querySelectorAll(".count-picker").forEach((picker) => {
     picker.addEventListener("click", (event) => {
       const btn = event.target.closest(".count-btn");
@@ -1736,8 +2519,36 @@
       quizState[moduleId].count = btn.dataset.count;
       picker.querySelectorAll(".count-btn").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
+      updateCountInputFromState(moduleId);
     });
   });
+
+  document.querySelectorAll(".count-input").forEach((input) => {
+    const moduleId = input.dataset.module;
+    const max = QUESTION_BANK[moduleId].length;
+    input.max = String(max);
+
+    input.addEventListener("change", () => {
+      let val = Number(input.value);
+      if (!Number.isFinite(val)) {
+        updateCountInputFromState(moduleId);
+        return;
+      }
+      val = Math.floor(val);
+      val = Math.max(1, Math.min(val, max));
+      input.value = String(val);
+      quizState[moduleId].count = val;
+
+      const picker = document.querySelector(`.count-picker[data-counts="${moduleId}"]`);
+      if (picker) {
+        picker.querySelectorAll(".count-btn").forEach((b) => b.classList.remove("active"));
+        const matching = picker.querySelector(`.count-btn[data-count="${val}"]`);
+        if (matching) matching.classList.add("active");
+      }
+    });
+  });
+
+  Object.keys(quizState).forEach((moduleId) => updateCountInputFromState(moduleId));
 
   document.querySelectorAll("[data-start]").forEach((button) => {
     button.addEventListener("click", () => {
