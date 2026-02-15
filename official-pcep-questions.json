@@ -2,198 +2,1828 @@
   "official_questions": [
     {
       "question_number": 1,
-      "module": "1",
+      "module": 1,
       "prompt": "What will be the output of the following code, and why?",
       "code": "total_items = 10\ntotal_items += 5\nprint(total_items)",
       "options": [
-        "A) `5`, because `total_items` is reassigned to `5`.",
-        "B) `10`, because the addition is incorrect.",
-        "C) `15`, because `total_items` is incremented by `5`.",
-        "D) `20`, because `total_items` doubles with each addition."
+        "`5`, because `total_items` is reassigned to `5`.",
+        "`10`, because the addition is incorrect.",
+        "`15`, because `total_items` is incremented by `5`.",
+        "`20`, because `total_items` doubles with each addition."
       ],
+      "answer": 2,
       "correct_answer": "C",
-      "explanation": "The `+=` operator adds 5 to the current value of `total_items` (10), resulting in 15."
+      "hint": "`total_items` increases by `5` to become `15`.",
+      "explanation": "`total_items` increases by `5` to become `15`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 1,
+      "module": 3,
+      "prompt": "Consider the following dictionary. How would you modify the value associated with the key `'c'` to 4?",
+      "code": "d = {'a': 1, 'b': 2, 'c': 3}",
+      "options": [
+        "`d['c'] = 4`",
+        "`d.update('c': 4)`",
+        "`d.append('c': 4)`",
+        "`d.replace('c', 4)`"
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "This directly modifies the value associated with the key `'c'`.",
+      "explanation": "This directly modifies the value associated with the key `'c'`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
     },
     {
       "question_number": 2,
-      "module": "1",
-      "prompt": "Consider the following dictionary. How would you modify the value associated with the key `c` to 4?",
-      "code": "d = {'a': 1, 'b': 2, 'c': 3}",
-      "options": [
-        "A) `d['c'] = 4`",
-        "B) `d.update('c': 4)`",
-        "C) `d.append('c': 4)`",
-        "D) `d.replace('c', 4)`"
-      ],
-      "correct_answer": "A",
-      "explanation": "Dictionary values are modified using square bracket notation and assignment."
-    },
-    {
-      "question_number": 3,
-      "module": "1",
+      "module": 1,
       "prompt": "What will the following code print?",
       "code": "lst = [[1, 2], [3, 4], [5, 6]]\nlst[0], lst[2] = lst[2], lst[0]\nprint(lst)",
       "options": [
-        "A) `[[1, 2], [3, 4], [5, 6]]`",
-        "B) `[[5, 6], [3, 4], [1, 2]]`",
-        "C) `[[1, 2], [5, 6], [3, 4]]`",
-        "D) `[[5, 4], [3, 2], [1, 6]]`"
+        "`[[1, 2], [3, 4], [5, 6]]`",
+        "`[[5, 6], [3, 4], [1, 2]]`",
+        "`[[1, 2], [5, 6], [3, 4]]`",
+        "`[[5, 4], [3, 2], [1, 6]]`"
       ],
+      "answer": 1,
       "correct_answer": "B",
-      "explanation": "The code swaps the first and last lists using tuple unpacking."
+      "hint": "The elements `lst[0]` and `lst[2]` are swapped, resulting in `[[5, 6], [3, 4], [1, 2]]`.",
+      "explanation": "The elements `lst[0]` and `lst[2]` are swapped, resulting in `[[5, 6], [3, 4], [1, 2]]`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 1,
+      "module": 2,
+      "prompt": "What is the origin of the name \"Python\" for the programming language?",
+      "code": "",
+      "options": [
+        "It is named after a type of snake.",
+        "It is named after its creator, Guido van Rossum.",
+        "It is an acronym for \"Programming You.\"",
+        "It is named after a British comedy series."
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "The name comes from the British comedy series *Monty Python's Flying Circus.",
+      "explanation": "The name comes from the British comedy series *Monty Python's Flying Circus.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 1,
+      "module": 4,
+      "prompt": "What will happen if you call `add_numbers(5)` with the function defined as below?",
+      "code": "def add_numbers(a, b=10):\n    return a + b",
+      "options": [
+        "It will return `15`.",
+        "It will raise a `TypeError` due to missing arguments.",
+        "It will return `5`.",
+        "It will raise a `SyntaxError`."
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "The function will use the default value of `b=10` when `b` is not provided, returning `15`.",
+      "explanation": "The function will use the default value of `b=10` when `b` is not provided, returning `15`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 2,
+      "module": 2,
+      "prompt": "Given the statement `x >= 0 and x <= 10`, how could you rewrite this condition using the `not` operator?",
+      "code": "",
+      "options": [
+        "`not (x > 0 and x < 10)`",
+        "`not (x > 0 or x < 10)`",
+        "`not (x < 0 and x > 10)`",
+        "`not (x < 0 or x > 10)`"
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "`not (x < 0 or x > 10)` is logically equivalent to `x >= 0 and x <= 10`.",
+      "explanation": "`not (x < 0 or x > 10)` is logically equivalent to `x >= 0 and x <= 10`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 3,
+      "module": 2,
+      "prompt": "Why is understanding the difference between built-in and user-defined functions crucial for debugging in Python?",
+      "code": "",
+      "options": [
+        "Built-in functions can be overwritten, leading to unexpected results.",
+        "User-defined functions are always faster than built-in functions.",
+        "Built-in functions are imported explicitly, unlike user-defined ones.",
+        "User-defined functions are automatically available without import, unlike built-in functions."
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "Overwriting built-in functions can cause unexpected behaviour and make debugging more complex.",
+      "explanation": "Overwriting built-in functions can cause unexpected behaviour and make debugging more complex.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 3,
+      "module": 1,
+      "prompt": "Which of the following best describes machine language?",
+      "code": "",
+      "options": [
+        "It is the language in which humans naturally communicate.",
+        "It is a complex and evolving language used by computers.",
+        "It consists of a predefined set of simple commands that a computer can execute.",
+        "It allows computers to understand human emotions and respond accordingly."
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "Machine language consists of a predefined set of commands known as an instruction list (IL) that the computer can execute.",
+      "explanation": "Machine language consists of a predefined set of commands known as an instruction list (IL) that the computer can execute.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
     },
     {
       "question_number": 4,
-      "module": "1",
-      "prompt": "What is the origin of the name Python for the programming language?",
+      "module": 1,
+      "prompt": "Given the code snippet below, what will be printed to the console?",
+      "code": "print(\"Start\", end=\"-->\")\nprint(\"End\")",
+      "options": [
+        "`Start End`",
+        "`Start-> End`",
+        "`Start->End`",
+        "`Start End->`"
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "The `end` parameter sets the string that terminates the `print` statement.",
+      "explanation": "The `end` parameter sets the string that terminates the `print` statement.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 2,
+      "module": 4,
+      "prompt": "Which of the following code snippets will raise a TypeError?",
       "code": "",
       "options": [
-        "A) It is named after a type of snake.",
-        "B) It is named after its creator, Guido van Rossum.",
-        "C) It is an acronym for 'Programming You.'",
-        "D) It is named after a British comedy series."
+        "len(5)",
+        "\"hello\" + \"5\"",
+        "[1, 2, 3] + [4, 5, 6]",
+        "dict([('a', 1), ('b', 2)])"
       ],
-      "correct_answer": "D",
-      "explanation": "Python is named after the British comedy series 'Monty Python's Flying Circus'."
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "A TypeError is raised because the len() function expects a collection type (like a list, tuple, or string), but an integer (5) is provided i",
+      "explanation": "A TypeError is raised because the len() function expects a collection type (like a list, tuple, or string), but an integer (5) is provided instead.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
     },
     {
       "question_number": 5,
-      "module": "1",
-      "prompt": "Which of the following code snippets will raise a TypeError?",
-      "code": "# Examine each option to find TypeError",
+      "module": 1,
+      "prompt": "What is the primary challenge of dynamic typing in Python?",
+      "code": "",
       "options": [
-        "A) `5 + 3`",
-        "B) `'hello' + ' world'`",
-        "C) `[1, 2] + [3, 4]`",
-        "D) `5 + '3'`"
+        "Variables must be declared before use.",
+        "It can lead to unexpected type errors at runtime.",
+        "Variable types must be explicitly defined.",
+        "Variables cannot be reassigned once a type is set."
       ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "Dynamic typing can lead to errors that only appear during execution.",
+      "explanation": "Dynamic typing can lead to errors that only appear during execution.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 2,
+      "module": 3,
+      "prompt": "What is the value of `y` in binary?",
+      "code": "",
+      "options": [
+        "`00001101`",
+        "`00000111`",
+        "`00001110`",
+        "`000011`"
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "Shifting `29` two bits to the right yields `00000111`, which is `7` in decimal.",
+      "explanation": "Shifting `29` two bits to the right yields `00000111`, which is `7` in decimal.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 3,
+      "module": 4,
+      "prompt": "Given the function below, what will be the output if you pass a non-numeric value to `square_root`?",
+      "code": "def square_root(x):\n    return x ** 0.5",
+      "options": [
+        "A `SyntaxError` will be raised.",
+        "A `ValueError` will be raised.",
+        "A `ZeroDivisionError` will be raised.",
+        "A `TypeError` will be raised."
+      ],
+      "answer": 3,
       "correct_answer": "D",
-      "explanation": "Attempting to add an integer and a string raises a TypeError."
+      "hint": "Passing a non-numeric value raises a `TypeError`",
+      "explanation": "Passing a non-numeric value raises a `TypeError`. Adding a `try-except` block will handle this error gracefully.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
     },
     {
       "question_number": 6,
-      "module": "2",
-      "prompt": "What will be printed?",
-      "code": "x = 15\nif x > 10:\n    print('Greater than 10')\nelif x == 10:\n    print('Equal to 10')",
+      "module": 1,
+      "prompt": "What does an EOF error typically indicate in Python?",
+      "code": "",
       "options": [
-        "A) Greater than 10",
-        "B) Equal to 10",
-        "C) Greater than 5",
-        "D) Less than or equal to 5"
+        "The code is too long and needs to be shortened.",
+        "The interpreter has reached the end of the file but expects more code.",
+        "The file was not saved correctly before running.",
+        "The code is missing a necessary import statement."
       ],
-      "correct_answer": "A",
-      "explanation": "Since x=15, which is greater than 10, the first condition is True."
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "An EOF (End of File) error usually indicates that the interpreter expects additional code, often due to an unclosed parenthesis or incomplet",
+      "explanation": "An EOF (End of File) error usually indicates that the interpreter expects additional code, often due to an unclosed parenthesis or incomplete statement.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 3,
+      "module": 3,
+      "prompt": "Is there a difference in output between using `my_dict['key']` and `my_dict.get('key')` when the key does not exist?",
+      "code": "",
+      "options": [
+        "Yes, `my_dict['key']` returns `None`, while `my_dict.get('key')` raises a `KeyError`.",
+        "Yes, `my_dict['key']` raises a `KeyError`, while `my_dict.get('key')` returns `None`.",
+        "No, both return `None` if the key does not exist.",
+        "No, both raise a `KeyError` if the key does not exist."
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "`my_dict['key']` raises a `KeyError` when the key is absent, while `my_dict.get('key')` safely returns `None`.",
+      "explanation": "`my_dict['key']` raises a `KeyError` when the key is absent, while `my_dict.get('key')` safely returns `None`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
     },
     {
       "question_number": 7,
-      "module": "2",
-      "prompt": "What is the output?",
-      "code": "for i in range(3):\n    if i == 2:\n        continue\n    print(i, end=' ')\nprint('Done')",
+      "module": 1,
+      "prompt": "Which of the following expressions evaluate to a zero result?",
+      "code": "",
       "options": [
-        "A) 0 1 2 Done",
-        "B) 0 1 Done",
-        "C) 0 1 3 4 Done",
-        "D) 0 1 2 3 4 Done"
+        "1 // 3 * 3 ** 1",
+        "1 ** 2 - 7 // 3",
+        "1 + 3 // 2 - 1",
+        "4 / 2 - 2 ** 2"
       ],
-      "correct_answer": "B",
-      "explanation": "The loop skips printing 2 due to the `continue` statement."
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "1//3 rounds down to 0 and 3**1 = 3, and 0 * 3 is 0.",
+      "explanation": "1//3 rounds down to 0 and 3**1 = 3, and 0 * 3 is 0.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 4,
+      "module": 2,
+      "prompt": "What will be the output of the following code if the user enters `\"Python\"` and the number `3`?",
+      "code": "text = input(\"Enter something: \") # User enters Python\ntimes = input(\"Enter a number: \") # User enters 3\nprint(text * int(times))",
+      "options": [
+        "`PythonPython`",
+        "`Python * 3`",
+        "`Python3`",
+        "`PythonPythonPython`"
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "The string is repeated three times as specified",
+      "explanation": "The string is repeated three times as specified. Consider the following code: lst = [1, 2, 3, 4, 5, 6] del lst[2:-2]",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
     },
     {
       "question_number": 8,
-      "module": "4",
-      "prompt": "What is the final state of `lst`?",
-      "code": "lst = [10, 20, 30, 40]\nlst.reverse()\nprint(lst)",
+      "module": 1,
+      "prompt": "What will `lst` look like after execution?",
+      "code": "",
       "options": [
-        "A) `[40, 30, 20, 10]`",
-        "B) `[10, 20, 30, 40]`",
-        "C) `[40, 30, 20]`",
-        "D) `[30, 20, 10, 40]`"
+        "`[1, 2, 4, 5, 6]`",
+        "`[1, 2, 4, 6]`",
+        "`[1, 2, 5, 6]`",
+        "`[1, 2, 6]`"
       ],
-      "correct_answer": "A",
-      "explanation": "The `reverse()` method reverses the list in-place."
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "The slice removes elements `3` and `4`, leaving `[1, 2, 5, 6]`.",
+      "explanation": "The slice removes elements `3` and `4`, leaving `[1, 2, 5, 6]`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 4,
+      "module": 3,
+      "prompt": "Given the tuple `t = (1, 2, 3, [4, 5])`, what will happen if you try to modify the list inside the tuple?",
+      "code": "t[3][0] = 10",
+      "options": [
+        "A `TypeError` will be raised due to tuple immutability.",
+        "The tuple will remain unchanged, and the modification will be ignored.",
+        "The list will be successfully modified.",
+        "The tuple will become corrupted and unusable."
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "The list inside the tuple is mutable, so `t[3][0]` can be changed.",
+      "explanation": "The list inside the tuple is mutable, so `t[3][0]` can be changed.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
     },
     {
       "question_number": 9,
-      "module": "4",
-      "prompt": "What will `transposed` look like after execution?",
-      "code": "matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\ntransposed = [list(row) for row in zip(*matrix)]",
+      "module": 1,
+      "prompt": "What is the difference in output between these two expressions?",
+      "code": "a = 2 ** 3 ** 2\nb = (2 ** 3) ** 2",
       "options": [
-        "A) `[[3, 6, 9], [2, 5, 8], [1, 4, 7]]`",
-        "B) `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]`",
-        "C) `[[7, 8, 9], [4, 5, 6], [1, 2, 3]]`",
-        "D) `[[1, 4, 7], [2, 5, 8], [3, 6, 9]]`"
+        "`a = 512, b = 64`",
+        "`a = 64, b = 512`",
+        "`a = 8, b = 64`",
+        "`a = 256, b = 64`"
       ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "`2 ** 9 = 512` and `(2 ** 3) ** 2 = 64`.",
+      "explanation": "`2 ** 9 = 512` and `(2 ** 3) ** 2 = 64`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 5,
+      "module": 2,
+      "prompt": "Will the `else` clause execute?",
+      "code": "",
+      "options": [
+        "Yes, because the loop completes its range.",
+        "Yes, because `i` reaches `2`.",
+        "No, because the loop is terminated by `break`.",
+        "No, because `i == 2` is a false condition."
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "The `break` statement prevents the `else` clause from executing.",
+      "explanation": "The `break` statement prevents the `else` clause from executing.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 4,
+      "module": 4,
+      "prompt": "What will be the output of the following code?",
+      "code": "try:\n    result = 10 / 0\nexcept ZeroDivisionError:\n    result = \"Infinity\"\nprint(result)",
+      "options": [
+        "`Infinity`.",
+        "`0`.",
+        "`None`.",
+        "`ZeroDivisionError`."
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "The `except` block catches the `ZeroDivisionError` and assigns `\"Infinity\"` to `result`.",
+      "explanation": "The `except` block catches the `ZeroDivisionError` and assigns `\"Infinity\"` to `result`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 5,
+      "module": 3,
+      "prompt": "Given the string literal `\"Python is fun!\"`, which code will replace all spaces with underscores?",
+      "code": "",
+      "options": [
+        "`\"Python_is_fun!\"`",
+        "`replace(\"Python is fun!\", \" \", \"_\")`",
+        "`\"Python_is_fun!\" * 3`",
+        "`\"Python is fun!\".replace(' ', '_')`"
+      ],
+      "answer": 3,
       "correct_answer": "D",
-      "explanation": "The `zip(*matrix)` transposes the matrix by pairing elements at the same column."
+      "hint": "The `replace()` method replaces spaces with underscores in the string.",
+      "explanation": "The `replace()` method replaces spaces with underscores in the string.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
     },
     {
       "question_number": 10,
-      "module": "3",
-      "prompt": "What will be returned by this function call?",
-      "code": "def add(a, b=10):\n    return a + b\n\nprint(add(5))",
+      "module": 1,
+      "prompt": "What special character in Python strings is used to include special characters like a newline?",
+      "code": "",
       "options": [
-        "A) 5",
-        "B) 10",
-        "C) 15",
-        "D) TypeError"
+        "`\\\\`",
+        "`//`",
+        "`\\`",
+        "`/`"
       ],
+      "answer": 2,
       "correct_answer": "C",
-      "explanation": "The function uses the default parameter b=10, so 5 + 10 = 15."
+      "hint": "The backslash (`\\`) is used to escape characters, giving them special meaning.",
+      "explanation": "The backslash (`\\`) is used to escape characters, giving them special meaning.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 6,
+      "module": 2,
+      "prompt": "What will be the output of the following code?",
+      "code": "x = 7\ny = 10\nif x > y:\n    if x >= 5:\n        print(\"P\")\n    else:\n        print(\"Q\")\nelif x == y:\n    print(\"R\")\nelif y - x >= 3:\n    print(\"S\")\nelse:\n    print(\"T\")",
+      "options": [
+        "`P`",
+        "`R`",
+        "`T`",
+        "`S`"
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "The code prints \"S\" because y - x >= 3 is True (since y - x = 3).",
+      "explanation": "The code prints \"S\" because y - x >= 3 is True (since y - x = 3).",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
     },
     {
       "question_number": 11,
-      "module": "1",
-      "prompt": "What is the value of `y` in binary?",
-      "code": "x = 13\ny = x ^ 6",
+      "module": 1,
+      "prompt": "What is the primary role of an interpreter when executing a program?",
+      "code": "",
       "options": [
-        "A) `00001101`",
-        "B) `00000111`",
-        "C) `00001110`",
-        "D) `00001011`"
+        "To translate the entire source code into machine language at once.",
+        "To read and execute the source code line by line.",
+        "To compile the code into a distributable file.",
+        "To optimise the code for faster execution."
       ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "An interpreter reads and executes the source code line by line.",
+      "explanation": "An interpreter reads and executes the source code line by line.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 5,
+      "module": 4,
+      "prompt": "What will be the output of the following code if the user inputs a non-integer value?",
+      "code": "try:\n    num = int(input(\"Enter a number: \"))\n    print(10 / num)\nexcept ValueError:\n    print(\"Invalid input!\")\nexcept ZeroDivisionError:\n    print(\"Cannot divide by zero!\")\nexcept:\n    print(\"Some other error occurred!\")",
+      "options": [
+        "The program crashes with a `ValueError`.",
+        "\"Cannot divide by zero!\".",
+        "\"Some other error occurred!\".",
+        "\"Invalid input!\"."
+      ],
+      "answer": 3,
       "correct_answer": "D",
-      "explanation": "13 XOR 6 = 11 (binary: 00001011)."
+      "hint": "The `ValueError` is caught by the first `except` block when the input is not an integer.",
+      "explanation": "The `ValueError` is caught by the first `except` block when the input is not an integer.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
     },
     {
       "question_number": 12,
-      "module": "4",
-      "prompt": "What will `lst` look like after execution?",
-      "code": "lst = [1, 2, 3, 4, 5, 6]\ndel lst[2:-2]\nprint(lst)",
+      "module": 1,
+      "prompt": "What is the result of executing this code?",
+      "code": "my_list = [0, 2, 4, 6, 8]\nmy_list[::2] = [10, 20, 30]",
       "options": [
-        "A) `[1, 2, 4, 5, 6]`",
-        "B) `[1, 2, 4, 6]`",
-        "C) `[1, 2, 5, 6]`",
-        "D) `[1, 2, 6]`"
+        "`[10, 2, 20, 6, 30]`",
+        "`[0, 2, 4, 6, 8]`",
+        "`[10, 20, 30]`",
+        "`[10, 2, 4, 6, 30]`"
       ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "The step slice replaces every second element with the values `[10, 20, 30]`.",
+      "explanation": "The step slice replaces every second element with the values `[10, 20, 30]`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 7,
+      "module": 2,
+      "prompt": "Which of the following best describes the goals set by Guido van Rossum for Python in 1999?",
+      "code": "",
+      "options": [
+        "To make Python the fastest language available.",
+        "To make Python code as difficult as possible to understand.",
+        "To create a powerful, open-source language that is easy to use and understand.",
+        "To ensure Python remains a proprietary language controlled by a single entity."
+      ],
+      "answer": 2,
       "correct_answer": "C",
-      "explanation": "The slice [2:-2] deletes elements from index 2 to 4 (3, 4)."
+      "hint": "The goals included creating a powerful, open-source, and easy-to-use language.",
+      "explanation": "The goals included creating a powerful, open-source, and easy-to-use language.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
     },
     {
       "question_number": 13,
-      "module": "4",
-      "prompt": "What are the final values of `l1` and `l2`?",
-      "code": "l1 = [1, 2, 3]\nl2 = l1\nl1.append(4)\ndel l2[0]",
+      "module": 1,
+      "prompt": "How does Python compute the following operation `10 // 3`, and what is the result?",
+      "code": "",
       "options": [
-        "A) `[2, 3, 4]` and `[2, 3, 4]`",
-        "B) `[1, 2, 3, 4]` and `[1, 2, 3, 4]`",
-        "C) `[2, 3, 4]` and `[1, 2, 3, 4]`",
-        "D) `[1, 2, 3]` and `[2, 3, 4]`"
+        "Rounds 10 down to 9 and then divides by 3, resulting in `3`.",
+        "Divides 10 by 3 and rounds up the nearest whole number, resulting in `4`.",
+        "Divides 10 by 3 and rounds down to the nearest whole number, resulting in `3`.",
+        "Divides 10 by 3 and returns the remainder, resulting in `1`."
       ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "Python performs integer division, resulting in `3`.",
+      "explanation": "Python performs integer division, resulting in `3`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 6,
+      "module": 3,
+      "prompt": "What are the final values of `l1` and `l2`?",
+      "code": "",
+      "options": [
+        "`[2, 3, 4]` and `[2, 3, 4]`",
+        "`[1, 2, 3, 4]` and `[1, 2, 3, 4]`",
+        "`[2, 3, 4]` and `[1, 2, 3, 4]`",
+        "`[1, 2, 3]` and `[2, 3, 4]`"
+      ],
+      "answer": 0,
       "correct_answer": "A",
-      "explanation": "l2 references the same list as l1, so both variables point to the same modified list."
+      "hint": "Both `l1` and `l2` reference the same list, so modifications to one affect both.",
+      "explanation": "Both `l1` and `l2` reference the same list, so modifications to one affect both.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 14,
+      "module": 1,
+      "prompt": "Why must a program be correct syntactically?",
+      "code": "",
+      "options": [
+        "To ensure the program's logical meaning is accurate.",
+        "To ensure the program is written in a recognisable script.",
+        "To ensure the program follows the language's rules.",
+        "To ensure the program's dictionary is correctly used."
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "Syntactical correctness ensures the program adheres to the language's rules.",
+      "explanation": "Syntactical correctness ensures the program adheres to the language's rules.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 6,
+      "module": 4,
+      "prompt": "What will be the output of the following code, and what does it demonstrate about variable scope?",
+      "code": "var = 10\ndef multiply_by_var(x):\n    var = 5\n    return x * var\nprint(multiply_by_var(3))\nprint(var)",
+      "options": [
+        "`30`, `5` - Demonstrates variable shadowing.",
+        "`15`, `5` - Demonstrates local variable overriding global scope.",
+        "`30`, `10` - Demonstrates global variable usage within functions.",
+        "`15`, `10` - Demonstrates global and local variable scope."
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "The function uses the local `var`, and the global `var` remains unchanged.",
+      "explanation": "The function uses the local `var`, and the global `var` remains unchanged.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 7,
+      "module": 4,
+      "prompt": "Why does the following code raise a `TypeError`, and how can you debug it?",
+      "code": "def add(a, b):\n    return a + b\nprint(add(10, '5'))",
+      "options": [
+        "The function tries to add an integer and a string; debug by converting the string to an integer.",
+        "The function tries to add two integers; debug by using `str` for both.",
+        "The function tries to add a string and a float; debug by converting the float to a string.",
+        "The function tries to concatenate two strings; debug by converting the integer to a string."
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "Adding an integer and a string raises a `TypeError`",
+      "explanation": "Adding an integer and a string raises a `TypeError`. Converting the string to an integer resolves the issue.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 15,
+      "module": 1,
+      "prompt": "What will be the output of the following code?",
+      "code": "print(\"Hello\", \"world\", sep=\"*\")",
+      "options": [
+        "`Hello world*`",
+        "`Hello*world`",
+        "`Hello* world`",
+        "`Hello world`"
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "The `sep` parameter specifies the separator between the arguments, resulting in `Hello*world`.",
+      "explanation": "The `sep` parameter specifies the separator between the arguments, resulting in `Hello*world`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 7,
+      "module": 3,
+      "prompt": "What is an instruction list (IL) in the context of machine language?",
+      "code": "",
+      "options": [
+        "A list of human languages the computer can interpret.",
+        "A set of complex algorithms a computer uses to solve problems.",
+        "A complete set of simple commands that a computer can recognise and execute.",
+        "A list of natural languages that can be used to program a computer."
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "An instruction list (IL) is a set of simple commands that a computer can recognise and execute.",
+      "explanation": "An instruction list (IL) is a set of simple commands that a computer can recognise and execute.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 8,
+      "module": 3,
+      "prompt": "What is the final value of `my_list`?",
+      "code": "",
+      "options": [
+        "`[1, 2, 9, 4, 5]`",
+        "`[1, 2, 3, 9, 10, 5]`",
+        "`[1, 9, 10, 4, 5]`",
+        "`[1, 2, 9, 10, 5]`"
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "The slice `[2:4]` replaces `[3, 4]` with `[9, 10]`, resulting in `[1, 2, 9, 10, 5]`.",
+      "explanation": "The slice `[2:4]` replaces `[3, 4]` with `[9, 10]`, resulting in `[1, 2, 9, 10, 5]`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 8,
+      "module": 4,
+      "prompt": "What happens if you call the following function without passing any arguments?",
+      "code": "def display_name(first_name, last_name=\"Smith\"):\n    print(first_name, last_name)",
+      "options": [
+        "It prints \"Smith Smith\".",
+        "It raises a `TypeError` for missing the `first_name` argument.",
+        "It prints \"None Smith\".",
+        "It raises a `SyntaxError` for not passing arguments."
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "A `TypeError` occurs because `first_name` is required and not provided.",
+      "explanation": "A `TypeError` occurs because `first_name` is required and not provided.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 9,
+      "module": 3,
+      "prompt": "Consider the following code snippet. What is the final value of `x`?",
+      "code": "x = 10\nx += 5\nx -= 3 * 2",
+      "options": [
+        "`7`",
+        "`15`",
+        "`10`",
+        "`9`"
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "The final calculation is `15 - 6 = 9`.",
+      "explanation": "The final calculation is `15 - 6 = 9`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 16,
+      "module": 1,
+      "prompt": "Which of the following best explains why multi-line comments might be necessary?",
+      "code": "",
+      "options": [
+        "They disable large sections of code for debugging purposes.",
+        "They provide a detailed explanation of complex code logic.",
+        "They are required for every function definition.",
+        "They are used to declare variables."
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "Multi-line comments are often used to explain complex code.",
+      "explanation": "Multi-line comments are often used to explain complex code.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 9,
+      "module": 4,
+      "prompt": "What will be the output of the following code?",
+      "code": "def greet():\n    return \"Hello\"\n    print(\"Goodbye\")\nprint(greet())",
+      "options": [
+        "\"Hello\" followed by \"Goodbye\"",
+        "\"Goodbye\"",
+        "\"Hello\"",
+        "No output due to a syntax error"
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "The function returns \"Hello\" and exits before reaching `print(\"Goodbye\")`.",
+      "explanation": "The function returns \"Hello\" and exits before reaching `print(\"Goodbye\")`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 17,
+      "module": 1,
+      "prompt": "What is unique about the creation of Python compared to many other programming languages?",
+      "code": "",
+      "options": [
+        "It was created by a large corporate team.",
+        "It was developed primarily for creating web applications.",
+        "It was the first programming language to use dynamic semantics.",
+        "It was created by a single individual."
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "Python was uniquely created by a single individual, Guido van Rossum.",
+      "explanation": "Python was uniquely created by a single individual, Guido van Rossum.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 10,
+      "module": 4,
+      "prompt": "Given the list `l = [10, 20, 30]`, which function creates a dictionary with indices as keys and list elements as values?",
+      "code": "",
+      "options": [
+        "`def create_dict(l): return {i: l[i] for i in range(len(l))}`",
+        "`def create_dict(l): return {l[i]: i for i in range(len(l))}`",
+        "`def create_dict(l): return dict(zip(l))`",
+        "`def create_dict(l): return {i: l[i] for i in l}`"
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "This creates a dictionary where the index of each list item is the key, and the item is the value.",
+      "explanation": "This creates a dictionary where the index of each list item is the key, and the item is the value.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 11,
+      "module": 4,
+      "prompt": "Which of the following describes how the `input()` function affects the flow of a Python program?",
+      "code": "",
+      "options": [
+        "It causes the program to execute faster by bypassing other inputs.",
+        "It pauses program execution until the user provides input.",
+        "It automatically converts all inputs to integers.",
+        "It allows the program to execute concurrently while waiting for input."
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "The `input()` function halts the program until the user responds.",
+      "explanation": "The `input()` function halts the program until the user responds.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 18,
+      "module": 1,
+      "prompt": "What is the output of this code?",
+      "code": "numbers = [1, 2, 3, 4, 5]\nnumbers[-3:] = [7, 8]\nprint(numbers)",
+      "options": [
+        "`[1, 2, 7, 8]`",
+        "`[7, 8, 3, 4, 5]`",
+        "`[1, 2, 7, 8, 8]`",
+        "`[1, 2, 7, 8, 8, 5]`"
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "The slice `[-3:]` replaces `[3, 4, 5]` with `[7, 8]`, resulting in `[1, 2, 7, 8]`.",
+      "explanation": "The slice `[-3:]` replaces `[3, 4, 5]` with `[7, 8]`, resulting in `[1, 2, 7, 8]`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 10,
+      "module": 3,
+      "prompt": "How does Python treat Boolean values in arithmetic operations?",
+      "code": "",
+      "options": [
+        "`True` is treated as `0` and `False` as `1`.",
+        "Both `True` and `False` are treated as `1`.",
+        "`True` is treated as `1` and `False` as `0`.",
+        "`True` and `False` cannot be used in arithmetic operations."
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "`True` equals `1`, and `False` equals `0` in arithmetic contexts.",
+      "explanation": "`True` equals `1`, and `False` equals `0` in arithmetic contexts.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 19,
+      "module": 1,
+      "prompt": "What will be printed?",
+      "code": "",
+      "options": [
+        "Greater than 10",
+        "Equal to 10",
+        "Greater than 5",
+        "Less than or equal to 5"
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "`x > 5` is `True`, so this block is executed and \"Greater than 5\" is printed.",
+      "explanation": "`x > 5` is `True`, so this block is executed and \"Greater than 5\" is printed.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 20,
+      "module": 1,
+      "prompt": "What is a significant advantage of interpreted code?",
+      "code": "",
+      "options": [
+        "It executes faster than compiled code.",
+        "It does not require any additional software to run.",
+        "It is translated into, and remains as, machine language.",
+        "It can be run as soon as it is written."
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "Interpreted code can be executed immediately without a separate translation phase.",
+      "explanation": "Interpreted code can be executed immediately without a separate translation phase.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 21,
+      "module": 1,
+      "prompt": "What will the output of the following code be?",
+      "code": "print(\"I\\'m learning Python.\")",
+      "options": [
+        "`I'm learning Python.`",
+        "`I\\'m learning Python.`",
+        "`I´m learning Python.`",
+        "`I am learning Python.`"
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "The backslash escapes the apostrophe, allowing it to be part of the string.",
+      "explanation": "The backslash escapes the apostrophe, allowing it to be part of the string.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 22,
+      "module": 1,
+      "prompt": "What will be the output of the following code when executed?",
+      "code": "t1 = (1, 2, 3)\nt2 = t1 + (4, 5)\nprint(t1)\nprint(t2)",
+      "options": [
+        "`(1, 2, 3)`, `(1, 2, 3, 4, 5)`",
+        "`(1, 2, 3, 4, 5)`, `(1, 2, 3, 4, 5)`",
+        "`(1, 2, 3)`, `(4, 5)`",
+        "`(4, 5)`, `(1, 2, 3)`"
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "Tuples are immutable, so `t1` remains unchanged, and `t2` is a new tuple with additional elements.",
+      "explanation": "Tuples are immutable, so `t1` remains unchanged, and `t2` is a new tuple with additional elements.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 23,
+      "module": 1,
+      "prompt": "What does the \"traceback\" in a Python error message indicate?",
+      "code": "",
+      "options": [
+        "The final output of the program.",
+        "The sequence of function calls leading to the error.",
+        "The exact cause of the error.",
+        "The variable values at the time of the error."
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "The traceback indicates the sequence of function calls or the path the code took before encountering the error.",
+      "explanation": "The traceback indicates the sequence of function calls or the path the code took before encountering the error.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 24,
+      "module": 1,
+      "prompt": "What does the following code output?",
+      "code": "n_dim = [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]\nprint(n_dim[1][0][1])",
+      "options": [
+        "2",
+        "5",
+        "6",
+        "4"
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "The correct element is located at index `[1][0][1]`, which is `6`.",
+      "explanation": "The correct element is located at index `[1][0][1]`, which is `6`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 12,
+      "module": 4,
+      "prompt": "Why does the following code raise an error, and how can it be corrected?",
+      "code": "def subtract(a, b=5):\n    return a - b\nprint(subtract(a=10, 2))",
+      "options": [
+        "The code raises a `ValueError`; correct by removing `b=5`.",
+        "The code raises a `TypeError`; correct by changing `a=10` to `10`.",
+        "The code raises a `TypeError`; correct by removing `2`.",
+        "The code raises a `SyntaxError`; correct by changing `print(subtract(a=10, 2))` to `print(subtract(10, b=2))`."
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "The code has a syntax error due to a positional argument following a keyword argument",
+      "explanation": "The code has a syntax error due to a positional argument following a keyword argument. Fixing the argument order resolves the issue.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 8,
+      "module": 2,
+      "prompt": "Why might a developer choose to use Cython over pure Python for a project?",
+      "code": "",
+      "options": [
+        "To simplify the syntax of their code.",
+        "To write code that can be directly compiled into Java.",
+        "To improve the performance of complex mathematical calculations.",
+        "To avoid using the \"C\" language altogether."
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "Cython is particularly useful for optimising performance in complex mathematical computations.",
+      "explanation": "Cython is particularly useful for optimising performance in complex mathematical computations.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 25,
+      "module": 1,
+      "prompt": "What is the output?",
+      "code": "",
+      "options": [
+        "0 1 2 Done",
+        "0 1 3 4 Done",
+        "0 1 3 4",
+        "0 1 2 3 4 Done"
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "The `continue` statement skips printing `2`, but \"Done\" is still printed by the `else` clause.",
+      "explanation": "The `continue` statement skips printing `2`, but \"Done\" is still printed by the `else` clause.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 26,
+      "module": 1,
+      "prompt": "What will be the result of the following expression?",
+      "code": "result = 2 + 3 * 5 ** 2 // 4 - 6",
+      "options": [
+        "`21`",
+        "`19`",
+        "`14`",
+        "`17`"
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "The expression evaluates as `2 + (3 * (25 // 4)) - 6 = 14`.",
+      "explanation": "The expression evaluates as `2 + (3 * (25 // 4)) - 6 = 14`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 27,
+      "module": 1,
+      "prompt": "Why does the following code produce a `KeyError`, and how can you handle it to prevent the program from crashing?",
+      "code": "my_dict = {'name': 'Alice', 'age': 25}\nprint(my_dict['address'])",
+      "options": [
+        "The key `'address'` does not exist; handle by using `my_dict.get('address')`.",
+        "The dictionary is missing; handle by creating it first.",
+        "The key `'address'` is protected; handle by renaming the key.",
+        "The dictionary is immutable; handle by converting to a list."
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "Using `my_dict.get('address')` returns `None` if the key doesn't exist, avoiding a `KeyError`.",
+      "explanation": "Using `my_dict.get('address')` returns `None` if the key doesn't exist, avoiding a `KeyError`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 28,
+      "module": 1,
+      "prompt": "Why is it important to save a Python file with the `.py` extension?",
+      "code": "",
+      "options": [
+        "To prevent the code from being executed by mistake.",
+        "To ensure the operating system recognises the file as a Python script.",
+        "To allow the file to be used with other programming languages.",
+        "To make the file hidden from the user."
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "Saving the file with a `.py` extension ensures that the operating system identifies it as a Python script.",
+      "explanation": "Saving the file with a `.py` extension ensures that the operating system identifies it as a Python script.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 29,
+      "module": 1,
+      "prompt": "How can misleading comments impact code, and which of the following scenarios best demonstrates this?",
+      "code": "",
+      "options": [
+        "Comments are ignored by the interpreter and do not cause syntax errors.",
+        "Comments do not affect code execution or performance.",
+        "Misleading comments create confusion, not clarity.",
+        "Misleading comments can lead to misunderstandings and errors in code maintenance."
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "Misleading comments can lead to misunderstandings and errors in code maintenance",
+      "explanation": "Misleading comments can lead to misunderstandings and errors in code maintenance. Consider the following list operations: lst = [10, 20, 30] lst.reverse() lst.append(40) lst.sort()",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 30,
+      "module": 1,
+      "prompt": "What is the final state of `lst`?",
+      "code": "",
+      "options": [
+        "`[40, 30, 20, 10]`",
+        "`[10, 20, 30, 40]`",
+        "`[40, 30, 20]`",
+        "`[30, 20, 10, 40]`"
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "The list is reversed, appended with `40`, and then sorted in ascending order.",
+      "explanation": "The list is reversed, appended with `40`, and then sorted in ascending order.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 13,
+      "module": 4,
+      "prompt": "What will be the output of `print_subtract(b=10, a=5)` given the function definition below?",
+      "code": "def print_subtract(a, b):\n    print(a - b)",
+      "options": [
+        "`5`",
+        "`-5`",
+        "`15`",
+        "`-10`"
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "The function subtracts `b` from `a`, resulting in `5 - 10 = -5`.",
+      "explanation": "The function subtracts `b` from `a`, resulting in `5 - 10 = -5`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 11,
+      "module": 3,
+      "prompt": "Which expression correctly calculates how many full groups of 4 can be made from 17 items, and how many are left over?",
+      "code": "",
+      "options": [
+        "`17 % 4, 17 // 4`",
+        "`17 / 4, 17 * 4`",
+        "`17 * 4, 17 - 4`",
+        "`17 // 4, 17 % 4`"
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "`17 // 4 = 4` full groups, `17 % 4 = 1` item left over.",
+      "explanation": "`17 // 4 = 4` full groups, `17 % 4 = 1` item left over.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 9,
+      "module": 2,
+      "prompt": "What will be the output of the following code?",
+      "code": "i = 0\nwhile i < 5:\n    if i == 3:\n        break\n    print(i)\n    i += 1\nelse:\n    print(\"Loop completed\")",
+      "options": [
+        "0 1 2",
+        "0 1 2 3",
+        "0 1 2 Loop completed",
+        "Loop completed"
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "The loop breaks when `i == 3`, so \"Loop completed\" does not execute.",
+      "explanation": "The loop breaks when `i == 3`, so \"Loop completed\" does not execute.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 12,
+      "module": 3,
+      "prompt": "What is the difference between a variable's identifier and its value?",
+      "code": "",
+      "options": [
+        "The identifier is the memory location, and the value is its address.",
+        "The identifier is the name of the variable, and the value is what it stores.",
+        "The identifier is a constant, and the value is mutable.",
+        "The identifier is the data type, and the value is the data stored."
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "The identifier is the name, and the value is what the variable holds.",
+      "explanation": "The identifier is the name, and the value is what the variable holds.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 31,
+      "module": 1,
+      "prompt": "What is the result of the following expression?",
+      "code": "not (True or False) and (True and not False)",
+      "options": [
+        "True",
+        "None of the other answers",
+        "SyntaxError",
+        "False"
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "The expression simplifies to `False and True`, which results in `False`.",
+      "explanation": "The expression simplifies to `False and True`, which results in `False`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 32,
+      "module": 1,
+      "prompt": "Which of the following best describes the term \"Lexis\" in a language?",
+      "code": "",
+      "options": [
+        "The rules for forming a valid sentence",
+        "The set of words in a language",
+        "The symbols used to build words",
+        "The logical structure of phrases"
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "Lexis refers to the set of words a language offers its users.",
+      "explanation": "Lexis refers to the set of words a language offers its users.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 14,
+      "module": 4,
+      "prompt": "Given the following function, what will be the output of `factorial(4)`?",
+      "code": "def factorial(n):\n    if n == 1:\n        return 1\n    else:\n        return n * factorial(n - 1)",
+      "options": [
+        "`24`",
+        "`16`",
+        "`10`",
+        "`4`"
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "`factorial(4)` computes `4 * 3 * 2 * 1`, which is `24`.",
+      "explanation": "`factorial(4)` computes `4 * 3 * 2 * 1`, which is `24`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 15,
+      "module": 4,
+      "prompt": "Why does the following code snippet raise an error, and how can you correct it?",
+      "code": "t = (1, 2, 3)\nt[1] = 4",
+      "options": [
+        "Tuples are immutable; correct by converting to a list before modification.",
+        "Tuples require the use of `del` for changes; correct by using `del t[1]`.",
+        "Tuples only accept strings; correct by using string values.",
+        "The index is out of range; correct by using a valid index."
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "Tuples cannot be modified directly; converting to a list allows for modification.",
+      "explanation": "Tuples cannot be modified directly; converting to a list allows for modification.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 10,
+      "module": 2,
+      "prompt": "Why might a development team opt to use Jython for a project?",
+      "code": "",
+      "options": [
+        "To take advantage of Python's integration with .NET.",
+        "To optimise performance on low-memory devices.",
+        "To enable the use of Python in web development exclusively.",
+        "To ensure compatibility with Java-based systems."
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "Jython is particularly useful for projects that need to work seamlessly within Java environments.",
+      "explanation": "Jython is particularly useful for projects that need to work seamlessly within Java environments.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 16,
+      "module": 4,
+      "prompt": "What potential issue exists in the following code, and how should it be corrected?",
+      "code": "# This line prints a greeting\nprint(\"Hello world!\") # Greeting print function",
+      "options": [
+        "Comments should not be placed on the same line as code.",
+        "The comment after the print function is redundant.",
+        "Comments should be enclosed in triple quotes.",
+        "The code lacks proper indentation."
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "The comment after the print function adds no value and can confuse.",
+      "explanation": "The comment after the print function adds no value and can confuse.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 33,
+      "module": 1,
+      "prompt": "What will the following code output?",
+      "code": "lst = [\"A\", \"B\", \"C\", \"D\", \"E\"]\nslice_one = lst[-3:]\nslice_two = lst[:-3]\nprint(slice_one, slice_two)",
+      "options": [
+        "`['C', 'D', 'E']` and `['A', 'B']`",
+        "`['A', 'B', 'C']` and `['D', 'E']`",
+        "`['C', 'D']` and `['A', 'B', 'E']`",
+        "`['B', 'C', 'D']` and `['A', 'E']`"
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "`[-3:]` slices from the third last element to the end, and `[:-3]` slices up to the third last element.",
+      "explanation": "`[-3:]` slices from the third last element to the end, and `[:-3]` slices up to the third last element.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 13,
+      "module": 3,
+      "prompt": "What will `transposed` look like after execution?",
+      "code": "",
+      "options": [
+        "`[[3, 6, 9], [2, 5, 8], [1, 4, 7]]`",
+        "`[[1, 2, 3], [4, 5, 6], [7, 8, 9]]`",
+        "`[[7, 8, 9], [4, 5, 6], [1, 2, 3]]`",
+        "`[[1, 4, 7], [2, 5, 8], [3, 6, 9]]`"
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "The list comprehension transposes the matrix, swapping rows with columns.",
+      "explanation": "The list comprehension transposes the matrix, swapping rows with columns.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 17,
+      "module": 4,
+      "prompt": "What will be the output of the following code?",
+      "code": "x = 10\ndef outer():\n    x = 5\n    def inner():\n        global x\n        x = 2\n        return x\n    inner()\n    return x\nprint(outer())\nprint(x)",
+      "options": [
+        "`5` and `10`",
+        "`5` and `2`",
+        "`2` and `5`",
+        "`10` and `2`"
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "The local `x` in `outer` remains `5`, but the global `x` is changed to `2` by `inner`.",
+      "explanation": "The local `x` in `outer` remains `5`, but the global `x` is changed to `2` by `inner`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 34,
+      "module": 1,
+      "prompt": "Which of the following statements most accurately reflects the relationship between high-level programming languages and machine code execution?",
+      "code": "",
+      "options": [
+        "High-level languages directly control hardware by manipulating machine code, allowing for optimised execution speeds.",
+        "High-level languages offer an abstracted syntax that is compiled or interpreted into machine code, balancing human readability with the need for efficient execution.",
+        "High-level languages are primarily designed for system-level programming, where direct memory management and hardware interaction are critical.",
+        "High-level languages inherently remove the necessity for machine code translation, thereby bypassing the need for compilation or interpretation."
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "High-level languages are designed for human readability and are abstracted away from machine code, requiring compilation or interpretation t",
+      "explanation": "High-level languages are designed for human readability and are abstracted away from machine code, requiring compilation or interpretation to be executed by the machine.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 11,
+      "module": 2,
+      "prompt": "What will be the output of the following code if the user inputs \"10\" for the first number and \"5\" for the second number?",
+      "code": "num1 = input(\"Enter first number: \") # User enters 10\nnum2 = input(\"Enter second number: \") # User enters 5\nprint(num1 + num2)",
+      "options": [
+        "15",
+        "Syntax Error",
+        "10 5",
+        "105"
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "The input values are treated as strings, so they are concatenated to produce \"105\"",
+      "explanation": "The input values are treated as strings, so they are concatenated to produce \"105\". Given the following operation: my_list = [\"apple\", \"banana\", \"cherry\"] new_list = my_list[:] del my_list[1]",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 35,
+      "module": 1,
+      "prompt": "What are the contents of `new_list` after execution?",
+      "code": "",
+      "options": [
+        "`[\"apple\", \"banana\"]`",
+        "`[\"apple\", \"banana\", \"cherry\"]`",
+        "`[\"apple\", \"cherry\"]`",
+        "`[\"banana\", \"cherry\"]`"
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "The slicing operation creates a copy of the entire list, so `new_list` is unaffected by changes to `my_list`.",
+      "explanation": "The slicing operation creates a copy of the entire list, so `new_list` is unaffected by changes to `my_list`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 36,
+      "module": 1,
+      "prompt": "Will modifying `colors_copy` affect `colors`?",
+      "code": "",
+      "options": [
+        "No, because slicing creates a new list independent of `colors`.",
+        "Yes, because `colors_copy` is a reference to `colors`.",
+        "Yes, because lists are mutable and changes reflect across copies.",
+        "No, because only the original list is modifiable."
+      ],
+      "answer": 0,
+      "correct_answer": "A",
+      "hint": "The slice operation creates a copy, so changes to `colors_copy` do not affect `colors`.",
+      "explanation": "The slice operation creates a copy, so changes to `colors_copy` do not affect `colors`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 14,
+      "module": 3,
+      "prompt": "What will happen if you try to modify a dictionary by adding or removing key / value pairs while iterating over it?",
+      "code": "",
+      "options": [
+        "The dictionary will be modified as expected.",
+        "A `KeyError` will be raised.",
+        "The modifications will be ignored.",
+        "A `RuntimeError` will be raised."
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "A `RuntimeError` is raised when the size of the dictionary changes during iteration.",
+      "explanation": "A `RuntimeError` is raised when the size of the dictionary changes during iteration.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 37,
+      "module": 1,
+      "prompt": "Which of the following is a self-commenting variable name?",
+      "code": "",
+      "options": [
+        "`a`",
+        "`x`",
+        "`radius`",
+        "`var1`"
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "`radius` clearly indicates what the variable represents.",
+      "explanation": "`radius` clearly indicates what the variable represents.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 15,
+      "module": 3,
+      "prompt": "What will be the value of `x` after the following code is executed?",
+      "code": "x = 3\nx += 10 // 3 * 2 ** 2",
+      "options": [
+        "`21`",
+        "`17`",
+        "`19`",
+        "`15`"
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "The correct value of x after the code execution is 15",
+      "explanation": "The correct value of x after the code execution is 15. Here's the breakdown: 10 // 3 performs integer division, resulting in 3. 2 ** 2 calculates the power, resulting in 4. The multiplication 3 * 4 gives 12. Finally, x += 12 adds 12 to the initial value of x, which was 3, resulting in 15.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 38,
+      "module": 1,
+      "prompt": "Which of the following statements best explains the primary disadvantage of interpreted code?",
+      "code": "",
+      "options": [
+        "It is prone to syntax errors that cannot be detected until runtime.",
+        "It requires recompilation every time the source code is modified.",
+        "It generally runs slower than compiled code due to real-time interpretation.",
+        "It cannot be executed on different platforms without modification."
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "Interpreted code is typically slower because it is translated in real-time during execution.",
+      "explanation": "Interpreted code is typically slower because it is translated in real-time during execution.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 18,
+      "module": 4,
+      "prompt": "Given the following code, what will be printed?",
+      "code": "def mystery(x, y=[]):\n    y.append(x)\n    return y\nprint(mystery(1))\nprint(mystery(2, []))\nprint(mystery(3))",
+      "options": [
+        "`[1], [2], [3]`",
+        "`[1], [2], [1, 3]`",
+        "`[1], [2], [1, 2, 3]`",
+        "`TypeError`"
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "The list `y` keeps the value from the first call, so `mystery(3)` adds to `[1]`.",
+      "explanation": "The list `y` keeps the value from the first call, so `mystery(3)` adds to `[1]`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 39,
+      "module": 1,
+      "prompt": "What is the precedence of the and operator compared to the or operator in Python?",
+      "code": "",
+      "options": [
+        "or has higher precedence than and",
+        "They have the same precedence",
+        "Precedence depends on their position in the expression",
+        "and has higher precedence than or"
+      ],
+      "answer": 3,
+      "correct_answer": "D",
+      "hint": "In Python, the and operator has higher precedence than the or operator, meaning and operations are evaluated before or operations in express",
+      "explanation": "In Python, the and operator has higher precedence than the or operator, meaning and operations are evaluated before or operations in expressions without parentheses. Consider the following Python code: my_dict = {\"one\": \"two\", \"two\": \"three\", \"three\": \"one\"} current = \"one\" for _ in range(4): current = my_dict[current] print(current)",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 40,
+      "module": 1,
+      "prompt": "What will be the output of this code?",
+      "code": "",
+      "options": [
+        "three",
+        "two",
+        "one",
+        "It will raise a `KeyError`"
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "Iteration 1: current = my_dict[\"one\"] → \"two\" Iteration 2: current = my_dict[\"two\"] → \"three\" Iteration 3: current = my_dict[\"three\"] → \"one",
+      "explanation": "Iteration 1: current = my_dict[\"one\"] → \"two\" Iteration 2: current = my_dict[\"two\"] → \"three\" Iteration 3: current = my_dict[\"three\"] → \"one\" Iteration 4: current = my_dict[\"one\"] → \"two\" Final Output: \"two\"",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 12,
+      "module": 2,
+      "prompt": "What is the output of this code?",
+      "code": "data = [1, 2, 3, 4]\nresult = [x + 1 for x in data if x % 2 == 0]\nprint(result)",
+      "options": [
+        "`[2, 3, 4, 5]`",
+        "`[3, 5]`",
+        "`[2, 4]`",
+        "`[1, 3, 5]`"
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "The comprehension adds `1` to even numbers, giving `[3, 5]`.",
+      "explanation": "The comprehension adds `1` to even numbers, giving `[3, 5]`.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 41,
+      "module": 1,
+      "prompt": "What will be the output?",
+      "code": "",
+      "options": [
+        "`None`",
+        "`2`",
+        "`3`",
+        "`KeyError`"
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "Since the key `'c'` is not found in `my_dict`, the function returns the `default` value provided in the function call",
+      "explanation": "Since the key `'c'` is not found in `my_dict`, the function returns the `default` value provided in the function call. Here, `3` is passed as the `default` argument, which overwrites the function's default parameter value of `None`. Therefore, `3` is returned.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 42,
+      "module": 1,
+      "prompt": "Which of the following is NOT an advantage of using Python in backend web development?",
+      "code": "",
+      "options": [
+        "Python's readability and ease of learning.",
+        "Python's speed of execution for performance-critical applications.",
+        "Python's extensive libraries and frameworks like Django and Flask.",
+        "Python's active community and extensive documentation."
+      ],
+      "answer": 1,
+      "correct_answer": "B",
+      "hint": "Python's execution speed is generally slower, which is a disadvantage.",
+      "explanation": "Python's execution speed is generally slower, which is a disadvantage.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 19,
+      "module": 4,
+      "prompt": "Which of the following correctly describes a keyword argument in Python?",
+      "code": "",
+      "options": [
+        "Its meaning is determined by its position in the function call.",
+        "It is always passed as the first argument to a function.",
+        "Its meaning is specified by an identifier, not its position.",
+        "It cannot be used with built-in functions."
+      ],
+      "answer": 2,
+      "correct_answer": "C",
+      "hint": "Keyword arguments are identified by name rather than position.",
+      "explanation": "Keyword arguments are identified by name rather than position.",
+      "difficulty": "medium",
+      "source": "official-pcep-rtfd"
+    },
+    {
+      "question_number": 43,
+      "module": 1,
+      "prompt": "What is true about compilation? (Select two answers)",
+      "code": "",
+      "options": [
+        "It tends to be faster than interpretation.",
+        "The code is converted directly into machine code executable by the processor.",
+        "It tends to be slower than interpretation.",
+        "Both you and the end user must have the compiler to run your code."
+      ],
+      "answers": [
+        0,
+        1
+      ],
+      "answer": 0,
+      "correct_answer": "A, B",
+      "hint": "Focus on the classic advantages of compiled languages.",
+      "explanation": "Compiled code usually executes faster, and source is translated to machine code before runtime. End users usually do not need a compiler.",
+      "difficulty": "medium",
+      "source": "official-pcep-ocr-multi"
+    },
+    {
+      "question_number": 44,
+      "module": 1,
+      "prompt": "Select the true statements. (Select two answers)",
+      "code": "",
+      "options": [
+        "Python is free, open-source, and multiplatform.",
+        "Python 3 is backward compatible with Python 2.",
+        "Python is a good choice for creating and executing tests for applications.",
+        "Python is a good choice for low-level programming, for example when implementing an effective driver."
+      ],
+      "answers": [
+        0,
+        2
+      ],
+      "answer": 0,
+      "correct_answer": "A, C",
+      "hint": "Think about Python strengths and known limitations.",
+      "explanation": "Python is open-source and great for testing/automation. Python 3 is not backward compatible with Python 2, and Python is not ideal for low-level driver development.",
+      "difficulty": "medium",
+      "source": "official-pcep-ocr-multi"
+    },
+    {
+      "question_number": 45,
+      "module": 1,
+      "prompt": "A keyword is a word that: (Select two answers)",
+      "code": "",
+      "options": [
+        "is the most important word in the whole program.",
+        "cannot be used as a function name.",
+        "cannot be used as a variable name.",
+        "must be written in uppercase letters."
+      ],
+      "answers": [
+        1,
+        2
+      ],
+      "answer": 1,
+      "correct_answer": "B, C",
+      "hint": "Keywords are reserved identifiers.",
+      "explanation": "Python keywords are reserved and cannot be used as identifiers such as variable or function names.",
+      "difficulty": "medium",
+      "source": "official-pcep-ocr-multi"
+    },
+    {
+      "question_number": 46,
+      "module": 1,
+      "prompt": "Which of the following statements are true? (Select two answers)",
+      "code": "",
+      "options": [
+        "The result of the / operator is always an integer value.",
+        "Addition precedes multiplication.",
+        "The ** operator uses right-sided binding.",
+        "The right argument of the / operator cannot be zero."
+      ],
+      "answers": [
+        2,
+        3
+      ],
+      "answer": 2,
+      "correct_answer": "C, D",
+      "hint": "Remember precedence and division by zero rules.",
+      "explanation": "** is right-associative. Dividing by zero raises an error. / returns float, and multiplication has higher precedence than addition.",
+      "difficulty": "medium",
+      "source": "official-pcep-ocr-multi"
+    },
+    {
+      "question_number": 47,
+      "module": 1,
+      "prompt": "Which of the following variable names are illegal? (Select two answers)",
+      "code": "",
+      "options": [
+        "true",
+        "True",
+        "and",
+        "TRUE"
+      ],
+      "answers": [
+        1,
+        2
+      ],
+      "answer": 1,
+      "correct_answer": "B, C",
+      "hint": "Reserved words and boolean literals cannot be reassigned as identifiers.",
+      "explanation": "True is a boolean literal and and is a keyword, so both are illegal as variable names. true and TRUE are legal identifiers in Python.",
+      "difficulty": "medium",
+      "source": "official-pcep-ocr-multi"
+    },
+    {
+      "question_number": 48,
+      "module": 3,
+      "prompt": "Which of the following sentences are true? (Select two answers)",
+      "code": "nums = [1, 2, 3]\nvals = nums[-1:-2]",
+      "options": [
+        "nums and vals are of the same length.",
+        "nums and vals are two different lists.",
+        "vals is longer than nums.",
+        "nums is longer than vals."
+      ],
+      "answers": [
+        1,
+        3
+      ],
+      "answer": 1,
+      "correct_answer": "B, D",
+      "hint": "A slice with start > stop and default positive step returns an empty list.",
+      "explanation": "nums[-1:-2] returns [] here, so vals is a different list and nums is longer than vals.",
+      "difficulty": "medium",
+      "source": "official-pcep-ocr-multi"
+    },
+    {
+      "question_number": 49,
+      "module": 3,
+      "prompt": "Take a look at the snippet, and choose the true statements. (Select two answers)",
+      "code": "nums = [1, 2, 3]\nvals = nums\ndel vals[1:2]",
+      "options": [
+        "nums and vals refer to the same list.",
+        "nums is longer than vals.",
+        "nums is replicated and assigned to vals.",
+        "nums and vals are of the same length."
+      ],
+      "answers": [
+        0,
+        3
+      ],
+      "answer": 0,
+      "correct_answer": "A, D",
+      "hint": "Simple assignment of a list copies the reference, not the list content.",
+      "explanation": "vals points to the same list as nums. Deleting through vals mutates the shared list, so both names still reference lists of equal length.",
+      "difficulty": "medium",
+      "source": "official-pcep-ocr-multi"
+    },
+    {
+      "question_number": 50,
+      "module": 4,
+      "prompt": "A function defined as below: (Select two answers)",
+      "code": "def function(x=0):\n    return x",
+      "options": [
+        "must be invoked with exactly one argument.",
+        "may be invoked with exactly one argument.",
+        "must be invoked without any argument.",
+        "may be invoked without any argument."
+      ],
+      "answers": [
+        1,
+        3
+      ],
+      "answer": 1,
+      "correct_answer": "B, D",
+      "hint": "Default parameters make arguments optional.",
+      "explanation": "Because x has a default value, the function can be called with one argument or with none.",
+      "difficulty": "medium",
+      "source": "official-pcep-ocr-multi"
+    },
+    {
+      "question_number": 51,
+      "module": 4,
+      "prompt": "Select the true statements about the try-except block below. (Select two answers)",
+      "code": "try:\n    # some code\n    pass\nexcept:\n    # some code\n    pass",
+      "options": [
+        "If there is a syntax error in code in the try block, except will not handle it and a SyntaxError will be raised.",
+        "The code in except executes if the code in try raises an exception at runtime.",
+        "except executes even if no exception occurs in try.",
+        "A bare except can never catch runtime exceptions."
+      ],
+      "answers": [
+        0,
+        1
+      ],
+      "answer": 0,
+      "correct_answer": "A, B",
+      "hint": "Runtime exceptions are catchable; syntax errors are compile-time issues.",
+      "explanation": "A runtime exception in try can flow into except. Syntax errors are detected before normal try/except runtime handling.",
+      "difficulty": "medium",
+      "source": "official-pcep-ocr-multi"
+    },
+    {
+      "question_number": 52,
+      "module": 1,
+      "prompt": "Which of the following statements are true about None? (Select two answers)",
+      "code": "",
+      "options": [
+        "The None value cannot be used outside functions.",
+        "The None value can be compared with variables.",
+        "The None value can be assigned to variables.",
+        "The None value can be used as an argument of arithmetic operators without errors."
+      ],
+      "answers": [
+        1,
+        2
+      ],
+      "answer": 1,
+      "correct_answer": "B, C",
+      "hint": "None is a normal singleton object in Python.",
+      "explanation": "None can be assigned and compared. Arithmetic with None generally raises TypeError.",
+      "difficulty": "medium",
+      "source": "official-pcep-ocr-multi"
     }
   ],
-  "total_questions": 13,
+  "total_questions": 98,
   "metadata": {
-    "source": "pcepdocuments.rtfd/TXT.rtf",
-    "extraction_method": "RTF text extraction with manual verification",
-    "extraction_date": "2025-02-15",
-    "description": "Official PCEP (Python Certified Entry-Level Programmer) questions extracted from the RTF document",
-    "modules": {
-      "1": "Python Essentials: Variables, Operators, Data Types, Literals",
-      "2": "Control Flow: Conditionals, Loops, Boolean Logic",
-      "3": "Functions and Scope: Function Definition, Parameters, Return Values",
-      "4": "Data Structures: Lists, Tuples, Dictionaries, Sets, Exceptions, Modules"
-    }
+    "source_file": "/Users/jochenwahl/Documents/pcepdocuments.rtfd/TXT.rtf",
+    "parsed_from_text_snapshot": "/tmp/pcepdocuments.txt",
+    "generated_at": "2026-02-15T14:03:53Z",
+    "module_distribution": {
+      "module1": 42,
+      "module2": 12,
+      "module3": 15,
+      "module4": 19
+    },
+    "updated_at": "2026-02-15T14:47:17.142857+00:00",
+    "ocr_generated_at": "2026-02-15T14:24:21.918819+00:00",
+    "ocr_questions_processed": 0,
+    "ocr_images_missing": 0,
+    "ocr_source": "/Users/jochenwahl/Documents/pcepdocuments.rtfd",
+    "image_mode_removed": true,
+    "ocr_export_file": "official-pcep-ocr-texts.json",
+    "ocr_integrated_into_pool": false,
+    "multi_select_questions_added": 10
   }
 }
