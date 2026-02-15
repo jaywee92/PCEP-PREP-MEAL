@@ -543,6 +543,12 @@ def count_up_to(n):
       <h3>Exam-Simulator Patterns for Module 4</h3>
       <ul style="margin-left: 2rem;">
         <li>Default argument behavior and missing required arguments.</li>
+        <li>Keyword arguments bind by name, not by position.</li>
+        <li>Functions without explicit <code>return</code> evaluate to <code>None</code>.</li>
+        <li>Converting a generator with <code>list(generator_obj)</code> is frequently tested.</li>
+        <li>Multi-select tasks often ask which function calls are valid for signatures with required and default parameters.</li>
+        <li>Argument-passing traces test immutable rebinding vs mutable in-place changes.</li>
+        <li>Using <code>None</code> in arithmetic (often from implicit returns) raises <code>TypeError</code>.</li>
         <li>Local vs global scope in nested functions.</li>
         <li>Exception ordering and effect of <code>finally</code>.</li>
         <li>TypeError/ValueError reasoning questions.</li>
@@ -553,8 +559,11 @@ def count_up_to(n):
 # "Which statements about return are true? (Select two answers)"
 # "Which statements about None are true? (Select two answers)"
 # "Select true statements about try/except"
+# "Which calls are valid for def fun(a, b, c=0)? (Select two answers)"
+# "What happens when None participates in arithmetic?"
 
 # strategy: separate syntax validity, runtime behavior, and scope side effects</code></pre>
+
     </div>
   </div>
 
@@ -577,7 +586,21 @@ def func(**kwargs):         # Variable keyword
     pass
 
 def func(a, b=5, *args, **kwargs):  # All types
-    pass</code></pre>
+    pass
+
+def fun(a, b, c=0):
+    pass
+
+fun(b=0, a=0)   # valid
+fun(0, 1, 2)    # valid
+# fun()         # TypeError (missing required args)
+
+def f(x=0):
+    return x
+
+f()       # 0
+f(7)      # 7
+f(x=9)    # 9</code></pre>
 
       <h3>Lambda Functions</h3>
       <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>square = lambda x: x ** 2
@@ -629,7 +652,26 @@ finally:
 
 print(f())           # None
 print(None == 0)     # False
-print(None is None)  # True</code></pre>
+print(None is None)  # True
+
+def g():
+    pass
+
+print(g())        # None
+
+def function_1(a):
+    return None
+
+# function_1(2) * function_1(2)  # TypeError
+
+def mutate(p1, p2):
+    p1 = 4
+    p2[0] = 42
+
+x = 3
+y = [1, 2, 3]
+mutate(x, y)
+print(x, y[0])    # 3 42</code></pre>
     </div>
   </div>
 
@@ -932,7 +974,7 @@ print(x is None) # correct check</code></pre>
   <div id="quiz" class="tab-content">
     <div class="progress">
       <div class="progress-item">
-        <div class="progress-number" id="quiz-score">0/14</div>
+        <div class="progress-number" id="quiz-score">0/16</div>
         <div class="progress-label">Score</div>
       </div>
     </div>
@@ -956,7 +998,9 @@ const flashcardsData = [
   {"q":"What is required in recursion?", "a":"A base case to stop recursive calls."},
   {"q":"What does a generator yield provide?", "a":"Lazy one-by-one values instead of returning all at once."},
   {"q":"What does a function return without explicit return?", "a":"None."},
-  {"q":"Can None be compared and assigned?", "a":"Yes. It can be assigned and compared, but not used in arithmetic."}
+  {"q":"Can None be compared and assigned?", "a":"Yes. It can be assigned and compared, but not used in arithmetic."},
+  {"q":"Which calls are valid for def f(x=0): return x ?", "a":"f(), f(5), and f(x=5) are all valid calls."},
+  {"q":"How do you materialize all values from a generator?", "a":"Use list(generator_obj) to consume it into a list."}
 ];
 const quizData = [
   {"q":"Which function signature is valid?", "options":["def f(a=1, b):", "def f(a, b=1):", "def f(*args, a):", "def f(**kwargs, *args):"], "correct":1, "explanation":"Default parameters must follow non-default positional parameters."},
@@ -972,7 +1016,9 @@ const quizData = [
   {"q":"What does this return? def f(): x = 5", "options":["5", "0", "None", "NameError"], "correct":2, "explanation":"No explicit return means None."},
   {"q":"Which statement about generators is true?", "options":["yield creates eager list", "Generators can be iterated multiple times from start automatically", "yield pauses function and produces next value lazily", "Generators cannot be used in for-loops"], "correct":2, "explanation":"yield enables lazy iteration and resumes function state."},
   {"q":"Which statement about None is true?", "options":["None can only exist inside functions", "None + 1 is valid arithmetic", "None can be assigned to variables", "None cannot be compared"], "correct":2, "explanation":"None is assignable and comparable, but arithmetic with None is invalid."},
-  {"q":"Which statement about return is true?", "options":["return restarts function execution", "return can terminate function and pass a value", "return is required in every function", "return can appear only once per function"], "correct":1, "explanation":"return exits the current call and can pass a result to the caller."}
+  {"q":"Which statement about return is true?", "options":["return restarts function execution", "return can terminate function and pass a value", "return is required in every function", "return can appear only once per function"], "correct":1, "explanation":"return exits the current call and can pass a result to the caller."},
+  {"q":"For def f(x=0): return x, which call is invalid?", "options":["f()", "f(5)", "f(x=5)", "f(1, 2)"], "correct":3, "explanation":"The function accepts a single argument only; passing two positional arguments raises TypeError."},
+  {"q":"What is printed by: def g(): pass; print(g())", "options":["0", "False", "None", "TypeError"], "correct":2, "explanation":"A function without explicit return returns None."}
 ];
 
 let quizAnswered = {};
@@ -1071,6 +1117,7 @@ function resetQuiz() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('quiz-score').textContent = '0/' + quizData.length;
   initFlashcards();
   initQuiz();
 });

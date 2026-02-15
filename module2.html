@@ -548,6 +548,10 @@ for i in range(2):
         <li><strong>if/elif flow:</strong> only first true branch runs.</li>
         <li><strong>Loop tracing:</strong> exact effect of <code>break</code>, <code>continue</code>, and loop-<code>else</code>.</li>
         <li><strong>Range direction traps:</strong> wrong sign in step gives an empty range.</li>
+        <li><strong>Placeholder statements:</strong> <code>pass</code> is valid syntax and often appears in unfinished branches.</li>
+        <li><strong>Nested loops:</strong> <code>break</code> exits only the innermost active loop.</li>
+        <li><strong>Loop-else rule:</strong> <code>else</code> runs only when loop finishes without <code>break</code>.</li>
+        <li><strong>Boolean state tracing:</strong> short chains like <code>x = x or y</code> and <code>y = x and y</code> are frequent code-trace tasks.</li>
       </ul>
 
       <h3>Raw-Question Insights (Official OCR Patterns)</h3>
@@ -557,6 +561,7 @@ for i in range(2):
 # 3) short-circuit truth evaluation in mixed expressions
 
 # solve strategy: trace in strict execution order, then evaluate branch entry</code></pre>
+
     </div>
   </div>
 
@@ -654,7 +659,26 @@ print(any([]))    # False</code></pre>
 else:
     print("completed")
 
-# no output from else because break occurred</code></pre>
+# no output from else because break occurred
+
+for i in range(10, 12, 2):
+    if i % 2 != 1:
+        print("No")  # prints once
+
+for i in range(2):
+    for j in range(2):
+        break  # exits inner loop only
+
+x = True
+y = False
+x = x or y
+y = x and y
+print(x, y)   # True False
+
+i = 0
+while i <= 3:
+    i += 2
+    print("*")  # prints two stars</code></pre>
     </div>
   </div>
 
@@ -972,38 +996,8 @@ else:
 </div>
 
 <script>
-const flashcardsData = [
-  {"q": "What is the difference between = and == ?", "a": "= assigns values; == compares values."},
-  {"q": "When does loop else execute?", "a": "Only when the loop finishes without a break statement."},
-  {"q": "What does range(5) generate?", "a": "0, 1, 2, 3, 4. Stop value is exclusive."},
-  {"q": "What is the difference between break and continue?", "a": "break exits the loop; continue skips the current iteration."},
-  {"q": "What does 1 < x < 10 mean?", "a": "It is chained comparison: (1 < x) and (x < 10)."},
-  {"q": "How do and/or evaluate?", "a": "They short-circuit and return operand values, not only True/False."},
-  {"q": "Is bool('False') true or false?", "a": "True, because the string is non-empty."},
-  {"q": "What is special about while True loops?", "a": "They are infinite unless break or another exit path occurs."},
-  {"q": "Does break exit nested loops completely?", "a": "No, it exits only the innermost loop."},
-  {"q": "What type does range() return?", "a": "A range object, not a list."},
-  {"q": "What are all([]) and any([])?", "a": "all([]) is True, any([]) is False."},
-  {"q": "Does the loop variable still exist after loop ends?", "a": "Yes, in Python it remains bound to the last assigned value."},
-  {"q": "Does continue prevent loop else?", "a": "No. Only break prevents loop else from running."},
-  {"q": "What is the precedence between and/or?", "a": "and has higher precedence than or."}
-];
-const quizData = [
-  {"q": "Which condition is syntactically correct?", "options": ["if x = 5:", "if x == 5:", "if (x == 5)", "if x equals 5:"], "correct": 1, "explanation": "Use == for comparison and a colon to open the block."},
-  {"q": "What is list(range(1, 5))?", "options": ["[1, 2, 3, 4, 5]", "[1, 2, 3, 4]", "[0, 1, 2, 3, 4]", "[2, 3, 4]"], "correct": 1, "explanation": "range stop is exclusive."},
-  {"q": "What is printed? x = 0; while x < 3: x += 1; print(x)", "options": ["0", "2", "3", "4"], "correct": 2, "explanation": "x becomes 1,2,3 and then the loop stops."},
-  {"q": "What is printed? for i in range(3): if i == 1: break; print(i)", "options": ["0", "0 1", "0 1 2", "1"], "correct": 0, "explanation": "When i reaches 1, break exits before printing 1."},
-  {"q": "What is the result of: 5 and 0 or 7", "options": ["0", "5", "7", "True"], "correct": 2, "explanation": "5 and 0 gives 0, then 0 or 7 gives 7."},
-  {"q": "What does this output? for i in range(5): if i % 2 == 0: continue; print(i)", "options": ["0 2 4", "1 3", "1 2 3 4", "No output"], "correct": 1, "explanation": "continue skips even values, so only odd values print."},
-  {"q": "Will loop else run? for i in range(3): if i == 1: break; else: print('done')", "options": ["Yes, always", "No, break prevents it", "Only if i is odd", "SyntaxError"], "correct": 1, "explanation": "loop-else executes only when no break occurs."},
-  {"q": "Which statement is true about range(5, 0, 1)?", "options": ["It yields 5,4,3,2,1", "It yields 1,2,3,4,5", "It yields empty sequence", "It raises ValueError"], "correct": 2, "explanation": "Positive step cannot move from 5 down toward 0."},
-  {"q": "What does all([]) return?", "options": ["False", "True", "None", "Error"], "correct": 1, "explanation": "all on an empty iterable returns True."},
-  {"q": "What does any([]) return?", "options": ["False", "True", "None", "Error"], "correct": 0, "explanation": "any on an empty iterable returns False."},
-  {"q": "What is true about this expression: not (x < 0 or x > 10)", "options": ["Equivalent to x < 0 and x > 10", "Equivalent to x >= 0 and x <= 10", "Equivalent to x == 0", "Always False"], "correct": 1, "explanation": "De Morgan transformation gives the bounded interval condition."},
-  {"q": "After for i in range(4): pass, what is i?", "options": ["undefined", "3", "4", "None"], "correct": 1, "explanation": "The loop variable persists and keeps the last assigned value."},
-  {"q": "Which statement is true about loop else?", "options": ["It runs only if loop body is empty", "It runs when no break occurs", "It runs only after continue", "It never runs in for-loops"], "correct": 1, "explanation": "Loop else executes if the loop ends normally (without break)."},
-  {"q": "Which precedence statement is correct?", "options": ["or has higher precedence than and", "and has higher precedence than or", "They are equal precedence", "Precedence depends on variable values"], "correct": 1, "explanation": "In Python, and binds tighter than or."}
-];
+const flashcardsData = [{"q": "What is the difference between = and == ?","a": "= assigns values; == compares values."},{"q": "When does loop else execute?","a": "Only when the loop finishes without a break statement."},{"q": "What does range(5) generate?","a": "0, 1, 2, 3, 4. Stop value is exclusive."},{"q": "What is the difference between break and continue?","a": "break exits the loop; continue skips the current iteration."},{"q": "What does 1 < x < 10 mean?","a": "It is chained comparison: (1 < x) and (x < 10)."},{"q": "How do and/or evaluate?","a": "They short-circuit and return operand values, not only True/False."},{"q": "Is bool('False') true or false?","a": "True, because the string is non-empty."},{"q": "What is special about while True loops?","a": "They are infinite unless break or another exit path occurs."},{"q": "Does break exit nested loops completely?","a": "No, it exits only the innermost loop."},{"q": "What type does range() return?","a": "A range object, not a list."},{"q": "What are all([]) and any([])?","a": "all([]) is True, any([]) is False."},{"q": "Does the loop variable still exist after loop ends?","a": "Yes, in Python it remains bound to the last assigned value."},{"q": "Does continue prevent loop else?","a": "No. Only break prevents loop else from running."},{"q": "What is the precedence between and/or?","a": "and has higher precedence than or."},{"q": "What does pass do in Python control flow?","a": "Nothing at runtime. It is a syntactic placeholder for an empty block."},{"q": "Does break in an inner loop stop the outer loop too?","a": "No. break stops only the innermost active loop."}];
+const quizData = [{"q": "Which condition is syntactically correct?","options": ["if x = 5:","if x == 5:","if (x == 5)","if x equals 5:"],"correct": 1,"explanation": "Use == for comparison and a colon to open the block."},{"q": "What is list(range(1, 5))?","options": ["[1, 2, 3, 4, 5]","[1, 2, 3, 4]","[0, 1, 2, 3, 4]","[2, 3, 4]"],"correct": 1,"explanation": "range stop is exclusive."},{"q": "What is printed? x = 0; while x < 3: x += 1; print(x)","options": ["0","2","3","4"],"correct": 2,"explanation": "x becomes 1,2,3 and then the loop stops."},{"q": "What is printed? for i in range(3): if i == 1: break; print(i)","options": ["0","0 1","0 1 2","1"],"correct": 0,"explanation": "When i reaches 1, break exits before printing 1."},{"q": "What is the result of: 5 and 0 or 7","options": ["0","5","7","True"],"correct": 2,"explanation": "5 and 0 gives 0, then 0 or 7 gives 7."},{"q": "What does this output? for i in range(5): if i % 2 == 0: continue; print(i)","options": ["0 2 4","1 3","1 2 3 4","No output"],"correct": 1,"explanation": "continue skips even values, so only odd values print."},{"q": "Will loop else run? for i in range(3): if i == 1: break; else: print('done')","options": ["Yes, always","No, break prevents it","Only if i is odd","SyntaxError"],"correct": 1,"explanation": "loop-else executes only when no break occurs."},{"q": "Which statement is true about range(5, 0, 1)?","options": ["It yields 5,4,3,2,1","It yields 1,2,3,4,5","It yields empty sequence","It raises ValueError"],"correct": 2,"explanation": "Positive step cannot move from 5 down toward 0."},{"q": "What does all([]) return?","options": ["False","True","None","Error"],"correct": 1,"explanation": "all on an empty iterable returns True."},{"q": "What does any([]) return?","options": ["False","True","None","Error"],"correct": 0,"explanation": "any on an empty iterable returns False."},{"q": "What is true about this expression: not (x < 0 or x > 10)","options": ["Equivalent to x < 0 and x > 10","Equivalent to x >= 0 and x <= 10","Equivalent to x == 0","Always False"],"correct": 1,"explanation": "De Morgan transformation gives the bounded interval condition."},{"q": "After for i in range(4): pass, what is i?","options": ["undefined","3","4","None"],"correct": 1,"explanation": "The loop variable persists and keeps the last assigned value."},{"q": "Which statement is true about loop else?","options": ["It runs only if loop body is empty","It runs when no break occurs","It runs only after continue","It never runs in for-loops"],"correct": 1,"explanation": "Loop else executes if the loop ends normally (without break)."},{"q": "Which precedence statement is correct?","options": ["or has higher precedence than and","and has higher precedence than or","They are equal precedence","Precedence depends on variable values"],"correct": 1,"explanation": "In Python, and binds tighter than or."},{"q": "What does this print? for i in range(10, 12, 2):\n    if i % 2 != 1:\n        print('No')","options": ["No","No No","Nothing","TypeError"],"correct": 0,"explanation": "Only i=10 is produced; condition is true once."},{"q": "Which statement about nested loops is correct?","options": ["break exits all loops","break exits only the innermost loop","continue exits the loop","range(5,0,1) iterates down to 1"],"correct": 1,"explanation": "break affects only the loop where it appears."}];
 
 let quizAnswered = {};
 let correctAnswers = 0;

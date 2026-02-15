@@ -542,6 +542,11 @@ print(f"Score: {score:.2f}")         # Score: 93.46</code></pre>
         <li><strong>Type conversion traps:</strong> <code>int(3.9)</code>, <code>float(4)</code>, <code>str(3)</code>, <code>bool("0")</code>.</li>
         <li><strong>Operator traps:</strong> negative floor division, exponent precedence, chained operations.</li>
         <li><strong>I/O traps:</strong> effect of <code>end=</code> in <code>print()</code> and <code>input()</code> string return type.</li>
+        <li><strong>Exam baseline:</strong> 30 questions, 45 minutes, pass threshold 70%.</li>
+        <li><strong>Question formats:</strong> single-choice, multi-select, drag-and-drop, gap-fill, and code-fill style prompts can appear.</li>
+        <li><strong>Language theory terms:</strong> questions may explicitly test <code>lexis</code>, <code>syntax</code>, and <code>semantics</code>.</li>
+        <li><strong>Implementation terms:</strong> CPython is the default reference implementation of Python written in C.</li>
+        <li><strong>Pacing note:</strong> some prep sets use 40-minute runs, so train both 40-minute and 45-minute timing.</li>
       </ul>
 
       <h3>Raw-Question Insights (Official OCR Patterns)</h3>
@@ -552,7 +557,12 @@ print(f"Score: {score:.2f}")         # Score: 93.46</code></pre>
 # checklist before answering
 # 1) distinguish compile-time vs runtime
 # 2) check keyword/identifier legality
-# 3) verify precedence before mental arithmetic</code></pre>
+# 3) verify precedence before mental arithmetic
+
+print(list('hello'))                    # ['h', 'e', 'l', 'l', 'o']
+print(1 / 2 + 3 // 3 + 4 ** 2)          # 17.5
+print(3 / 5)                            # 0.6</code></pre>
+
     </div>
   </div>
 
@@ -635,7 +645,12 @@ True = 1     # SyntaxError
 
 # legal
 true_value = 5
-TRUE = 7</code></pre>
+TRUE = 7
+
+print(9 ** 3 ** 0 ** 1)               # 9
+name = input(); print(name == " Robert ")  # False for input: robert
+print("Py" * 3)                       # PyPyPy
+print(bool("None"))                   # True (non-empty string)</code></pre>
     </div>
   </div>
 
@@ -949,38 +964,8 @@ true_value = 10</code></pre>
 </div>
 
 <script>
-const flashcardsData = [
-  {"q": "What execution model does Python use?", "a": "Python compiles source to bytecode first, then the Python VM interprets that bytecode."},
-  {"q": "What is the core Python 3 division rule?", "a": "The / operator always returns float; // performs floor division."},
-  {"q": "What does -2 ** 2 evaluate to?", "a": "-4, because exponentiation has higher precedence than unary minus."},
-  {"q": "What does 2 ** 3 ** 2 evaluate to?", "a": "512, because exponentiation is right-associative."},
-  {"q": "Name valid integer literal prefixes in Python.", "a": "0b for binary, 0o for octal, 0x for hexadecimal."},
-  {"q": "What does input() return?", "a": "Always a string. You must cast with int() or float() for numeric operations."},
-  {"q": "What are the common falsy values?", "a": "0, 0.0, '', [], {}, (), None, False."},
-  {"q": "Is bool('0') truthy or falsy?", "a": "Truthy. Any non-empty string is True."},
-  {"q": "What is the safest way to compare with None?", "a": "Use identity: value is None (not == None)."},
-  {"q": "What does int(3.9) return?", "a": "3. int() truncates toward zero; it does not round."},
-  {"q": "What does print() return?", "a": "None. It performs output as a side effect."},
-  {"q": "Why can 0.1 + 0.2 == 0.3 be False?", "a": "Floating-point values are binary approximations, so exact decimal equality can fail."},
-  {"q": "From raw questions: which names are illegal?", "a": "Keywords and literals like for, and, True are illegal as identifiers."},
-  {"q": "What is true about compilation in exam wording?", "a": "Compilation happens before runtime and creates a target artifact that users can run."}
-];
-const quizData = [
-  {"q": "What is the output of: print(10 / 4, 10 // 4, 10 % 4)?", "options": ["2.5 2 2", "2 2 2", "2.5 2.5 2", "2.0 2 0"], "correct": 0, "explanation": "/ returns float, // floor-divides, % gives remainder."},
-  {"q": "Which identifier is valid in Python?", "options": ["2name", "full-name", "_user_name", "user name"], "correct": 2, "explanation": "Identifiers may start with letter or underscore and contain digits/underscores only."},
-  {"q": "What is printed by: print(-2 ** 2, (-2) ** 2)?", "options": ["4 4", "-4 4", "-4 -4", "4 -4"], "correct": 1, "explanation": "Power binds before unary minus, so -2**2 is -(2**2)."},
-  {"q": "What is the value of: 2 ** 3 ** 2 ?", "options": ["64", "256", "512", "729"], "correct": 2, "explanation": "Exponentiation is right-to-left: 2 ** (3 ** 2) = 2 ** 9."},
-  {"q": "What is the type of input() return value?", "options": ["int", "float", "bool", "str"], "correct": 3, "explanation": "input() always returns a string."},
-  {"q": "What does bool([0]) return?", "options": ["False", "True", "0", "TypeError"], "correct": 1, "explanation": "Non-empty containers are truthy, regardless of content."},
-  {"q": "What does int(-3.9) return?", "options": ["-4", "-3", "3", "ValueError"], "correct": 1, "explanation": "int() truncates toward zero."},
-  {"q": "What is the output of: print('A', 'B', sep='-', end='!')", "options": ["A B", "A-B!", "A-B", "A!B"], "correct": 1, "explanation": "sep joins arguments, end replaces newline."},
-  {"q": "What does this produce? x = print('Hello'); print(x)", "options": ["Hello\\nHello", "Hello\\n0", "Hello\\nNone", "None\\nHello"], "correct": 2, "explanation": "print() returns None after printing Hello."},
-  {"q": "Which statement about Python typing is correct?", "options": ["Variables require explicit declarations", "Python is statically typed", "Python is dynamically typed", "Types cannot change after assignment"], "correct": 2, "explanation": "Names can be rebound to values of different types."},
-  {"q": "What is true about compiler vs interpreter in Python context?", "options": ["Python uses only machine code compilation", "Python is purely interpreted with no bytecode", "Python compiles to bytecode and executes via VM", "Python requires manual bytecode creation"], "correct": 2, "explanation": "CPython compiles source to bytecode then executes it on the PVM."},
-  {"q": "Which expression is true?", "options": ["round(2.5) == 3", "0.1 + 0.2 == 0.3", "bool('False') is False", "bool('') is False"], "correct": 3, "explanation": "Only empty string is falsy. The other statements are common traps."},
-  {"q": "Which identifier is illegal in Python?", "options": ["true_value", "value_true", "True", "_true"], "correct": 2, "explanation": "True is a boolean literal and cannot be used as an identifier."},
-  {"q": "Which statement about compilation is correct?", "options": ["Compiled code always runs slower than interpreted code", "Every end user must have the compiler installed", "Compilation creates a target artifact before runtime", "Compilation is identical to line-by-line interpretation"], "correct": 2, "explanation": "Compilation produces target code before execution."}
-];
+const flashcardsData = [{"q": "What execution model does Python use?","a": "Python compiles source to bytecode first, then the Python VM interprets that bytecode."},{"q": "What is the core Python 3 division rule?","a": "The / operator always returns float; // performs floor division."},{"q": "What does -2 ** 2 evaluate to?","a": "-4, because exponentiation has higher precedence than unary minus."},{"q": "What does 2 ** 3 ** 2 evaluate to?","a": "512, because exponentiation is right-associative."},{"q": "Name valid integer literal prefixes in Python.","a": "0b for binary, 0o for octal, 0x for hexadecimal."},{"q": "What does input() return?","a": "Always a string. You must cast with int() or float() for numeric operations."},{"q": "What are the common falsy values?","a": "0, 0.0, '', [], {}, (), None, False."},{"q": "Is bool('0') truthy or falsy?","a": "Truthy. Any non-empty string is True."},{"q": "What is the safest way to compare with None?","a": "Use identity: value is None (not == None)."},{"q": "What does int(3.9) return?","a": "3. int() truncates toward zero; it does not round."},{"q": "What does print() return?","a": "None. It performs output as a side effect."},{"q": "Why can 0.1 + 0.2 == 0.3 be False?","a": "Floating-point values are binary approximations, so exact decimal equality can fail."},{"q": "From raw questions: which names are illegal?","a": "Keywords and literals like for, and, True are illegal as identifiers."},{"q": "What is true about compilation in exam wording?","a": "Compilation happens before runtime and creates a target artifact that users can run."},{"q": "What exam baseline does the new source confirm for PCEP?","a": "30 questions, 45 minutes, and a 70% passing score."},{"q": "If user inputs robert, is name == ' Robert ' true?","a": "No. String comparison is exact and includes case and surrounding spaces."}];
+const quizData = [{"q": "What is the output of: print(10 / 4, 10 // 4, 10 % 4)?","options": ["2.5 2 2","2 2 2","2.5 2.5 2","2.0 2 0"],"correct": 0,"explanation": "/ returns float, // floor-divides, % gives remainder."},{"q": "Which identifier is valid in Python?","options": ["2name","full-name","_user_name","user name"],"correct": 2,"explanation": "Identifiers may start with letter or underscore and contain digits/underscores only."},{"q": "What is printed by: print(-2 ** 2, (-2) ** 2)?","options": ["4 4","-4 4","-4 -4","4 -4"],"correct": 1,"explanation": "Power binds before unary minus, so -2**2 is -(2**2)."},{"q": "What is the value of: 2 ** 3 ** 2 ?","options": ["64","256","512","729"],"correct": 2,"explanation": "Exponentiation is right-to-left: 2 ** (3 ** 2) = 2 ** 9."},{"q": "What is the type of input() return value?","options": ["int","float","bool","str"],"correct": 3,"explanation": "input() always returns a string."},{"q": "What does bool([0]) return?","options": ["False","True","0","TypeError"],"correct": 1,"explanation": "Non-empty containers are truthy, regardless of content."},{"q": "What does int(-3.9) return?","options": ["-4","-3","3","ValueError"],"correct": 1,"explanation": "int() truncates toward zero."},{"q": "What is the output of: print('A', 'B', sep='-', end='!')","options": ["A B","A-B!","A-B","A!B"],"correct": 1,"explanation": "sep joins arguments, end replaces newline."},{"q": "What does this produce? x = print('Hello'); print(x)","options": ["Hello\\nHello","Hello\\n0","Hello\\nNone","None\\nHello"],"correct": 2,"explanation": "print() returns None after printing Hello."},{"q": "Which statement about Python typing is correct?","options": ["Variables require explicit declarations","Python is statically typed","Python is dynamically typed","Types cannot change after assignment"],"correct": 2,"explanation": "Names can be rebound to values of different types."},{"q": "What is true about compiler vs interpreter in Python context?","options": ["Python uses only machine code compilation","Python is purely interpreted with no bytecode","Python compiles to bytecode and executes via VM","Python requires manual bytecode creation"],"correct": 2,"explanation": "CPython compiles source to bytecode then executes it on the PVM."},{"q": "Which expression is true?","options": ["round(2.5) == 3","0.1 + 0.2 == 0.3","bool('False') is False","bool('') is False"],"correct": 3,"explanation": "Only empty string is falsy. The other statements are common traps."},{"q": "Which identifier is illegal in Python?","options": ["true_value","value_true","True","_true"],"correct": 2,"explanation": "True is a boolean literal and cannot be used as an identifier."},{"q": "Which statement about compilation is correct?","options": ["Compiled code always runs slower than interpreted code","Every end user must have the compiler installed","Compilation creates a target artifact before runtime","Compilation is identical to line-by-line interpretation"],"correct": 2,"explanation": "Compilation produces target code before execution."},{"q": "What is the output of: print(9 ** 3 ** 0 ** 1)?","options": ["9","3","1","18"],"correct": 0,"explanation": "Exponentiation is right-associative: 9 ** (3 ** (0 ** 1)) = 9."},{"q": "User enters robert. What does this print? name = input(); print(name == ' Robert ')","options": ["True","False","NameError","It prints robert"],"correct": 1,"explanation": "Spaces and uppercase R make the comparison false."}];
 
 let quizAnswered = {};
 let correctAnswers = 0;
