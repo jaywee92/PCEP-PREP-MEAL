@@ -441,12 +441,12 @@
   </header>
 
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('theory')">Theory</button>
-    <button class="tab-btn" onclick="switchTab('cheatsheet')">Cheatsheet</button>
-    <button class="tab-btn" onclick="switchTab('mistakes')">Common Mistakes</button>
-    <button class="tab-btn" onclick="switchTab('pitfalls')">Pitfalls</button>
-    <button class="tab-btn" onclick="switchTab('flashcards')">Flashcards</button>
-    <button class="tab-btn" onclick="switchTab('quiz')">Quiz</button>
+    <button class="tab-btn active" onclick="switchTab(event, 'theory')">Theory</button>
+    <button class="tab-btn" onclick="switchTab(event, 'cheatsheet')">Cheatsheet</button>
+    <button class="tab-btn" onclick="switchTab(event, 'mistakes')">Common Mistakes</button>
+    <button class="tab-btn" onclick="switchTab(event, 'pitfalls')">Pitfalls</button>
+    <button class="tab-btn" onclick="switchTab(event, 'flashcards')">Flashcards</button>
+    <button class="tab-btn" onclick="switchTab(event, 'quiz')">Quiz</button>
   </div>
 
   <div id="theory" class="tab-content active">
@@ -475,7 +475,7 @@ print(len(numbers))         # Length</code></pre>
 
       <h3>Tuples</h3>
       <p>Tuples are ordered, immutable collections. Once created, they cannot be changed.</p>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code">coords = (10, 20)
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>coords = (10, 20)
 print(coords[0])            # 10
 x, y = coords               # Unpacking
 print(len(coords))          # 2
@@ -484,7 +484,7 @@ print(len(coords))          # 2
 
       <h3>Dictionaries</h3>
       <p>Dictionaries are unordered, mutable collections with key-value pairs.</p>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code">person = {"name": "Alice", "age": 30}
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>person = {"name": "Alice", "age": 30}
 print(person["name"])       # Alice
 person["age"] = 31          # Modify
 person["city"] = "NYC"      # Add
@@ -502,6 +502,28 @@ print(person.keys())        # Keys only</code></pre>
         <li><code>.count()</code> - Count occurrences</li>
         <li><code>.index()</code> - Find index of value</li>
       </ul>
+
+      <h3>Slicing Rules That Drive Many Exam Questions</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>s = "python"
+print(s[1:4])   # yth (stop excluded)
+print(s[::-1])  # nohtyp
+print(s[100:200])  # "" (no IndexError for slicing)</code></pre>
+
+      <h3>Copy vs Reference Behavior</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>a = [1, 2, 3]
+b = a           # same object
+c = a[:]        # copy
+b.append(4)
+print(a)        # [1, 2, 3, 4]
+print(c)        # [1, 2, 3]</code></pre>
+
+      <h3>Exam-Simulator Patterns for Module 3</h3>
+      <ul style="margin-left: 2rem;">
+        <li><strong>String tasks:</strong> indexing/slicing, immutability, <code>find()</code> vs <code>index()</code>.</li>
+        <li><strong>List tasks:</strong> <code>append()</code> vs <code>extend()</code>, copy/reference, <code>sort()</code> behavior.</li>
+        <li><strong>Dict tasks:</strong> key checks with <code>in</code>, safe access with <code>get()</code>.</li>
+        <li><strong>Tuple tasks:</strong> single-item tuple syntax and unpacking count errors.</li>
+      </ul>
     </div>
   </div>
 
@@ -510,7 +532,7 @@ print(person.keys())        # Keys only</code></pre>
       <h2>📋 Cheatsheet: Data Collections</h2>
       
       <h3>String Methods</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code">text = "Hello"
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>text = "Hello"
 text.upper()            # HELLO
 text.lower()            # hello
 text.replace("l", "L")  # HeLLo
@@ -520,7 +542,7 @@ text.find("l")          # 2
 text.startswith("He")   # True</code></pre>
 
       <h3>List Operations</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code">lst = [1, 2, 3]
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>lst = [1, 2, 3]
 lst.append(4)           # [1,2,3,4]
 lst.remove(2)           # [1,3,4]
 lst.pop()               # [1,3], returns 4
@@ -530,7 +552,7 @@ lst.insert(1, 2)        # Insert at index
 lst.copy()              # Shallow copy</code></pre>
 
       <h3>List Slicing</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code">lst = [0, 1, 2, 3, 4]
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>lst = [0, 1, 2, 3, 4]
 lst[1:3]                # [1, 2]
 lst[::2]                # [0, 2, 4]
 lst[::-1]               # [4, 3, 2, 1, 0]
@@ -538,7 +560,7 @@ lst[1:]                 # [1, 2, 3, 4]
 lst[:-1]                # [0, 1, 2, 3]</code></pre>
 
       <h3>Dictionaries</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code">d = {"a": 1, "b": 2}
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>d = {"a": 1, "b": 2}
 d.get("a")              # 1
 d.get("c", "default")   # "default"
 d.keys()                # Keys
@@ -548,13 +570,29 @@ d.update({"c": 3})      # Add/update
 d.pop("a")              # Remove and return</code></pre>
 
       <h3>Tuple Operations</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code">t = (1, 2, 3)
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>t = (1, 2, 3)
 t[0]                    # 1
 x, y, z = t             # Unpacking
 t.count(1)              # 1
 t.index(2)              # 1
 len(t)                  # 3
 t + (4, 5)              # (1, 2, 3, 4, 5)</code></pre>
+
+      <h3>Must-Know Comparison Snippets</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>sorted([3, 1, 2])   # [1, 2, 3]  (new list)
+lst = [3, 1, 2]
+lst.sort()          # in place, returns None
+
+"x" in {"x": 1}     # True  (checks keys)
+"x" in {"a": "x"}   # False</code></pre>
+
+      <h3>Tuple + Dict Edge Cases</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>(1)       # int
+(1,)      # tuple
+
+d = {"a": 1}
+d.get("b")      # None
+# d["b"]        # KeyError</code></pre>
     </div>
   </div>
 
@@ -612,6 +650,22 @@ print(d["b"])  # KeyError!</code></pre>
         <p style="margin-bottom: 0.75rem;"><strong>Correct:</strong></p>
         <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>d = {"a": 1}
 print(d.get("b", "default"))  # "default"</code></pre>
+      </div>
+
+      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; margin-bottom: 1.5rem; border-radius: 4px;">
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 6: Confusing append() and extend()</h3>
+        <p style="margin-bottom: 0.75rem;"><strong>Wrong expectation:</strong></p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>a = [1, 2]
+a.append([3, 4])   # [1, 2, [3, 4]]</code></pre>
+        <p style="margin-bottom: 0.75rem;"><strong>Correct alternative:</strong></p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>a = [1, 2]
+a.extend([3, 4])   # [1, 2, 3, 4]</code></pre>
+      </div>
+
+      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; border-radius: 4px;">
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 7: Single-Element Tuple Without Comma</h3>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>x = (1)     # int
+y = (1,)    # tuple</code></pre>
       </div>
     </div>
   </div>
@@ -800,6 +854,21 @@ print(d.get("b", "default"))  # "default"</code></pre>
         <code>dict.get(key)</code> safely returns None for missing keys. Bracket notation <code>d[key]</code> raises KeyError. Use <code>get()</code> for safe access.
       </div>
     </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Tuple Can Contain Mutable Elements</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>Nothing inside a tuple can change</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>(1, 2, [3, 4]) allows list mutation</code>
+      </div>
+      <div class="pitfall-explanation">
+        Tuples are immutable containers, but mutable objects inside them can still be modified.
+      </div>
+    </div>
   </div>
 </div>
     <div id="flashcards" class="tab-content">
@@ -809,7 +878,7 @@ print(d.get("b", "default"))  # "default"</code></pre>
         <div class="progress-label">Correct</div>
       </div>
       <div class="progress-item">
-        <div class="progress-number" id="total-count">8</div>
+        <div class="progress-number" id="total-count">12</div>
         <div class="progress-label">Total</div>
       </div>
     </div>
@@ -819,7 +888,7 @@ print(d.get("b", "default"))  # "default"</code></pre>
   <div id="quiz" class="tab-content">
     <div class="progress">
       <div class="progress-item">
-        <div class="progress-number" id="quiz-score">0/10</div>
+        <div class="progress-number" id="quiz-score">0/12</div>
         <div class="progress-label">Score</div>
       </div>
     </div>
@@ -829,16 +898,42 @@ print(d.get("b", "default"))  # "default"</code></pre>
 </div>
 
 <script>
-const flashcardsData = [{"q":"What is the main difference between lists and tuples?","a":"Lists are mutable (can be modified), tuples are immutable (cannot be changed after creation)"},{"q":"How to copy a list?","a":"Use lst.copy(), list(lst), or lst[:] to create a new independent copy"},{"q":"What does slicing lst[1:3] return?","a":"Elements at indices 1 and 2 (3 is exclusive). lst[1:3] = [lst[1], lst[2]]"},{"q":"What is string immutability?","a":"Strings cannot be modified. text[0]='x' causes TypeError. Create new string instead"},{"q":"Difference between list.remove() and list.pop()?","a":"remove(value) removes by value, pop([index]) removes by index and returns the element"},{"q":"How to iterate over dict keys and values?","a":"for key, value in dict.items(): or for k in dict: (keys), or for v in dict.values():"},{"q":"What is dict.get() used for?","a":"Safely access dictionary values without KeyError. dict.get(key, default) returns default if key missing"},{"q":"Why is tuple faster than list?","a":"Tuples are immutable, so Python can optimize them. Lists must allow modifications"}];
-const quizData = [{"q":"Which is NOT a mutable data type?","options":["list","dict","tuple","set"],"correct":2,"explanation":"Tuples are immutable. Once created, they cannot be changed."},{"q":"What does lst[2:5] return?","options":["Elements at indices 2, 3, 4","Elements at indices 2, 3, 4, 5","Elements at index 2 to 5","Error"],"correct":0,"explanation":"Slicing includes start but excludes end. lst[2:5] gets indices 2, 3, 4."},{"q":"After x=[1,2] and y=x, if y.append(3), what is x?","options":["[1,2]","[1,2,3]","Error","Both [1,2,3]"],"correct":3,"explanation":"y=x creates a reference, not a copy. Both point to same list [1,2,3]."},{"q":"How to get a value from dict safely?","options":["dict[key]","dict(key)","dict.get(key, default)","dict.fetch(key)"],"correct":2,"explanation":"dict.get() returns a default value if key is missing, avoiding KeyError."},{"q":"What is the output of 'hello'[1:4]?","options":["'ell'","'ellof'","'lo'","Error"],"correct":0,"explanation":"String slicing [1:4] gets indices 1, 2, 3 = 'ell'."},{"q":"How to check if key exists in dict?","options":["key in dict","dict.has(key)","dict.contains(key)","'key' == dict"],"correct":0,"explanation":"Use 'key in dict' to check if key exists."},{"q":"What does lst.pop() return?","options":["Last element, removes it","None","Random element","First element"],"correct":0,"explanation":"pop() removes and returns the last element (or at specified index)."},{"q":"Difference between list and tuple?","options":["List is ordered, tuple is not","List is mutable, tuple is immutable","Both same except name","Tuples are faster"],"correct":1,"explanation":"Key difference: lists can be modified (append, remove), tuples cannot."},{"q":"How to copy a list properly?","options":["new_list = old_list","new_list = old_list.copy()","new_list = list(old_list)","Both B and C"],"correct":3,"explanation":"Both .copy() and list() create independent copies. new_list = old_list only creates reference."},{"q":"What does string.upper() do?","options":["Uppercase first letter","Converts all to uppercase","Removes uppercase","Reverses case"],"correct":1,"explanation":"upper() converts entire string to uppercase. lower() does opposite."}];
+const flashcardsData = [
+  {"q":"Main difference between lists and tuples?", "a":"Lists are mutable, tuples are immutable."},
+  {"q":"How do you copy a list safely?", "a":"Use a.copy(), list(a), or slicing a[:] to create a new list."},
+  {"q":"What does s[1:4] include?", "a":"Indexes 1, 2, 3. Stop index is excluded."},
+  {"q":"What does s[::-1] do?", "a":"Returns the reversed sequence."},
+  {"q":"append() vs extend() in one sentence?", "a":"append adds one item; extend adds each item from an iterable."},
+  {"q":"What does list.sort() return?", "a":"None. It sorts the list in place."},
+  {"q":"How does sorted(list_obj) differ from sort()?", "a":"sorted returns a new list; sort mutates existing list."},
+  {"q":"What does dict.get('x') return if key is missing?", "a":"None by default (or the provided default value)."},
+  {"q":"What does 'key in d' test in dictionaries?", "a":"Keys only, not values."},
+  {"q":"How is a single-element tuple written?", "a":"With a trailing comma, e.g. (1,)."},
+  {"q":"Can tuple contents ever be mutable?", "a":"Yes, a tuple can contain mutable objects like lists."},
+  {"q":"find() vs index() when substring is missing?", "a":"find returns -1, index raises ValueError."}
+];
+const quizData = [
+  {"q":"Which type is immutable?", "options":["list", "dict", "tuple", "set"], "correct":2, "explanation":"Tuple is immutable; list/dict/set are mutable."},
+  {"q":"What is the result of [0,1,2,3,4][1:4] ?", "options":["[1,2,3]", "[1,2,3,4]", "[0,1,2,3]", "[2,3,4]"], "correct":0, "explanation":"Slice stop is excluded."},
+  {"q":"What happens after a=[1,2]; b=a; b.append(3)?", "options":["a is [1,2]", "a is [1,2,3]", "TypeError", "b only changes"], "correct":1, "explanation":"b references the same list object as a."},
+  {"q":"Which call safely handles missing dictionary keys?", "options":["d['x']", "d.fetch('x')", "d.get('x', 0)", "d.value('x')"], "correct":2, "explanation":"get returns default instead of raising KeyError."},
+  {"q":"What is 'hello'[1:4] ?", "options":["'ell'", "'ello'", "'lo'", "IndexError"], "correct":0, "explanation":"Indexes 1..3 produce 'ell'."},
+  {"q":"How do you check whether key 'age' exists in dict d?", "options":["'age' in d.values()", "'age' in d", "d.has('age')", "d['age'] != None"], "correct":1, "explanation":"in on dict checks keys."},
+  {"q":"What does pop() return for a list?", "options":["None always", "Removed item", "Index of removed item", "Whole list"], "correct":1, "explanation":"pop removes and returns an element."},
+  {"q":"Which creates an independent copy of list a?", "options":["b = a", "b = a.copy()", "b = a.ref()", "b = a.alias()"], "correct":1, "explanation":"copy() creates a shallow independent list copy."},
+  {"q":"What is true about a.sort()?", "options":["Returns sorted list", "Returns None", "Creates tuple", "Raises TypeError"], "correct":1, "explanation":"sort() mutates list and returns None."},
+  {"q":"What is type((1)) ?", "options":["tuple", "list", "int", "set"], "correct":2, "explanation":"(1) is int; (1,) is tuple."},
+  {"q":"What does 'x' in {'x': 1, 'y': 2} evaluate to?", "options":["False", "True", "KeyError", "None"], "correct":1, "explanation":"Membership checks keys."},
+  {"q":"What happens with 'abc'.index('z') ?", "options":["Returns -1", "Returns 0", "Raises ValueError", "Returns None"], "correct":2, "explanation":"index raises ValueError if substring is missing."}
+];
 
 let quizAnswered = {};
 
-function switchTab(tabName) {
+function switchTab(evt, tabName) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
   document.getElementById(tabName).classList.add('active');
-  event.target.classList.add('active');
+  if (evt && evt.target) evt.target.classList.add('active');
   if (tabName === 'flashcards') initFlashcards();
   if (tabName === 'quiz') initQuiz();
 }

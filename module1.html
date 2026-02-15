@@ -441,12 +441,12 @@
   </header>
 
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('theory')">Theory</button>
-    <button class="tab-btn" onclick="switchTab('cheatsheet')">Cheatsheet</button>
-    <button class="tab-btn" onclick="switchTab('mistakes')">Common Mistakes</button>
-    <button class="tab-btn" onclick="switchTab('pitfalls')">Pitfalls</button>
-    <button class="tab-btn" onclick="switchTab('flashcards')">Flashcards</button>
-    <button class="tab-btn" onclick="switchTab('quiz')">Quiz</button>
+    <button class="tab-btn active" onclick="switchTab(event, 'theory')">Theory</button>
+    <button class="tab-btn" onclick="switchTab(event, 'cheatsheet')">Cheatsheet</button>
+    <button class="tab-btn" onclick="switchTab(event, 'mistakes')">Common Mistakes</button>
+    <button class="tab-btn" onclick="switchTab(event, 'pitfalls')">Pitfalls</button>
+    <button class="tab-btn" onclick="switchTab(event, 'flashcards')">Flashcards</button>
+    <button class="tab-btn" onclick="switchTab(event, 'quiz')">Quiz</button>
   </div>
 
   <!-- Theory Tab -->
@@ -500,6 +500,42 @@
         <li><code>str</code> - Strings/Text (e.g., "Hello", 'World')</li>
         <li><code>bool</code> - Boolean values (True, False)</li>
       </ul>
+
+      <h3>Syntax Rules That Are Frequently Tested</h3>
+      <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+        <li>Indentation is mandatory for code blocks.</li>
+        <li>Code blocks begin with a colon (<code>:</code>).</li>
+        <li>Python is case-sensitive: <code>name</code> and <code>Name</code> are different.</li>
+        <li>Valid identifiers start with a letter or underscore, then letters, digits, underscores.</li>
+      </ul>
+
+      <h3>Literals and Number Bases</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>decimal = 42
+binary = 0b101010      # 42
+octal = 0o52           # 42
+hexadecimal = 0x2A     # 42
+million = 1_000_000    # readable numeric literal</code></pre>
+
+      <h3>Operator Precedence (Python Docs Aligned)</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>()  **  +x/-x  * / // %  + -  comparisons  not  and  or
+
+print(-2 ** 2)      # -4  (power before unary minus)
+print(2 ** 3 ** 2)  # 512 (right-to-left)</code></pre>
+
+      <h3>Input/Output Essentials</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>name = input("Name: ")          # always str
+age = int(input("Age: "))       # cast for numeric logic
+
+print("A", "B", sep="-", end="!")   # A-B!
+score = 93.456
+print(f"Score: {score:.2f}")         # Score: 93.46</code></pre>
+
+      <h3>Exam-Simulator Patterns for Module 1</h3>
+      <ul style="margin-left: 2rem;">
+        <li><strong>Type conversion traps:</strong> <code>int(3.9)</code>, <code>float(4)</code>, <code>str(3)</code>, <code>bool("0")</code>.</li>
+        <li><strong>Operator traps:</strong> negative floor division, exponent precedence, chained operations.</li>
+        <li><strong>I/O traps:</strong> effect of <code>end=</code> in <code>print()</code> and <code>input()</code> string return type.</li>
+      </ul>
     </div>
   </div>
 
@@ -548,6 +584,32 @@ print("Hello" + " World")  # Concatenation</code></pre>
       <h3>Comments</h3>
       <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># This is a comment
 x = 5  # Inline comment</code></pre>
+
+      <h3>Numeric Literals</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>0b1010     # binary
+0o17       # octal
+0xFF       # hexadecimal
+1_000_000  # underscores for readability</code></pre>
+
+      <h3>Truthiness Quick Checks</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>bool("")      # False
+bool("0")     # True
+bool([])      # False
+bool([0])     # True
+bool(None)    # False
+bool(0.0)     # False</code></pre>
+
+      <h3>Conversion + Rounding</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>int(3.9)       # 3  (truncate)
+round(2.5)     # 2  (banker's rounding)
+round(3.5)     # 4
+float("3.14")  # 3.14</code></pre>
+
+      <h3>Must-Remember I/O</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>user = input("User: ")      # str
+print("x", "y", sep="|")    # x|y
+print("Hi", end="...")      # no newline
+print("next")</code></pre>
     </div>
   </div>
 
@@ -602,6 +664,24 @@ print(age + 5)   # OK: 30</code></pre>
           <li>The Python VM (PVM) then interprets this bytecode</li>
           <li>This is a <strong>hybrid</strong> approach</li>
         </ul>
+      </div>
+
+      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; margin-bottom: 1.5rem; border-radius: 4px;">
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 6: Using <code>is</code> Instead of <code>==</code></h3>
+        <p style="margin-bottom: 0.75rem;"><strong>Wrong:</strong></p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>x = 256
+y = 256
+print(x is y)   # identity check, not value check</code></pre>
+        <p style="margin-bottom: 0.75rem;"><strong>Correct:</strong></p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>print(x == y)   # value comparison
+print(x is None)  # 'is' is ideal for None</code></pre>
+      </div>
+
+      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; border-radius: 4px;">
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 7: Assuming Standard Rounding Rules</h3>
+        <p style="margin-bottom: 0.75rem;"><strong>Trap:</strong> Python uses banker's rounding for .5 cases.</p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>print(round(2.5))  # 2
+print(round(3.5))  # 4</code></pre>
       </div>
     </div>
   </div>
@@ -761,6 +841,36 @@ print(age + 5)   # OK: 30</code></pre>
           You cannot concatenate strings and numbers directly. Convert both to the same type first with <code>str()</code> or <code>int()</code>.
         </div>
       </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>round() Uses Banker's Rounding</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>round(2.5) = 3</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>round(2.5) = 2, round(3.5) = 4</code>
+        </div>
+        <div class="pitfall-explanation">
+          Python uses bankers rounding for midpoint values. This appears in exam code-tracing questions.
+        </div>
+      </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>Float Precision Is Not Exact</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>0.1 + 0.2 == 0.3 is always True</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>0.1 + 0.2 == 0.3  # False</code>
+        </div>
+        <div class="pitfall-explanation">
+          Floating-point numbers are binary approximations. For exact decimal checks, avoid direct equality comparisons.
+        </div>
+      </div>
     </div>
   </div>
 
@@ -771,7 +881,7 @@ print(age + 5)   # OK: 30</code></pre>
         <div class="progress-label">Correct</div>
       </div>
       <div class="progress-item">
-        <div class="progress-number" id="total-count">8</div>
+        <div class="progress-number" id="total-count">12</div>
         <div class="progress-label">Total</div>
       </div>
     </div>
@@ -784,7 +894,7 @@ print(age + 5)   # OK: 30</code></pre>
   <div id="quiz" class="tab-content">
     <div class="progress">
       <div class="progress-item">
-        <div class="progress-number" id="quiz-score">0/8</div>
+        <div class="progress-number" id="quiz-score">0/12</div>
         <div class="progress-label">Score</div>
       </div>
     </div>
@@ -797,18 +907,44 @@ print(age + 5)   # OK: 30</code></pre>
 </div>
 
 <script>
-const flashcardsData = [{"q": "What is a Compiler?", "a": "A compiler is a program that translates the entire source code to machine code at once before execution begins."}, {"q": "What is an Interpreter?", "a": "An interpreter executes the source code line by line and translates it during execution to machine code."}, {"q": "Which approach does Python use?", "a": "Python uses a combination of compilation and interpretation. The code is first compiled to bytecode, then a virtual machine interprets it."}, {"q": "What is the main difference between Python 2 and Python 3?", "a": "Python 3 differs by: print() as function instead of statement, Unicode as default, true division (/), improved Unicode support and removed deprecated features."}, {"q": "What is a Variable?", "a": "A variable is a named storage location that holds a value. In Python, dynamic typing is possible."}, {"q": "Name three basic data types in Python.", "a": "int (integers), float (decimals) and str (strings/text)."}, {"q": "What is a Literal?", "a": "A literal is a direct value in code that represents itself (e.g., 42, \"Hello\", 3.14)."}, {"q": "Explain the naming convention for variables in Python.", "a": "Variable names should start with letters or _, can contain numbers, but not start with a number. Convention: snake_case for variables."}];
-const quizData = [{"q": "Which statement about Python is FALSE?", "options": ["Python is an interpreted language", "Python uses automatic memory management", "Python is statically typed", "Python is commonly used for scripts and data science"], "correct": 2, "explanation": "Python is dynamically typed, not statically. Variable types can change during runtime."}, {"q": "Which command outputs a message to the screen?", "options": ["output(\"Hello\")", "print(\"Hello\")", "write(\"Hello\")", "display(\"Hello\")"], "correct": 1, "explanation": "The print() function outputs text to the console."}, {"q": "Which variable name is valid?", "options": ["123var", "var-name", "_private_var", "var name"], "correct": 2, "explanation": "Variable names cannot start with digits, contain hyphens or spaces. _private_var is the only valid example."}, {"q": "What is the difference between print in Python 2 and Python 3?", "options": ["There is no difference", "In Python 2 print is a statement, in Python 3 it's a function", "In Python 3 print is a statement, in Python 2 it's a function", "Python 2 doesn't support print"], "correct": 1, "explanation": "Python 2: print \"text\" | Python 3: print(\"text\")"}, {"q": "Which data type is used for the number 3.14?", "options": ["int", "string", "float", "double"], "correct": 2, "explanation": "float is used for decimal numbers."}, {"q": "Which character starts a comment in Python?", "options": ["//", "/*", "#", "--"], "correct": 2, "explanation": "The hash symbol (#) starts a comment."}, {"q": "What is bytecode?", "options": ["Machine code produced by the compiler", "A platform-independent intermediate code", "An error code during compilation", "A special string type in Python"], "correct": 1, "explanation": "Bytecode is a platform-independent intermediate code that the Python VM (Virtual Machine) executes."}, {"q": "Which statement is correct?", "options": ["All variables must be declared before use", "Python requires explicit type declarations", "Variables are created through assignment", "Variable names can contain spaces"], "correct": 2, "explanation": "In Python, variables are created through assignment. name = \"Alice\" creates the variable automatically."}];
+const flashcardsData = [
+  {"q": "What execution model does Python use?", "a": "Python compiles source to bytecode first, then the Python VM interprets that bytecode."},
+  {"q": "What is the core Python 3 division rule?", "a": "The / operator always returns float; // performs floor division."},
+  {"q": "What does -2 ** 2 evaluate to?", "a": "-4, because exponentiation has higher precedence than unary minus."},
+  {"q": "What does 2 ** 3 ** 2 evaluate to?", "a": "512, because exponentiation is right-associative."},
+  {"q": "Name valid integer literal prefixes in Python.", "a": "0b for binary, 0o for octal, 0x for hexadecimal."},
+  {"q": "What does input() return?", "a": "Always a string. You must cast with int() or float() for numeric operations."},
+  {"q": "What are the common falsy values?", "a": "0, 0.0, '', [], {}, (), None, False."},
+  {"q": "Is bool('0') truthy or falsy?", "a": "Truthy. Any non-empty string is True."},
+  {"q": "What is the safest way to compare with None?", "a": "Use identity: value is None (not == None)."},
+  {"q": "What does int(3.9) return?", "a": "3. int() truncates toward zero; it does not round."},
+  {"q": "What does print() return?", "a": "None. It performs output as a side effect."},
+  {"q": "Why can 0.1 + 0.2 == 0.3 be False?", "a": "Floating-point values are binary approximations, so exact decimal equality can fail."}
+];
+const quizData = [
+  {"q": "What is the output of: print(10 / 4, 10 // 4, 10 % 4)?", "options": ["2.5 2 2", "2 2 2", "2.5 2.5 2", "2.0 2 0"], "correct": 0, "explanation": "/ returns float, // floor-divides, % gives remainder."},
+  {"q": "Which identifier is valid in Python?", "options": ["2name", "full-name", "_user_name", "user name"], "correct": 2, "explanation": "Identifiers may start with letter or underscore and contain digits/underscores only."},
+  {"q": "What is printed by: print(-2 ** 2, (-2) ** 2)?", "options": ["4 4", "-4 4", "-4 -4", "4 -4"], "correct": 1, "explanation": "Power binds before unary minus, so -2**2 is -(2**2)."},
+  {"q": "What is the value of: 2 ** 3 ** 2 ?", "options": ["64", "256", "512", "729"], "correct": 2, "explanation": "Exponentiation is right-to-left: 2 ** (3 ** 2) = 2 ** 9."},
+  {"q": "What is the type of input() return value?", "options": ["int", "float", "bool", "str"], "correct": 3, "explanation": "input() always returns a string."},
+  {"q": "What does bool([0]) return?", "options": ["False", "True", "0", "TypeError"], "correct": 1, "explanation": "Non-empty containers are truthy, regardless of content."},
+  {"q": "What does int(-3.9) return?", "options": ["-4", "-3", "3", "ValueError"], "correct": 1, "explanation": "int() truncates toward zero."},
+  {"q": "What is the output of: print('A', 'B', sep='-', end='!')", "options": ["A B", "A-B!", "A-B", "A!B"], "correct": 1, "explanation": "sep joins arguments, end replaces newline."},
+  {"q": "What does this produce? x = print('Hello'); print(x)", "options": ["Hello\\nHello", "Hello\\n0", "Hello\\nNone", "None\\nHello"], "correct": 2, "explanation": "print() returns None after printing Hello."},
+  {"q": "Which statement about Python typing is correct?", "options": ["Variables require explicit declarations", "Python is statically typed", "Python is dynamically typed", "Types cannot change after assignment"], "correct": 2, "explanation": "Names can be rebound to values of different types."},
+  {"q": "What is true about compiler vs interpreter in Python context?", "options": ["Python uses only machine code compilation", "Python is purely interpreted with no bytecode", "Python compiles to bytecode and executes via VM", "Python requires manual bytecode creation"], "correct": 2, "explanation": "CPython compiles source to bytecode then executes it on the PVM."},
+  {"q": "Which expression is true?", "options": ["round(2.5) == 3", "0.1 + 0.2 == 0.3", "bool('False') is False", "bool('') is False"], "correct": 3, "explanation": "Only empty string is falsy. The other statements are common traps."}
+];
 
 let quizAnswered = {};
 let correctAnswers = 0;
 
-function switchTab(tabName) {
+function switchTab(evt, tabName) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
   
   document.getElementById(tabName).classList.add('active');
-  event.target.classList.add('active');
+  if (evt && evt.target) evt.target.classList.add('active');
 
   if (tabName === 'flashcards') initFlashcards();
   if (tabName === 'quiz') initQuiz();
