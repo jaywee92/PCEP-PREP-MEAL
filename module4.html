@@ -547,6 +547,14 @@ def count_up_to(n):
         <li>Exception ordering and effect of <code>finally</code>.</li>
         <li>TypeError/ValueError reasoning questions.</li>
       </ul>
+
+      <h3>Raw-Question Insights (Official OCR Patterns)</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># recurring official prompt styles
+# "Which statements about return are true? (Select two answers)"
+# "Which statements about None are true? (Select two answers)"
+# "Select true statements about try/except"
+
+# strategy: separate syntax validity, runtime behavior, and scope side effects</code></pre>
     </div>
   </div>
 
@@ -614,6 +622,14 @@ else:
     success()
 finally:
     cleanup()</code></pre>
+
+      <h3>Raw Exam Snapshot: return + None</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>def f():
+    pass
+
+print(f())           # None
+print(None == 0)     # False
+print(None is None)  # True</code></pre>
     </div>
   </div>
 
@@ -712,6 +728,13 @@ print(f())   # None, not 5</code></pre>
         <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 7: No Base Case in Recursion</h3>
         <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>def bad(n):
     return bad(n - 1)   # RecursionError eventually</code></pre>
+      </div>
+
+      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; border-radius: 4px;">
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 8: Treating <code>None</code> as Numeric Value</h3>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>x = None
+# print(x + 1)   # TypeError
+print(x is None) # correct check</code></pre>
       </div>
     </div>
   </div>
@@ -885,6 +908,21 @@ print(f())   # None, not 5</code></pre>
         Catching everything masks root causes and can hide bugs. Prefer specific exceptions first.
       </div>
     </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>None in Arithmetic</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>None + 1 is valid because None means 0</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>None + 1 raises TypeError</code>
+      </div>
+      <div class="pitfall-explanation">
+        Raw exam statements often mix true/false claims about None. None is assignable and comparable, but not valid with arithmetic operators.
+      </div>
+    </div>
   </div>
 </div>
     <div id="flashcards" class="tab-content">
@@ -894,7 +932,7 @@ print(f())   # None, not 5</code></pre>
   <div id="quiz" class="tab-content">
     <div class="progress">
       <div class="progress-item">
-        <div class="progress-number" id="quiz-score">0/12</div>
+        <div class="progress-number" id="quiz-score">0/14</div>
         <div class="progress-label">Score</div>
       </div>
     </div>
@@ -916,7 +954,9 @@ const flashcardsData = [
   {"q":"What happens without return statement?", "a":"Function returns None."},
   {"q":"Why order except blocks from specific to general?", "a":"General handlers can swallow specific exceptions first."},
   {"q":"What is required in recursion?", "a":"A base case to stop recursive calls."},
-  {"q":"What does a generator yield provide?", "a":"Lazy one-by-one values instead of returning all at once."}
+  {"q":"What does a generator yield provide?", "a":"Lazy one-by-one values instead of returning all at once."},
+  {"q":"What does a function return without explicit return?", "a":"None."},
+  {"q":"Can None be compared and assigned?", "a":"Yes. It can be assigned and compared, but not used in arithmetic."}
 ];
 const quizData = [
   {"q":"Which function signature is valid?", "options":["def f(a=1, b):", "def f(a, b=1):", "def f(*args, a):", "def f(**kwargs, *args):"], "correct":1, "explanation":"Default parameters must follow non-default positional parameters."},
@@ -930,7 +970,9 @@ const quizData = [
   {"q":"int('abc') raises:", "options":["TypeError", "ValueError", "KeyError", "IndexError"], "correct":1, "explanation":"String format invalid for int conversion."},
   {"q":"Correct except ordering is:", "options":["General then specific", "Specific then general", "else then except", "finally then except"], "correct":1, "explanation":"Specific handlers must come first."},
   {"q":"What does this return? def f(): x = 5", "options":["5", "0", "None", "NameError"], "correct":2, "explanation":"No explicit return means None."},
-  {"q":"Which statement about generators is true?", "options":["yield creates eager list", "Generators can be iterated multiple times from start automatically", "yield pauses function and produces next value lazily", "Generators cannot be used in for-loops"], "correct":2, "explanation":"yield enables lazy iteration and resumes function state."}
+  {"q":"Which statement about generators is true?", "options":["yield creates eager list", "Generators can be iterated multiple times from start automatically", "yield pauses function and produces next value lazily", "Generators cannot be used in for-loops"], "correct":2, "explanation":"yield enables lazy iteration and resumes function state."},
+  {"q":"Which statement about None is true?", "options":["None can only exist inside functions", "None + 1 is valid arithmetic", "None can be assigned to variables", "None cannot be compared"], "correct":2, "explanation":"None is assignable and comparable, but arithmetic with None is invalid."},
+  {"q":"Which statement about return is true?", "options":["return restarts function execution", "return can terminate function and pass a value", "return is required in every function", "return can appear only once per function"], "correct":1, "explanation":"return exits the current call and can pass a result to the caller."}
 ];
 
 let quizAnswered = {};

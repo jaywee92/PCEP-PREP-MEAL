@@ -543,6 +543,16 @@ print(f"Score: {score:.2f}")         # Score: 93.46</code></pre>
         <li><strong>Operator traps:</strong> negative floor division, exponent precedence, chained operations.</li>
         <li><strong>I/O traps:</strong> effect of <code>end=</code> in <code>print()</code> and <code>input()</code> string return type.</li>
       </ul>
+
+      <h3>Raw-Question Insights (Official OCR Patterns)</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># frequent exam wording patterns
+# "What is true about compilation? (Select two answers)"
+# "Which variable names are illegal? (Select two answers)"
+
+# checklist before answering
+# 1) distinguish compile-time vs runtime
+# 2) check keyword/identifier legality
+# 3) verify precedence before mental arithmetic</code></pre>
     </div>
   </div>
 
@@ -617,6 +627,15 @@ float("3.14")  # 3.14</code></pre>
 print("x", "y", sep="|")    # x|y
 print("Hi", end="...")      # no newline
 print("next")</code></pre>
+
+      <h3>Raw Exam Snapshot: Legal vs Illegal Identifiers</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># illegal (reserved or literal)
+and = 5      # SyntaxError
+True = 1     # SyntaxError
+
+# legal
+true_value = 5
+TRUE = 7</code></pre>
     </div>
   </div>
 
@@ -689,6 +708,18 @@ print(x is None)  # 'is' is ideal for None</code></pre>
         <p style="margin-bottom: 0.75rem;"><strong>Trap:</strong> Python uses banker's rounding for .5 cases.</p>
         <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>print(round(2.5))  # 2
 print(round(3.5))  # 4</code></pre>
+      </div>
+
+      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; border-radius: 4px;">
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 8: Confusing Keywords with Similar-Looking Names</h3>
+        <p style="margin-bottom: 0.75rem;">From raw exam questions: <code>True</code> is illegal as identifier, but <code>TRUE</code> and <code>true_value</code> are legal.</p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code># illegal
+for = 10
+True = 1
+
+# legal
+TRUE = 1
+true_value = 10</code></pre>
       </div>
     </div>
   </div>
@@ -878,6 +909,21 @@ print(round(3.5))  # 4</code></pre>
           Floating-point numbers are binary approximations. For exact decimal checks, avoid direct equality comparisons.
         </div>
       </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>Keyword vs Identifier Trap</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>True, for, and are valid variable names</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>true_value and TRUE are valid; True/for/and are illegal</code>
+        </div>
+        <div class="pitfall-explanation">
+          Raw PCEP questions repeatedly test reserved words and boolean literals. Similar spelling does not mean same identifier legality.
+        </div>
+      </div>
     </div>
   </div>
 
@@ -890,7 +936,7 @@ print(round(3.5))  # 4</code></pre>
   <div id="quiz" class="tab-content">
     <div class="progress">
       <div class="progress-item">
-        <div class="progress-number" id="quiz-score">0/12</div>
+        <div class="progress-number" id="quiz-score">0/14</div>
         <div class="progress-label">Score</div>
       </div>
     </div>
@@ -915,7 +961,9 @@ const flashcardsData = [
   {"q": "What is the safest way to compare with None?", "a": "Use identity: value is None (not == None)."},
   {"q": "What does int(3.9) return?", "a": "3. int() truncates toward zero; it does not round."},
   {"q": "What does print() return?", "a": "None. It performs output as a side effect."},
-  {"q": "Why can 0.1 + 0.2 == 0.3 be False?", "a": "Floating-point values are binary approximations, so exact decimal equality can fail."}
+  {"q": "Why can 0.1 + 0.2 == 0.3 be False?", "a": "Floating-point values are binary approximations, so exact decimal equality can fail."},
+  {"q": "From raw questions: which names are illegal?", "a": "Keywords and literals like for, and, True are illegal as identifiers."},
+  {"q": "What is true about compilation in exam wording?", "a": "Compilation happens before runtime and creates a target artifact that users can run."}
 ];
 const quizData = [
   {"q": "What is the output of: print(10 / 4, 10 // 4, 10 % 4)?", "options": ["2.5 2 2", "2 2 2", "2.5 2.5 2", "2.0 2 0"], "correct": 0, "explanation": "/ returns float, // floor-divides, % gives remainder."},
@@ -929,7 +977,9 @@ const quizData = [
   {"q": "What does this produce? x = print('Hello'); print(x)", "options": ["Hello\\nHello", "Hello\\n0", "Hello\\nNone", "None\\nHello"], "correct": 2, "explanation": "print() returns None after printing Hello."},
   {"q": "Which statement about Python typing is correct?", "options": ["Variables require explicit declarations", "Python is statically typed", "Python is dynamically typed", "Types cannot change after assignment"], "correct": 2, "explanation": "Names can be rebound to values of different types."},
   {"q": "What is true about compiler vs interpreter in Python context?", "options": ["Python uses only machine code compilation", "Python is purely interpreted with no bytecode", "Python compiles to bytecode and executes via VM", "Python requires manual bytecode creation"], "correct": 2, "explanation": "CPython compiles source to bytecode then executes it on the PVM."},
-  {"q": "Which expression is true?", "options": ["round(2.5) == 3", "0.1 + 0.2 == 0.3", "bool('False') is False", "bool('') is False"], "correct": 3, "explanation": "Only empty string is falsy. The other statements are common traps."}
+  {"q": "Which expression is true?", "options": ["round(2.5) == 3", "0.1 + 0.2 == 0.3", "bool('False') is False", "bool('') is False"], "correct": 3, "explanation": "Only empty string is falsy. The other statements are common traps."},
+  {"q": "Which identifier is illegal in Python?", "options": ["true_value", "value_true", "True", "_true"], "correct": 2, "explanation": "True is a boolean literal and cannot be used as an identifier."},
+  {"q": "Which statement about compilation is correct?", "options": ["Compiled code always runs slower than interpreted code", "Every end user must have the compiler installed", "Compilation creates a target artifact before runtime", "Compilation is identical to line-by-line interpretation"], "correct": 2, "explanation": "Compilation produces target code before execution."}
 ];
 
 let quizAnswered = {};

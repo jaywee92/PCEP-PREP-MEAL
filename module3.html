@@ -531,6 +531,14 @@ print(c)        # [1, 2, 3]</code></pre>
         <li><strong>Dict tasks:</strong> key checks with <code>in</code>, safe access with <code>get()</code>.</li>
         <li><strong>Tuple tasks:</strong> single-item tuple syntax and unpacking count errors.</li>
       </ul>
+
+      <h3>Raw-Question Insights (Official OCR Patterns)</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># common official patterns in this module
+# - aliasing: nums = vals, then one mutation affects both
+# - slicing boundaries: [-3:-2], stop index is excluded
+# - dict access: key in dict checks keys, not values
+
+# strategy: inspect object identity first, then trace mutation</code></pre>
     </div>
   </div>
 
@@ -600,6 +608,12 @@ lst.sort()          # in place, returns None
 d = {"a": 1}
 d.get("b")      # None
 # d["b"]        # KeyError</code></pre>
+
+      <h3>Raw Exam Snapshot: Shared Reference Mutation</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>nums = [1, 2, 3]
+vals = nums
+del vals[1:2]
+print(nums)   # [1, 3]</code></pre>
     </div>
   </div>
 
@@ -673,6 +687,14 @@ a.extend([3, 4])   # [1, 2, 3, 4]</code></pre>
         <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 7: Single-Element Tuple Without Comma</h3>
         <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>x = (1)     # int
 y = (1,)    # tuple</code></pre>
+      </div>
+
+      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; border-radius: 4px;">
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 8: Assuming Alias Variables Are Copies</h3>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>nums = [1, 2, 3]
+vals = nums
+vals.pop()
+print(nums)   # [1, 2], not [1, 2, 3]</code></pre>
       </div>
     </div>
   </div>
@@ -876,6 +898,21 @@ y = (1,)    # tuple</code></pre>
         Tuples are immutable containers, but mutable objects inside them can still be modified.
       </div>
     </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Aliasing After Assignment</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>vals = nums creates a separate list</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>vals = nums creates a second reference to same list</code>
+      </div>
+      <div class="pitfall-explanation">
+        Raw exam tasks often hide this in short snippets. Any in-place change through one name appears through the other name too.
+      </div>
+    </div>
   </div>
 </div>
     <div id="flashcards" class="tab-content">
@@ -885,7 +922,7 @@ y = (1,)    # tuple</code></pre>
   <div id="quiz" class="tab-content">
     <div class="progress">
       <div class="progress-item">
-        <div class="progress-number" id="quiz-score">0/12</div>
+        <div class="progress-number" id="quiz-score">0/14</div>
         <div class="progress-label">Score</div>
       </div>
     </div>
@@ -907,7 +944,9 @@ const flashcardsData = [
   {"q":"What does 'key in d' test in dictionaries?", "a":"Keys only, not values."},
   {"q":"How is a single-element tuple written?", "a":"With a trailing comma, e.g. (1,)."},
   {"q":"Can tuple contents ever be mutable?", "a":"Yes, a tuple can contain mutable objects like lists."},
-  {"q":"find() vs index() when substring is missing?", "a":"find returns -1, index raises ValueError."}
+  {"q":"find() vs index() when substring is missing?", "a":"find returns -1, index raises ValueError."},
+  {"q":"What does vals = nums imply?", "a":"Both names reference the same list object until you copy."},
+  {"q":"What does del vals[1:2] affect when vals = nums?", "a":"It mutates the shared list, so nums also changes."}
 ];
 const quizData = [
   {"q":"Which type is immutable?", "options":["list", "dict", "tuple", "set"], "correct":2, "explanation":"Tuple is immutable; list/dict/set are mutable."},
@@ -921,7 +960,9 @@ const quizData = [
   {"q":"What is true about a.sort()?", "options":["Returns sorted list", "Returns None", "Creates tuple", "Raises TypeError"], "correct":1, "explanation":"sort() mutates list and returns None."},
   {"q":"What is type((1)) ?", "options":["tuple", "list", "int", "set"], "correct":2, "explanation":"(1) is int; (1,) is tuple."},
   {"q":"What does 'x' in {'x': 1, 'y': 2} evaluate to?", "options":["False", "True", "KeyError", "None"], "correct":1, "explanation":"Membership checks keys."},
-  {"q":"What happens with 'abc'.index('z') ?", "options":["Returns -1", "Returns 0", "Raises ValueError", "Returns None"], "correct":2, "explanation":"index raises ValueError if substring is missing."}
+  {"q":"What happens with 'abc'.index('z') ?", "options":["Returns -1", "Returns 0", "Raises ValueError", "Returns None"], "correct":2, "explanation":"index raises ValueError if substring is missing."},
+  {"q":"Given nums=[1,2,3]; vals=nums; del vals[1:2], what is nums?", "options":["[1, 2, 3]", "[1, 3]", "[2, 3]", "KeyError"], "correct":1, "explanation":"vals aliases nums, so deletion affects nums too."},
+  {"q":"Which statement is true?", "options":["Slice stop index is inclusive", "dict membership checks values first", "my_list[:] makes a shallow copy", "s[100:200] always raises IndexError"], "correct":2, "explanation":"Full slice creates a shallow copy; the other statements are false."}
 ];
 
 let quizAnswered = {};

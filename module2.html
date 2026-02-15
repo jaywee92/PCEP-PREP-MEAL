@@ -549,6 +549,14 @@ for i in range(2):
         <li><strong>Loop tracing:</strong> exact effect of <code>break</code>, <code>continue</code>, and loop-<code>else</code>.</li>
         <li><strong>Range direction traps:</strong> wrong sign in step gives an empty range.</li>
       </ul>
+
+      <h3>Raw-Question Insights (Official OCR Patterns)</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># repeatedly tested in official-style wording
+# 1) precedence: **, *, + and boolean operators
+# 2) loop else behavior with and without break
+# 3) short-circuit truth evaluation in mixed expressions
+
+# solve strategy: trace in strict execution order, then evaluate branch entry</code></pre>
     </div>
   </div>
 
@@ -638,6 +646,15 @@ True or expr     # expr not evaluated
 
 print(all([]))    # True
 print(any([]))    # False</code></pre>
+
+      <h3>Raw Exam Snapshot: Loop else + break</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>for i in range(4):
+    if i == 2:
+        break
+else:
+    print("completed")
+
+# no output from else because break occurred</code></pre>
     </div>
   </div>
 
@@ -717,6 +734,15 @@ if len(items) != 0:
     ...
 if items:
     ...</code></pre>
+      </div>
+
+      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; border-radius: 4px;">
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 8: Assuming <code>continue</code> Cancels Loop <code>else</code></h3>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>for i in range(3):
+    if i == 1:
+        continue
+else:
+    print("runs")  # runs, because no break</code></pre>
       </div>
     </div>
   </div>
@@ -906,6 +932,21 @@ if items:
           <code>range()</code> returns a range object (lazy sequence), not a concrete list.
         </div>
       </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>Precedence in Mixed Boolean Conditions</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>and and or have equal precedence</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>and binds tighter than or</code>
+        </div>
+        <div class="pitfall-explanation">
+          Raw exam items repeatedly test this rule. Without parentheses, Python evaluates <code>and</code> before <code>or</code>.
+        </div>
+      </div>
     </div>
   </div>
 
@@ -918,7 +959,7 @@ if items:
   <div id="quiz" class="tab-content">
     <div class="progress">
       <div class="progress-item">
-        <div class="progress-number" id="quiz-score">0/12</div>
+        <div class="progress-number" id="quiz-score">0/14</div>
         <div class="progress-label">Score</div>
       </div>
     </div>
@@ -943,7 +984,9 @@ const flashcardsData = [
   {"q": "Does break exit nested loops completely?", "a": "No, it exits only the innermost loop."},
   {"q": "What type does range() return?", "a": "A range object, not a list."},
   {"q": "What are all([]) and any([])?", "a": "all([]) is True, any([]) is False."},
-  {"q": "Does the loop variable still exist after loop ends?", "a": "Yes, in Python it remains bound to the last assigned value."}
+  {"q": "Does the loop variable still exist after loop ends?", "a": "Yes, in Python it remains bound to the last assigned value."},
+  {"q": "Does continue prevent loop else?", "a": "No. Only break prevents loop else from running."},
+  {"q": "What is the precedence between and/or?", "a": "and has higher precedence than or."}
 ];
 const quizData = [
   {"q": "Which condition is syntactically correct?", "options": ["if x = 5:", "if x == 5:", "if (x == 5)", "if x equals 5:"], "correct": 1, "explanation": "Use == for comparison and a colon to open the block."},
@@ -957,7 +1000,9 @@ const quizData = [
   {"q": "What does all([]) return?", "options": ["False", "True", "None", "Error"], "correct": 1, "explanation": "all on an empty iterable returns True."},
   {"q": "What does any([]) return?", "options": ["False", "True", "None", "Error"], "correct": 0, "explanation": "any on an empty iterable returns False."},
   {"q": "What is true about this expression: not (x < 0 or x > 10)", "options": ["Equivalent to x < 0 and x > 10", "Equivalent to x >= 0 and x <= 10", "Equivalent to x == 0", "Always False"], "correct": 1, "explanation": "De Morgan transformation gives the bounded interval condition."},
-  {"q": "After for i in range(4): pass, what is i?", "options": ["undefined", "3", "4", "None"], "correct": 1, "explanation": "The loop variable persists and keeps the last assigned value."}
+  {"q": "After for i in range(4): pass, what is i?", "options": ["undefined", "3", "4", "None"], "correct": 1, "explanation": "The loop variable persists and keeps the last assigned value."},
+  {"q": "Which statement is true about loop else?", "options": ["It runs only if loop body is empty", "It runs when no break occurs", "It runs only after continue", "It never runs in for-loops"], "correct": 1, "explanation": "Loop else executes if the loop ends normally (without break)."},
+  {"q": "Which precedence statement is correct?", "options": ["or has higher precedence than and", "and has higher precedence than or", "They are equal precedence", "Precedence depends on variable values"], "correct": 1, "explanation": "In Python, and binds tighter than or."}
 ];
 
 let quizAnswered = {};
