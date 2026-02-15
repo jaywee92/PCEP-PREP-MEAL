@@ -1581,7 +1581,7 @@
                 
                 // Check if feedback should be shown
                 if (state.showFeedback && isSelected) {
-                    if (index === question.correct_answer) {
+                    if (index === question.answer) {
                         optionDiv.classList.add('correct');
                     } else {
                         optionDiv.classList.add('incorrect');
@@ -1625,6 +1625,11 @@
         }
 
         function selectOption(index) {
+            // Don't allow changing answer if feedback is already shown
+            if (state.showFeedback && state.answerMode === 'immediate') {
+                return;
+            }
+
             state.answers[state.currentQuestionIndex] = index;
             state.skipped.delete(state.currentQuestionIndex);
 
@@ -1642,17 +1647,25 @@
             state.showFeedback = true;
             const question = state.questions[state.currentQuestionIndex];
             const selectedOptionIndex = state.answers[state.currentQuestionIndex];
-            const isCorrect = selectedOptionIndex === question.correct_answer;
+            const isCorrect = selectedOptionIndex === question.answer;
 
             // Update option styling
             document.querySelectorAll('.option').forEach((opt, index) => {
-                opt.classList.remove('correct', 'incorrect');
+                opt.classList.remove('correct', 'incorrect', 'selected');
+
+                // Mark the selected option
                 if (index === selectedOptionIndex) {
+                    opt.classList.add('selected');
                     if (isCorrect) {
                         opt.classList.add('correct');
                     } else {
                         opt.classList.add('incorrect');
                     }
+                }
+
+                // Always show the correct answer in green
+                if (index === question.answer) {
+                    opt.classList.add('correct');
                 }
             });
 
@@ -1665,7 +1678,7 @@
                     </div>
                     ${!isCorrect ? `
                         <div class="hint-section">
-                            <strong>Correct Answer:</strong> ${String.fromCharCode(65 + question.correct_answer)}. ${question.options[question.correct_answer]}
+                            <strong>Correct Answer:</strong> ${String.fromCharCode(65 + question.answer)}. ${question.options[question.answer]}
                         </div>
                     ` : ''}
                     ${question.hint ? `
@@ -1793,7 +1806,7 @@
         function calculateResults() {
             let correct = 0;
             state.questions.forEach((question, index) => {
-                if (state.answers[index] === question.correct_answer) {
+                if (state.answers[index] === question.answer) {
                     correct++;
                 }
             });
@@ -1809,7 +1822,7 @@
                 let moduleCorrect = 0;
                 moduleQuestions.forEach((question, index) => {
                     const globalIndex = state.questions.indexOf(question);
-                    if (state.answers[globalIndex] === question.correct_answer) {
+                    if (state.answers[globalIndex] === question.answer) {
                         moduleCorrect++;
                     }
                 });
@@ -1898,7 +1911,7 @@
 
             state.questions.forEach((question, index) => {
                 const userAnswer = state.answers[index];
-                const isCorrect = userAnswer === question.correct_answer;
+                const isCorrect = userAnswer === question.answer;
 
                 const div = document.createElement('div');
                 div.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
@@ -1922,7 +1935,7 @@
                         ${!isCorrect ? `
                             <div class="answer-result correct-answer">
                                 <label>Correct Answer</label>
-                                <div class="answer-result-text">${String.fromCharCode(65 + question.correct_answer)}. ${question.options[question.correct_answer]}</div>
+                                <div class="answer-result-text">${String.fromCharCode(65 + question.answer)}. ${question.options[question.answer]}</div>
                             </div>
                         ` : ''}
                     </div>
