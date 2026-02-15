@@ -455,68 +455,269 @@
         }
 
         .option {
-            padding: 1.25rem;
-            border: 2px solid var(--border-color);
-            border-radius: 0.5rem;
+            position: relative;
+            border: 2px solid rgba(71, 85, 105, 0.9);
+            border-radius: 0.9rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            background: var(--dark-bg);
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
+            background: linear-gradient(150deg, rgba(9, 20, 43, 0.92), rgba(8, 19, 42, 0.75));
+            overflow: hidden;
+            animation: optionEnter 0.42s ease both;
+            animation-delay: calc(var(--option-index, 0) * 35ms);
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 8% 50%, rgba(99, 102, 241, 0.18), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .option::after {
+            content: '';
+            position: absolute;
+            top: -120%;
+            left: -35%;
+            width: 45%;
+            height: 300%;
+            background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.22) 45%, transparent 100%);
+            transform: rotate(18deg) translateX(0);
+            opacity: 0;
+            pointer-events: none;
         }
 
         .option:hover {
-            border-color: var(--primary-light);
-            background: var(--dark-surface-light);
-            transform: translateX(4px);
+            border-color: rgba(10, 132, 255, 0.95);
+            transform: translateY(-3px) scale(1.008);
+            box-shadow: 0 10px 24px rgba(8, 47, 105, 0.45), 0 0 0 1px rgba(10, 132, 255, 0.25) inset;
+        }
+
+        .option:hover::before {
+            opacity: 1;
+        }
+
+        .option:hover::after {
+            opacity: 1;
+            animation: optionShine 0.9s ease forwards;
+        }
+
+        .option.pressed {
+            animation: optionPress 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .option:focus-within {
+            outline: none;
+            border-color: rgba(96, 165, 250, 0.95);
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
         }
 
         .option input[type="radio"],
         .option input[type="checkbox"] {
-            width: 1.5rem;
-            height: 1.5rem;
-            cursor: pointer;
-            accent-color: var(--primary-light);
-            margin-top: 0.25rem;
-            flex-shrink: 0;
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
         }
 
         .option-label {
-            flex: 1;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            padding: 1.15rem 1.2rem;
             cursor: pointer;
+        }
+
+        .option-badge {
+            width: 2.1rem;
+            height: 2.1rem;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            color: #dbeafe;
+            border: 1px solid rgba(125, 211, 252, 0.35);
+            background: linear-gradient(145deg, rgba(37, 99, 235, 0.35), rgba(59, 130, 246, 0.08));
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+            transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
+        }
+
+        .option-text {
             white-space: pre-line;
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        .option-state-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            background: rgba(15, 23, 42, 0.55);
+            display: grid;
+            place-items: center;
+            color: transparent;
+            transform: scale(0.82);
+            transition: all 0.25s ease;
+        }
+
+        .option-state-icon::before {
+            content: '';
+            font-size: 0.9rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .option.selected {
+            border-color: rgba(56, 189, 248, 0.95);
+            box-shadow: 0 8px 22px rgba(14, 116, 144, 0.35), 0 0 0 1px rgba(56, 189, 248, 0.35) inset;
+            background: linear-gradient(145deg, rgba(8, 47, 73, 0.45), rgba(8, 19, 42, 0.8));
+        }
+
+        .option.selected .option-badge {
+            color: #ecfeff;
+            border-color: rgba(103, 232, 249, 0.7);
+            background: linear-gradient(140deg, rgba(56, 189, 248, 0.55), rgba(59, 130, 246, 0.25));
+            transform: translateY(-1px) scale(1.04);
+        }
+
+        .option.selected .option-state-icon {
+            border-color: rgba(56, 189, 248, 0.8);
+            background: rgba(8, 47, 73, 0.8);
+            transform: scale(1);
+        }
+
+        .option.selected .option-state-icon::before {
+            content: '•';
+            color: rgba(103, 232, 249, 0.95);
+            font-size: 1.1rem;
         }
 
         .option.correct {
-            background: rgba(34, 197, 94, 0.1);
-            border-color: var(--success);
+            background: linear-gradient(145deg, rgba(6, 78, 59, 0.48), rgba(8, 19, 42, 0.84));
+            border-color: rgba(34, 197, 94, 0.95);
+            box-shadow: 0 10px 24px rgba(34, 197, 94, 0.18), 0 0 0 1px rgba(34, 197, 94, 0.25) inset;
+        }
+
+        .option.correct .option-badge {
+            color: #dcfce7;
+            border-color: rgba(110, 231, 183, 0.7);
+            background: linear-gradient(145deg, rgba(22, 163, 74, 0.52), rgba(4, 120, 87, 0.3));
+        }
+
+        .option.correct .option-state-icon {
+            border-color: rgba(34, 197, 94, 0.85);
+            background: rgba(6, 95, 70, 0.65);
+            transform: scale(1.02);
+        }
+
+        .option.correct .option-state-icon::before {
+            content: '✓';
+            color: #86efac;
         }
 
         .option.incorrect {
-            background: rgba(239, 68, 68, 0.1);
-            border-color: var(--error);
+            background: linear-gradient(145deg, rgba(127, 29, 29, 0.45), rgba(8, 19, 42, 0.82));
+            border-color: rgba(248, 113, 113, 0.95);
+            box-shadow: 0 10px 24px rgba(239, 68, 68, 0.2), 0 0 0 1px rgba(248, 113, 113, 0.25) inset;
         }
 
-        .option.selected.correct::after,
-        .option.selected.incorrect::after {
-            content: '';
-            width: 1.5rem;
-            height: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
+        .option.incorrect .option-badge {
+            color: #fee2e2;
+            border-color: rgba(252, 165, 165, 0.75);
+            background: linear-gradient(145deg, rgba(239, 68, 68, 0.45), rgba(185, 28, 28, 0.26));
         }
 
-        .option.selected.correct::after {
-            content: '✓';
-            color: var(--success);
+        .option.incorrect .option-state-icon {
+            border-color: rgba(248, 113, 113, 0.85);
+            background: rgba(127, 29, 29, 0.66);
+            transform: scale(1.02);
         }
 
-        .option.selected.incorrect::after {
-            content: '✗';
-            color: var(--error);
+        .option.incorrect .option-state-icon::before {
+            content: '✕';
+            color: #fecaca;
+        }
+
+        .option.correct.selected,
+        .option.incorrect.selected {
+            transform: translateY(-1px);
+        }
+
+        @keyframes optionEnter {
+            from {
+                opacity: 0;
+                transform: translateY(8px) scale(0.99);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes optionShine {
+            from {
+                transform: rotate(18deg) translateX(0);
+            }
+            to {
+                transform: rotate(18deg) translateX(360%);
+            }
+        }
+
+        @keyframes optionPress {
+            0% {
+                transform: scale(1);
+            }
+            30% {
+                transform: scale(0.985);
+            }
+            65% {
+                transform: scale(1.014);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .option-label {
+                gap: 0.75rem;
+                padding: 1rem;
+            }
+
+            .option-badge {
+                width: 1.9rem;
+                height: 1.9rem;
+                font-size: 0.88rem;
+            }
+
+            .option-text {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .option,
+            .option::before,
+            .option::after {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            .option:hover,
+            .option.correct.selected,
+            .option.incorrect.selected {
+                transform: none;
+            }
         }
 
         .feedback-container {
@@ -1813,6 +2014,7 @@
             question.options.forEach((option, index) => {
                 const optionDiv = document.createElement('div');
                 optionDiv.className = 'option';
+                optionDiv.style.setProperty('--option-index', index);
                 
                 const isSelected = selectedAnswers.includes(index);
                 if (isSelected) optionDiv.classList.add('selected');
@@ -1829,17 +2031,30 @@
 
                 const optionId = `option${state.currentQuestionIndex}_${index}`;
                 const inputType = isMultiSelect ? 'checkbox' : 'radio';
+                const optionLetter = String.fromCharCode(65 + index);
                 optionDiv.innerHTML = `
                     <input type="${inputType}" id="${optionId}" name="option-${state.currentQuestionIndex}" value="${index}" ${isSelected ? 'checked' : ''}>
-                    <label class="option-label" for="${optionId}"></label>
+                    <label class="option-label" for="${optionId}">
+                        <span class="option-badge">${optionLetter}</span>
+                        <span class="option-text"></span>
+                        <span class="option-state-icon" aria-hidden="true"></span>
+                    </label>
                 `;
-                optionDiv.querySelector('.option-label').textContent = `${String.fromCharCode(65 + index)}. ${decodeEscapedText(option)}`;
+                optionDiv.querySelector('.option-text').textContent = decodeEscapedText(option);
 
                 const inputElement = optionDiv.querySelector('input');
                 inputElement.addEventListener('click', event => event.stopPropagation());
                 inputElement.addEventListener('change', () => selectOption(index));
+                optionDiv.addEventListener('pointerdown', () => {
+                    if (state.showFeedback && state.answerMode === 'immediate') {
+                        return;
+                    }
+                    optionDiv.classList.remove('pressed');
+                    void optionDiv.offsetWidth;
+                    optionDiv.classList.add('pressed');
+                });
                 optionDiv.addEventListener('click', event => {
-                    if (event.target.tagName === 'LABEL') {
+                    if (event.target.closest('label')) {
                         return;
                     }
                     selectOption(index);
