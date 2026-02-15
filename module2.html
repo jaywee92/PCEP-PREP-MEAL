@@ -204,6 +204,13 @@
     font-family: 'IBM Plex Mono', monospace;
   }
 
+  .content-box pre code {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    display: block;
+  }
+
   .flashcard {
     background: linear-gradient(135deg, rgba(62, 224, 161, 0.1), rgba(62, 224, 161, 0.05));
     border: 1px solid var(--m2);
@@ -903,17 +910,6 @@ if items:
   </div>
 
   <div id="flashcards" class="tab-content">
-    <div class="progress">
-      <div class="progress-item">
-        <div class="progress-number" id="correct-count">0</div>
-        <div class="progress-label">Correct</div>
-      </div>
-      <div class="progress-item">
-        <div class="progress-number" id="total-count">12</div>
-        <div class="progress-label">Total</div>
-      </div>
-    </div>
-
     <div id="flashcard-container">
     </div>
   </div>

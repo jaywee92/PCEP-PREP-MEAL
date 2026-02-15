@@ -1710,7 +1710,7 @@
             // Clear previous feedback if not immediate mode
             if (state.answerMode === 'end' || !state.showFeedback) {
                 document.getElementById('feedbackContainer').innerHTML = '';
-                document.getElementById('feedbackContainer').classList.remove('show');
+                document.getElementById('feedbackContainer').classList.remove('show', 'feedback-correct', 'feedback-incorrect');
             }
 
             // Update navigation buttons
@@ -1787,6 +1787,10 @@
         }
 
         function showFeedback() {
+            if (state.answerMode !== 'immediate') {
+                return;
+            }
+
             state.showFeedback = true;
             const question = state.questions[state.currentQuestionIndex];
             const selectedIndexes = normalizeUserAnswer(state.answers[state.currentQuestionIndex]);
@@ -1796,6 +1800,8 @@
             const userAnswerText = escapeHtml(formatAnswersText(selectedIndexes, question));
             const hintText = question.hint ? escapeHtml(decodeEscapedText(question.hint)) : '';
             const explanationText = question.explanation ? escapeHtml(decodeEscapedText(question.explanation)) : '';
+            const hasHint = hintText.trim().length > 0;
+            const hasExplanation = explanationText.trim().length > 0;
 
             // Update option styling
             document.querySelectorAll('.option').forEach((opt, index) => {
@@ -1817,32 +1823,37 @@
 
             // Show feedback
             const feedbackContainer = document.getElementById('feedbackContainer');
+            feedbackContainer.classList.remove('feedback-correct', 'feedback-incorrect');
+            feedbackContainer.classList.add('show', isCorrect ? 'feedback-correct' : 'feedback-incorrect');
             feedbackContainer.innerHTML = `
-                <div class="feedback-container ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'} show">
-                    <div class="feedback-title">
-                        ${isCorrect ? '✓ Correct!' : '✗ Incorrect'}
-                    </div>
-                    ${selectedIndexes.length > 0 ? `
-                        <div class="hint-section">
-                            <strong>Your Answer:</strong> ${userAnswerText}
-                        </div>
-                    ` : ''}
-                    ${!isCorrect ? `
-                        <div class="hint-section">
-                            <strong>Correct Answer:</strong> ${correctAnswerText}
-                        </div>
-                    ` : ''}
-                    ${question.hint ? `
-                        <div class="hint-section">
-                            <strong>Hint:</strong> ${hintText}
-                        </div>
-                    ` : ''}
-                    ${question.explanation ? `
-                        <div class="explanation-section">
-                            <strong>Explanation:</strong> ${explanationText}
-                        </div>
-                    ` : ''}
+                <div class="feedback-title">
+                    ${isCorrect ? '✓ Correct!' : '✗ Incorrect'}
                 </div>
+                ${selectedIndexes.length > 0 ? `
+                    <div class="hint-section">
+                        <strong>Your Answer:</strong> ${userAnswerText}
+                    </div>
+                ` : ''}
+                ${!isCorrect ? `
+                    <div class="hint-section">
+                        <strong>Correct Answer:</strong> ${correctAnswerText}
+                    </div>
+                ` : ''}
+                ${hasHint ? `
+                    <div class="hint-section">
+                        <strong>Hint:</strong> ${hintText}
+                    </div>
+                ` : ''}
+                ${hasExplanation ? `
+                    <div class="explanation-section">
+                        <strong>Explanation:</strong> ${explanationText}
+                    </div>
+                ` : ''}
+                ${!isCorrect && !hasHint && !hasExplanation ? `
+                    <div class="explanation-section">
+                        <strong>Why:</strong> Trace the code line by line and compare each operation with the highlighted correct option.
+                    </div>
+                ` : ''}
             `;
 
             // Update buttons
