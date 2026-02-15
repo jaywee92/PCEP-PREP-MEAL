@@ -552,17 +552,10 @@ def count_up_to(n):
         <li>Local vs global scope in nested functions.</li>
         <li>Exception ordering and effect of <code>finally</code>.</li>
         <li>TypeError/ValueError reasoning questions.</li>
+        <li><strong>Call-validation rule:</strong> check required params first, then verify argument order (positional before keyword).</li>
+        <li><strong>Return rule:</strong> once <code>return</code> executes, the function exits; code after it is unreachable.</li>
+        <li><strong>Exception rule:</strong> order handlers from specific to general; <code>finally</code> still executes.</li>
       </ul>
-
-      <h3>Raw-Question Insights (Official OCR Patterns)</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># recurring official prompt styles
-# "Which statements about return are true? (Select two answers)"
-# "Which statements about None are true? (Select two answers)"
-# "Select true statements about try/except"
-# "Which calls are valid for def fun(a, b, c=0)? (Select two answers)"
-# "What happens when None participates in arithmetic?"
-
-# strategy: separate syntax validity, runtime behavior, and scope side effects</code></pre>
 
     </div>
   </div>

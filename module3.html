@@ -532,20 +532,10 @@ print(c)        # [1, 2, 3]</code></pre>
         <li><strong>Tuple tasks:</strong> single-item tuple syntax, unpacking count errors, and immutability (<code>append()</code>/<code>pop()</code> are unavailable).</li>
         <li><strong>Slicing targets:</strong> excluding trailing records with <code>seq[:-5]</code> is a common exam pattern.</li>
         <li><strong>Immutability traps:</strong> operations like <code>del text[i]</code> fail on strings with <code>TypeError</code>.</li>
+        <li><strong>Alias check:</strong> when you see <code>b = a</code>, assume shared object unless explicit copy is shown.</li>
+        <li><strong>Slice check:</strong> always verify stop index is excluded and negative indexes count from the end.</li>
+        <li><strong>Dictionary check:</strong> remember <code>key in d</code> tests keys only, never values.</li>
       </ul>
-
-      <h3>Raw-Question Insights (Official OCR Patterns)</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># common official patterns in this module
-# - aliasing: nums = vals, then one mutation affects both
-# - slicing boundaries: [-3:-2], stop index is excluded
-# - dict access: key in dict checks keys, not values
-# - string immutability: item deletion/assignment is invalid
-
-# strategy: inspect object identity first, then trace mutation
-
-text = "abcdefg"
-# del text[2]   # TypeError
-print('Peter' 'Wellert')  # PeterWellert</code></pre>
 
     </div>
   </div>

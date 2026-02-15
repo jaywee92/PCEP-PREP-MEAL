@@ -547,21 +547,10 @@ print(f"Score: {score:.2f}")         # Score: 93.46</code></pre>
         <li><strong>Language theory terms:</strong> questions may explicitly test <code>lexis</code>, <code>syntax</code>, and <code>semantics</code>.</li>
         <li><strong>Implementation terms:</strong> CPython is the default reference implementation of Python written in C.</li>
         <li><strong>Pacing note:</strong> some prep sets use 40-minute runs, so train both 40-minute and 45-minute timing.</li>
+        <li><strong>Answer workflow:</strong> first decide if the item is concept, syntax, or code-trace, then solve with the matching method.</li>
+        <li><strong>Identifier strategy:</strong> eliminate keywords/literals first (<code>True</code>, <code>and</code>, etc.), then apply naming rules.</li>
+        <li><strong>Arithmetic strategy:</strong> enforce precedence explicitly with temporary parentheses before computing values.</li>
       </ul>
-
-      <h3>Raw-Question Insights (Official OCR Patterns)</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># frequent exam wording patterns
-# "What is true about compilation? (Select two answers)"
-# "Which variable names are illegal? (Select two answers)"
-
-# checklist before answering
-# 1) distinguish compile-time vs runtime
-# 2) check keyword/identifier legality
-# 3) verify precedence before mental arithmetic
-
-print(list('hello'))                    # ['h', 'e', 'l', 'l', 'o']
-print(1 / 2 + 3 // 3 + 4 ** 2)          # 17.5
-print(3 / 5)                            # 0.6</code></pre>
 
     </div>
   </div>

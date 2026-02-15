@@ -552,15 +552,10 @@ for i in range(2):
         <li><strong>Nested loops:</strong> <code>break</code> exits only the innermost active loop.</li>
         <li><strong>Loop-else rule:</strong> <code>else</code> runs only when loop finishes without <code>break</code>.</li>
         <li><strong>Boolean state tracing:</strong> short chains like <code>x = x or y</code> and <code>y = x and y</code> are frequent code-trace tasks.</li>
+        <li><strong>Trace method:</strong> write variable states per iteration (<code>i</code>, counters, flags) to avoid mental skips.</li>
+        <li><strong>Loop-else check:</strong> ask one question first: “Did any <code>break</code> execute?” If yes, skip loop-<code>else</code>.</li>
+        <li><strong>Boolean check:</strong> evaluate left-to-right with short-circuit rules before simplifying expressions.</li>
       </ul>
-
-      <h3>Raw-Question Insights (Official OCR Patterns)</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># repeatedly tested in official-style wording
-# 1) precedence: **, *, + and boolean operators
-# 2) loop else behavior with and without break
-# 3) short-circuit truth evaluation in mixed expressions
-
-# solve strategy: trace in strict execution order, then evaluate branch entry</code></pre>
 
     </div>
   </div>
