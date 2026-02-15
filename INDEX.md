@@ -74,7 +74,7 @@ Grundlagen von Python:
 
 **Empfohlene Dauer:** 2-3 Tage
 
-### Module 2: Control Flow (290 Fragen)
+### Module 2: Control Flow (289 Fragen)
 Kontrollstrukturen:
 - if/elif/else
 - while, for Loops
@@ -82,14 +82,14 @@ Kontrollstrukturen:
 
 **Empfohlene Dauer:** 2-3 Tage
 
-### Module 3: Data Collections (250 Fragen)
+### Module 3: Data Collections (249 Fragen)
 Datenstrukturen:
 - Strings, Lists
 - Tuples, Dictionaries
 
 **Empfohlene Dauer:** 2-3 Tage
 
-### Module 4: Functions & Exceptions (210 Fragen)
+### Module 4: Functions & Exceptions (212 Fragen)
 Fortgeschrittene Konzepte:
 - Funktionen, Lambda
 - Exception Handling

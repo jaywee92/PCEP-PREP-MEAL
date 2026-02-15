@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PCEP Exam Simulation</title>
+    <title>PCEP-PREP-MEAL - Exam Simulation</title>
     <style>
         :root {
             --primary-light: #0a84ff;
@@ -442,6 +442,11 @@
             color: #e2e8f0;
         }
 
+        .code-block code {
+            white-space: pre-wrap;
+            display: block;
+        }
+
         .options-container {
             display: flex;
             flex-direction: column;
@@ -479,6 +484,7 @@
         .option-label {
             flex: 1;
             cursor: pointer;
+            white-space: pre-line;
         }
 
         .option.correct {
@@ -551,6 +557,7 @@
         .explanation-section {
             margin-top: 1rem;
             color: var(--text-secondary);
+            white-space: pre-line;
         }
 
         .hint-section strong,
@@ -897,6 +904,11 @@
             line-height: 1.6;
         }
 
+        .review-item-code code {
+            white-space: pre-wrap;
+            display: block;
+        }
+
         .review-answers {
             background: var(--dark-bg);
             border-radius: 0.5rem;
@@ -1157,7 +1169,7 @@
         <div class="container">
             <div class="setup-screen">
                 <div class="setup-header">
-                    <h1>PCEP Exam Simulation</h1>
+                    <h1>PCEP-PREP-MEAL Exam Simulation</h1>
                     <p>Configure your exam settings and start practicing</p>
                 </div>
 
@@ -1175,11 +1187,11 @@
                         </div>
                         <div class="checkbox-item">
                             <input type="checkbox" id="module3" value="3" checked>
-                            <label for="module3">Module 3: Functions</label>
+                            <label for="module3">Module 3: Data Collections</label>
                         </div>
                         <div class="checkbox-item">
                             <input type="checkbox" id="module4" value="4" checked>
-                            <label for="module4">Module 4: Libraries</label>
+                            <label for="module4">Module 4: Functions &amp; Exceptions</label>
                         </div>
                     </div>
                     <div class="min-modules-warning" id="minModulesWarning">
@@ -1508,7 +1520,11 @@
                 for (const module of state.selectedModules) {
                     const moduleKey = 'module' + module;
                     if (data[moduleKey]) {
-                        filteredQuestions = filteredQuestions.concat(data[moduleKey]);
+                        const questionsWithModule = data[moduleKey].map(question => ({
+                            ...question,
+                            module
+                        }));
+                        filteredQuestions = filteredQuestions.concat(questionsWithModule);
                     }
                 }
 
@@ -1557,12 +1573,12 @@
             document.getElementById('questionNum').textContent = `Question ${current} of ${total}`;
             
             // Display question
-            document.getElementById('questionText').textContent = question.prompt;
+            document.getElementById('questionText').textContent = decodeEscapedText(question.prompt);
 
             // Display code if exists
             const codeBlock = document.getElementById('codeBlock');
             if (question.code) {
-                document.getElementById('codeContent').textContent = question.code;
+                document.getElementById('codeContent').textContent = formatCodeForDisplay(question.code);
                 codeBlock.style.display = 'block';
             } else {
                 codeBlock.style.display = 'none';
@@ -1591,8 +1607,9 @@
                 const radioId = `option${index}`;
                 optionDiv.innerHTML = `
                     <input type="radio" id="${radioId}" name="option" value="${index}" ${isSelected ? 'checked' : ''}>
-                    <label class="option-label" for="${radioId}">${String.fromCharCode(65 + index)}. ${option}</label>
+                    <label class="option-label" for="${radioId}"></label>
                 `;
+                optionDiv.querySelector('.option-label').textContent = `${String.fromCharCode(65 + index)}. ${decodeEscapedText(option)}`;
 
                 optionDiv.addEventListener('click', () => selectOption(index));
                 optionsContainer.appendChild(optionDiv);
@@ -1648,6 +1665,11 @@
             const question = state.questions[state.currentQuestionIndex];
             const selectedOptionIndex = state.answers[state.currentQuestionIndex];
             const isCorrect = selectedOptionIndex === question.answer;
+            const correctAnswerText = escapeHtml(
+                `${String.fromCharCode(65 + question.answer)}. ${decodeEscapedText(question.options[question.answer])}`
+            );
+            const hintText = question.hint ? escapeHtml(decodeEscapedText(question.hint)) : '';
+            const explanationText = question.explanation ? escapeHtml(decodeEscapedText(question.explanation)) : '';
 
             // Update option styling
             document.querySelectorAll('.option').forEach((opt, index) => {
@@ -1678,17 +1700,17 @@
                     </div>
                     ${!isCorrect ? `
                         <div class="hint-section">
-                            <strong>Correct Answer:</strong> ${String.fromCharCode(65 + question.answer)}. ${question.options[question.answer]}
+                            <strong>Correct Answer:</strong> ${correctAnswerText}
                         </div>
                     ` : ''}
                     ${question.hint ? `
                         <div class="hint-section">
-                            <strong>Hint:</strong> ${question.hint}
+                            <strong>Hint:</strong> ${hintText}
                         </div>
                     ` : ''}
                     ${question.explanation ? `
                         <div class="explanation-section">
-                            <strong>Explanation:</strong> ${question.explanation}
+                            <strong>Explanation:</strong> ${explanationText}
                         </div>
                     ` : ''}
                 </div>
@@ -1818,18 +1840,17 @@
             // Calculate module breakdown
             const moduleScores = {};
             state.selectedModules.forEach(module => {
-                const moduleQuestions = state.questions.filter(q => q.module === module);
-                let moduleCorrect = 0;
-                moduleQuestions.forEach((question, index) => {
-                    const globalIndex = state.questions.indexOf(question);
-                    if (state.answers[globalIndex] === question.answer) {
-                        moduleCorrect++;
-                    }
-                });
-                moduleScores[module] = {
-                    correct: moduleCorrect,
-                    total: moduleQuestions.length
-                };
+                moduleScores[module] = { correct: 0, total: 0 };
+            });
+            state.questions.forEach((question, index) => {
+                const module = question.module;
+                if (!moduleScores[module]) {
+                    return;
+                }
+                moduleScores[module].total += 1;
+                if (state.answers[index] === question.answer) {
+                    moduleScores[module].correct += 1;
+                }
             });
 
             return { correct, total, percentage, timeTaken, moduleScores };
@@ -1884,12 +1905,12 @@
 
                 state.selectedModules.forEach(module => {
                     const score = results.moduleScores[module];
-                    const percent = Math.round((score.correct / score.total) * 100);
+                    const percent = score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0;
                     const moduleNames = {
                         1: 'Module 1: Fundamentals',
                         2: 'Module 2: Control Flow',
-                        3: 'Module 3: Functions',
-                        4: 'Module 4: Libraries'
+                        3: 'Module 3: Data Collections',
+                        4: 'Module 4: Functions & Exceptions'
                     };
 
                     const div = document.createElement('div');
@@ -1912,6 +1933,16 @@
             state.questions.forEach((question, index) => {
                 const userAnswer = state.answers[index];
                 const isCorrect = userAnswer === question.answer;
+                const questionText = escapeHtml(decodeEscapedText(question.prompt));
+                const codeText = question.code ? escapeHtml(formatCodeForDisplay(question.code)) : '';
+                const userAnswerText = userAnswer !== undefined
+                    ? escapeHtml(`${String.fromCharCode(65 + userAnswer)}. ${decodeEscapedText(question.options[userAnswer] ?? '')}`)
+                    : '';
+                const correctAnswerText = escapeHtml(
+                    `${String.fromCharCode(65 + question.answer)}. ${decodeEscapedText(question.options[question.answer] ?? '')}`
+                );
+                const hintText = question.hint ? escapeHtml(decodeEscapedText(question.hint)) : '';
+                const explanationText = question.explanation ? escapeHtml(decodeEscapedText(question.explanation)) : '';
 
                 const div = document.createElement('div');
                 div.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
@@ -1923,24 +1954,24 @@
                             ${isCorrect ? '✓ Correct' : '✗ Incorrect'}
                         </div>
                     </div>
-                    <div class="review-item-question">${question.prompt}</div>
-                    ${question.code ? `<div class="review-item-code"><code>${escapeHtml(question.code)}</code></div>` : ''}
+                    <div class="review-item-question">${questionText}</div>
+                    ${question.code ? `<div class="review-item-code"><code>${codeText}</code></div>` : ''}
                     <div class="review-answers">
                         ${userAnswer !== undefined ? `
                             <div class="answer-result your-answer">
                                 <label>Your Answer</label>
-                                <div class="answer-result-text">${String.fromCharCode(65 + userAnswer)}. ${question.options[userAnswer]}</div>
+                                <div class="answer-result-text">${userAnswerText}</div>
                             </div>
                         ` : '<div class="answer-result your-answer"><label>Not Answered</label></div>'}
                         ${!isCorrect ? `
                             <div class="answer-result correct-answer">
                                 <label>Correct Answer</label>
-                                <div class="answer-result-text">${String.fromCharCode(65 + question.answer)}. ${question.options[question.answer]}</div>
+                                <div class="answer-result-text">${correctAnswerText}</div>
                             </div>
                         ` : ''}
                     </div>
-                    ${question.hint ? `<div class="review-hint"><strong>Hint:</strong> ${question.hint}</div>` : ''}
-                    ${question.explanation ? `<div class="review-explanation"><strong>Explanation:</strong> ${question.explanation}</div>` : ''}
+                    ${question.hint ? `<div class="review-hint"><strong>Hint:</strong> ${hintText}</div>` : ''}
+                    ${question.explanation ? `<div class="review-explanation"><strong>Explanation:</strong> ${explanationText}</div>` : ''}
                 `;
 
                 reviewContainer.appendChild(div);
@@ -2001,6 +2032,7 @@
         }
 
         function escapeHtml(text) {
+            const safeText = String(text ?? '');
             const map = {
                 '&': '&amp;',
                 '<': '&lt;',
@@ -2008,7 +2040,18 @@
                 '"': '&quot;',
                 "'": '&#039;'
             };
-            return text.replace(/[&<>"']/g, m => map[m]);
+            return safeText.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        function decodeEscapedText(text) {
+            return String(text ?? '')
+                .replace(/\\r\\n/g, '\n')
+                .replace(/\\n/g, '\n')
+                .replace(/\\t/g, '\t');
+        }
+
+        function formatCodeForDisplay(code) {
+            return decodeEscapedText(code).trimEnd();
         }
 
         // Initialize
@@ -2025,7 +2068,7 @@
             
             if (hintBox.style.display === 'none') {
                 // Show hint
-                hintText.textContent = currentQuestion.hint || 'No hint available';
+                hintText.textContent = decodeEscapedText(currentQuestion.hint || 'No hint available');
                 hintBox.style.display = 'block';
                 hintButton.textContent = '💡 Hint Shown';
                 hintButton.disabled = true;
@@ -2050,7 +2093,7 @@
                     hintButton.textContent = '💡 Hint Shown';
                     hintButton.disabled = true;
                     hintBox.style.display = 'block';
-                    document.getElementById('hintText').textContent = currentQuestion.hint || 'No hint available';
+                    document.getElementById('hintText').textContent = decodeEscapedText(currentQuestion.hint || 'No hint available');
                 } else {
                     hintButton.textContent = '💡 Show Hint';
                     hintButton.disabled = false;

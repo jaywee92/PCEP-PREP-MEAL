@@ -1,17 +1,17 @@
-# PCEP-40-01 Exam Question Bank - 1000 Fragen
+# PCEP-PREP-MEAL - PCEP Question Bank (1000 Fragen)
 
 ## Übersicht
 
-Dieses Projekt enthält eine vollständige Fragendatenbank mit **1000 realistischen PCEP-40-01 Prüfungsfragen**, basierend auf dem offiziellen Syllabus.
+Dieses Projekt enthält eine vollständige Fragendatenbank mit **1000 realistischen PCEP-Prüfungsfragen** für **PCEP-PREP-MEAL**, basierend auf dem offiziellen Syllabus.
 
 ## Dateistruktur
 
 ```
 questions-bank-1000.json
 ├── module1: 250 Fragen (Computer Programming and Python Fundamentals)
-├── module2: 290 Fragen (Control Flow)
-├── module3: 250 Fragen (Data Collections)
-└── module4: 210 Fragen (Functions and Exceptions)
+├── module2: 289 Fragen (Control Flow)
+├── module3: 249 Fragen (Data Collections)
+└── module4: 212 Fragen (Functions and Exceptions)
 ```
 
 ## Module & Inhalte
@@ -33,7 +33,7 @@ questions-bank-1000.json
 - Medium: 54.0%
 - Hard: 11.2%
 
-### Module 2: Control Flow (29% der Prüfung = 290 Fragen)
+### Module 2: Control Flow (29% der Prüfung = 289 Fragen)
 
 - **Bedingte Anweisungen**: if, elif, else
 - **Boolean Logic**: and, or, not
@@ -49,7 +49,7 @@ questions-bank-1000.json
 - Medium: 38.6%
 - Hard: 7.9%
 
-### Module 3: Data Collections (25% der Prüfung = 250 Fragen)
+### Module 3: Data Collections (25% der Prüfung = 249 Fragen)
 
 - **Strings**: Indexing, Slicing, Immutability, Methoden
 - **Lists**: Creation, Modification, Methods (append, extend, insert, remove, pop, sort, reverse)
@@ -64,7 +64,7 @@ questions-bank-1000.json
 - Medium: 42.0%
 - Hard: 11.2%
 
-### Module 4: Functions and Exceptions (28% der Prüfung = 210 Fragen)
+### Module 4: Functions and Exceptions (28% der Prüfung = 212 Fragen)
 
 - **Function Definition & Calls**: def, return, parameters, arguments
 - **Parameter Types**: Positional, Keyword, Default, *args, **kwargs
@@ -276,9 +276,9 @@ print(f"\nFinal Score: {score}/{len(exam)} ({score/len(exam)*100:.1f}%)")
 ## Fragen-ID Schema
 
 - **m1_XXX**: Module 1 (m1_001 bis m1_250)
-- **m2_XXX**: Module 2 (m2_001 bis m2_290)
-- **m3_XXX**: Module 3 (m3_001 bis m3_250)
-- **m4_XXX**: Module 4 (m4_001 bis m4_210)
+- **m2_XXX**: Module 2 (m2_001 bis m2_289)
+- **m3_XXX**: Module 3 (m3_001 bis m3_249)
+- **m4_XXX**: Module 4 (m4_001 bis m4_212)
 
 ## Offizielle PCEP-40-01 Syllabus
 

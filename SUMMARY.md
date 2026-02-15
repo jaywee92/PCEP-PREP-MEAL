@@ -23,9 +23,9 @@ Eine umfassende **Fragenbank mit 1000 PCEP-relevanten Multiple-Choice Fragen** i
 
 ```
 Module 1 (Fundamentals)        250 Fragen (25%)  ░░░░░░░░░░░░░░░░░░░░░░░░░░
-Module 2 (Control Flow)        290 Fragen (29%)  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-Module 3 (Data Collections)    250 Fragen (25%)  ░░░░░░░░░░░░░░░░░░░░░░░░░░
-Module 4 (Functions & Exc.)    210 Fragen (21%)  ░░░░░░░░░░░░░░░░░░░░░░░
+Module 2 (Control Flow)        289 Fragen (28.9%)  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+Module 3 (Data Collections)    249 Fragen (24.9%)  ░░░░░░░░░░░░░░░░░░░░░░░░░░
+Module 4 (Functions & Exc.)    212 Fragen (21.2%)  ░░░░░░░░░░░░░░░░░░░░░░░
                                 ────────────────────────────────────────
                               TOTAL: 1000 Fragen (100%)
 ```
@@ -53,7 +53,7 @@ Hard:   157 Fragen (15.7%) ███████████
 - Type Conversion
 - Input/Output mit print() und input()
 
-### Module 2: Control Flow (290)
+### Module 2: Control Flow (289)
 - if/elif/else Statements
 - Boolean Logic & Truthiness
 - while Loops
@@ -62,7 +62,7 @@ Hard:   157 Fragen (15.7%) ███████████
 - else Clause in Loops
 - Nested Loops
 
-### Module 3: Data Collections (250)
+### Module 3: Data Collections (249)
 - String Methods & Operations
 - String Slicing & Indexing
 - List Methods & Operations
@@ -70,7 +70,7 @@ Hard:   157 Fragen (15.7%) ███████████
 - Tuples
 - Dictionaries
 
-### Module 4: Functions & Exceptions (210)
+### Module 4: Functions & Exceptions (212)
 - Function Definition
 - Parameters (positional, default, *args, **kwargs)
 - Return Values
@@ -276,4 +276,3 @@ Bei Fragen oder Verbesserungsvorschlägen:
 **Viel Erfolg beim Lernen!**
 
 *Diese Fragenbank deckt alle Themen der PCEP-Zertifizierung ab und bereitet dich optimal auf die Prüfung vor.*
-

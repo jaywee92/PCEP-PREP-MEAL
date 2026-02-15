@@ -17,9 +17,9 @@ Diese JSON-Datei enthält **1000 PCEP (Certified Entry-Level Python Programmer) 
 | Modul | Thema | Fragen | Anteil |
 |-------|-------|--------|--------|
 | **module1** | Fundamentals (Basics, Operatoren, I/O) | 250 | 25% |
-| **module2** | Control Flow (if/else, Loops, Break/Continue) | 290 | 29% |
-| **module3** | Data Collections (Strings, Lists, Dicts, Tuples) | 250 | 25% |
-| **module4** | Functions & Exceptions (Def, Lambda, Try/Except) | 210 | 21% |
+| **module2** | Control Flow (if/else, Loops, Break/Continue) | 289 | 28.9% |
+| **module3** | Data Collections (Strings, Lists, Dicts, Tuples) | 249 | 24.9% |
+| **module4** | Functions & Exceptions (Def, Lambda, Try/Except) | 212 | 21.2% |
 | **TOTAL** | | **1000** | **100%** |
 
 ---
@@ -86,7 +86,7 @@ Hard:   157 Fragen (15.7%) - Tiefes Verständnis
 - Logical und Bitwise Operatoren
 - I/O mit print() und input()
 
-### Module 2: Control Flow (290 Fragen)
+### Module 2: Control Flow (289 Fragen)
 
 **Unterthemen:**
 - if/elif/else (70)
@@ -104,7 +104,7 @@ Hard:   157 Fragen (15.7%) - Tiefes Verständnis
 - for vs while Loops
 - Truthiness-Werte (Falsy/Truthy)
 
-### Module 3: Data Collections (250 Fragen)
+### Module 3: Data Collections (249 Fragen)
 
 **Unterthemen:**
 - String Methods & Operations (70)
@@ -122,7 +122,7 @@ Hard:   157 Fragen (15.7%) - Tiefes Verständnis
 - Dictionary-Zugriff und Operationen
 - Referenzen vs Shallow Copies
 
-### Module 4: Functions & Exceptions (210 Fragen)
+### Module 4: Functions & Exceptions (212 Fragen)
 
 **Unterthemen:**
 - Function Definition (40)

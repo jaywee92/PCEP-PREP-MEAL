@@ -51,8 +51,8 @@ Wichtige Themen:
 
 MODULE 2: CONTROL FLOW
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ID Range: m2_001 bis m2_290
-Gesamtfragen: 290
+ID Range: m2_001 bis m2_289
+Gesamtfragen: 289
 Prüfungsanteil: 29%
 
 Inhalte:
@@ -92,8 +92,8 @@ Wichtige Themen:
 
 MODULE 3: DATA COLLECTIONS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ID Range: m3_001 bis m3_250
-Gesamtfragen: 250
+ID Range: m3_001 bis m3_249
+Gesamtfragen: 249
 Prüfungsanteil: 25%
 
 Inhalte:
@@ -135,8 +135,8 @@ Wichtige Themen:
 
 MODULE 4: FUNCTIONS & EXCEPTIONS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ID Range: m4_001 bis m4_210
-Gesamtfragen: 210
+ID Range: m4_001 bis m4_212
+Gesamtfragen: 212
 Prüfungsanteil: 28%
 
 Inhalte:
@@ -230,9 +230,9 @@ PRÜFUNGSVORBEREITUNG - ZEITBUDGET
 
 Empfohlene Lernzeit:
   Module 1: 8 Stunden (250 Fragen)
-  Module 2: 10 Stunden (290 Fragen)
-  Module 3: 9 Stunden (250 Fragen)
-  Module 4: 8 Stunden (210 Fragen)
+  Module 2: 10 Stunden (289 Fragen)
+  Module 3: 9 Stunden (249 Fragen)
+  Module 4: 8 Stunden (212 Fragen)
   ────────────────────────────────
   Gesamt: ~35 Stunden
 
