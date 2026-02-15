@@ -1,175 +1,378 @@
-# 🎓 PCEP-PREP-MEAL - Interactive Python Certification Platform
+# PCEP-40-01 Exam Question Bank - 1000 Fragen
 
-A fully interactive learning platform for **PCEP (Python Certified Entry-Level Programmer)** certification preparation.
+## Übersicht
 
-## 🌟 Major Updates (v2.0)
+Dieses Projekt enthält eine vollständige Fragendatenbank mit **1000 realistischen PCEP-40-01 Prüfungsfragen**, basierend auf dem offiziellen Syllabus.
 
-### ✨ New Features
-- **1000 Questions Bank** - Massive question pool across all modules
-- **Customizable Exam** - Select modules, question count, timer, and feedback mode
-- **Full English Translation** - All content in English
-- **Advanced Exam Simulation** - Realistic PCEP exam experience
-- **Flexible Learning Modes** - Immediate or end-of-exam feedback
+## Dateistruktur
 
-## 📋 Structure
+```
+questions-bank-1000.json
+├── module1: 250 Fragen (Computer Programming and Python Fundamentals)
+├── module2: 290 Fragen (Control Flow)
+├── module3: 250 Fragen (Data Collections)
+└── module4: 210 Fragen (Functions and Exceptions)
+```
 
-### Landing Page
-- **[index.html](computer:///sessions/busy-quirky-fermat/mnt/PCEP-PREP-MEAL/index.html)** - Main overview with module cards
+## Module & Inhalte
 
-### 4 Learning Modules
+### Module 1: Computer Programming and Python Fundamentals (18% der Prüfung = 250 Fragen)
 
-#### 🔷 Module 1: Fundamentals (18% Exam Weight)
-- **[module1.html](computer:///sessions/busy-quirky-fermat/mnt/PCEP-PREP-MEAL/module1.html)** - Accent: Cyan (#54c7ff)
-- **Topics:** Computer Programming Basics, Python Syntax, Literals & Variables, Operators, Data Types, Input/Output
-- **5 Tabs:** Theory, Cheatsheet, Common Mistakes, Flashcards (8), Quiz (8)
+- **Grundkonzepte der Programmierung**: Variablen, Datentypen, Operatoren
+- **Python-Besonderheiten**: Division (int vs float), True Division, Floor Division
+- **Type Casting & Conversion**: int(), float(), str(), bool()
+- **Literals**: Boolean, Integer, Float, String
+- **Operatoren**: Arithmetik, Vergleich, Logisch, Bitweise
+- **Operator Precedence**: Exponentiation > Multiplication/Division > Addition/Subtraction
+- **Python Keywords & Reserved Words**: Groß-/Kleinschreibung, gültige Bezeichner
+- **Built-in Functions**: input(), print(), len(), type(), range()
+- **String-Operationen**: Indexing, Slicing, Methoden (upper(), lower(), split(), join(), etc.)
 
-#### 🟢 Module 2: Control Flow (29% Exam Weight)
-- **[module2.html](computer:///sessions/busy-quirky-fermat/mnt/PCEP-PREP-MEAL/module2.html)** - Accent: Green (#3ee0a1)
-- **Topics:** Conditionals, Boolean Logic, Loops, break/continue, Loop else
-- **5 Tabs:** Theory, Cheatsheet, Common Mistakes, Flashcards (8), Quiz (10)
+**Schwierigkeitsverhältnis:**
+- Easy: 34.8%
+- Medium: 54.0%
+- Hard: 11.2%
 
-#### 🟠 Module 3: Data Collections (25% Exam Weight)
-- **[module3.html](computer:///sessions/busy-quirky-fermat/mnt/PCEP-PREP-MEAL/module3.html)** - Accent: Orange (#f6b44d)
-- **Topics:** Strings, Lists, Tuples, Dictionaries, Collection Methods
-- **5 Tabs:** Theory, Cheatsheet, Common Mistakes, Flashcards (10), Quiz (12)
+### Module 2: Control Flow (29% der Prüfung = 290 Fragen)
 
-#### 🔴 Module 4: Functions & Exceptions (28% Exam Weight)
-- **[module4.html](computer:///sessions/busy-quirky-fermat/mnt/PCEP-PREP-MEAL/module4.html)** - Accent: Coral (#ff8a5a)
-- **Topics:** Functions, Parameters, Lambda, Scope, Exception Handling
-- **4 Tabs:** Theory, Cheatsheet, Flashcards (12), Quiz (15)
+- **Bedingte Anweisungen**: if, elif, else
+- **Boolean Logic**: and, or, not
+- **Wahrheitswertige Werte**: Falsy (0, '', [], None) und Truthy Werte
+- **Schleifen**: while, for, break, continue
+- **range() Funktion**: range(n), range(start, stop, step), negative steps
+- **Loop else Clause**: Besonderheit der Python-Schleifen
+- **Ternary/Conditional Expressions**: value if condition else other_value
+- **Nested Loops & Control Flow**
 
-### 🎯 Advanced Exam Simulation
-- **[exam-simulation.html](computer:///sessions/busy-quirky-fermat/mnt/PCEP-PREP-MEAL/exam-simulation.html)**
-- **Customization Options:**
-  - **Module Selection:** Choose 1-4 modules (checkboxes)
-  - **Question Count:** 10-100 questions (slider)
-  - **Timer:** Optional, dynamic based on question count (1.33 min/question)
-  - **Feedback Mode:** 
-    - Immediate (with hints after each question)
-    - At the end (all answers revealed after submission)
-- **Features:**
-  - 1000-question pool from questions-bank-1000.json
-  - Progress tracking
-  - Question navigator
-  - Detailed results with module breakdown
-  - Pass/Fail status (70% threshold)
-  - Keyboard shortcuts (Enter, Escape)
+**Schwierigkeitsverhältnis:**
+- Easy: 53.4%
+- Medium: 38.6%
+- Hard: 7.9%
 
-## 📊 Question Bank
+### Module 3: Data Collections (25% der Prüfung = 250 Fragen)
 
-### [questions-bank-1000.json](computer:///sessions/busy-quirky-fermat/mnt/PCEP-PREP-MEAL/questions-bank-1000.json)
-- **1000 PCEP-relevant questions**
-- **Distribution:**
-  - Module 1: 250 questions (25%)
-  - Module 2: 290 questions (29%)
-  - Module 3: 250 questions (25%)
-  - Module 4: 210 questions (21%)
-- **Question Types:**
-  - Code Output (60%)
-  - Conceptual (25%)
-  - Error Detection (10%)
-  - Best Practice (5%)
-- **Difficulty Levels:**
-  - Easy: 30%
-  - Medium: 50%
-  - Hard: 20%
+- **Strings**: Indexing, Slicing, Immutability, Methoden
+- **Lists**: Creation, Modification, Methods (append, extend, insert, remove, pop, sort, reverse)
+- **Tuples**: Immutability, Single-element Tuple (1,), Unpacking
+- **Dictionaries**: Keys, Values, Items, Methods (get, keys, values, items, pop, update)
+- **Collection Membership**: in operator, not in
+- **Copying vs References**: y = x vs y = x[:]
+- **Built-in Collection Methods**: len(), sorted(), list comprehensions
 
-## ✨ Features
+**Schwierigkeitsverhältnis:**
+- Easy: 46.8%
+- Medium: 42.0%
+- Hard: 11.2%
 
-### 📚 Structured Learning
-- Consistent tab structure across all modules
-- Theory → Cheatsheet → Common Mistakes → Flashcards → Quiz
+### Module 4: Functions and Exceptions (28% der Prüfung = 210 Fragen)
 
-### 🎴 Interactive Flashcards
-- Click-to-flip mechanic
-- 38 total flashcards
+- **Function Definition & Calls**: def, return, parameters, arguments
+- **Parameter Types**: Positional, Keyword, Default, *args, **kwargs
+- **Function Scope**: Local vs Global, global keyword
+- **Lambda Functions**: Anonymous functions for simple operations
+- **Built-in Functions**: len(), type(), range(), enumerate(), zip(), min(), max(), sum(), sorted()
+- **Exception Handling**: try, except, else, finally
+- **Common Exceptions**: ValueError, TypeError, IndexError, KeyError, ZeroDivisionError, NameError, SyntaxError
+- **Raising Exceptions**: raise statement
 
-### ⚠️ Common Mistakes
-- Typical exam traps explained
-- Solutions with code examples
+**Schwierigkeitsverhältnis:**
+- Easy: 49.5%
+- Medium: 43.8%
+- Hard: 6.7%
 
-### ❓ Quiz System
-- Multiple-choice format
-- Instant feedback
-- Explanations for each answer
-- 45 module quiz questions
+## Fragenformat
 
-### 🎯 Advanced Exam Simulation
-- **Setup Screen:**
-  - Module selection (1-4)
-  - Question count (10-100)
-  - Optional timer
-  - Feedback mode selection
-- **Exam Screen:**
-  - Progress indicator
-  - Dynamic timer with warnings
-  - Question navigator
-  - Previous/Next/Skip navigation
-  - Immediate or delayed feedback
-- **Results Screen:**
-  - Overall score with pass/fail
-  - Module breakdown
-  - Time statistics
-  - Detailed review of all questions
+Jede Frage hat folgende Struktur:
 
-## 🎨 Design
+```json
+{
+  "id": "m1_001",
+  "prompt": "What is the output?",
+  "code": "x = 10 // 3\nprint(x)",
+  "options": [
+    "3",
+    "3.33",
+    "3.0",
+    "Error"
+  ],
+  "answer": 0,
+  "hint": "Floor division returns integer",
+  "explanation": "The // operator performs floor division, which returns the integer quotient without the remainder. 10 // 3 = 3.",
+  "difficulty": "easy"
+}
+```
 
-- **Dark Theme** with modern glassmorphism
-- **Animated Orbs** background
-- **Responsive Design** for Desktop, Tablet, Mobile
-- **Module Colors:**
-  - M1: Cyan (#54c7ff)
-  - M2: Green (#3ee0a1)
-  - M3: Orange (#f6b44d)
-  - M4: Coral (#ff8a5a)
-- **Fonts:**
-  - Space Grotesk (Body)
-  - IBM Plex Mono (Code)
+### Fragenfelder
 
-## 📈 Study Recommendations
+- **id**: Eindeutige Frage-ID (mX_YYY format)
+- **prompt**: Die Frage/Anweisung
+- **code**: Python-Code zur Analyse (falls zutreffend)
+- **options**: 3-4 Antwortmöglichkeiten
+- **answer**: Index der richtigen Antwort (0-3)
+- **hint**: Kurzer Hinweis (5-10 Wörter)
+- **explanation**: Ausführliche Erklärung (2-3 Sätze)
+- **difficulty**: easy, medium, oder hard
 
-1. **Systematic Learning:** Start with Module 1, work through all 4 modules
-2. **Theory First:** Read Theory tabs thoroughly
-3. **Use Cheatsheets:** Quick reference for revision
-4. **Avoid Mistakes:** Study Common Mistakes intensively
-5. **Practice with Flashcards:** Reinforce concepts
-6. **Complete Module Quizzes:** Test knowledge in each module
-7. **Exam Simulation:** Practice multiple times with different configurations
+## Fragentypen (Verteilung)
 
-## 🎯 Exam Information
+### Code Output (60%)
+**Beispiel:** "What is the output?"
+- Zeigt Python-Code
+- Fragt nach der Ausgabe
+- Testet praktisches Verständnis
+- Fokus auf Syntax und Semantik
 
-- **Questions:** 30 Multiple-Choice
-- **Time:** 40 minutes
-- **Passing Score:** 70% (21/30 correct answers)
-- **Module Distribution:**
-  - Fundamentals: 18%
-  - Control Flow: 29%
-  - Data Collections: 25%
-  - Functions & Exceptions: 28%
+### Conceptual (25%)
+**Beispiel:** "Which statement is correct?"
+- Theoretische Fragen
+- Konzeptverständnis
+- Best Practices
+- Python-Besonderheiten
 
-## 🚀 Usage
+### Error Detection (10%)
+**Beispiel:** "What error occurs?"
+- Fehlererkennungsfähigkeiten
+- Exception Types
+- Häufige Fallstricke
+- Code Validation
 
-1. Open **index.html** in a modern web browser
-2. Choose a module or start the Exam Simulation
-3. Navigate through tabs in each module
-4. Configure your exam settings (modules, count, timer, mode)
-5. Test your knowledge regularly
+### Best Practice (5%)
+**Beispiel:** "What is the best approach?"
+- PEP 8 Richtlinien
+- Code-Stil
+- Pythonic Idioms
+- Performance & Lesbarkeit
 
-## 🔧 Technology
+## Schwierigkeitsgrade
 
-- **HTML5** + **CSS3** (Custom Properties, Grid, Flexbox, Animations)
-- **Vanilla JavaScript** (no frameworks)
-- **Responsive Design** (Mobile-first)
-- **LocalStorage** for progress tracking (optional)
-- **Async JSON Loading** for question bank
+### Easy (40-50%)
+- Grundlegende Syntax
+- Einfache Operationen
+- Direkte Konzeptfragen
+- Einzelne Operatoren
 
-## 📱 Browser Compatibility
+### Medium (40-50%)
+- Kombinierte Konzepte
+- Mehrstufige Operationen
+- Operator Precedence
+- Nested Structures
 
-- Chrome/Edge: ✅
-- Firefox: ✅
-- Safari: ✅
-- Mobile Browsers: ✅
+### Hard (10-15%)
+- Edge Cases
+- Tricky Situationen
+- Komplexe Interaktionen
+- Fallstricke & Stolpersteine
+
+## Exam Traps (eingebaute Prüfungsfallen)
+
+Die Fragen enthalten bewusst Prüfungsfallen für häufige Fehler:
+
+### Module 1
+- ✓ Division returns float: `10/2 = 5.0`
+- ✓ Floor division mit Negativ: `-7//2 = -4`
+- ✓ int() truncates, doesn't round: `int(3.9) = 3`
+- ✓ Operator precedence: `-2**2 = -4`
+- ✓ String immutability
+- ✓ Boolean als Integer: `True == 1`, `False == 0`
+
+### Module 2
+- ✓ Loop else clause skips bei break
+- ✓ range(n) excludes n
+- ✓ Falsy values: 0, '', [], None
+- ✓ Ternary expression syntax
+
+### Module 3
+- ✓ String immutability: `x[0] = 'H'` → TypeError
+- ✓ List references vs copies: `b = a` vs `b = a[:]`
+- ✓ sort() returns None
+- ✓ sorted() returns new list
+- ✓ Tuple single element: `(1,)` nicht `(1)`
+- ✓ Dictionary `in` checks keys, not values
+- ✓ find() returns -1, index() raises ValueError
+
+### Module 4
+- ✓ Mutable default arguments trap
+- ✓ append() vs extend()
+- ✓ Return ohne Wert: returns None
+- ✓ *args creates tuple, **kwargs creates dict
+- ✓ finally always executes
+- ✓ Function scope: local vs global
+
+## Verwendung
+
+### JSON Laden (Python)
+
+```python
+import json
+
+with open('questions-bank-1000.json', 'r') as f:
+    data = json.load(f)
+
+# Alle Module
+for module_name in data:
+    questions = data[module_name]
+    print(f"{module_name}: {len(questions)} questions")
+
+# Spezifisches Modul
+module1 = data['module1']
+for question in module1[:5]:
+    print(f"ID: {question['id']}")
+    print(f"Code: {question['code']}")
+    print(f"Options: {question['options']}")
+    print(f"Answer index: {question['answer']}")
+```
+
+### Prüfungssimulation
+
+```python
+import json
+import random
+
+with open('questions-bank-1000.json', 'r') as f:
+    data = json.load(f)
+
+# Alle Fragen aus allen Modulen
+all_questions = []
+for module in data.values():
+    all_questions.extend(module)
+
+# Zufällige Prüfung mit 50 Fragen
+exam = random.sample(all_questions, 50)
+score = 0
+
+for q in exam:
+    print(f"\n{q['id']}: {q['prompt']}")
+    if 'code' in q and q['code']:
+        print(f"Code: {q['code']}")
+    for i, opt in enumerate(q['options']):
+        print(f"  {i+1}. {opt}")
+    
+    user_answer = int(input("Your answer (0-3): "))
+    if user_answer == q['answer']:
+        score += 1
+        print("✓ Correct!")
+    else:
+        print(f"✗ Incorrect. Correct answer: {q['options'][q['answer']]}")
+        print(f"Explanation: {q['explanation']}")
+
+print(f"\nFinal Score: {score}/{len(exam)} ({score/len(exam)*100:.1f}%)")
+```
+
+## Statistiken
+
+| Metrik | Wert |
+|--------|------|
+| Gesamtfragen | 1000 |
+| Module | 4 |
+| Code Output Fragen | ~600 |
+| Conceptual Fragen | ~250 |
+| Error Detection Fragen | ~100 |
+| Best Practice Fragen | ~50 |
+| Average Difficulty Easy | 45% |
+| Average Difficulty Medium | 45% |
+| Average Difficulty Hard | 10% |
+| File Size | ~330 KB |
+
+## Fragen-ID Schema
+
+- **m1_XXX**: Module 1 (m1_001 bis m1_250)
+- **m2_XXX**: Module 2 (m2_001 bis m2_290)
+- **m3_XXX**: Module 3 (m3_001 bis m3_250)
+- **m4_XXX**: Module 4 (m4_001 bis m4_210)
+
+## Offizielle PCEP-40-01 Syllabus
+
+Diese Fragendatenbank basiert auf:
+
+- **Prüfung**: Python Institute - Certified Entry-Level Python Programmer (PCEP-40-01)
+- **Gültig ab**: 2024
+- **Bestehensquote**: 70% (65+ von 70 Punkten)
+- **Zeit**: 90 Minuten
+- **Fragen**: 40 Fragen
+
+## Best Practices für die Prüfungsvorbereitung
+
+1. **Systematisch durcharbeiten**: Beginne mit Modul 1, arbeite dich durch alle Module
+2. **Code ausführen**: Kopiere Code-Beispiele und führe sie lokal aus
+3. **Erklärungen lesen**: Verstehe nicht nur das "was", sondern auch das "warum"
+4. **Schwierige Fragen wiederholen**: Focus auf hard-level Fragen für Perfektionierung
+5. **Timed Practice**: Übe unter Zeitdruck (2 Minuten pro Frage)
+6. **Module kombinieren**: Erstelle Mixed-Exams mit Fragen aus allen Modulen
+
+## Tipps zu häufigen Fallstricken
+
+### Division und Floor Division
+```python
+10 / 3   # 3.333... (float)
+10 // 3  # 3 (integer)
+-7 // 2  # -4 (rundet ab, nicht zu 0!)
+```
+
+### String Immutability
+```python
+s = "hello"
+s[0] = "H"  # TypeError! Strings sind unveränderlich
+```
+
+### List vs Copy
+```python
+a = [1, 2, 3]
+b = a        # b referenziert a
+a.append(4)  # a und b sind beide [1, 2, 3, 4]
+
+c = a[:]     # c ist eine Kopie
+a.append(5)  # a ist [1, 2, 3, 4, 5], c ist [1, 2, 3, 4]
+```
+
+### Sort vs Sorted
+```python
+x = [3, 1, 2]
+x.sort()           # x ist nun [1, 2, 3], sort() gibt None zurück
+y = sorted([3, 1]) # y ist [1, 3], sorted() gibt neue Liste zurück
+```
+
+### Tuple Single Element
+```python
+x = (1)    # Das ist ein int, nicht ein tuple!
+y = (1,)   # Das ist ein tuple mit einem Element
+```
+
+### Loop Else
+```python
+for i in range(5):
+    if i == 3:
+        break
+else:
+    print("Completed")  # Diese Zeile wird NICHT ausgeführt wegen break
+```
+
+### Mutable Default Arguments
+```python
+def f(x=[]):        # FALSCH: list wird nur einmal erstellt
+    x.append(1)
+    return x
+f()  # [1]
+f()  # [1, 1]  <-- Problem!
+
+def g(x=None):      # RICHTIG
+    if x is None:
+        x = []
+    x.append(1)
+    return x
+g()  # [1]
+g()  # [1]
+```
+
+## Kontakt & Support
+
+Diese Fragendatenbank wurde basierend auf:
+- Offizielles PCEP-40-01 Syllabus
+- Python 3.10+ Standard
+- PEP 8 Style Guide
+- Häufige Prüfungsfallen und Best Practices
 
 ---
 
-**Good luck with your PCEP exam! 🍀**
+**Letzte Aktualisierung**: 2024
+**Version**: 1.0
+**Status**: Vollständig (1000 Fragen)

@@ -361,6 +361,69 @@
       min-height: 150px;
     }
   }
+
+  /* Pitfalls Styling */
+  .pitfalls-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .pitfall-item {
+    background: var(--surface-soft);
+    border-left: 4px solid #ef4444;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+
+  .pitfall-item:hover {
+    transform: translateX(5px);
+    border-left-color: var(--m1);
+  }
+
+  .pitfall-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pitfall-icon {
+    color: #ef4444;
+    font-size: 1.3rem;
+  }
+
+  .pitfall-wrong {
+    background: rgba(239, 68, 68, 0.1);
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin: 0.75rem 0;
+    font-family: 'IBM Plex Mono', monospace;
+    border-left: 2px solid #ef4444;
+    padding-left: 0.75rem;
+  }
+
+  .pitfall-right {
+    background: rgba(34, 197, 94, 0.1);
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin: 0.75rem 0;
+    font-family: 'IBM Plex Mono', monospace;
+    border-left: 2px solid #22c55e;
+    padding-left: 0.75rem;
+  }
+
+  .pitfall-explanation {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+  }
+
 </style>
 </head>
 <body>
@@ -381,6 +444,7 @@
     <button class="tab-btn active" onclick="switchTab('theory')">Theory</button>
     <button class="tab-btn" onclick="switchTab('cheatsheet')">Cheatsheet</button>
     <button class="tab-btn" onclick="switchTab('mistakes')">Common Mistakes</button>
+    <button class="tab-btn" onclick="switchTab('pitfalls')">Pitfalls</button>
     <button class="tab-btn" onclick="switchTab('flashcards')">Flashcards</button>
     <button class="tab-btn" onclick="switchTab('quiz')">Quiz</button>
   </div>
@@ -552,7 +616,193 @@ print(d.get("b", "default"))  # "default"</code></pre>
     </div>
   </div>
 
-  <div id="flashcards" class="tab-content">
+  <div id="pitfalls" class="tab-content">
+  <h2>🚨 Critical Exam Pitfalls</h2>
+  <p class="intro">These are the most common traps that catch even experienced programmers in the PCEP exam. Master these to avoid losing easy points!</p>
+  <div class="pitfalls-grid">
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Strings are Immutable</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>s = 'hello'; s[0] = 'H'</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>s = 'hello'; s = 'H' + s[1:] OR s = s.replace('h', 'H')</code>
+      </div>
+      <div class="pitfall-explanation">
+        Strings cannot be modified in place. You must create a new string. Lists ARE mutable and can be modified with index assignment.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>List Assignment Creates Reference</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>b = a creates a new list</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>b = a shares the same object</code>
+      </div>
+      <div class="pitfall-explanation">
+        Assignment doesn't copy the list, it creates another reference to the same object. Modifying <code>b</code> also modifies <code>a</code>.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Copying Lists Requires Special Syntax</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>b = a copies the list</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>b = a[:] OR b = a.copy() OR b = list(a)</code>
+      </div>
+      <div class="pitfall-explanation">
+        To create an independent copy, use slicing <code>a[:]</code>, <code>.copy()</code>, or the <code>list()</code> constructor.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>sort() Returns None</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>b = a.sort()</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>a.sort() OR b = sorted(a)</code>
+      </div>
+      <div class="pitfall-explanation">
+        The <code>.sort()</code> method sorts in-place and returns <code>None</code>. Use <code>sorted()</code> if you need a new sorted list.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>append() vs extend()</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>a.append([1,2]) adds items 1 and 2</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>a.append([1,2]) adds the list [1,2] as single item; a.extend([1,2]) adds items</code>
+      </div>
+      <div class="pitfall-explanation">
+        <code>append()</code> adds the argument as a single item. <code>extend()</code> adds each item from the iterable separately.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Single Element Tuple Syntax</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>t = (1) creates a tuple</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>t = (1,) creates a tuple; (1) is just int</code>
+      </div>
+      <div class="pitfall-explanation">
+        A single value in parentheses is just that value. You MUST use a trailing comma to create a single-element tuple: <code>(1,)</code>
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Dictionary in Checks Keys</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>'value' in d checks if 'value' is a value</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>'value' in d checks if 'value' is a key</code>
+      </div>
+      <div class="pitfall-explanation">
+        The <code>in</code> operator for dictionaries checks keys only, not values. Use <code>'value' in d.values()</code> to check values.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>find() vs index()</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>s.index('x') returns -1 if not found</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>s.find('x') returns -1; s.index('x') raises ValueError</code>
+      </div>
+      <div class="pitfall-explanation">
+        <code>find()</code> returns -1 if substring not found. <code>index()</code> raises a <code>ValueError</code>. Choose based on your error handling needs.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>String Slicing Never Errors</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>s[100:200] raises IndexError</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>s[100:200] returns empty string if out of bounds</code>
+      </div>
+      <div class="pitfall-explanation">
+        String slicing (and list slicing) is forgiving - out-of-bounds indices don't raise errors, they just return a shorter slice or empty result.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>List Multiplication with Nested Objects</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>[[0]*3]*3 creates 3 independent rows</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>[[0]*3]*3 shares the same inner list</code>
+      </div>
+      <div class="pitfall-explanation">
+        Multiplying a list doesn't create independent copies. All rows reference the same inner list. Use a list comprehension instead: <code>[[0]*3 for _ in range(3)]</code>
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Modifying Dict While Iterating</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>for k in d: d[k] = v works fine</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>for k in d: d[k] = v raises RuntimeError</code>
+      </div>
+      <div class="pitfall-explanation">
+        You cannot add or remove keys from a dictionary while iterating over it. Iterate over a copy: <code>for k in list(d):</code> or <code>for k in d.keys():</code>
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Dict get() vs Bracket Notation</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>d['key'] returns None if missing</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>d.get('key') returns None; d['key'] raises KeyError</code>
+      </div>
+      <div class="pitfall-explanation">
+        <code>dict.get(key)</code> safely returns None for missing keys. Bracket notation <code>d[key]</code> raises KeyError. Use <code>get()</code> for safe access.
+      </div>
+    </div>
+  </div>
+</div>
+    <div id="flashcards" class="tab-content">
     <div class="progress">
       <div class="progress-item">
         <div class="progress-number" id="correct-count">0</div>

@@ -1096,6 +1096,59 @@
             white-space: nowrap;
             border-width: 0;
         }
+
+        /* ========== HINT STYLES ========== */
+        .hint-section {
+            margin-top: 1.5rem;
+        }
+
+        .hint-button {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1e293b;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .hint-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+        }
+
+        .hint-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background: #64748b;
+        }
+
+        .hint-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 4px solid #fbbf24;
+            border-radius: 8px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .hint-box strong {
+            color: #fbbf24;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1179,6 +1232,18 @@
                     </div>
                 </div>
 
+                
+                <!-- Hints Option -->
+                <div class="setup-option">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="hintsEnabled">
+                    <span>💡 Enable Hints (Show hint button during exam)</span>
+                  </label>
+                  <p class="option-description">
+                    When enabled, you can reveal a hint for each question (tracked separately from answers)
+                  </p>
+                </div>
+
                 <!-- Start Button -->
                 <div class="setup-actions">
                     <button class="btn btn-primary btn-lg" id="startExamBtn" onclick="startExam()">
@@ -1219,6 +1284,15 @@
 
                     <div class="feedback-container" id="feedbackContainer">
                         <!-- Feedback will be dynamically inserted -->
+                    </div>
+                    <!-- Hints Section -->
+                    <div class="hint-section" id="hintSection" style="display: none;">
+                        <button class="hint-button" id="hintButton" onclick="toggleHint()">
+                            💡 Show Hint
+                        </button>
+                        <div class="hint-box" id="hintBox" style="display: none;">
+                            <strong>💡 Hint:</strong> <span id="hintText"></span>
+                        </div>
                     </div>
 
                     <div class="question-controls">
@@ -1285,6 +1359,10 @@
                     <div class="stat-card">
                         <div class="stat-label">Correct Answers</div>
                         <div class="stat-value" id="correctAnswersDisplay">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Hints Used</div>
+                        <div class="stat-value" id="hintsUsedCount">0</div>
                     </div>
                 </div>
 
@@ -1360,6 +1438,7 @@
             enableTimer: true,
             answerMode: 'end', // 'end' or 'immediate'
             showFeedback: false,
+            hintsUsed: new Set(),  // NEU - Track which questions used hints
         };
 
         // Embedded questions bank - self-contained, no fetch needed
@@ -1443,6 +1522,8 @@
                 state.skipped = new Set();
                 state.showFeedback = false;
                 state.startTime = Date.now();
+                state.hintsUsed = new Set();  // Reset hints for new exam
+                state.hintsEnabled = document.getElementById('hintsEnabled').checked;  // Capture hints setting
 
                 // Update UI
                 showScreen('examScreen');
@@ -1535,6 +1616,9 @@
 
             // Update navigator
             updateNavigator();
+            
+            // Update hint display
+            updateHintDisplay();
 
             // Keyboard shortcuts
             document.addEventListener('keydown', handleKeyboard);
@@ -1753,6 +1837,13 @@
             document.getElementById('totalScoreDisplay').textContent = `${results.correct}/${results.total}`;
             document.getElementById('correctAnswersDisplay').textContent = results.correct;
             
+            // Display hints used
+            if (state.hintsEnabled) {
+                document.getElementById('hintsUsedCount').textContent = state.hintsUsed.size;
+            } else {
+                document.getElementById('hintsUsedCount').textContent = 'N/A';
+            }
+            
             const statusEl = document.getElementById('scoreStatus');
             if (results.percentage >= 70) {
                 statusEl.textContent = '✓ PASSED';
@@ -1910,6 +2001,77 @@
         // Initialize
         updateSelectedModules();
         updateEstimatedTime();
-    </script>
+    
+
+        // ========== HINT FUNCTIONALITY ==========
+        function toggleHint() {
+            const currentQuestion = state.questions[state.currentQuestionIndex];
+            const hintBox = document.getElementById('hintBox');
+            const hintButton = document.getElementById('hintButton');
+            const hintText = document.getElementById('hintText');
+            
+            if (hintBox.style.display === 'none') {
+                // Show hint
+                hintText.textContent = currentQuestion.hint || 'No hint available';
+                hintBox.style.display = 'block';
+                hintButton.textContent = '💡 Hint Shown';
+                hintButton.disabled = true;
+                state.hintsUsed.add(state.currentQuestionIndex);
+            }
+        }
+
+        function updateHintDisplay() {
+            const currentQuestion = state.questions[state.currentQuestionIndex];
+            const hintSection = document.getElementById('hintSection');
+            const hintButton = document.getElementById('hintButton');
+            const hintBox = document.getElementById('hintBox');
+            
+            // Get hints enabled setting from checkbox
+            const hintsEnabled = document.getElementById('hintsEnabled').checked;
+            
+            if (hintsEnabled) {
+                hintSection.style.display = 'block';
+                
+                // Reset hint state for new question
+                if (state.hintsUsed.has(state.currentQuestionIndex)) {
+                    hintButton.textContent = '💡 Hint Shown';
+                    hintButton.disabled = true;
+                    hintBox.style.display = 'block';
+                    document.getElementById('hintText').textContent = currentQuestion.hint || 'No hint available';
+                } else {
+                    hintButton.textContent = '💡 Show Hint';
+                    hintButton.disabled = false;
+                    hintBox.style.display = 'none';
+                }
+            } else {
+                hintSection.style.display = 'none';
+            }
+        }
+        
+        const originalPreviousQuestion = window.previousQuestion;
+        window.previousQuestion = function() {
+            originalPreviousQuestion.call(this);
+            updateHintDisplay();
+        };
+
+
+        // Hook results display to show hints
+        const originalDisplayResults = function(screen) {
+            const hintsElement = document.getElementById('hintsUsedCount');
+            if (hintsElement) {
+                if (state.hintsEnabled) {
+                    hintsElement.textContent = state.hintsUsed.size;
+                } else {
+                    hintsElement.textContent = 'N/A';
+                }
+            }
+        };
+        
+        // Call this hook when transitioning to results
+        function displayResultsWithHints() {
+            originalDisplayResults(document.getElementById('resultsScreen'));
+        }
+
+        </script>
 </body>
 </html>

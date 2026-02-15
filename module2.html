@@ -361,6 +361,69 @@
       min-height: 150px;
     }
   }
+
+  /* Pitfalls Styling */
+  .pitfalls-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .pitfall-item {
+    background: var(--surface-soft);
+    border-left: 4px solid #ef4444;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+
+  .pitfall-item:hover {
+    transform: translateX(5px);
+    border-left-color: var(--m1);
+  }
+
+  .pitfall-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pitfall-icon {
+    color: #ef4444;
+    font-size: 1.3rem;
+  }
+
+  .pitfall-wrong {
+    background: rgba(239, 68, 68, 0.1);
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin: 0.75rem 0;
+    font-family: 'IBM Plex Mono', monospace;
+    border-left: 2px solid #ef4444;
+    padding-left: 0.75rem;
+  }
+
+  .pitfall-right {
+    background: rgba(34, 197, 94, 0.1);
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin: 0.75rem 0;
+    font-family: 'IBM Plex Mono', monospace;
+    border-left: 2px solid #22c55e;
+    padding-left: 0.75rem;
+  }
+
+  .pitfall-explanation {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+  }
+
 </style>
 </head>
 <body>
@@ -381,6 +444,7 @@
     <button class="tab-btn active" onclick="switchTab('theory')">Theory</button>
     <button class="tab-btn" onclick="switchTab('cheatsheet')">Cheatsheet</button>
     <button class="tab-btn" onclick="switchTab('mistakes')">Common Mistakes</button>
+    <button class="tab-btn" onclick="switchTab('pitfalls')">Pitfalls</button>
     <button class="tab-btn" onclick="switchTab('flashcards')">Flashcards</button>
     <button class="tab-btn" onclick="switchTab('quiz')">Quiz</button>
   </div>
@@ -574,6 +638,163 @@ while x < 10:
   </div>
 
   <!-- Flashcards Tab -->
+  <div id="pitfalls" class="tab-content">
+    <h2>🚨 Critical Exam Pitfalls</h2>
+    <p class="intro">These are the most common traps that catch even experienced programmers in the PCEP exam. Master these to avoid losing easy points!</p>
+    <div class="pitfalls-grid">
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>Loop else Clause Condition</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>else runs every time loop ends</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>else runs only if NO break occurred</code>
+        </div>
+        <div class="pitfall-explanation">
+          The <code>else</code> block in a loop only executes if the loop completes normally. If <code>break</code> is executed, the <code>else</code> is skipped.
+        </div>
+      </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>range() Stop is Exclusive</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>range(5) = [0,1,2,3,4,5]</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>range(5) = [0,1,2,3,4]</code>
+        </div>
+        <div class="pitfall-explanation">
+          The stop value in <code>range()</code> is exclusive - it's not included. <code>range(5)</code> goes from 0 to 4, not 5.
+        </div>
+      </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>Wrong Step Direction</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>range(5, 0, 1) returns [1,2,3,4]</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>range(5, 0, 1) returns []</code>
+        </div>
+        <div class="pitfall-explanation">
+          With a positive step, you can't go from 5 down to 0. Use a negative step: <code>range(5, 0, -1)</code> for [5,4,3,2,1].
+        </div>
+      </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>break Only Exits Innermost Loop</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>break from nested loop exits all loops</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>break only exits the innermost loop</code>
+        </div>
+        <div class="pitfall-explanation">
+          A <code>break</code> statement only terminates the loop it's in. For nested loops, you need multiple breaks or a flag variable.
+        </div>
+      </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>Chained Comparisons are Valid</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>1 < x < 10 is not valid Python</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>1 < x < 10 is valid and equivalent to (1 < x) and (x < 10)</code>
+        </div>
+        <div class="pitfall-explanation">
+          Python supports chained comparisons, which are both valid and more efficient than writing separate conditions.
+        </div>
+      </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>Boolean Operators Return Values</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>5 and 3 = True, 0 or 5 = True</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>5 and 3 = 3, 0 or 5 = 5</code>
+        </div>
+        <div class="pitfall-explanation">
+          <code>and</code> and <code>or</code> return actual values, not booleans. <code>and</code> returns the first falsy value or the last, <code>or</code> returns the first truthy value or the last.
+        </div>
+      </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>Assignment vs Comparison Operator</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>if x = 5: ...</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>if x == 5: ... OR x = 5; if x: ...</code>
+        </div>
+        <div class="pitfall-explanation">
+          Use <code>==</code> for comparison and <code>=</code> for assignment. In conditions, <code>=</code> is a syntax error in Python.
+        </div>
+      </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>Loop Variable Persists After Loop</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>i is undefined after loop ends</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>i remains accessible after loop with its final value</code>
+        </div>
+        <div class="pitfall-explanation">
+          Loop variables don't have block scope in Python. The variable <code>i</code> continues to exist and holds the last value it had.
+        </div>
+      </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>while True Without Break</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>while True continues until function ends</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>while True creates infinite loop - must have break</code>
+        </div>
+        <div class="pitfall-explanation">
+          A <code>while True</code> loop will run forever unless a <code>break</code> statement is executed. Always ensure an exit condition.
+        </div>
+      </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>elif vs Multiple if Statements</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>All conditions are checked and all matching blocks run</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>Only the first true condition executes with elif</code>
+        </div>
+        <div class="pitfall-explanation">
+          With <code>elif</code>, only the first matching block executes. With multiple <code>if</code> statements, all conditions are checked and all matching blocks run.
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="flashcards" class="tab-content">
     <div class="progress">
       <div class="progress-item">

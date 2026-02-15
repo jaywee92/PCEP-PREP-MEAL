@@ -361,6 +361,69 @@
       min-height: 150px;
     }
   }
+
+  /* Pitfalls Styling */
+  .pitfalls-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .pitfall-item {
+    background: var(--surface-soft);
+    border-left: 4px solid #ef4444;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+
+  .pitfall-item:hover {
+    transform: translateX(5px);
+    border-left-color: var(--m1);
+  }
+
+  .pitfall-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pitfall-icon {
+    color: #ef4444;
+    font-size: 1.3rem;
+  }
+
+  .pitfall-wrong {
+    background: rgba(239, 68, 68, 0.1);
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin: 0.75rem 0;
+    font-family: 'IBM Plex Mono', monospace;
+    border-left: 2px solid #ef4444;
+    padding-left: 0.75rem;
+  }
+
+  .pitfall-right {
+    background: rgba(34, 197, 94, 0.1);
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin: 0.75rem 0;
+    font-family: 'IBM Plex Mono', monospace;
+    border-left: 2px solid #22c55e;
+    padding-left: 0.75rem;
+  }
+
+  .pitfall-explanation {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+  }
+
 </style>
 </head>
 <body>
@@ -381,6 +444,7 @@
     <button class="tab-btn active" onclick="switchTab('theory')">Theory</button>
     <button class="tab-btn" onclick="switchTab('cheatsheet')">Cheatsheet</button>
     <button class="tab-btn" onclick="switchTab('mistakes')">Common Mistakes</button>
+    <button class="tab-btn" onclick="switchTab('pitfalls')">Pitfalls</button>
     <button class="tab-btn" onclick="switchTab('flashcards')">Flashcards</button>
     <button class="tab-btn" onclick="switchTab('quiz')">Quiz</button>
   </div>
@@ -577,7 +641,163 @@ except ValueError:
     </div>
   </div>
 
-  <div id="flashcards" class="tab-content">
+  <div id="pitfalls" class="tab-content">
+  <h2>🚨 Critical Exam Pitfalls</h2>
+  <p class="intro">These are the most common traps that catch even experienced programmers in the PCEP exam. Master these to avoid losing easy points!</p>
+  <div class="pitfalls-grid">
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Mutable Default Arguments</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>def f(x=[]): x.append(1); return x  # Works correctly</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>def f(x=None): if x is None: x = []; x.append(1); return x  # Correct pattern</code>
+      </div>
+      <div class="pitfall-explanation">
+        Mutable defaults (like lists) are created ONCE at function definition. All calls share the same object. This is a classic Python gotcha. Use <code>None</code> as default and initialize inside.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>print() vs return</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>result = print('answer: 42')</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>print('answer: 42'); return 42</code>
+      </div>
+      <div class="pitfall-explanation">
+        <code>print()</code> displays output but returns <code>None</code>. To return a value from a function, use <code>return</code>.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Forgetting Parentheses</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>func instead of func()</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>func() calls the function</code>
+      </div>
+      <div class="pitfall-explanation">
+        Without parentheses, <code>func</code> is a reference to the function object itself. You must use <code>func()</code> to actually call/execute it.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Global Keyword for Modification</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>x = 10; def f(): x = 20  # Changes local x</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>x = 10; def f(): global x; x = 20  # Changes global x</code>
+      </div>
+      <div class="pitfall-explanation">
+        Assignment creates a local variable unless you use the <code>global</code> keyword. You only need it if you're ASSIGNING; reading works fine without it.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Exception Order Matters</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>except Exception: ... except ValueError: ...</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>except ValueError: ... except Exception: ...</code>
+      </div>
+      <div class="pitfall-explanation">
+        Place specific exceptions BEFORE general ones. General exceptions catch everything that follows, making later except blocks unreachable.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>finally Overrides return</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>def f(): try: return 1; finally: return 2  # Returns 1</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>def f(): try: return 1; finally: return 2  # Returns 2</code>
+      </div>
+      <div class="pitfall-explanation">
+        A <code>return</code> statement in <code>finally</code> overrides any return from <code>try</code> or <code>except</code> blocks. Use <code>finally</code> for cleanup, not returns.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>finally Always Executes</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>finally doesn't run if there's a return</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>finally ALWAYS runs, even with return, break, or exception</code>
+      </div>
+      <div class="pitfall-explanation">
+        The <code>finally</code> block is guaranteed to execute before the function exits or the loop breaks, making it perfect for cleanup code.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Lambda Limitations</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>lambda x: x += 1</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>lambda x: x + 1  # Only expressions allowed</code>
+      </div>
+      <div class="pitfall-explanation">
+        Lambda functions can only contain a single expression, not statements. No assignments, loops, or multi-line code. For complex logic, use <code>def</code>.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>*args is Tuple, **kwargs is Dict</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>*args is a list of positional arguments</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>*args is a TUPLE of positional arguments; **kwargs is a dict</code>
+      </div>
+      <div class="pitfall-explanation">
+        <code>*args</code> packs positional arguments into a tuple. <code>**kwargs</code> packs keyword arguments into a dictionary. Tuples are immutable.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Function Without return</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>def f(): x = 5  # Returns 5</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>def f(): x = 5  # Returns None</code>
+      </div>
+      <div class="pitfall-explanation">
+        If a function doesn't have an explicit <code>return</code> statement, it returns <code>None</code>. This is often the source of subtle bugs.
+      </div>
+    </div>
+  </div>
+</div>
+    <div id="flashcards" class="tab-content">
     <div class="progress">
       <div class="progress-item">
         <div class="progress-number" id="correct-count">0</div>
