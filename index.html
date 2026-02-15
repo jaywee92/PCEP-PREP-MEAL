@@ -175,8 +175,8 @@
   /* Module Grid */
   .modules-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
     margin-bottom: 3rem;
   }
 
@@ -184,7 +184,7 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 2rem;
+    padding: 1.75rem;
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
@@ -347,6 +347,12 @@
   }
 
   /* Responsive */
+  @media (max-width: 1200px) {
+    .modules-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
   @media (max-width: 768px) {
     .logo {
       font-size: 2rem;
