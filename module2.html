@@ -543,6 +543,17 @@ for i in range(2):
     for j in range(2):
         break           # only inner loop breaks</code></pre>
 
+      <h3>State-Trace Pattern from New OCR Questions</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>i = 0
+while i <= 3:
+    i += 2
+    print("*")   # prints two times
+
+# trace:
+# i=0 -> 2 (print)
+# i=2 -> 4 (print)
+# i=4 stops loop</code></pre>
+
       <h3>Exam-Simulator Patterns for Module 2</h3>
       <ul style="margin-left: 2rem;">
         <li><strong>if/elif flow:</strong> only first true branch runs.</li>
@@ -555,6 +566,8 @@ for i in range(2):
         <li><strong>Trace method:</strong> write variable states per iteration (<code>i</code>, counters, flags) to avoid mental skips.</li>
         <li><strong>Loop-else check:</strong> ask one question first: “Did any <code>break</code> execute?” If yes, skip loop-<code>else</code>.</li>
         <li><strong>Boolean check:</strong> evaluate left-to-right with short-circuit rules before simplifying expressions.</li>
+        <li><strong>While-loop check:</strong> confirm that the update statement is still executed on every path (especially with <code>continue</code>).</li>
+        <li><strong>Branch check:</strong> with <code>if/elif/else</code>, stop evaluating the chain after the first true condition.</li>
       </ul>
 
     </div>
@@ -674,6 +687,14 @@ i = 0
 while i <= 3:
     i += 2
     print("*")  # prints two stars</code></pre>
+
+      <h3>Quick Trace Checklist</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># 1) initialize variables
+# 2) evaluate loop condition
+# 3) execute body (watch break/continue paths)
+# 4) apply updates
+# 5) re-check condition
+# 6) decide whether loop-else runs (only if no break)</code></pre>
     </div>
   </div>
 
@@ -762,6 +783,22 @@ if items:
         continue
 else:
     print("runs")  # runs, because no break</code></pre>
+      </div>
+
+      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; border-radius: 4px;">
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 9: Skipping Counter Updates in One Branch</h3>
+        <p style="margin-bottom: 0.75rem;"><strong>Risk:</strong> accidental infinite loops.</p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>i = 0
+while i < 5:
+    if i == 2:
+        continue   # i never changes here
+    i += 1</code></pre>
+        <p style="margin-bottom: 0.75rem;"><strong>Fix:</strong></p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>i = 0
+while i < 5:
+    i += 1
+    if i == 2:
+        continue</code></pre>
       </div>
     </div>
   </div>
@@ -964,6 +1001,21 @@ else:
         </div>
         <div class="pitfall-explanation">
           Raw exam items repeatedly test this rule. Without parentheses, Python evaluates <code>and</code> before <code>or</code>.
+        </div>
+      </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>continue Can Skip Critical Updates</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>continue never changes loop behavior significantly</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>continue can skip updates and create infinite loops in while blocks</code>
+        </div>
+        <div class="pitfall-explanation">
+          New imported items reinforce this: always check whether the counter update executes on every iteration path.
         </div>
       </div>
     </div>

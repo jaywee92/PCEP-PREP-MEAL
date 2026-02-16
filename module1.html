@@ -537,6 +537,16 @@ print("A", "B", sep="-", end="!")   # A-B!
 score = 93.456
 print(f"Score: {score:.2f}")         # Score: 93.46</code></pre>
 
+      <h3>High-Yield Input Patterns from New OCR Sets</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>password = input("Enter your password: ")
+velocity = float(input("Enter velocity [m/s]: "))
+version = int(input("Enter version number: "))
+
+# exam focus:
+# 1) input() gives str first
+# 2) cast only when numeric behavior is needed
+# 3) string comparisons are exact (case + spaces)</code></pre>
+
       <h3>Exam-Simulator Patterns for Module 1</h3>
       <ul style="margin-left: 2rem;">
         <li><strong>Type conversion traps:</strong> <code>int(3.9)</code>, <code>float(4)</code>, <code>str(3)</code>, <code>bool("0")</code>.</li>
@@ -548,6 +558,9 @@ print(f"Score: {score:.2f}")         # Score: 93.46</code></pre>
         <li><strong>Answer workflow:</strong> first decide if the item is concept, syntax, or code-trace, then solve with the matching method.</li>
         <li><strong>Identifier strategy:</strong> eliminate keywords/literals first (<code>True</code>, <code>and</code>, etc.), then apply naming rules.</li>
         <li><strong>Arithmetic strategy:</strong> enforce precedence explicitly with temporary parentheses before computing values.</li>
+        <li><strong>Input workflow:</strong> annotate each prompt variable with expected type immediately after reading the code.</li>
+        <li><strong>String-equality trap:</strong> whitespace and capitalization are part of the value, so <code>" Robert "</code> differs from <code>"robert"</code>.</li>
+        <li><strong>Literal-vs-name check:</strong> reject reserved words and built-in literals first, then validate the remaining identifiers.</li>
       </ul>
 
     </div>
@@ -624,6 +637,12 @@ float("3.14")  # 3.14</code></pre>
 print("x", "y", sep="|")    # x|y
 print("Hi", end="...")      # no newline
 print("next")</code></pre>
+
+      <h3>Input Casting Mini-Map</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>raw = input("Value: ")              # str
+as_int = int(raw)                   # for counting/indexing/integer math
+as_float = float(raw)               # for measurements/ratios
+same_text = (raw == "target")       # exact string match, no auto-trim</code></pre>
 
       <h3>Raw Exam Snapshot: Legal vs Illegal Identifiers</h3>
       <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># illegal (reserved or literal)
@@ -722,6 +741,16 @@ True = 1
 # legal
 TRUE = 1
 true_value = 10</code></pre>
+      </div>
+
+      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; border-radius: 4px;">
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 9: Assuming String Input Auto-Formats Itself</h3>
+        <p style="margin-bottom: 0.75rem;"><strong>Trap from imported sets:</strong></p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>name = input()
+print(name == " Robert ")   # False for input: robert</code></pre>
+        <p style="margin-bottom: 0.75rem;"><strong>Safer pattern:</strong></p>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>name = input().strip().lower()
+print(name == "robert")</code></pre>
       </div>
     </div>
   </div>
@@ -924,6 +953,21 @@ true_value = 10</code></pre>
         </div>
         <div class="pitfall-explanation">
           Raw PCEP questions repeatedly test reserved words and boolean literals. Similar spelling does not mean same identifier legality.
+        </div>
+      </div>
+      <div class="pitfall-item">
+        <div class="pitfall-title">
+          <span class="pitfall-icon">🚨</span>
+          <span>String Equality Is Exact</span>
+        </div>
+        <div class="pitfall-wrong">
+          ❌ Wrong: <code>input_name == " Robert " will match robert</code>
+        </div>
+        <div class="pitfall-right">
+          ✓ Correct: <code>Case and spaces must match exactly unless you normalize first</code>
+        </div>
+        <div class="pitfall-explanation">
+          This appears in new OCR-derived items. Normalize user input with <code>strip()</code> and <code>lower()</code> before comparison when needed.
         </div>
       </div>
     </div>

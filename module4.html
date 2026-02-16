@@ -540,6 +540,19 @@ def count_up_to(n):
         yield i                    # lazy generation
         i += 1</code></pre>
 
+      <h3>Return-Type Safety from New OCR Imports</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>def process(x):
+    return x + 1
+
+value = process(3)   # 4 (int)
+# print(value[0])    # TypeError: int is not subscriptable
+
+def combine(a, b):
+    print(a + b)     # no explicit return -> None
+
+result = combine(2, 3)
+# print(result[0])   # TypeError: NoneType is not subscriptable</code></pre>
+
       <h3>Exam-Simulator Patterns for Module 4</h3>
       <ul style="margin-left: 2rem;">
         <li>Default argument behavior and missing required arguments.</li>
@@ -555,6 +568,8 @@ def count_up_to(n):
         <li><strong>Call-validation rule:</strong> check required params first, then verify argument order (positional before keyword).</li>
         <li><strong>Return rule:</strong> once <code>return</code> executes, the function exits; code after it is unreachable.</li>
         <li><strong>Exception rule:</strong> order handlers from specific to general; <code>finally</code> still executes.</li>
+        <li><strong>Return-type rule:</strong> verify what a function returns before indexing or arithmetic operations.</li>
+        <li><strong>Arity rule:</strong> match argument count exactly with required parameters before evaluating expression logic.</li>
       </ul>
 
     </div>
@@ -665,6 +680,21 @@ x = 3
 y = [1, 2, 3]
 mutate(x, y)
 print(x, y[0])    # 3 42</code></pre>
+
+      <h3>Call-Validity Quick Checks</h3>
+      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>def fun(a, b, c=0):
+    return a + b + c
+
+fun(b=0, a=0)   # valid
+fun(0, 1, 2)    # valid
+# fun()         # TypeError: missing required positional args
+
+def f(x=0):
+    return x
+
+f()             # valid
+f(7)            # valid
+f(x=9)          # valid</code></pre>
     </div>
   </div>
 
@@ -770,6 +800,15 @@ print(f())   # None, not 5</code></pre>
         <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>x = None
 # print(x + 1)   # TypeError
 print(x is None) # correct check</code></pre>
+      </div>
+
+      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; border-radius: 4px;">
+        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 9: Indexing Function Results Without Type Check</h3>
+        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>def process(x):
+    return x + 1
+
+val = process(3)      # int
+# print(val[0])       # TypeError</code></pre>
       </div>
     </div>
   </div>
@@ -956,6 +995,21 @@ print(x is None) # correct check</code></pre>
       </div>
       <div class="pitfall-explanation">
         Raw exam statements often mix true/false claims about None. None is assignable and comparable, but not valid with arithmetic operators.
+      </div>
+    </div>
+    <div class="pitfall-item">
+      <div class="pitfall-title">
+        <span class="pitfall-icon">🚨</span>
+        <span>Subscript on Scalar Return Values</span>
+      </div>
+      <div class="pitfall-wrong">
+        ❌ Wrong: <code>process(3)[0]</code>
+      </div>
+      <div class="pitfall-right">
+        ✓ Correct: <code>Only subscript sequences; int/None returns are not indexable</code>
+      </div>
+      <div class="pitfall-explanation">
+        New appendix-style items use this frequently. Always determine function return type before calling index/slice operations.
       </div>
     </div>
   </div>
