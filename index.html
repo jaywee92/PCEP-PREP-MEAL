@@ -26,6 +26,7 @@
     --m2: #3ee0a1;
     --m3: #f6b44d;
     --m4: #ff8a5a;
+    --m5: #a78bfa;
   }
 
   * {
@@ -97,6 +98,15 @@
     animation-delay: -21s;
   }
 
+  .orb.five {
+    width: 280px;
+    height: 280px;
+    background: var(--m5);
+    left: 48%;
+    top: 35%;
+    animation-delay: -11s;
+  }
+
   @keyframes floatOrb {
     0%, 100% {
       transform: translate(0, 0) scale(1);
@@ -127,7 +137,7 @@
   .logo {
     font-size: 3rem;
     font-weight: 700;
-    background: linear-gradient(135deg, var(--m1), var(--m2), var(--m3), var(--m4));
+    background: linear-gradient(135deg, var(--m1), var(--m2), var(--m3), var(--m4), var(--m5));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -175,7 +185,7 @@
   /* Module Grid */
   .modules-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 1.25rem;
     margin-bottom: 3rem;
   }
@@ -220,6 +230,7 @@
   .module-card[data-module="m2"] { --accent: var(--m2); animation-delay: 0.1s; }
   .module-card[data-module="m3"] { --accent: var(--m3); animation-delay: 0.2s; }
   .module-card[data-module="m4"] { --accent: var(--m4); animation-delay: 0.3s; }
+  .module-card[data-module="m5"] { --accent: var(--m5); animation-delay: 0.4s; }
 
   .module-number {
     display: inline-block;
@@ -256,6 +267,52 @@
     content: '→';
     color: var(--accent);
     margin-right: 0.5rem;
+  }
+
+  .insights-panel {
+    margin: 0 0 3rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(84, 199, 255, 0.08));
+  }
+
+  .insights-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .insight-card {
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(20, 27, 40, 0.55);
+  }
+
+  .insight-card h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: var(--ok);
+  }
+
+  .insight-card ul {
+    list-style: none;
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .insight-card li::before {
+    content: '•';
+    color: var(--m5);
+    margin-right: 0.45rem;
   }
 
   /* Exam Simulation Button */
@@ -347,7 +404,19 @@
   }
 
   /* Responsive */
+  @media (max-width: 1350px) {
+    .modules-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
   @media (max-width: 1200px) {
+    .insights-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
     .modules-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -367,6 +436,10 @@
       grid-template-columns: 1fr;
     }
 
+    .insights-grid {
+      grid-template-columns: 1fr;
+    }
+
     .exam-sim-button {
       font-size: 1rem;
       padding: 1.25rem 2rem;
@@ -380,6 +453,7 @@
     <div class="orb two"></div>
     <div class="orb three"></div>
     <div class="orb four"></div>
+    <div class="orb five"></div>
   </div>
 
   <div class="container">
@@ -457,7 +531,50 @@
             <li>Exception Handling</li>
           </ul>
         </a>
+
+        <a href="exam-simulation.html" class="module-card" data-module="m5">
+          <span class="module-number">Module 5</span>
+          <h2 class="module-title">PCEP-30-02</h2>
+          <p class="module-weight">Official Appendix Set</p>
+          <ul class="module-topics">
+            <li>Official OCR-Recovered Questions</li>
+            <li>Code-Box Reconstruction Drills</li>
+            <li>Function Signature Edge Cases</li>
+            <li>Loop/Range/Slice Trap Patterns</li>
+            <li>Exception Truth-Table Checks</li>
+          </ul>
+        </a>
       </div>
+
+      <section class="insights-panel">
+        <h2 class="insights-title">PCEP-30-02 Insights Integrated from OCR Appendices</h2>
+        <div class="insights-grid">
+          <article class="insight-card">
+            <h3>Control Flow Patterns</h3>
+            <ul>
+              <li>Code-box tasks: build exact `if` conditions and `range(...)` signatures.</li>
+              <li>Loop-`else` appears frequently and executes when loop ends normally.</li>
+              <li>Small operator slips (`=<`, `=` in conditions) are deliberate traps.</li>
+            </ul>
+          </article>
+          <article class="insight-card">
+            <h3>Functions and Calls</h3>
+            <ul>
+              <li>Signature validity: identifiers, parentheses, defaults, and arity checks.</li>
+              <li>Nested calls test positional vs keyword argument passing.</li>
+              <li>Recursion and mutable-argument behavior are common scoring points.</li>
+            </ul>
+          </article>
+          <article class="insight-card">
+            <h3>Corrections and Precision</h3>
+            <ul>
+              <li>Slice stop indices are exclusive (`len(list)`, not `len(list)-1`).</li>
+              <li>One-element tuples require a trailing comma (`(1,)`).</li>
+              <li>Dictionary missing keys raise `KeyError`; list index misses raise `IndexError`.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
 
       <div class="exam-sim-section">
         <a href="exam-simulation.html" class="exam-sim-button">
