@@ -2426,6 +2426,206 @@
             }
         }
 
+        function normalizeCalculatorExpression(expression) {
+            return String(expression ?? '')
+                .replace(/[×xX]/g, '*')
+                .replace(/[÷]/g, '/')
+                .replace(/[−–—]/g, '-')
+                .replace(/,/g, '.')
+                .replace(/\s+/g, '');
+        }
+
+        function normalizeCalculatorInput(value) {
+            const normalized = normalizeCalculatorExpression(value);
+            return normalized.length === 1 ? normalized : '';
+        }
+
+        function tokenizeCalculatorExpression(expression) {
+            const normalized = normalizeCalculatorExpression(expression);
+            if (!normalized) {
+                return [];
+            }
+
+            const tokens = [];
+            let index = 0;
+            while (index < normalized.length) {
+                const current = normalized[index];
+
+                if (/[0-9.]/.test(current)) {
+                    const fragment = normalized.slice(index);
+                    const match = fragment.match(/^(\d+(\.\d*)?|\.\d+)([eE][+\-]?\d+)?/);
+                    if (!match) {
+                        return null;
+                    }
+                    const value = Number(match[0]);
+                    if (!Number.isFinite(value)) {
+                        return null;
+                    }
+                    tokens.push({ type: 'number', value });
+                    index += match[0].length;
+                    continue;
+                }
+
+                if ('+-*/()'.includes(current)) {
+                    tokens.push({ type: 'symbol', value: current });
+                    index += 1;
+                    continue;
+                }
+
+                return null;
+            }
+
+            return tokens;
+        }
+
+        function toCalculatorRpn(tokens) {
+            if (!Array.isArray(tokens) || tokens.length === 0) {
+                return [];
+            }
+
+            const output = [];
+            const operators = [];
+            const precedence = { 'u+': 3, 'u-': 3, '*': 2, '/': 2, '+': 1, '-': 1 };
+            const rightAssociative = new Set(['u+', 'u-']);
+            let expectUnary = true;
+
+            for (const token of tokens) {
+                if (token.type === 'number') {
+                    output.push(token);
+                    expectUnary = false;
+                    continue;
+                }
+
+                const symbol = token.value;
+                if (symbol === '(') {
+                    operators.push(symbol);
+                    expectUnary = true;
+                    continue;
+                }
+
+                if (symbol === ')') {
+                    while (operators.length > 0 && operators[operators.length - 1] !== '(') {
+                        output.push({ type: 'operator', value: operators.pop() });
+                    }
+                    if (operators.length === 0) {
+                        return null;
+                    }
+                    operators.pop();
+                    expectUnary = false;
+                    continue;
+                }
+
+                if ('+-*/'.includes(symbol)) {
+                    let operator = symbol;
+                    if (expectUnary) {
+                        if (symbol === '+') {
+                            operator = 'u+';
+                        } else if (symbol === '-') {
+                            operator = 'u-';
+                        } else {
+                            return null;
+                        }
+                    }
+
+                    while (operators.length > 0) {
+                        const top = operators[operators.length - 1];
+                        if (top === '(') {
+                            break;
+                        }
+                        const topPrecedence = precedence[top];
+                        const currentPrecedence = precedence[operator];
+                        const shouldPop = topPrecedence > currentPrecedence ||
+                            (topPrecedence === currentPrecedence && !rightAssociative.has(operator));
+                        if (!shouldPop) {
+                            break;
+                        }
+                        output.push({ type: 'operator', value: operators.pop() });
+                    }
+
+                    operators.push(operator);
+                    expectUnary = true;
+                    continue;
+                }
+
+                return null;
+            }
+
+            if (expectUnary) {
+                return null;
+            }
+
+            while (operators.length > 0) {
+                const op = operators.pop();
+                if (op === '(' || op === ')') {
+                    return null;
+                }
+                output.push({ type: 'operator', value: op });
+            }
+
+            return output;
+        }
+
+        function evaluateCalculatorRpn(rpn) {
+            const stack = [];
+
+            for (const token of rpn) {
+                if (token.type === 'number') {
+                    stack.push(token.value);
+                    continue;
+                }
+
+                const op = token.value;
+                if (op === 'u+' || op === 'u-') {
+                    if (stack.length < 1) {
+                        return null;
+                    }
+                    const value = stack.pop();
+                    stack.push(op === 'u-' ? -value : value);
+                    continue;
+                }
+
+                if (stack.length < 2) {
+                    return null;
+                }
+                const right = stack.pop();
+                const left = stack.pop();
+                let result = null;
+
+                if (op === '+') {
+                    result = left + right;
+                } else if (op === '-') {
+                    result = left - right;
+                } else if (op === '*') {
+                    result = left * right;
+                } else if (op === '/') {
+                    result = left / right;
+                } else {
+                    return null;
+                }
+
+                if (!Number.isFinite(result)) {
+                    return null;
+                }
+                stack.push(result);
+            }
+
+            if (stack.length !== 1) {
+                return null;
+            }
+            return stack[0];
+        }
+
+        function formatCalculatorResult(value) {
+            if (!Number.isFinite(value)) {
+                return null;
+            }
+            const rounded = Number.parseFloat(value.toPrecision(12));
+            if (!Number.isFinite(rounded)) {
+                return null;
+            }
+            return String(rounded);
+        }
+
         function updateCalculatorDisplay() {
             const display = document.getElementById('calculatorDisplay');
             if (!display) {
@@ -2440,12 +2640,107 @@
         }
 
         function appendCalculatorInput(value) {
+            const input = normalizeCalculatorInput(value);
+            if (!input) {
+                return;
+            }
+
             if (state.calculatorError) {
                 state.calculatorExpression = '';
                 state.calculatorError = false;
             }
 
-            state.calculatorExpression += value;
+            const expression = state.calculatorExpression;
+            const lastChar = expression.slice(-1);
+
+            if (input === '.') {
+                if (expression === '' || /[+\-*/(]$/.test(expression)) {
+                    state.calculatorExpression += '0.';
+                } else if (lastChar === ')') {
+                    return;
+                } else {
+                    const currentNumber = expression.split(/[+\-*/()]/).pop();
+                    if ((currentNumber || '').includes('.')) {
+                        return;
+                    }
+                    state.calculatorExpression += '.';
+                }
+                updateCalculatorDisplay();
+                return;
+            }
+
+            if (input === '(') {
+                if (/\d|\)/.test(lastChar)) {
+                    state.calculatorExpression += '*(';
+                } else {
+                    state.calculatorExpression += '(';
+                }
+                updateCalculatorDisplay();
+                return;
+            }
+
+            if (input === ')') {
+                if (expression === '' || /[+\-*/(]$/.test(expression)) {
+                    return;
+                }
+                const openCount = (expression.match(/\(/g) || []).length;
+                const closeCount = (expression.match(/\)/g) || []).length;
+                if (openCount <= closeCount) {
+                    return;
+                }
+                state.calculatorExpression += ')';
+                updateCalculatorDisplay();
+                return;
+            }
+
+            if ('+-*/'.includes(input)) {
+                if (expression === '') {
+                    if (input === '-') {
+                        state.calculatorExpression = '-';
+                    }
+                    updateCalculatorDisplay();
+                    return;
+                }
+
+                if (/[+\-*/]$/.test(expression)) {
+                    const previousChar = expression.slice(-2, -1);
+                    const previousIsOperator = /[+\-*/(]/.test(previousChar);
+
+                    if (input === '-') {
+                        if (expression === '-') {
+                            updateCalculatorDisplay();
+                            return;
+                        }
+                        if (lastChar === '-' && previousIsOperator) {
+                            updateCalculatorDisplay();
+                            return;
+                        }
+                        state.calculatorExpression += '-';
+                    } else {
+                        if (lastChar === '-' && previousIsOperator) {
+                            updateCalculatorDisplay();
+                            return;
+                        }
+                        state.calculatorExpression = expression.slice(0, -1) + input;
+                    }
+                } else if (lastChar === '(') {
+                    if (input === '-') {
+                        state.calculatorExpression += '-';
+                    } else {
+                        return;
+                    }
+                } else {
+                    state.calculatorExpression += input;
+                }
+                updateCalculatorDisplay();
+                return;
+            }
+
+            if (lastChar === ')') {
+                state.calculatorExpression += `*${input}`;
+            } else {
+                state.calculatorExpression += input;
+            }
             updateCalculatorDisplay();
         }
 
@@ -2472,26 +2767,19 @@
                 return;
             }
 
-            if (!/^[0-9+\-*/().\s]+$/.test(expression)) {
+            const tokens = tokenizeCalculatorExpression(expression);
+            const rpn = tokens ? toCalculatorRpn(tokens) : null;
+            const result = rpn ? evaluateCalculatorRpn(rpn) : null;
+            const formatted = result === null ? null : formatCalculatorResult(result);
+
+            if (formatted === null) {
                 state.calculatorError = true;
                 updateCalculatorDisplay();
                 return;
             }
 
-            try {
-                const result = Function(`"use strict"; return (${expression});`)();
-                if (!Number.isFinite(result)) {
-                    throw new Error('Invalid result');
-                }
-
-                state.calculatorExpression = Number.isInteger(result)
-                    ? String(result)
-                    : String(Number.parseFloat(result.toFixed(10)));
-                state.calculatorError = false;
-            } catch (error) {
-                state.calculatorError = true;
-            }
-
+            state.calculatorExpression = formatted;
+            state.calculatorError = false;
             updateCalculatorDisplay();
         }
 
@@ -2912,6 +3200,33 @@
             const targetTag = target && target.tagName ? target.tagName.toLowerCase() : '';
             if (targetTag === 'textarea' || targetTag === 'input') {
                 return;
+            }
+
+            if (state.activeUtilityPanel === 'calculator') {
+                if (e.key === 'Escape') {
+                    closeUtilityPanels();
+                    return;
+                }
+                if (/^[0-9+\-*/().]$/.test(e.key)) {
+                    appendCalculatorInput(e.key);
+                    e.preventDefault();
+                    return;
+                }
+                if (e.key === 'Enter' || e.key === '=') {
+                    evaluateCalculatorExpression();
+                    e.preventDefault();
+                    return;
+                }
+                if (e.key === 'Backspace') {
+                    backspaceCalculator();
+                    e.preventDefault();
+                    return;
+                }
+                if (e.key.toLowerCase() === 'c' || e.key === 'Delete') {
+                    clearCalculator();
+                    e.preventDefault();
+                    return;
+                }
             }
 
             if (state.activeUtilityPanel && e.key === 'Escape') {
