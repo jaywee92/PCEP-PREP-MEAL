@@ -462,6 +462,23 @@
             padding: 0.75rem 1.5rem;
         }
 
+        .exam-header-tools {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .tool-toggle {
+            min-width: 130px;
+        }
+
+        .tool-toggle.active {
+            border-color: rgba(56, 189, 248, 0.95);
+            box-shadow: 0 10px 0 rgba(8, 47, 73, 0.9), 0 16px 26px rgba(2, 132, 199, 0.35);
+            background: linear-gradient(145deg, rgba(14, 116, 144, 0.96), rgba(30, 64, 175, 0.92));
+            color: #e0f2fe;
+        }
+
         .exam-content {
             display: grid;
             grid-template-columns: 1fr 250px;
@@ -933,6 +950,158 @@
         .question-controls .btn {
             flex: 1;
             min-width: 120px;
+        }
+
+        .exam-utility-panel {
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+            width: min(360px, calc(100vw - 2rem));
+            background: linear-gradient(155deg, rgba(15, 23, 42, 0.97), rgba(30, 41, 59, 0.96));
+            border: 2px solid rgba(71, 85, 105, 0.9);
+            border-radius: 1rem;
+            box-shadow: 0 20px 45px rgba(2, 8, 23, 0.62);
+            backdrop-filter: blur(10px);
+            z-index: 900;
+            display: none;
+            overflow: hidden;
+        }
+
+        .exam-utility-panel.active {
+            display: block;
+            animation: slideUp 0.25s ease;
+        }
+
+        .utility-panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 0.9rem;
+            border-bottom: 1px solid rgba(71, 85, 105, 0.85);
+            background: rgba(15, 23, 42, 0.55);
+        }
+
+        .utility-panel-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+
+        .utility-panel-close {
+            background: transparent;
+            color: #cbd5e1;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            border-radius: 0.45rem;
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
+            font-size: 1rem;
+            line-height: 1;
+            transition: all 0.2s ease;
+        }
+
+        .utility-panel-close:hover {
+            border-color: rgba(239, 68, 68, 0.85);
+            color: #fecaca;
+            background: rgba(127, 29, 29, 0.35);
+        }
+
+        .notepad-body,
+        .calculator-body {
+            padding: 0.85rem;
+        }
+
+        .notepad-editor {
+            width: 100%;
+            min-height: 210px;
+            background: rgba(2, 6, 23, 0.82);
+            color: #e2e8f0;
+            border: 1px solid rgba(71, 85, 105, 0.95);
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            font-family: 'SF Mono', Monaco, Menlo, Consolas, 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            resize: vertical;
+        }
+
+        .notepad-editor:focus {
+            outline: none;
+            border-color: rgba(56, 189, 248, 0.95);
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+        }
+
+        .notepad-actions {
+            margin-top: 0.75rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+        }
+
+        .calculator-display {
+            width: 100%;
+            min-height: 3rem;
+            background: rgba(2, 6, 23, 0.82);
+            color: #e2e8f0;
+            border: 1px solid rgba(71, 85, 105, 0.95);
+            border-radius: 0.75rem;
+            padding: 0.6rem 0.75rem;
+            text-align: right;
+            font-size: 1.2rem;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.8rem;
+            font-family: 'SF Mono', Monaco, Menlo, Consolas, 'Courier New', monospace;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.5rem;
+        }
+
+        .calc-btn {
+            border: 1px solid rgba(71, 85, 105, 0.9);
+            border-radius: 0.65rem;
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.94));
+            color: #e2e8f0;
+            font-weight: 700;
+            padding: 0.65rem 0.2rem;
+            cursor: pointer;
+            transition: transform 0.14s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .calc-btn:hover {
+            transform: translateY(-1px);
+            border-color: rgba(96, 165, 250, 0.95);
+            box-shadow: 0 6px 14px rgba(2, 132, 199, 0.24);
+        }
+
+        .calc-btn:active {
+            transform: translateY(1px);
+        }
+
+        .calc-btn.operator {
+            color: #fde68a;
+            border-color: rgba(245, 158, 11, 0.65);
+        }
+
+        .calc-btn.equal {
+            background: linear-gradient(145deg, rgba(37, 99, 235, 0.9), rgba(79, 70, 229, 0.92));
+            border-color: rgba(99, 102, 241, 0.8);
+            color: #eef2ff;
+        }
+
+        .calc-btn.wide {
+            grid-column: span 2;
+        }
+
+        .calc-help {
+            margin-top: 0.65rem;
+            color: #94a3b8;
+            font-size: 0.8rem;
         }
 
         .question-navigator {
@@ -1421,6 +1590,14 @@
                 align-items: flex-start;
             }
 
+            .exam-header-tools {
+                width: 100%;
+            }
+
+            .tool-toggle {
+                flex: 1;
+            }
+
             .exam-content {
                 grid-template-columns: 1fr;
             }
@@ -1443,6 +1620,18 @@
 
             .results-stats {
                 grid-template-columns: 1fr;
+            }
+
+            .exam-utility-panel {
+                right: 0.75rem;
+                left: 0.75rem;
+                width: auto;
+                bottom: 0.75rem;
+                max-height: min(75vh, 560px);
+            }
+
+            .notepad-editor {
+                min-height: 170px;
             }
         }
 
@@ -1640,6 +1829,14 @@
                 <button class="btn btn-secondary exam-back" id="backToSetupBtn" onclick="confirmBackToSetup()">
                     ← Back to Setup
                 </button>
+                <div class="exam-header-tools" aria-label="Exam tools">
+                    <button class="btn btn-secondary tool-toggle" id="notepadToggleBtn" onclick="toggleUtilityPanel('notepad')">
+                        📝 Notepad
+                    </button>
+                    <button class="btn btn-secondary tool-toggle" id="calculatorToggleBtn" onclick="toggleUtilityPanel('calculator')">
+                        🧮 Calculator
+                    </button>
+                </div>
             </div>
 
             <div class="exam-content">
@@ -1706,6 +1903,62 @@
                             <span>Current</span>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="exam-utility-panel" id="notepadPanel" aria-hidden="true">
+                <div class="utility-panel-header">
+                    <div class="utility-panel-title">📝 Exam Notepad</div>
+                    <button class="utility-panel-close" onclick="closeUtilityPanels()" aria-label="Close notepad">✕</button>
+                </div>
+                <div class="notepad-body">
+                    <textarea
+                        id="notepadEditor"
+                        class="notepad-editor"
+                        placeholder="Write quick notes, calculations, or reminders..."
+                        aria-label="Exam notepad"
+                    ></textarea>
+                    <div class="notepad-actions">
+                        <button class="btn btn-secondary" type="button" onclick="clearNotepad()">Clear</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exam-utility-panel" id="calculatorPanel" aria-hidden="true">
+                <div class="utility-panel-header">
+                    <div class="utility-panel-title">🧮 Simple Calculator</div>
+                    <button class="utility-panel-close" onclick="closeUtilityPanels()" aria-label="Close calculator">✕</button>
+                </div>
+                <div class="calculator-body">
+                    <div class="calculator-display" id="calculatorDisplay">0</div>
+                    <div class="calculator-grid">
+                        <button class="calc-btn operator" type="button" onclick="clearCalculator()">C</button>
+                        <button class="calc-btn operator" type="button" onclick="backspaceCalculator()">⌫</button>
+                        <button class="calc-btn operator" type="button" onclick="appendCalculatorInput('(')">(</button>
+                        <button class="calc-btn operator" type="button" onclick="appendCalculatorInput(')')">)</button>
+
+                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('7')">7</button>
+                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('8')">8</button>
+                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('9')">9</button>
+                        <button class="calc-btn operator" type="button" onclick="appendCalculatorInput('/')">÷</button>
+
+                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('4')">4</button>
+                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('5')">5</button>
+                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('6')">6</button>
+                        <button class="calc-btn operator" type="button" onclick="appendCalculatorInput('*')">×</button>
+
+                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('1')">1</button>
+                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('2')">2</button>
+                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('3')">3</button>
+                        <button class="calc-btn operator" type="button" onclick="appendCalculatorInput('-')">−</button>
+
+                        <button class="calc-btn wide" type="button" onclick="appendCalculatorInput('0')">0</button>
+                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('.')">.</button>
+                        <button class="calc-btn operator" type="button" onclick="appendCalculatorInput('+')">+</button>
+
+                        <button class="calc-btn equal wide" type="button" onclick="evaluateCalculatorExpression()">=</button>
+                    </div>
+                    <div class="calc-help">Allowed: numbers, +, −, ×, ÷, parentheses, decimal point.</div>
                 </div>
             </div>
         </div>
@@ -1815,6 +2068,10 @@
             answerMode: 'end', // 'end' or 'immediate'
             showFeedback: false,
             hintsUsed: new Set(),  // NEU - Track which questions used hints
+            activeUtilityPanel: null,
+            notepadText: '',
+            calculatorExpression: '',
+            calculatorError: false
         };
 
         function beforeUnloadHandler(e) {
@@ -1850,6 +2107,13 @@
                 state.answerMode = e.target.value;
             });
         });
+
+        const notepadEditor = document.getElementById('notepadEditor');
+        if (notepadEditor) {
+            notepadEditor.addEventListener('input', (event) => {
+                state.notepadText = event.target.value;
+            });
+        }
 
         // Setup Functions
         function updateEstimatedTime() {
@@ -2097,6 +2361,154 @@
             finishBtn.style.display = isLastQuestion ? 'inline-flex' : 'none';
         }
 
+        function updateUtilityToggleButtons() {
+            const notepadBtn = document.getElementById('notepadToggleBtn');
+            const calculatorBtn = document.getElementById('calculatorToggleBtn');
+            if (!notepadBtn || !calculatorBtn) {
+                return;
+            }
+
+            notepadBtn.classList.toggle('active', state.activeUtilityPanel === 'notepad');
+            calculatorBtn.classList.toggle('active', state.activeUtilityPanel === 'calculator');
+        }
+
+        function closeUtilityPanels() {
+            const notepadPanel = document.getElementById('notepadPanel');
+            const calculatorPanel = document.getElementById('calculatorPanel');
+            if (notepadPanel) {
+                notepadPanel.classList.remove('active');
+                notepadPanel.setAttribute('aria-hidden', 'true');
+            }
+            if (calculatorPanel) {
+                calculatorPanel.classList.remove('active');
+                calculatorPanel.setAttribute('aria-hidden', 'true');
+            }
+            state.activeUtilityPanel = null;
+            updateUtilityToggleButtons();
+        }
+
+        function toggleUtilityPanel(panelName) {
+            const isCurrentPanelOpen = state.activeUtilityPanel === panelName;
+            closeUtilityPanels();
+
+            if (isCurrentPanelOpen) {
+                return;
+            }
+
+            const panelId = panelName === 'notepad' ? 'notepadPanel' : 'calculatorPanel';
+            const panel = document.getElementById(panelId);
+            if (!panel) {
+                return;
+            }
+
+            panel.classList.add('active');
+            panel.setAttribute('aria-hidden', 'false');
+            state.activeUtilityPanel = panelName;
+            updateUtilityToggleButtons();
+
+            if (panelName === 'notepad') {
+                const editor = document.getElementById('notepadEditor');
+                if (editor) {
+                    editor.value = state.notepadText;
+                    editor.focus();
+                }
+            } else {
+                updateCalculatorDisplay();
+            }
+        }
+
+        function clearNotepad() {
+            state.notepadText = '';
+            const editor = document.getElementById('notepadEditor');
+            if (editor) {
+                editor.value = '';
+                editor.focus();
+            }
+        }
+
+        function updateCalculatorDisplay() {
+            const display = document.getElementById('calculatorDisplay');
+            if (!display) {
+                return;
+            }
+
+            const displayValue = state.calculatorError
+                ? 'Error'
+                : (state.calculatorExpression || '0');
+            display.textContent = displayValue;
+            display.style.color = state.calculatorError ? '#fca5a5' : '#e2e8f0';
+        }
+
+        function appendCalculatorInput(value) {
+            if (state.calculatorError) {
+                state.calculatorExpression = '';
+                state.calculatorError = false;
+            }
+
+            state.calculatorExpression += value;
+            updateCalculatorDisplay();
+        }
+
+        function backspaceCalculator() {
+            if (state.calculatorError) {
+                state.calculatorError = false;
+                state.calculatorExpression = '';
+            } else {
+                state.calculatorExpression = state.calculatorExpression.slice(0, -1);
+            }
+            updateCalculatorDisplay();
+        }
+
+        function clearCalculator() {
+            state.calculatorExpression = '';
+            state.calculatorError = false;
+            updateCalculatorDisplay();
+        }
+
+        function evaluateCalculatorExpression() {
+            const expression = state.calculatorExpression.trim();
+            if (!expression) {
+                updateCalculatorDisplay();
+                return;
+            }
+
+            if (!/^[0-9+\-*/().\s]+$/.test(expression)) {
+                state.calculatorError = true;
+                updateCalculatorDisplay();
+                return;
+            }
+
+            try {
+                const result = Function(`"use strict"; return (${expression});`)();
+                if (!Number.isFinite(result)) {
+                    throw new Error('Invalid result');
+                }
+
+                state.calculatorExpression = Number.isInteger(result)
+                    ? String(result)
+                    : String(Number.parseFloat(result.toFixed(10)));
+                state.calculatorError = false;
+            } catch (error) {
+                state.calculatorError = true;
+            }
+
+            updateCalculatorDisplay();
+        }
+
+        function resetExamUtilities() {
+            state.notepadText = '';
+            state.calculatorExpression = '';
+            state.calculatorError = false;
+
+            const editor = document.getElementById('notepadEditor');
+            if (editor) {
+                editor.value = '';
+            }
+
+            closeUtilityPanels();
+            updateCalculatorDisplay();
+        }
+
         async function startExam() {
             // Load questions from JSON file
             try {
@@ -2130,6 +2542,7 @@
                 state.startTime = Date.now();
                 state.hintsUsed = new Set();  // Reset hints for new exam
                 state.hintsEnabled = document.getElementById('hintsEnabled').checked;  // Capture hints setting
+                resetExamUtilities();
 
                 // Update UI
                 showScreen('examScreen');
@@ -2495,6 +2908,17 @@
         }
 
         function handleKeyboard(e) {
+            const target = e.target;
+            const targetTag = target && target.tagName ? target.tagName.toLowerCase() : '';
+            if (targetTag === 'textarea' || targetTag === 'input') {
+                return;
+            }
+
+            if (state.activeUtilityPanel && e.key === 'Escape') {
+                closeUtilityPanels();
+                return;
+            }
+
             if (e.key === 'Enter') {
                 if (state.answerMode === 'immediate' && !state.showFeedback) {
                     submitAnswer();
@@ -2546,6 +2970,7 @@
             clearInterval(state.timerInterval);
             window.removeEventListener('beforeunload', beforeUnloadHandler);
             closeModal('finishExamModal');
+            closeUtilityPanels();
 
             const results = calculateResults();
 
@@ -2671,6 +3096,7 @@
             state.answers = {};
             state.skipped = new Set();
             state.showFeedback = false;
+            resetExamUtilities();
             window.removeEventListener('beforeunload', beforeUnloadHandler);
             closeModal('backToSetupModal');
             closeModal('finishExamModal');
@@ -2709,6 +3135,9 @@
         function showScreen(screenId) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(screenId).classList.add('active');
+            if (screenId !== 'examScreen') {
+                closeUtilityPanels();
+            }
         }
 
         function shuffleArray(array) {
