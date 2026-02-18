@@ -1932,31 +1932,31 @@
                 <div class="calculator-body">
                     <div class="calculator-display" id="calculatorDisplay">0</div>
                     <div class="calculator-grid">
-                        <button class="calc-btn operator" type="button" onclick="clearCalculator()">C</button>
-                        <button class="calc-btn operator" type="button" onclick="backspaceCalculator()">⌫</button>
-                        <button class="calc-btn operator" type="button" onclick="appendCalculatorInput('(')">(</button>
-                        <button class="calc-btn operator" type="button" onclick="appendCalculatorInput(')')">)</button>
+                        <button class="calc-btn operator" type="button" data-calc-action="clear" onclick="handleCalculatorButton(event)">C</button>
+                        <button class="calc-btn operator" type="button" data-calc-action="backspace" onclick="handleCalculatorButton(event)">⌫</button>
+                        <button class="calc-btn operator" type="button" data-calc-value="(" onclick="handleCalculatorButton(event)">(</button>
+                        <button class="calc-btn operator" type="button" data-calc-value=")" onclick="handleCalculatorButton(event)">)</button>
 
-                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('7')">7</button>
-                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('8')">8</button>
-                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('9')">9</button>
-                        <button class="calc-btn operator" type="button" onclick="appendCalculatorInput('/')">÷</button>
+                        <button class="calc-btn" type="button" data-calc-value="7" onclick="handleCalculatorButton(event)">7</button>
+                        <button class="calc-btn" type="button" data-calc-value="8" onclick="handleCalculatorButton(event)">8</button>
+                        <button class="calc-btn" type="button" data-calc-value="9" onclick="handleCalculatorButton(event)">9</button>
+                        <button class="calc-btn operator" type="button" data-calc-value="/" onclick="handleCalculatorButton(event)">÷</button>
 
-                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('4')">4</button>
-                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('5')">5</button>
-                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('6')">6</button>
-                        <button class="calc-btn operator" type="button" onclick="appendCalculatorInput('*')">×</button>
+                        <button class="calc-btn" type="button" data-calc-value="4" onclick="handleCalculatorButton(event)">4</button>
+                        <button class="calc-btn" type="button" data-calc-value="5" onclick="handleCalculatorButton(event)">5</button>
+                        <button class="calc-btn" type="button" data-calc-value="6" onclick="handleCalculatorButton(event)">6</button>
+                        <button class="calc-btn operator" type="button" data-calc-value="*" onclick="handleCalculatorButton(event)">×</button>
 
-                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('1')">1</button>
-                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('2')">2</button>
-                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('3')">3</button>
-                        <button class="calc-btn operator" type="button" onclick="appendCalculatorInput('-')">−</button>
+                        <button class="calc-btn" type="button" data-calc-value="1" onclick="handleCalculatorButton(event)">1</button>
+                        <button class="calc-btn" type="button" data-calc-value="2" onclick="handleCalculatorButton(event)">2</button>
+                        <button class="calc-btn" type="button" data-calc-value="3" onclick="handleCalculatorButton(event)">3</button>
+                        <button class="calc-btn operator" type="button" data-calc-value="-" onclick="handleCalculatorButton(event)">−</button>
 
-                        <button class="calc-btn wide" type="button" onclick="appendCalculatorInput('0')">0</button>
-                        <button class="calc-btn" type="button" onclick="appendCalculatorInput('.')">.</button>
-                        <button class="calc-btn operator" type="button" onclick="appendCalculatorInput('+')">+</button>
+                        <button class="calc-btn wide" type="button" data-calc-value="0" onclick="handleCalculatorButton(event)">0</button>
+                        <button class="calc-btn" type="button" data-calc-value="." onclick="handleCalculatorButton(event)">.</button>
+                        <button class="calc-btn operator" type="button" data-calc-value="+" onclick="handleCalculatorButton(event)">+</button>
 
-                        <button class="calc-btn equal wide" type="button" onclick="evaluateCalculatorExpression()">=</button>
+                        <button class="calc-btn equal wide" type="button" data-calc-action="evaluate" onclick="handleCalculatorButton(event)">=</button>
                     </div>
                     <div class="calc-help">Allowed: numbers, +, −, ×, ÷, parentheses, decimal point.</div>
                 </div>
@@ -2426,6 +2426,59 @@
             }
         }
 
+        function handleCalculatorButton(event) {
+            const button = event?.currentTarget || event?.target;
+            if (!button) {
+                return;
+            }
+
+            const action = button.getAttribute('data-calc-action');
+            if (action === 'clear') {
+                clearCalculator();
+                return;
+            }
+            if (action === 'backspace') {
+                backspaceCalculator();
+                return;
+            }
+            if (action === 'evaluate') {
+                evaluateCalculatorExpression();
+                return;
+            }
+
+            const value = button.getAttribute('data-calc-value');
+            if (value) {
+                appendCalculatorInput(value);
+            }
+        }
+
+        function formatDuration(seconds) {
+            const totalSeconds = Math.max(0, Number(seconds) || 0);
+            const minutes = Math.floor(totalSeconds / 60);
+            const remaining = totalSeconds % 60;
+            return `${String(minutes).padStart(2, '0')}:${String(remaining).padStart(2, '0')}`;
+        }
+
+        function syncSetupStateFromUI() {
+            const questionSlider = document.getElementById('questionCountSlider');
+            const timerCheckbox = document.getElementById('enableTimer');
+            const answerModeInput = document.querySelector('input[name="answerMode"]:checked');
+
+            if (questionSlider) {
+                const parsedCount = parseInt(questionSlider.value, 10);
+                if (Number.isInteger(parsedCount) && parsedCount > 0) {
+                    state.questionCount = parsedCount;
+                }
+            }
+            if (timerCheckbox) {
+                state.enableTimer = timerCheckbox.checked;
+            }
+            if (answerModeInput) {
+                state.answerMode = answerModeInput.value;
+            }
+            updateEstimatedTime();
+        }
+
         function normalizeCalculatorExpression(expression) {
             return String(expression ?? '')
                 .replace(/[×xX]/g, '*')
@@ -2800,6 +2853,10 @@
         async function startExam() {
             // Load questions from JSON file
             try {
+                syncSetupStateFromUI();
+                clearInterval(state.timerInterval);
+                state.timerInterval = null;
+
                 // Load questions from embedded QUESTIONS_BANK (no fetch needed)
                 const data = QUESTIONS_BANK;
                 
@@ -2837,9 +2894,16 @@
                 buildNavigator();
                 displayQuestion();
 
+                const timer = document.getElementById('examTimer');
+                const timerDisplay = document.getElementById('timerDisplay');
+                timer.classList.remove('warning', 'critical');
+
                 // Start timer if enabled
                 if (state.enableTimer) {
+                    timerDisplay.textContent = formatDuration(state.timeRemaining);
                     startTimer();
+                } else {
+                    timerDisplay.textContent = 'Timer Off';
                 }
 
                 // Warn on page unload
@@ -3171,6 +3235,17 @@
             const display = document.getElementById('timerDisplay');
             const timer = document.getElementById('examTimer');
 
+            clearInterval(state.timerInterval);
+            state.timerInterval = null;
+
+            if (!state.enableTimer) {
+                display.textContent = 'Timer Off';
+                timer.classList.remove('warning', 'critical');
+                return;
+            }
+
+            display.textContent = formatDuration(state.timeRemaining);
+
             state.timerInterval = setInterval(() => {
                 state.timeRemaining--;
 
@@ -3283,6 +3358,7 @@
 
         function finishExam() {
             clearInterval(state.timerInterval);
+            state.timerInterval = null;
             window.removeEventListener('beforeunload', beforeUnloadHandler);
             closeModal('finishExamModal');
             closeUtilityPanels();
@@ -3407,6 +3483,8 @@
         }
 
         function resetToSetup() {
+            clearInterval(state.timerInterval);
+            state.timerInterval = null;
             state.currentQuestionIndex = 0;
             state.answers = {};
             state.skipped = new Set();
