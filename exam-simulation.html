@@ -3517,14 +3517,14 @@
             history.forEach(entry => {
                 const div = document.createElement('div');
                 div.className = 'history-entry';
-                div.innerHTML = \`
-                    <div class="history-badge \${entry.passed ? 'pass' : 'fail'}">\${entry.percentage}%</div>
+                div.innerHTML = `
+                    <div class="history-badge ${entry.passed ? 'pass' : 'fail'}">${entry.percentage}%</div>
                     <div class="history-meta">
-                        <div class="history-score">\${entry.correct}/\${entry.total} correct</div>
-                        <div class="history-modules">Modules: \${entry.modules}\${entry.timeTaken !== null ? ' · ' + entry.timeTaken + ' min' : ''}</div>
+                        <div class="history-score">${entry.correct}/${entry.total} correct</div>
+                        <div class="history-modules">Modules: ${entry.modules}${entry.timeTaken !== null ? ' · ' + entry.timeTaken + ' min' : ''}</div>
                     </div>
-                    <div class="history-date">\${entry.date}</div>
-                \`;
+                    <div class="history-date">${entry.date}</div>
+                `;
                 list.appendChild(div);
             });
 
