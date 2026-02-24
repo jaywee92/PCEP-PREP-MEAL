@@ -12,96 +12,160 @@
   :root { --accent: var(--m1); --accent-rgb: 84,199,255; }
 
   /* ── Animated section entries ── */
+  @keyframes sectionIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
   .theory-section {
     opacity: 0;
-    transform: translateY(16px);
-    animation: sectionIn 0.5s ease forwards;
+    animation: sectionIn 0.45s ease forwards;
+    margin-bottom: 1.6rem;
   }
-  .theory-section:nth-child(1)  { animation-delay: 0.05s; }
-  .theory-section:nth-child(2)  { animation-delay: 0.10s; }
-  .theory-section:nth-child(3)  { animation-delay: 0.15s; }
-  .theory-section:nth-child(4)  { animation-delay: 0.20s; }
-  .theory-section:nth-child(5)  { animation-delay: 0.25s; }
-  .theory-section:nth-child(6)  { animation-delay: 0.30s; }
-  .theory-section:nth-child(7)  { animation-delay: 0.35s; }
-  .theory-section:nth-child(8)  { animation-delay: 0.40s; }
-  .theory-section:nth-child(9)  { animation-delay: 0.45s; }
-  @keyframes sectionIn {
-    to { opacity: 1; transform: translateY(0); }
-  }
+  .theory-section:last-child { margin-bottom: 0; }
+  .theory-section:nth-child(1) { animation-delay: 0.05s; }
+  .theory-section:nth-child(2) { animation-delay: 0.10s; }
+  .theory-section:nth-child(3) { animation-delay: 0.15s; }
+  .theory-section:nth-child(4) { animation-delay: 0.20s; }
+  .theory-section:nth-child(5) { animation-delay: 0.25s; }
+  .theory-section:nth-child(6) { animation-delay: 0.30s; }
+  .theory-section:nth-child(7) { animation-delay: 0.35s; }
+  .theory-section:nth-child(8) { animation-delay: 0.40s; }
+  .theory-section:nth-child(9) { animation-delay: 0.45s; }
 
-  /* ── Section heading with accent bar ── */
+  /* ── Section heading ── */
   .theory-section h3 {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 700;
-    color: var(--text);
-    margin: 0 0 0.85rem;
-    padding-bottom: 0.45rem;
-    border-bottom: 1px solid rgba(84,199,255,0.18);
+    color: var(--accent);
+    margin: 0 0 0.8rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(84,199,255,0.15);
   }
   .theory-section h3::before {
     content: '';
-    display: inline-block;
-    width: 4px;
-    height: 1.1em;
+    flex-shrink: 0;
+    width: 3px;
+    height: 1em;
     border-radius: 2px;
     background: var(--accent);
-    flex-shrink: 0;
   }
 
-  /* ── Info cards grid (replaces bullet lists) ── */
+  /* ── Info cards grid ── */
   .info-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 0.75rem;
-    margin-top: 0.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.7rem;
   }
   .info-card {
-    background: rgba(84,199,255,0.06);
-    border: 1px solid rgba(84,199,255,0.18);
+    background: rgba(84,199,255,0.05);
+    border: 1px solid rgba(84,199,255,0.16);
     border-radius: 10px;
-    padding: 0.8rem 1rem;
-    font-size: 0.86rem;
-    line-height: 1.5;
-    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    padding: 0.85rem 1rem;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    color: var(--text-secondary, #94a3b8);
+    transition: background 0.2s, border-color 0.2s, transform 0.18s;
   }
   .info-card:hover {
-    background: rgba(84,199,255,0.12);
-    border-color: rgba(84,199,255,0.4);
+    background: rgba(84,199,255,0.10);
+    border-color: rgba(84,199,255,0.35);
     transform: translateY(-2px);
   }
-  .info-card strong { color: var(--accent); display: block; margin-bottom: 0.3rem; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .info-card .card-title {
+    display: block;
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
 
-  /* ── Exam tips row ── */
+  /* ── Exam tips grid ── */
   .exam-tips {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 0.65rem;
-    margin-top: 0.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 0.6rem;
   }
   .exam-tip {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.55rem;
     background: rgba(84,199,255,0.04);
-    border: 1px solid rgba(84,199,255,0.12);
-    border-radius: 8px;
-    padding: 0.65rem 0.85rem;
+    border-left: 3px solid rgba(84,199,255,0.5);
+    border-radius: 0 8px 8px 0;
+    padding: 0.6rem 0.9rem;
     font-size: 0.83rem;
-    line-height: 1.45;
+    line-height: 1.5;
+    color: var(--text-secondary, #94a3b8);
     transition: background 0.2s, border-color 0.2s;
   }
-  .exam-tip:hover { background: rgba(84,199,255,0.09); border-color: rgba(84,199,255,0.3); }
-  .exam-tip::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 0.05em; }
+  .exam-tip:hover {
+    background: rgba(84,199,255,0.08);
+    border-color: var(--accent);
+  }
+  .exam-tip strong {
+    display: block;
+    color: var(--accent);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.25rem;
+  }
 
   /* ── Comparison table ── */
-  .cmp-table { width: 100%; border-collapse: collapse; margin-bottom: 0.5rem; font-size: 0.88rem; }
-  .cmp-table th { background: rgba(84,199,255,0.12); color: var(--accent); padding: 0.55rem 0.8rem; text-align: left; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
-  .cmp-table td { padding: 0.5rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--muted); }
-  .cmp-table tr:hover td { background: rgba(255,255,255,0.02); color: var(--text); }
+  .cmp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .cmp-table thead th {
+    background: rgba(84,199,255,0.12);
+    color: var(--accent);
+    padding: 0.55rem 0.9rem;
+    text-align: left;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+  .cmp-table td {
+    padding: 0.5rem 0.9rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: var(--text-secondary, #94a3b8);
+  }
+  .cmp-table tr:last-child td { border-bottom: none; }
+  .cmp-table tbody tr:hover td {
+    background: rgba(84,199,255,0.04);
+    color: var(--text, #f1f5f9);
+  }
+
+  /* ── Precedence visual ── */
+  .precedence-chain {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    align-items: center;
+    margin-bottom: 0.8rem;
+  }
+  .prec-item {
+    background: rgba(84,199,255,0.08);
+    border: 1px solid rgba(84,199,255,0.2);
+    border-radius: 6px;
+    padding: 0.25rem 0.6rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .prec-arrow {
+    color: rgba(84,199,255,0.4);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
 </style>
 </head>
 <body>
@@ -133,100 +197,197 @@
       <div class="theory-section">
         <h3>Compiler vs Interpreter</h3>
         <div class="info-cards">
-          <div class="info-card"><strong>Compiler</strong>Translates the <em>entire</em> source at once into an executable binary. Users run the result without needing the compiler. Examples: C, C++.</div>
-          <div class="info-card"><strong>Interpreter</strong>Executes source code <em>line by line</em> during runtime. Examples: Python (CPython), JavaScript, Ruby.</div>
-          <div class="info-card"><strong>Python (hybrid)</strong>CPython first compiles to bytecode (.pyc), then the Python VM (PVM) interprets that bytecode — combining both approaches.</div>
+          <div class="info-card">
+            <span class="card-title">Compiler</span>
+            Translates the <em>entire</em> source at once into an executable binary. End users run the result without needing the compiler. Examples: C, C++.
+          </div>
+          <div class="info-card">
+            <span class="card-title">Interpreter</span>
+            Executes source code <em>line by line</em> at runtime — no separate compilation step visible to the user. Examples: early BASIC, shell scripts.
+          </div>
+          <div class="info-card">
+            <span class="card-title">Python — Hybrid</span>
+            CPython compiles source to bytecode (<code>.pyc</code>), then the Python VM (PVM) interprets that bytecode. Users don't need the compiler — just the runtime.
+          </div>
         </div>
       </div>
 
       <div class="theory-section">
         <h3>Language Definition: Lexis · Syntax · Semantics</h3>
         <div class="info-cards">
-          <div class="info-card"><strong>Lexis</strong>The set of valid words (tokens) — keywords, identifiers, literals, operators.</div>
-          <div class="info-card"><strong>Syntax</strong>Rules for building valid sentences (statements) from words. Describes grammatical structure.</div>
-          <div class="info-card"><strong>Semantics</strong>The meaning of syntactically correct sentences — what the program actually does.</div>
+          <div class="info-card">
+            <span class="card-title">Lexis</span>
+            The set of valid <em>words</em> (tokens) a language accepts — keywords, identifiers, literals, operators.
+          </div>
+          <div class="info-card">
+            <span class="card-title">Syntax</span>
+            Rules for combining words into valid <em>sentences</em> (statements). Describes grammatical structure.
+          </div>
+          <div class="info-card">
+            <span class="card-title">Semantics</span>
+            The <em>meaning</em> of syntactically correct statements — what the program actually does when executed.
+          </div>
         </div>
       </div>
 
       <div class="theory-section">
         <h3>Python 2 vs Python 3</h3>
         <table class="cmp-table">
-          <tr><th>Feature</th><th>Python 2</th><th>Python 3</th></tr>
-          <tr><td>print</td><td>Statement: <code>print "text"</code></td><td>Function: <code>print("text")</code></td></tr>
-          <tr><td>Integer Division</td><td><code>5 / 2 = 2</code></td><td><code>5 / 2 = 2.5</code></td></tr>
-          <tr><td>Unicode</td><td>Default: bytes</td><td>Default: Unicode str</td></tr>
-          <tr><td>Status</td><td>EOL since 2020</td><td>Current standard</td></tr>
+          <thead>
+            <tr><th>Feature</th><th>Python 2</th><th>Python 3</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>print</td><td>Statement: <code>print "text"</code></td><td>Function: <code>print("text")</code></td></tr>
+            <tr><td>Integer division</td><td><code>5 / 2 → 2</code></td><td><code>5 / 2 → 2.5</code></td></tr>
+            <tr><td>Unicode</td><td>Default: bytes</td><td>Default: Unicode <code>str</code></td></tr>
+            <tr><td>Status</td><td>EOL since Jan 2020</td><td>Current standard</td></tr>
+          </tbody>
         </table>
       </div>
 
       <div class="theory-section">
         <h3>Variables and Data Types</h3>
         <div class="info-cards">
-          <div class="info-card"><strong>int</strong>Integers: <code>42</code>, <code>-17</code>, <code>0</code></div>
-          <div class="info-card"><strong>float</strong>Decimals: <code>3.14</code>, <code>-2.5</code>, <code>1e10</code></div>
-          <div class="info-card"><strong>str</strong>Text: <code>"Hello"</code>, <code>'World'</code></div>
-          <div class="info-card"><strong>bool</strong>Boolean: <code>True</code>, <code>False</code></div>
-          <div class="info-card"><strong>Dynamic typing</strong>Variables need no declaration. The same name can be rebound to any type.</div>
-        </div>
-      </div>
-
-      <div class="theory-section">
-        <h3>Syntax Rules — Frequently Tested</h3>
-        <div class="exam-tips">
-          <div class="exam-tip">Indentation is mandatory for code blocks (no braces).</div>
-          <div class="exam-tip">Code blocks open with a colon <code>:</code> — forget it and get SyntaxError.</div>
-          <div class="exam-tip">Python is case-sensitive: <code>name</code> ≠ <code>Name</code> ≠ <code>NAME</code>.</div>
-          <div class="exam-tip">Valid identifiers start with a letter or <code>_</code>, then letters/digits/<code>_</code> only.</div>
-          <div class="exam-tip">Reserved words (<code>for</code>, <code>and</code>, <code>True</code> …) are illegal as identifiers.</div>
+          <div class="info-card">
+            <span class="card-title">int</span>
+            Whole numbers: <code>42</code>, <code>-17</code>, <code>0</code>
+          </div>
+          <div class="info-card">
+            <span class="card-title">float</span>
+            Decimal numbers: <code>3.14</code>, <code>-2.5</code>, <code>1e10</code>
+          </div>
+          <div class="info-card">
+            <span class="card-title">str</span>
+            Text sequences: <code>"Hello"</code>, <code>'World'</code>
+          </div>
+          <div class="info-card">
+            <span class="card-title">bool</span>
+            <code>True</code> or <code>False</code> — subclass of <code>int</code> (1 / 0)
+          </div>
+          <div class="info-card">
+            <span class="card-title">Dynamic Typing</span>
+            No declaration needed. A name can be rebound to any type at any time.
+          </div>
         </div>
       </div>
 
       <div class="theory-section">
         <h3>Literals and Number Bases</h3>
+        <div class="info-cards" style="margin-bottom:0.8rem">
+          <div class="info-card"><span class="card-title">Decimal</span><code>42</code>, <code>1_000_000</code> (underscores for readability)</div>
+          <div class="info-card"><span class="card-title">Binary</span><code>0b101010</code> → 42</div>
+          <div class="info-card"><span class="card-title">Octal</span><code>0o52</code> → 42</div>
+          <div class="info-card"><span class="card-title">Hexadecimal</span><code>0x2A</code> → 42</div>
+        </div>
         <pre class="code-block"><code>decimal     = 42
-binary      = 0b101010    # 42
-octal       = 0o52        # 42
-hexadecimal = 0x2A        # 42
-million     = 1_000_000   # readable numeric literal</code></pre>
+binary      = 0b101010    # prefix: 0b
+octal       = 0o52        # prefix: 0o
+hexadecimal = 0x2A        # prefix: 0x
+million     = 1_000_000   # _ separators are ignored</code></pre>
       </div>
 
       <div class="theory-section">
-        <h3>Operator Precedence</h3>
-        <pre class="code-block"><code># High → Low:
-# ()  →  **  →  +x/-x (unary)  →  * / // %  →  + -  →  comparisons  →  not  →  and  →  or
+        <h3>Operator Precedence  <small style="font-weight:400;font-size:0.75rem;color:var(--text-secondary,#94a3b8)">(highest → lowest)</small></h3>
+        <div class="precedence-chain">
+          <span class="prec-item">()</span>
+          <span class="prec-arrow">›</span>
+          <span class="prec-item">**</span>
+          <span class="prec-arrow">›</span>
+          <span class="prec-item">+x &nbsp;−x</span>
+          <span class="prec-arrow">›</span>
+          <span class="prec-item">* &nbsp;/ &nbsp;// &nbsp;%</span>
+          <span class="prec-arrow">›</span>
+          <span class="prec-item">+ &nbsp;−</span>
+          <span class="prec-arrow">›</span>
+          <span class="prec-item">comparisons</span>
+          <span class="prec-arrow">›</span>
+          <span class="prec-item">not</span>
+          <span class="prec-arrow">›</span>
+          <span class="prec-item">and</span>
+          <span class="prec-arrow">›</span>
+          <span class="prec-item">or</span>
+        </div>
+        <pre class="code-block"><code>print(-2 ** 2)      # -4   (**  before unary −: -(2**2))
+print(2 ** 3 ** 2)  # 512  (right-to-left:  2**(3**2) = 2**9)</code></pre>
+      </div>
 
-print(-2 ** 2)      # -4   (** before unary minus)
-print(2 ** 3 ** 2)  # 512  (right-to-left: 2 ** 9)</code></pre>
+      <div class="theory-section">
+        <h3>Syntax Rules — Identifiers &amp; Keywords</h3>
+        <div class="exam-tips">
+          <div class="exam-tip">
+            <strong>Indentation</strong>
+            Mandatory for all code blocks — no curly braces. Inconsistent indent → <code>IndentationError</code>.
+          </div>
+          <div class="exam-tip">
+            <strong>Colon Required</strong>
+            Every block header (<code>if</code>, <code>for</code>, <code>def</code>, …) ends with <code>:</code>. Missing it → <code>SyntaxError</code>.
+          </div>
+          <div class="exam-tip">
+            <strong>Case-Sensitive</strong>
+            <code>name</code> ≠ <code>Name</code> ≠ <code>NAME</code>. Python treats them as completely different identifiers.
+          </div>
+          <div class="exam-tip">
+            <strong>Identifier Rules</strong>
+            Must start with a letter or <code>_</code>. May contain letters, digits, <code>_</code>. No hyphens, spaces, or starting digits.
+          </div>
+          <div class="exam-tip">
+            <strong>Reserved Words</strong>
+            <code>for</code>, <code>and</code>, <code>True</code>, <code>None</code>, … are illegal as identifiers — eliminate these first on exam.
+          </div>
+        </div>
       </div>
 
       <div class="theory-section">
         <h3>Input / Output — Full Pattern</h3>
-        <pre class="code-block"><code># input() ALWAYS returns str — cast when needed
-name     = input("Name: ")
-age      = int(input("Age: "))
-velocity = float(input("Velocity [m/s]: "))
+        <pre class="code-block"><code># input() ALWAYS returns str — always cast before arithmetic
+name     = input("Name: ")            # str
+age      = int(input("Age: "))        # int
+velocity = float(input("Speed: "))    # float
 
-# Exact string comparison: spaces and case matter!
-print(name == " Robert ")   # False if user typed: robert
+# String comparison is exact — spaces and case matter
+print(name == " Robert ")             # False if user typed: robert
 
-# print() keyword args
-print("A", "B", sep="-", end="!")  # A-B!
+# print() keyword arguments
+print("A", "B", sep="-", end="!")    # A-B!
 score = 93.456
-print(f"Score: {score:.2f}")       # Score: 93.46
-print("x", "y", sep="|")          # x|y</code></pre>
+print(f"Score: {score:.2f}")         # Score: 93.46</code></pre>
       </div>
 
       <div class="theory-section">
         <h3>Exam Strategy — Key Patterns</h3>
         <div class="exam-tips">
-          <div class="exam-tip"><strong>Type conversion:</strong> <code>int(3.9)→3</code>, <code>bool("0")→True</code>, <code>bool("")→False</code>.</div>
-          <div class="exam-tip"><strong>Operator traps:</strong> always add mental parentheses to enforce precedence before computing.</div>
-          <div class="exam-tip"><strong>Identifier strategy:</strong> eliminate keywords first, then apply naming rules to remaining options.</div>
-          <div class="exam-tip"><strong>Input workflow:</strong> annotate each variable with expected type immediately after reading.</div>
-          <div class="exam-tip"><strong>String equality:</strong> whitespace and case are part of the value — <code>" Robert "≠"robert"</code>.</div>
-          <div class="exam-tip"><strong>CPython:</strong> the default reference implementation of Python, written in C.</div>
-          <div class="exam-tip"><strong>Compilation fact:</strong> compilation creates a target artifact before runtime; end users don't need the compiler.</div>
-          <div class="exam-tip"><strong>Question formats:</strong> single-choice, multi-select, drag-and-drop, gap-fill all appear on PCEP.</div>
+          <div class="exam-tip">
+            <strong>Type Conversion</strong>
+            <code>int(3.9)→3</code> (truncates), <code>bool("0")→True</code> (non-empty), <code>bool("")→False</code> (empty).
+          </div>
+          <div class="exam-tip">
+            <strong>Operator Traps</strong>
+            Add mental parentheses before computing. <code>-2**2</code> = <code>-(2**2)</code> = <code>-4</code>, not <code>4</code>.
+          </div>
+          <div class="exam-tip">
+            <strong>Identifier Check</strong>
+            Eliminate reserved words first, then check naming rules on remaining options.
+          </div>
+          <div class="exam-tip">
+            <strong>Input Workflow</strong>
+            Label every <code>input()</code> result as <code>str</code> immediately — cast before use.
+          </div>
+          <div class="exam-tip">
+            <strong>String Equality</strong>
+            Whitespace and case are part of the value. <code>" Robert " ≠ "robert"</code>.
+          </div>
+          <div class="exam-tip">
+            <strong>CPython Fact</strong>
+            Default reference implementation, written in C. Compiles to bytecode; end users need only the runtime.
+          </div>
+          <div class="exam-tip">
+            <strong>Compiler Fact</strong>
+            Compilation produces a target artifact before runtime — end users don't install the compiler.
+          </div>
+          <div class="exam-tip">
+            <strong>Question Formats</strong>
+            Single-choice, multi-select, drag-and-drop, gap-fill — all appear on PCEP.
+          </div>
         </div>
       </div>
 
@@ -484,6 +645,7 @@ print(name == "robert")     # safe comparison</code></pre>
         <div class="pitfall-explanation">Normalize with <code>strip()</code> and <code>lower()</code> before comparison when needed.</div>
       </div>
     </div>
+  </div>
   </div>
 
   <div id="flashcards" class="tab-content">
