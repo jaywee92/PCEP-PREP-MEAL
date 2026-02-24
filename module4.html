@@ -43,14 +43,14 @@
       <h2>📚 Theory: Functions &amp; Exceptions</h2>
       
       <h3>Function Definitions</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>def greet(name, greeting="Hello"):
+      <pre class="code-block"><code>def greet(name, greeting="Hello"):
     return f"{greeting}, {name}!"
 
 print(greet("Alice"))           # Hello, Alice!
 print(greet("Bob", "Hi"))       # Hi, Bob!</code></pre>
 
       <h3>*args and **kwargs</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>def func(*args):
+      <pre class="code-block"><code>def func(*args):
     for arg in args:
         print(arg)
 
@@ -62,7 +62,7 @@ func(1, 2, 3)                  # *args as tuple
 func(name="Alice", age=30)     # **kwargs as dict</code></pre>
 
       <h3>Variable Scope</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>x = 10  # Global
+      <pre class="code-block"><code>x = 10  # Global
 
 def func():
     y = 20  # Local
@@ -74,7 +74,7 @@ func()
 print(x)  # 15</code></pre>
 
       <h3>Exception Handling</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>try:
+      <pre class="code-block"><code>try:
     num = int("abc")
 except ValueError:
     print("Invalid number!")
@@ -86,7 +86,7 @@ finally:
     print("Done!")</code></pre>
 
       <h3>Common Exceptions</h3>
-      <ul style="margin-left: 2rem;">
+      <ul>
         <li><code>ValueError</code> - Invalid value</li>
         <li><code>TypeError</code> - Wrong type</li>
         <li><code>KeyError</code> - Missing key</li>
@@ -96,14 +96,14 @@ finally:
       </ul>
 
       <h3>Parameter Order (Exam Favorite)</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>def func(a, b, *args, c=10, **kwargs):
+      <pre class="code-block"><code>def func(a, b, *args, c=10, **kwargs):
     pass
 
 # order:
 # positional -> *args -> keyword-only/default -> **kwargs</code></pre>
 
       <h3>Scope Model (LEGB)</h3>
-      <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+      <ul>
         <li><strong>L</strong>ocal</li>
         <li><strong>E</strong>nclosing</li>
         <li><strong>G</strong>lobal</li>
@@ -111,7 +111,7 @@ finally:
       </ul>
 
       <h3>Recursion and Generators (Module 4 Coverage)</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>def factorial(n):
+      <pre class="code-block"><code>def factorial(n):
     if n <= 1:
         return 1
     return n * factorial(n - 1)   # base case + recursive case
@@ -123,7 +123,7 @@ def count_up_to(n):
         i += 1</code></pre>
 
       <h3>Return-Type Safety from New OCR Imports</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>def process(x):
+      <pre class="code-block"><code>def process(x):
     return x + 1
 
 value = process(3)   # 4 (int)
@@ -136,7 +136,7 @@ result = combine(2, 3)
 # print(result[0])   # TypeError: NoneType is not subscriptable</code></pre>
 
       <h3>Exam-Simulator Patterns for Module 4</h3>
-      <ul style="margin-left: 2rem;">
+      <ul>
         <li>Default argument behavior and missing required arguments.</li>
         <li>Keyword arguments bind by name, not by position.</li>
         <li>Functions without explicit <code>return</code> evaluate to <code>None</code>.</li>
@@ -162,11 +162,11 @@ result = combine(2, 3)
       <h2>📋 Cheatsheet: Functions &amp; Exceptions</h2>
       
       <h3>Function Definition</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>def func(params):
+      <pre class="code-block"><code>def func(params):
     return value</code></pre>
 
       <h3>Parameters</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>def func(a, b=10):          # Default parameter
+      <pre class="code-block"><code>def func(a, b=10):          # Default parameter
     pass
 
 def func(*args):            # Variable positional
@@ -193,14 +193,14 @@ f(7)      # 7
 f(x=9)    # 9</code></pre>
 
       <h3>Lambda Functions</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>square = lambda x: x ** 2
+      <pre class="code-block"><code>square = lambda x: x ** 2
 add = lambda x, y: x + y
 
 even = list(filter(lambda x: x % 2 == 0, [1,2,3,4]))
 result = list(map(lambda x: x*2, [1,2,3]))</code></pre>
 
       <h3>Exception Handling</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>try:
+      <pre class="code-block"><code>try:
     code
 except ValueError:
     handle specific
@@ -212,20 +212,20 @@ finally:
     always</code></pre>
 
       <h3>Raising Exceptions</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>def check_age(age):
+      <pre class="code-block"><code>def check_age(age):
     if age < 0:
         raise ValueError("Age cannot be negative!")
     return age</code></pre>
 
       <h3>Built-in Helpers in Function Workflows</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>nums = [1, 2, 3, 4]
+      <pre class="code-block"><code>nums = [1, 2, 3, 4]
 print(list(map(lambda x: x * 2, nums)))          # [2, 4, 6, 8]
 print(list(filter(lambda x: x % 2 == 0, nums)))  # [2, 4]
 print(list(enumerate(nums, start=1)))            # [(1,1), (2,2), ...]
 print(list(zip(nums, ["a", "b", "c", "d"])))</code></pre>
 
       <h3>Exception Flow Skeleton</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>try:
+      <pre class="code-block"><code>try:
     risky()
 except SpecificError:
     handle()
@@ -237,7 +237,7 @@ finally:
     cleanup()</code></pre>
 
       <h3>Raw Exam Snapshot: return + None</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>def f():
+      <pre class="code-block"><code>def f():
     pass
 
 print(f())           # None
@@ -264,7 +264,7 @@ mutate(x, y)
 print(x, y[0])    # 3 42</code></pre>
 
       <h3>Call-Validity Quick Checks</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>def fun(a, b, c=0):
+      <pre class="code-block"><code>def fun(a, b, c=0):
     return a + b + c
 
 fun(b=0, a=0)   # valid
@@ -284,33 +284,33 @@ f(x=9)          # valid</code></pre>
     <div class="content-box">
       <h2>⚠️ Common Mistakes with Functions &amp; Exceptions</h2>
       
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 1: Mutable Default Arguments</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Wrong:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>def add_item(item, items=[]):
+      <div class="mistake-box">
+        <h3>Mistake 1: Mutable Default Arguments</h3>
+        <p><strong>Wrong:</strong></p>
+        <pre class="code-block"><code>def add_item(item, items=[]):
     items.append(item)
     return items
 
 print(add_item(1))  # [1]
 print(add_item(2))  # [1, 2] - WRONG!</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Correct:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>def add_item(item, items=None):
+        <p><strong>Correct:</strong></p>
+        <pre class="code-block"><code>def add_item(item, items=None):
     if items is None:
         items = []
     items.append(item)
     return items</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 2: Forgetting global Keyword</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Wrong:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>x = 10
+      <div class="mistake-box">
+        <h3>Mistake 2: Forgetting global Keyword</h3>
+        <p><strong>Wrong:</strong></p>
+        <pre class="code-block"><code>x = 10
 def func():
     x = 20  # Creates local x
 func()
 print(x)  # Still 10, not 20!</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Correct:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>x = 10
+        <p><strong>Correct:</strong></p>
+        <pre class="code-block"><code>x = 10
 def func():
     global x
     x = 20
@@ -318,30 +318,30 @@ func()
 print(x)  # 20</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 3: finally with return</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Problem:</strong> finally return overwrites try return!</p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>def func():
+      <div class="mistake-box">
+        <h3>Mistake 3: finally with return</h3>
+        <p><strong>Problem:</strong> finally return overwrites try return!</p>
+        <pre class="code-block"><code>def func():
     try:
         return "try"
     finally:
         return "finally"  # This overwrites!
 
 print(func())  # "finally" - WRONG!</code></pre>
-        <p style="color: var(--muted);">Avoid return in finally block!</p>
+        <p class="mistake-note">Avoid return in finally block!</p>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 4: Wrong Exception Order</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Wrong:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>try:
+      <div class="mistake-box">
+        <h3>Mistake 4: Wrong Exception Order</h3>
+        <p><strong>Wrong:</strong></p>
+        <pre class="code-block"><code>try:
     code
 except Exception:          # Catches all
     pass
 except ValueError:        # Never reached!
     pass</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Correct:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>try:
+        <p><strong>Correct:</strong></p>
+        <pre class="code-block"><code>try:
     code
 except ValueError:        # Specific first
     pass
@@ -349,44 +349,44 @@ except Exception:         # General last
     pass</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 5: Not Catching Specific Exceptions</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Wrong:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>try:
+      <div class="mistake-box">
+        <h3>Mistake 5: Not Catching Specific Exceptions</h3>
+        <p><strong>Wrong:</strong></p>
+        <pre class="code-block"><code>try:
     x = int(input())
 except:  # Bare except catches everything!
     print("Error")</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Correct:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>try:
+        <p><strong>Correct:</strong></p>
+        <pre class="code-block"><code>try:
     x = int(input())
 except ValueError:
     print("Invalid number")</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 6: Assuming Functions Return Last Expression</h3>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>def f():
+      <div class="mistake-box">
+        <h3>Mistake 6: Assuming Functions Return Last Expression</h3>
+        <pre class="code-block"><code>def f():
     x = 5
 
 print(f())   # None, not 5</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 7: No Base Case in Recursion</h3>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>def bad(n):
+      <div class="mistake-box">
+        <h3>Mistake 7: No Base Case in Recursion</h3>
+        <pre class="code-block"><code>def bad(n):
     return bad(n - 1)   # RecursionError eventually</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 8: Treating <code>None</code> as Numeric Value</h3>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>x = None
+      <div class="mistake-box">
+        <h3>Mistake 8: Treating <code>None</code> as Numeric Value</h3>
+        <pre class="code-block"><code>x = None
 # print(x + 1)   # TypeError
 print(x is None) # correct check</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 9: Indexing Function Results Without Type Check</h3>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>def process(x):
+      <div class="mistake-box">
+        <h3>Mistake 9: Indexing Function Results Without Type Check</h3>
+        <pre class="code-block"><code>def process(x):
     return x + 1
 
 val = process(3)      # int
@@ -396,8 +396,9 @@ val = process(3)      # int
   </div>
 
   <div id="pitfalls" class="tab-content">
+  <div class="content-box">
   <h2>🚨 Critical Exam Pitfalls</h2>
-  <p class="intro">These are the most common traps that catch even experienced programmers in the PCEP exam. Master these to avoid losing easy points!</p>
+  <p class="pitfall-intro">These are the most common traps that catch even experienced programmers in the PCEP exam. Master these to avoid losing easy points!</p>
   <div class="pitfalls-grid">
     <div class="pitfall-item">
       <div class="pitfall-title">
@@ -618,7 +619,7 @@ val = process(3)      # int
       <span class="quiz-score-badge" id="quiz-score-badge">Score: 0/0</span>
     </div>
     <div id="quiz-container"></div>
-    <button onclick="resetQuiz()" style="margin-top: 2rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, rgba(255, 138, 90, 0.2), rgba(255, 138, 90, 0.1)); border: 1px solid var(--m4); color: var(--m4); border-radius: var(--radius); cursor: pointer; font-weight: 600; font-size: 1rem;">Reset Quiz</button>
+    <button onclick="resetQuiz()" class="quiz-reset-btn">↺ Reset Quiz</button>
   </div>
 </div>
 

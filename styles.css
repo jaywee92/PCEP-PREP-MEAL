@@ -576,3 +576,198 @@ header {
   .flashcard-controls { flex-direction: column; align-items: flex-start; }
   .flashcard-controls-right { margin-left: 0; }
 }
+
+/* ── Code blocks (replaces inline pre styles) ──────────────────────────────── */
+.code-block {
+  background: var(--code-bg);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.code-block code {
+  background: transparent;
+  padding: 0;
+  color: var(--text);
+  font-family: inherit;
+}
+
+/* ── Content sections (Theory/Cheatsheet/Mistakes/Pitfalls uniform padding) ── */
+.tab-section {
+  background: rgba(20, 27, 40, 0.6);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  margin-bottom: 2rem;
+}
+
+.tab-section h2 {
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tab-section h3 {
+  color: var(--text);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.tab-section p {
+  margin-bottom: 1rem;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+.tab-section ul, .tab-section ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.tab-section li {
+  margin-bottom: 0.3rem;
+}
+
+.tab-section code {
+  background: var(--code-bg);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  color: var(--accent);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.88em;
+}
+
+.tab-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.25rem;
+  font-size: 0.92rem;
+}
+
+.tab-section th {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  color: var(--accent);
+  border-bottom: 2px solid var(--border);
+  font-weight: 600;
+}
+
+.tab-section td {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.tab-section tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Common Mistakes ────────────────────────────────────────────────────────── */
+.mistake-box {
+  background: rgba(255, 107, 107, 0.07);
+  border-left: 4px solid var(--bad);
+  padding: 1.25rem 1.25rem 1rem;
+  margin-bottom: 1.25rem;
+  border-radius: 0 8px 8px 0;
+  transition: border-color 0.2s ease;
+}
+
+.mistake-box:hover {
+  border-left-color: var(--accent);
+}
+
+.mistake-box h3 {
+  color: var(--bad);
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.mistake-box p {
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.mistake-box .code-block {
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.mistake-note {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+/* ── Pitfalls ───────────────────────────────────────────────────────────────── */
+.pitfall-intro {
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ── Quiz reset button ──────────────────────────────────────────────────────── */
+.quiz-reset-btn {
+  margin-top: 2rem;
+  padding: 0.75rem 1.75rem;
+  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.15), rgba(var(--accent-rgb), 0.07));
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.quiz-reset-btn:hover {
+  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.25), rgba(var(--accent-rgb), 0.12));
+  transform: translateY(-1px);
+}
+
+/* ── Section intro text ─────────────────────────────────────────────────────── */
+.section-intro {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+/* ── Highlight box ──────────────────────────────────────────────────────────── */
+.highlight-box {
+  background: rgba(var(--accent-rgb), 0.07);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.highlight-box p {
+  margin-bottom: 0;
+}
+
+/* ── Tab icon ───────────────────────────────────────────────────────────────── */
+.tab-icon {
+  font-size: 1.1em;
+}

@@ -44,7 +44,7 @@
       
       <h3>Strings</h3>
       <p>Strings are sequences of characters. They are immutable (cannot be changed).</p>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>text = "Hello, World!"
+      <pre class="code-block"><code>text = "Hello, World!"
 print(text[0])          # 'H'
 print(text[-1])         # '!'
 print(text[0:5])        # 'Hello'
@@ -54,7 +54,7 @@ print(len(text))        # 13</code></pre>
 
       <h3>Lists</h3>
       <p>Lists are ordered, mutable collections. They can contain any data type.</p>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>numbers = [1, 2, 3, 4, 5]
+      <pre class="code-block"><code>numbers = [1, 2, 3, 4, 5]
 numbers.append(6)           # Add element
 numbers.remove(3)           # Remove by value
 numbers.pop()               # Remove last
@@ -64,7 +64,7 @@ print(len(numbers))         # Length</code></pre>
 
       <h3>Tuples</h3>
       <p>Tuples are ordered, immutable collections. Once created, they cannot be changed.</p>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>coords = (10, 20)
+      <pre class="code-block"><code>coords = (10, 20)
 print(coords[0])            # 10
 x, y = coords               # Unpacking
 print(len(coords))          # 2
@@ -73,7 +73,7 @@ print(len(coords))          # 2
 
       <h3>Dictionaries</h3>
       <p>Dictionaries are unordered, mutable collections with key-value pairs.</p>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>person = {"name": "Alice", "age": 30}
+      <pre class="code-block"><code>person = {"name": "Alice", "age": 30}
 print(person["name"])       # Alice
 person["age"] = 31          # Modify
 person["city"] = "NYC"      # Add
@@ -82,7 +82,7 @@ print("name" in person)     # True
 print(person.keys())        # Keys only</code></pre>
 
       <h3>Common Methods</h3>
-      <ul style="margin-left: 2rem;">
+      <ul>
         <li><code>.append()</code> - Add to list</li>
         <li><code>.remove()</code> - Remove by value</li>
         <li><code>.pop()</code> - Remove last or by index</li>
@@ -93,13 +93,13 @@ print(person.keys())        # Keys only</code></pre>
       </ul>
 
       <h3>Slicing Rules That Drive Many Exam Questions</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>s = "python"
+      <pre class="code-block"><code>s = "python"
 print(s[1:4])   # yth (stop excluded)
 print(s[::-1])  # nohtyp
 print(s[100:200])  # "" (no IndexError for slicing)</code></pre>
 
       <h3>Copy vs Reference Behavior</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>a = [1, 2, 3]
+      <pre class="code-block"><code>a = [1, 2, 3]
 b = a           # same object
 c = a[:]        # copy
 b.append(4)
@@ -107,7 +107,7 @@ print(a)        # [1, 2, 3, 4]
 print(c)        # [1, 2, 3]</code></pre>
 
       <h3>Mutation Pattern Seen in New Appendix Questions</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>nums = [1, 2, 3]
+      <pre class="code-block"><code>nums = [1, 2, 3]
 vals = nums
 del vals[1:2]
 print(nums)   # [1, 3]
@@ -115,7 +115,7 @@ print(nums)   # [1, 3]
 # deletion through alias mutates the same underlying list</code></pre>
 
       <h3>Exam-Simulator Patterns for Module 3</h3>
-      <ul style="margin-left: 2rem;">
+      <ul>
         <li><strong>String tasks:</strong> indexing/slicing, immutability, <code>find()</code> vs <code>index()</code>.</li>
         <li><strong>List tasks:</strong> <code>append()</code> vs <code>extend()</code>, copy/reference, alias side effects, and <code>sort()</code> behavior.</li>
         <li><strong>Dict tasks:</strong> key checks with <code>in</code>, safe access with <code>get()</code>.</li>
@@ -137,7 +137,7 @@ print(nums)   # [1, 3]
       <h2>📋 Cheatsheet: Data Collections</h2>
       
       <h3>String Methods</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>text = "Hello"
+      <pre class="code-block"><code>text = "Hello"
 text.upper()            # HELLO
 text.lower()            # hello
 text.replace("l", "L")  # HeLLo
@@ -147,7 +147,7 @@ text.find("l")          # 2
 text.startswith("He")   # True</code></pre>
 
       <h3>List Operations</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>lst = [1, 2, 3]
+      <pre class="code-block"><code>lst = [1, 2, 3]
 lst.append(4)           # [1,2,3,4]
 lst.remove(2)           # [1,3,4]
 lst.pop()               # [1,3], returns 4
@@ -157,7 +157,7 @@ lst.insert(1, 2)        # Insert at index
 lst.copy()              # Shallow copy</code></pre>
 
       <h3>List Slicing</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>lst = [0, 1, 2, 3, 4]
+      <pre class="code-block"><code>lst = [0, 1, 2, 3, 4]
 lst[1:3]                # [1, 2]
 lst[::2]                # [0, 2, 4]
 lst[::-1]               # [4, 3, 2, 1, 0]
@@ -166,7 +166,7 @@ lst[:-1]                # [0, 1, 2, 3]
 employees[:-5]          # all except last 5 entries</code></pre>
 
       <h3>Dictionaries</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>d = {"a": 1, "b": 2}
+      <pre class="code-block"><code>d = {"a": 1, "b": 2}
 d.get("a")              # 1
 d.get("c", "default")   # "default"
 d.keys()                # Keys
@@ -176,7 +176,7 @@ d.update({"c": 3})      # Add/update
 d.pop("a")              # Remove and return</code></pre>
 
       <h3>Tuple Operations</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>t = (1, 2, 3)
+      <pre class="code-block"><code>t = (1, 2, 3)
 t[0]                    # 1
 x, y, z = t             # Unpacking
 t.count(1)              # 1
@@ -185,7 +185,7 @@ len(t)                  # 3
 t + (4, 5)              # (1, 2, 3, 4, 5)</code></pre>
 
       <h3>Must-Know Comparison Snippets</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>sorted([3, 1, 2])   # [1, 2, 3]  (new list)
+      <pre class="code-block"><code>sorted([3, 1, 2])   # [1, 2, 3]  (new list)
 lst = [3, 1, 2]
 lst.sort()          # in place, returns None
 
@@ -193,7 +193,7 @@ lst.sort()          # in place, returns None
 "x" in {"a": "x"}   # False</code></pre>
 
       <h3>Tuple + Dict Edge Cases</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>(1)       # int
+      <pre class="code-block"><code>(1)       # int
 (1,)      # tuple
 
 d = {"a": 1}
@@ -208,13 +208,13 @@ d[2] = "One"              # overwrite existing key
 print("2" in d)           # False (string key not present)</code></pre>
 
       <h3>Raw Exam Snapshot: Shared Reference Mutation</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>nums = [1, 2, 3]
+      <pre class="code-block"><code>nums = [1, 2, 3]
 vals = nums
 del vals[1:2]
 print(nums)   # [1, 3]</code></pre>
 
       <h3>Key-Type Safety Snippet</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>d = {2: "two", "2": "two-string"}
+      <pre class="code-block"><code>d = {2: "two", "2": "two-string"}
 print(2 in d)      # True
 print("2" in d)    # True
 print(d[2])        # "two"
@@ -227,86 +227,86 @@ print(d["2"])      # "two-string"</code></pre>
     <div class="content-box">
       <h2>⚠️ Common Mistakes in Data Collections</h2>
       
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 1: Forgetting Strings Are Immutable</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Wrong:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>text = "Hello"
+      <div class="mistake-box">
+        <h3>Mistake 1: Forgetting Strings Are Immutable</h3>
+        <p><strong>Wrong:</strong></p>
+        <pre class="code-block"><code>text = "Hello"
 text[0] = "J"  # TypeError!</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Correct:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>text = "Hello"
+        <p><strong>Correct:</strong></p>
+        <pre class="code-block"><code>text = "Hello"
 text = "J" + text[1:]  # Create new string</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 2: Off-by-One Slicing</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Problem:</strong> The upper bound is exclusive!</p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>lst = [0, 1, 2, 3, 4]
+      <div class="mistake-box">
+        <h3>Mistake 2: Off-by-One Slicing</h3>
+        <p><strong>Problem:</strong> The upper bound is exclusive!</p>
+        <pre class="code-block"><code>lst = [0, 1, 2, 3, 4]
 lst[1:3]  # [1, 2], NOT [1, 2, 3]!</code></pre>
-        <p style="color: var(--muted);">Remember: stop index is exclusive!</p>
+        <p class="mistake-note">Remember: stop index is exclusive!</p>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 3: Modifying List While Iterating</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Wrong:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>lst = [1, 2, 3, 4]
+      <div class="mistake-box">
+        <h3>Mistake 3: Modifying List While Iterating</h3>
+        <p><strong>Wrong:</strong></p>
+        <pre class="code-block"><code>lst = [1, 2, 3, 4]
 for x in lst:
     lst.remove(x)  # Unpredictable!</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Correct:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>lst = [1, 2, 3, 4]
+        <p><strong>Correct:</strong></p>
+        <pre class="code-block"><code>lst = [1, 2, 3, 4]
 for x in lst[:]:      # Iterate over copy
     lst.remove(x)</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 4: List Copy Issues</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Problem:</strong> = creates reference, not copy!</p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>a = [1, 2, 3]
+      <div class="mistake-box">
+        <h3>Mistake 4: List Copy Issues</h3>
+        <p><strong>Problem:</strong> = creates reference, not copy!</p>
+        <pre class="code-block"><code>a = [1, 2, 3]
 b = a
 b.append(4)  # a = [1, 2, 3, 4] !</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Solution:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>a = [1, 2, 3]
+        <p><strong>Solution:</strong></p>
+        <pre class="code-block"><code>a = [1, 2, 3]
 b = a.copy()      # or list(a)
 b.append(4)       # a unchanged</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 5: Dictionary KeyError</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Wrong:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>d = {"a": 1}
+      <div class="mistake-box">
+        <h3>Mistake 5: Dictionary KeyError</h3>
+        <p><strong>Wrong:</strong></p>
+        <pre class="code-block"><code>d = {"a": 1}
 print(d["b"])  # KeyError!</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Correct:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>d = {"a": 1}
+        <p><strong>Correct:</strong></p>
+        <pre class="code-block"><code>d = {"a": 1}
 print(d.get("b", "default"))  # "default"</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 6: Confusing append() and extend()</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Wrong expectation:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>a = [1, 2]
+      <div class="mistake-box">
+        <h3>Mistake 6: Confusing append() and extend()</h3>
+        <p><strong>Wrong expectation:</strong></p>
+        <pre class="code-block"><code>a = [1, 2]
 a.append([3, 4])   # [1, 2, [3, 4]]</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Correct alternative:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>a = [1, 2]
+        <p><strong>Correct alternative:</strong></p>
+        <pre class="code-block"><code>a = [1, 2]
 a.extend([3, 4])   # [1, 2, 3, 4]</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 7: Single-Element Tuple Without Comma</h3>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>x = (1)     # int
+      <div class="mistake-box">
+        <h3>Mistake 7: Single-Element Tuple Without Comma</h3>
+        <pre class="code-block"><code>x = (1)     # int
 y = (1,)    # tuple</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 8: Assuming Alias Variables Are Copies</h3>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>nums = [1, 2, 3]
+      <div class="mistake-box">
+        <h3>Mistake 8: Assuming Alias Variables Are Copies</h3>
+        <pre class="code-block"><code>nums = [1, 2, 3]
 vals = nums
 vals.pop()
 print(nums)   # [1, 2], not [1, 2, 3]</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 9: Mixing Key Types in Dictionaries</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Trap:</strong> numeric and string keys are distinct.</p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>d = {2: "A"}
+      <div class="mistake-box">
+        <h3>Mistake 9: Mixing Key Types in Dictionaries</h3>
+        <p><strong>Trap:</strong> numeric and string keys are distinct.</p>
+        <pre class="code-block"><code>d = {2: "A"}
 print("2" in d)  # False
 print(d.get("2"))  # None</code></pre>
       </div>
@@ -314,8 +314,9 @@ print(d.get("2"))  # None</code></pre>
   </div>
 
   <div id="pitfalls" class="tab-content">
+  <div class="content-box">
   <h2>🚨 Critical Exam Pitfalls</h2>
-  <p class="intro">These are the most common traps that catch even experienced programmers in the PCEP exam. Master these to avoid losing easy points!</p>
+  <p class="pitfall-intro">These are the most common traps that catch even experienced programmers in the PCEP exam. Master these to avoid losing easy points!</p>
   <div class="pitfalls-grid">
     <div class="pitfall-item">
       <div class="pitfall-title">
@@ -566,7 +567,7 @@ print(d.get("2"))  # None</code></pre>
       <span class="quiz-score-badge" id="quiz-score-badge">Score: 0/0</span>
     </div>
     <div id="quiz-container"></div>
-    <button onclick="resetQuiz()" style="margin-top: 2rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, rgba(246, 180, 77, 0.2), rgba(246, 180, 77, 0.1)); border: 1px solid var(--m3); color: var(--m3); border-radius: var(--radius); cursor: pointer; font-weight: 600; font-size: 1rem;">Reset Quiz</button>
+    <button onclick="resetQuiz()" class="quiz-reset-btn">↺ Reset Quiz</button>
   </div>
 </div>
 

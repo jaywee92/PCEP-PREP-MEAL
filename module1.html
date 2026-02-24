@@ -52,39 +52,39 @@
       
       <h3>Python: A Hybrid System</h3>
       <p>Python combines both approaches:</p>
-      <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+      <ul>
         <li><strong>Compilation:</strong> The code is compiled to bytecode (.pyc files)</li>
         <li><strong>Interpretation:</strong> The Python Virtual Machine (PVM) interprets the bytecode</li>
       </ul>
       
       <h3>Python 2 vs Python 3</h3>
       <table style="width: 100%; margin-bottom: 1rem; border-collapse: collapse;">
-        <tr style="border-bottom: 1px solid var(--border);">
-          <th style="text-align: left; padding: 0.5rem; color: var(--m1);">Feature</th>
-          <th style="text-align: left; padding: 0.5rem; color: var(--m1);">Python 2</th>
-          <th style="text-align: left; padding: 0.5rem; color: var(--m1);">Python 3</th>
+        <tr>
+          <th>Feature</th>
+          <th>Python 2</th>
+          <th>Python 3</th>
         </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.5rem;">print</td>
-          <td style="padding: 0.5rem;">Statement: <code>print "text"</code></td>
-          <td style="padding: 0.5rem;">Function: <code>print("text")</code></td>
+        <tr>
+          <td>print</td>
+          <td>Statement: <code>print "text"</code></td>
+          <td>Function: <code>print("text")</code></td>
         </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.5rem;">Integer Division</td>
-          <td style="padding: 0.5rem;"><code>5 / 2 = 2</code></td>
-          <td style="padding: 0.5rem;"><code>5 / 2 = 2.5</code></td>
+        <tr>
+          <td>Integer Division</td>
+          <td><code>5 / 2 = 2</code></td>
+          <td><code>5 / 2 = 2.5</code></td>
         </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.5rem;">Unicode</td>
-          <td style="padding: 0.5rem;">Default: str (bytes)</td>
-          <td style="padding: 0.5rem;">Default: str (Unicode)</td>
+        <tr>
+          <td>Unicode</td>
+          <td>Default: str (bytes)</td>
+          <td>Default: str (Unicode)</td>
         </tr>
       </table>
       
       <h3>Variables and Data Types</h3>
       <p><strong>Variable:</strong> A named container for a value. In Python, variables are dynamically typed.</p>
       <p><strong>Basic Data Types:</strong></p>
-      <ul style="margin-left: 2rem;">
+      <ul>
         <li><code>int</code> - Integers (e.g., 42, -17)</li>
         <li><code>float</code> - Decimals (e.g., 3.14, -2.5)</li>
         <li><code>str</code> - Strings/Text (e.g., "Hello", 'World')</li>
@@ -92,7 +92,7 @@
       </ul>
 
       <h3>Syntax Rules That Are Frequently Tested</h3>
-      <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+      <ul>
         <li>Indentation is mandatory for code blocks.</li>
         <li>Code blocks begin with a colon (<code>:</code>).</li>
         <li>Python is case-sensitive: <code>name</code> and <code>Name</code> are different.</li>
@@ -100,20 +100,20 @@
       </ul>
 
       <h3>Literals and Number Bases</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>decimal = 42
+      <pre class="code-block"><code>decimal = 42
 binary = 0b101010      # 42
 octal = 0o52           # 42
 hexadecimal = 0x2A     # 42
 million = 1_000_000    # readable numeric literal</code></pre>
 
       <h3>Operator Precedence (Python Docs Aligned)</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>()  **  +x/-x  * / // %  + -  comparisons  not  and  or
+      <pre class="code-block"><code>()  **  +x/-x  * / // %  + -  comparisons  not  and  or
 
 print(-2 ** 2)      # -4  (power before unary minus)
 print(2 ** 3 ** 2)  # 512 (right-to-left)</code></pre>
 
       <h3>Input/Output Essentials</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>name = input("Name: ")          # always str
+      <pre class="code-block"><code>name = input("Name: ")          # always str
 age = int(input("Age: "))       # cast for numeric logic
 
 print("A", "B", sep="-", end="!")   # A-B!
@@ -121,7 +121,7 @@ score = 93.456
 print(f"Score: {score:.2f}")         # Score: 93.46</code></pre>
 
       <h3>High-Yield Input Patterns from New OCR Sets</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>password = input("Enter your password: ")
+      <pre class="code-block"><code>password = input("Enter your password: ")
 velocity = float(input("Enter velocity [m/s]: "))
 version = int(input("Enter version number: "))
 
@@ -131,7 +131,7 @@ version = int(input("Enter version number: "))
 # 3) string comparisons are exact (case + spaces)</code></pre>
 
       <h3>Exam-Simulator Patterns for Module 1</h3>
-      <ul style="margin-left: 2rem;">
+      <ul>
         <li><strong>Type conversion traps:</strong> <code>int(3.9)</code>, <code>float(4)</code>, <code>str(3)</code>, <code>bool("0")</code>.</li>
         <li><strong>Operator traps:</strong> negative floor division, exponent precedence, chained operations.</li>
         <li><strong>I/O traps:</strong> effect of <code>end=</code> in <code>print()</code> and <code>input()</code> string return type.</li>
@@ -155,13 +155,13 @@ version = int(input("Enter version number: "))
       <h2>📋 Cheatsheet: Quick Reference</h2>
       
       <h3>Variables and Assignment</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>name = "Alice"
+      <pre class="code-block"><code>name = "Alice"
 age = 25
 weight = 65.5
 active = True</code></pre>
       
       <h3>Basic Operations</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># Arithmetic
+      <pre class="code-block"><code># Arithmetic
 x = 10 + 5      # Addition: 15
 x = 10 - 5      # Subtraction: 5
 x = 10 * 5      # Multiplication: 50
@@ -176,7 +176,7 @@ x = 10 % 3      # Modulo: 1
 10 <= 10        # True</code></pre>
       
       <h3>Input and Output</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># Output
+      <pre class="code-block"><code># Output
 print("Hello World")
 print(42)
 
@@ -185,24 +185,24 @@ name = input("Your name: ")
 age = int(input("Your age: "))</code></pre>
       
       <h3>String Operations</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>text = "Python"
+      <pre class="code-block"><code>text = "Python"
 print(len(text))           # Length: 6
 print(text.upper())        # PYTHON
 print(text.lower())        # python
 print("Hello" + " World")  # Concatenation</code></pre>
       
       <h3>Comments</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># This is a comment
+      <pre class="code-block"><code># This is a comment
 x = 5  # Inline comment</code></pre>
 
       <h3>Numeric Literals</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>0b1010     # binary
+      <pre class="code-block"><code>0b1010     # binary
 0o17       # octal
 0xFF       # hexadecimal
 1_000_000  # underscores for readability</code></pre>
 
       <h3>Truthiness Quick Checks</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>bool("")      # False
+      <pre class="code-block"><code>bool("")      # False
 bool("0")     # True
 bool([])      # False
 bool([0])     # True
@@ -210,25 +210,25 @@ bool(None)    # False
 bool(0.0)     # False</code></pre>
 
       <h3>Conversion + Rounding</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>int(3.9)       # 3  (truncate)
+      <pre class="code-block"><code>int(3.9)       # 3  (truncate)
 round(2.5)     # 2  (banker's rounding)
 round(3.5)     # 4
 float("3.14")  # 3.14</code></pre>
 
       <h3>Must-Remember I/O</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>user = input("User: ")      # str
+      <pre class="code-block"><code>user = input("User: ")      # str
 print("x", "y", sep="|")    # x|y
 print("Hi", end="...")      # no newline
 print("next")</code></pre>
 
       <h3>Input Casting Mini-Map</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code>raw = input("Value: ")              # str
+      <pre class="code-block"><code>raw = input("Value: ")              # str
 as_int = int(raw)                   # for counting/indexing/integer math
 as_float = float(raw)               # for measurements/ratios
 same_text = (raw == "target")       # exact string match, no auto-trim</code></pre>
 
       <h3>Raw Exam Snapshot: Legal vs Illegal Identifiers</h3>
-      <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;"><code># illegal (reserved or literal)
+      <pre class="code-block"><code># illegal (reserved or literal)
 and = 5      # SyntaxError
 True = 1     # SyntaxError
 
@@ -248,76 +248,76 @@ print(bool("None"))                   # True (non-empty string)</code></pre>
     <div class="content-box">
       <h2>⚠️ Common Mistakes in Module 1</h2>
       
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 1: Confusing Python 2 and 3</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Wrong (Python 2):</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>print "Hello"  # SyntaxError in Python 3!</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Correct (Python 3):</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>print("Hello")  # Correct!</code></pre>
+      <div class="mistake-box">
+        <h3>Mistake 1: Confusing Python 2 and 3</h3>
+        <p><strong>Wrong (Python 2):</strong></p>
+        <pre class="code-block"><code>print "Hello"  # SyntaxError in Python 3!</code></pre>
+        <p><strong>Correct (Python 3):</strong></p>
+        <pre class="code-block"><code>print("Hello")  # Correct!</code></pre>
       </div>
       
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 2: Confusing Integer Division</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>In Python 3:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>5 / 2 = 2.5   # True Division
+      <div class="mistake-box">
+        <h3>Mistake 2: Confusing Integer Division</h3>
+        <p><strong>In Python 3:</strong></p>
+        <pre class="code-block"><code>5 / 2 = 2.5   # True Division
 5 // 2 = 2    # Floor Division</code></pre>
-        <p style="color: var(--muted);">Remember: In Python 2, 5/2 = 2, but in Python 3, 5/2 = 2.5!</p>
+        <p class="mistake-note">Remember: In Python 2, 5/2 = 2, but in Python 3, 5/2 = 2.5!</p>
       </div>
       
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 3: Invalid Variable Names</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Invalid:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>123var = 5      # Cannot start with digit
+      <div class="mistake-box">
+        <h3>Mistake 3: Invalid Variable Names</h3>
+        <p><strong>Invalid:</strong></p>
+        <pre class="code-block"><code>123var = 5      # Cannot start with digit
 var-name = 10   # Hyphen not allowed
 var name = 15   # Spaces not allowed</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Valid:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>var123 = 5          # OK
+        <p><strong>Valid:</strong></p>
+        <pre class="code-block"><code>var123 = 5          # OK
 _var_name = 10      # OK
 varName = 15        # OK (camelCase)</code></pre>
       </div>
       
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 4: Type Confusion</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Problem:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>age = "25"  # String, not integer!
+      <div class="mistake-box">
+        <h3>Mistake 4: Type Confusion</h3>
+        <p><strong>Problem:</strong></p>
+        <pre class="code-block"><code>age = "25"  # String, not integer!
 print(age + 5)  # TypeError!</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Solution:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>age = int("25")  # Convert to int
+        <p><strong>Solution:</strong></p>
+        <pre class="code-block"><code>age = int("25")  # Convert to int
 print(age + 5)   # OK: 30</code></pre>
       </div>
       
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 5: Misunderstanding Compiler vs Interpreter</h3>
-        <p style="margin-bottom: 0.75rem;">Many think Python is purely interpreted. Actually:</p>
-        <ul style="margin-left: 2rem;">
+      <div class="mistake-box">
+        <h3>Mistake 5: Misunderstanding Compiler vs Interpreter</h3>
+        <p>Many think Python is purely interpreted. Actually:</p>
+        <ul>
           <li>Python compiles to bytecode (.pyc)</li>
           <li>The Python VM (PVM) then interprets this bytecode</li>
           <li>This is a <strong>hybrid</strong> approach</li>
         </ul>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; margin-bottom: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 6: Using <code>is</code> Instead of <code>==</code></h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Wrong:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>x = 256
+      <div class="mistake-box">
+        <h3>Mistake 6: Using <code>is</code> Instead of <code>==</code></h3>
+        <p><strong>Wrong:</strong></p>
+        <pre class="code-block"><code>x = 256
 y = 256
 print(x is y)   # identity check, not value check</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Correct:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>print(x == y)   # value comparison
+        <p><strong>Correct:</strong></p>
+        <pre class="code-block"><code>print(x == y)   # value comparison
 print(x is None)  # 'is' is ideal for None</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 7: Assuming Standard Rounding Rules</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Trap:</strong> Python uses banker's rounding for .5 cases.</p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>print(round(2.5))  # 2
+      <div class="mistake-box">
+        <h3>Mistake 7: Assuming Standard Rounding Rules</h3>
+        <p><strong>Trap:</strong> Python uses banker's rounding for .5 cases.</p>
+        <pre class="code-block"><code>print(round(2.5))  # 2
 print(round(3.5))  # 4</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 8: Confusing Keywords with Similar-Looking Names</h3>
-        <p style="margin-bottom: 0.75rem;">From raw exam questions: <code>True</code> is illegal as identifier, but <code>TRUE</code> and <code>true_value</code> are legal.</p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code># illegal
+      <div class="mistake-box">
+        <h3>Mistake 8: Confusing Keywords with Similar-Looking Names</h3>
+        <p>From raw exam questions: <code>True</code> is illegal as identifier, but <code>TRUE</code> and <code>true_value</code> are legal.</p>
+        <pre class="code-block"><code># illegal
 for = 10
 True = 1
 
@@ -326,13 +326,13 @@ TRUE = 1
 true_value = 10</code></pre>
       </div>
 
-      <div style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid var(--bad); padding: 1rem; margin-top: 1.5rem; border-radius: 4px;">
-        <h3 style="color: var(--bad); margin-bottom: 0.5rem;">Mistake 9: Assuming String Input Auto-Formats Itself</h3>
-        <p style="margin-bottom: 0.75rem;"><strong>Trap from imported sets:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem;"><code>name = input()
+      <div class="mistake-box">
+        <h3>Mistake 9: Assuming String Input Auto-Formats Itself</h3>
+        <p><strong>Trap from imported sets:</strong></p>
+        <pre class="code-block"><code>name = input()
 print(name == " Robert ")   # False for input: robert</code></pre>
-        <p style="margin-bottom: 0.75rem;"><strong>Safer pattern:</strong></p>
-        <pre style="background: var(--code-bg); padding: 0.75rem; border-radius: 4px;"><code>name = input().strip().lower()
+        <p><strong>Safer pattern:</strong></p>
+        <pre class="code-block"><code>name = input().strip().lower()
 print(name == "robert")</code></pre>
       </div>
     </div>
@@ -340,8 +340,9 @@ print(name == "robert")</code></pre>
 
   <!-- Flashcards Tab -->
   <div id="pitfalls" class="tab-content">
+    <div class="content-box">
     <h2>🚨 Critical Exam Pitfalls</h2>
-    <p class="intro">These are the most common traps that catch even experienced programmers in the PCEP exam. Master these to avoid losing easy points!</p>
+    <p class="pitfall-intro">These are the most common traps that catch even experienced programmers in the PCEP exam. Master these to avoid losing easy points!</p>
     <div class="pitfalls-grid">
       <div class="pitfall-item">
         <div class="pitfall-title">
@@ -581,7 +582,7 @@ print(name == "robert")</code></pre>
     <div id="quiz-container">
     </div>
 
-    <button onclick="resetQuiz()" style="margin-top: 2rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, rgba(84, 199, 255, 0.2), rgba(84, 199, 255, 0.1)); border: 1px solid var(--m1); color: var(--m1); border-radius: var(--radius); cursor: pointer; font-weight: 600; font-size: 1rem;">Reset Quiz</button>
+    <button onclick="resetQuiz()" class="quiz-reset-btn">↺ Reset Quiz</button>
   </div>
 </div>
 
