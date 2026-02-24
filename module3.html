@@ -8,12 +8,60 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-  <style>
-    :root {
-      --accent:     var(--m3);
-      --accent-rgb: 246, 180, 77;
-    }
-  </style>
+<style>
+  :root {
+    --accent: var(--m3);
+    --accent-rgb: 246, 180, 77;
+  }
+
+  .theory-section {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: sectionIn 0.5s ease forwards;
+  }
+  .theory-section:nth-child(1)  { animation-delay: 0.05s; }
+  .theory-section:nth-child(2)  { animation-delay: 0.10s; }
+  .theory-section:nth-child(3)  { animation-delay: 0.15s; }
+  .theory-section:nth-child(4)  { animation-delay: 0.20s; }
+  .theory-section:nth-child(5)  { animation-delay: 0.25s; }
+  .theory-section:nth-child(6)  { animation-delay: 0.30s; }
+  .theory-section:nth-child(7)  { animation-delay: 0.35s; }
+  .theory-section:nth-child(8)  { animation-delay: 0.40s; }
+  @keyframes sectionIn { to { opacity: 1; transform: translateY(0); } }
+
+  .theory-section h3 {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 1.05rem; font-weight: 700; color: var(--text);
+    margin: 0 0 0.85rem; padding-bottom: 0.45rem;
+    border-bottom: 1px solid rgba(246,180,77,0.18);
+  }
+  .theory-section h3::before {
+    content: ''; display: inline-block; width: 4px; height: 1.1em;
+    border-radius: 2px; background: var(--accent); flex-shrink: 0;
+  }
+
+  .info-cards {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.75rem; margin-top: 0.5rem;
+  }
+  .info-card {
+    background: rgba(246,180,77,0.06); border: 1px solid rgba(246,180,77,0.18);
+    border-radius: 10px; padding: 0.8rem 1rem; font-size: 0.86rem; line-height: 1.5;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .info-card:hover { background: rgba(246,180,77,0.12); border-color: rgba(246,180,77,0.4); transform: translateY(-2px); }
+  .info-card strong { color: var(--accent); display: block; margin-bottom: 0.3rem; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  .exam-tips { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.65rem; margin-top: 0.5rem; }
+  .exam-tip {
+    display: flex; align-items: flex-start; gap: 0.55rem;
+    background: rgba(246,180,77,0.04); border: 1px solid rgba(246,180,77,0.12);
+    border-radius: 8px; padding: 0.65rem 0.85rem; font-size: 0.83rem; line-height: 1.45;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .exam-tip:hover { background: rgba(246,180,77,0.09); border-color: rgba(246,180,77,0.3); }
+  .exam-tip::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 0.05em; }
+</style>
 </head>
 <body>
 <div class="bg-canvas">
@@ -41,93 +89,109 @@
   <div id="theory" class="tab-content active">
     <div class="content-box">
       <h2>📚 Theory: Data Collections</h2>
-      
-      <h3>Strings</h3>
-      <p>Strings are sequences of characters. They are immutable (cannot be changed).</p>
-      <pre class="code-block"><code>text = "Hello, World!"
+
+      <div class="theory-section">
+        <h3>Strings</h3>
+        <p>Strings are sequences of characters. They are immutable (cannot be changed).</p>
+        <pre class="code-block"><code>text = "Hello, World!"
 print(text[0])          # 'H'
 print(text[-1])         # '!'
 print(text[0:5])        # 'Hello'
 print(text.upper())     # 'HELLO, WORLD!'
 print(text.lower())     # 'hello, world!'
 print(len(text))        # 13</code></pre>
+      </div>
 
-      <h3>Lists</h3>
-      <p>Lists are ordered, mutable collections. They can contain any data type.</p>
-      <pre class="code-block"><code>numbers = [1, 2, 3, 4, 5]
+      <div class="theory-section">
+        <h3>Lists</h3>
+        <p>Lists are ordered, mutable collections. They can contain any data type.</p>
+        <pre class="code-block"><code>numbers = [1, 2, 3, 4, 5]
 numbers.append(6)           # Add element
 numbers.remove(3)           # Remove by value
 numbers.pop()               # Remove last
 numbers.extend([7, 8])      # Add multiple
 print(numbers[0])           # 1
 print(len(numbers))         # Length</code></pre>
+      </div>
 
-      <h3>Tuples</h3>
-      <p>Tuples are ordered, immutable collections. Once created, they cannot be changed.</p>
-      <pre class="code-block"><code>coords = (10, 20)
+      <div class="theory-section">
+        <h3>Tuples</h3>
+        <p>Tuples are ordered, immutable collections. Once created, they cannot be changed.</p>
+        <pre class="code-block"><code>coords = (10, 20)
 print(coords[0])            # 10
 x, y = coords               # Unpacking
 print(len(coords))          # 2
 
 # Tuples are faster and safer than lists!</code></pre>
+      </div>
 
-      <h3>Dictionaries</h3>
-      <p>Dictionaries are unordered, mutable collections with key-value pairs.</p>
-      <pre class="code-block"><code>person = {"name": "Alice", "age": 30}
+      <div class="theory-section">
+        <h3>Dictionaries</h3>
+        <p>Dictionaries are unordered, mutable collections with key-value pairs.</p>
+        <pre class="code-block"><code>person = {"name": "Alice", "age": 30}
 print(person["name"])       # Alice
 person["age"] = 31          # Modify
 person["city"] = "NYC"      # Add
 del person["city"]          # Delete
 print("name" in person)     # True
 print(person.keys())        # Keys only</code></pre>
+      </div>
 
-      <h3>Common Methods</h3>
-      <ul>
-        <li><code>.append()</code> - Add to list</li>
-        <li><code>.remove()</code> - Remove by value</li>
-        <li><code>.pop()</code> - Remove last or by index</li>
-        <li><code>.sort()</code> - Sort list in-place</li>
-        <li><code>.reverse()</code> - Reverse list</li>
-        <li><code>.count()</code> - Count occurrences</li>
-        <li><code>.index()</code> - Find index of value</li>
-      </ul>
+      <div class="theory-section">
+        <h3>Common Methods</h3>
+        <div class="info-cards">
+          <div class="info-card"><strong>.append()</strong>Add a single item to the end of a list.</div>
+          <div class="info-card"><strong>.remove()</strong>Remove the first occurrence of a value from a list.</div>
+          <div class="info-card"><strong>.pop()</strong>Remove and return the last item, or item at given index.</div>
+          <div class="info-card"><strong>.sort()</strong>Sort list in-place — returns None.</div>
+          <div class="info-card"><strong>.reverse()</strong>Reverse list in-place — returns None.</div>
+          <div class="info-card"><strong>.count()</strong>Count occurrences of a value in a sequence.</div>
+          <div class="info-card"><strong>.index()</strong>Return the index of the first occurrence; raises ValueError if missing.</div>
+        </div>
+      </div>
 
-      <h3>Slicing Rules That Drive Many Exam Questions</h3>
-      <pre class="code-block"><code>s = "python"
+      <div class="theory-section">
+        <h3>Slicing Rules</h3>
+        <pre class="code-block"><code>s = "python"
 print(s[1:4])   # yth (stop excluded)
 print(s[::-1])  # nohtyp
 print(s[100:200])  # "" (no IndexError for slicing)</code></pre>
+      </div>
 
-      <h3>Copy vs Reference Behavior</h3>
-      <pre class="code-block"><code>a = [1, 2, 3]
+      <div class="theory-section">
+        <h3>Copy, Reference &amp; Mutation</h3>
+        <p>Assignment creates a reference, not a copy. Any in-place change through one name appears through the other.</p>
+        <pre class="code-block"><code>a = [1, 2, 3]
 b = a           # same object
 c = a[:]        # copy
 b.append(4)
 print(a)        # [1, 2, 3, 4]
 print(c)        # [1, 2, 3]</code></pre>
-
-      <h3>Mutation Pattern Seen in New Appendix Questions</h3>
-      <pre class="code-block"><code>nums = [1, 2, 3]
+        <p style="margin: 0.75rem 0 0.5rem; font-size: 0.85rem; color: var(--muted);">Mutation via alias — deletion through an alias mutates the shared underlying list:</p>
+        <pre class="code-block"><code>nums = [1, 2, 3]
 vals = nums
 del vals[1:2]
 print(nums)   # [1, 3]
 
 # deletion through alias mutates the same underlying list</code></pre>
+      </div>
 
-      <h3>Exam-Simulator Patterns for Module 3</h3>
-      <ul>
-        <li><strong>String tasks:</strong> indexing/slicing, immutability, <code>find()</code> vs <code>index()</code>.</li>
-        <li><strong>List tasks:</strong> <code>append()</code> vs <code>extend()</code>, copy/reference, alias side effects, and <code>sort()</code> behavior.</li>
-        <li><strong>Dict tasks:</strong> key checks with <code>in</code>, safe access with <code>get()</code>.</li>
-        <li><strong>Tuple tasks:</strong> single-item tuple syntax, unpacking count errors, and immutability (<code>append()</code>/<code>pop()</code> are unavailable).</li>
-        <li><strong>Slicing targets:</strong> excluding trailing records with <code>seq[:-5]</code> is a common exam pattern.</li>
-        <li><strong>Immutability traps:</strong> operations like <code>del text[i]</code> fail on strings with <code>TypeError</code>.</li>
-        <li><strong>Alias check:</strong> when you see <code>b = a</code>, assume shared object unless explicit copy is shown.</li>
-        <li><strong>Slice check:</strong> always verify stop index is excluded and negative indexes count from the end.</li>
-        <li><strong>Dictionary check:</strong> remember <code>key in d</code> tests keys only, never values.</li>
-        <li><strong>Key-type check:</strong> <code>"2"</code> and <code>2</code> are different dictionary keys.</li>
-        <li><strong>Mutation check:</strong> evaluate in-place operations (<code>del</code>, <code>append</code>, <code>pop</code>) against aliasing first.</li>
-      </ul>
+      <div class="theory-section">
+        <h3>Exam Strategy — Key Patterns</h3>
+        <div class="exam-tips">
+          <div class="exam-tip"><strong>String tasks:</strong> indexing/slicing, immutability, <code>find()</code> vs <code>index()</code>.</div>
+          <div class="exam-tip"><strong>List tasks:</strong> <code>append()</code> vs <code>extend()</code>, copy/reference, alias side effects, and <code>sort()</code> behavior.</div>
+          <div class="exam-tip"><strong>Dict tasks:</strong> key checks with <code>in</code>, safe access with <code>get()</code>.</div>
+          <div class="exam-tip"><strong>Tuple tasks:</strong> single-item tuple syntax, unpacking count errors, and immutability (<code>append()</code>/<code>pop()</code> are unavailable).</div>
+          <div class="exam-tip"><strong>Slicing targets:</strong> excluding trailing records with <code>seq[:-5]</code> is a common exam pattern.</div>
+          <div class="exam-tip"><strong>Immutability traps:</strong> operations like <code>del text[i]</code> fail on strings with <code>TypeError</code>.</div>
+          <div class="exam-tip"><strong>Alias check:</strong> when you see <code>b = a</code>, assume shared object unless explicit copy is shown.</div>
+          <div class="exam-tip"><strong>Slice check:</strong> always verify stop index is excluded and negative indexes count from the end.</div>
+          <div class="exam-tip"><strong>Dictionary check:</strong> remember <code>key in d</code> tests keys only, never values.</div>
+          <div class="exam-tip"><strong>Key-type check:</strong> <code>"2"</code> and <code>2</code> are different dictionary keys.</div>
+          <div class="exam-tip"><strong>Mutation check:</strong> evaluate in-place operations (<code>del</code>, <code>append</code>, <code>pop</code>) against aliasing first.</div>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -135,7 +199,7 @@ print(nums)   # [1, 3]
   <div id="cheatsheet" class="tab-content">
     <div class="content-box">
       <h2>📋 Cheatsheet: Data Collections</h2>
-      
+
       <h3>String Methods</h3>
       <pre class="code-block"><code>text = "Hello"
 text.upper()            # HELLO
@@ -226,7 +290,7 @@ print(d["2"])      # "two-string"</code></pre>
   <div id="mistakes" class="tab-content">
     <div class="content-box">
       <h2>⚠️ Common Mistakes in Data Collections</h2>
-      
+
       <div class="mistake-box">
         <h3>Mistake 1: Forgetting Strings Are Immutable</h3>
         <p><strong>Wrong:</strong></p>
@@ -534,18 +598,19 @@ print(d.get("2"))  # None</code></pre>
         <span>Dictionary Key Type Mismatch</span>
       </div>
       <div class="pitfall-wrong">
-        ❌ Wrong: <code>d[2] and d["2"] access the same key</code>
+        ❌ Wrong: <code>"2" and 2 are the same dictionary key</code>
       </div>
       <div class="pitfall-right">
-        ✓ Correct: <code>2 and "2" are different keys and can map to different values</code>
+        ✓ Correct: <code>"2" and 2 are distinct keys in the same dict</code>
       </div>
       <div class="pitfall-explanation">
-        This appears in multiple imported questions. Check key type carefully before membership tests or lookups.
+        Dictionary keys are compared by value and type. Integer 2 and string "2" hash differently and coexist in the same dictionary.
       </div>
     </div>
   </div>
 </div>
-    <div id="flashcards" class="tab-content">
+
+  <div id="flashcards" class="tab-content">
     <div class="flashcard-controls">
       <span class="fc-mode-badge" id="fc-mode-badge">All Cards</span>
       <span class="fc-counter" id="fc-counter"></span>

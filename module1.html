@@ -3,148 +3,232 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 1 - PCEP-PREP-MEAL</title>
+<title>Module 1 – PCEP-PREP-MEAL</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-  <style>
-    /* Per-module accent colour */
-    :root {
-      --accent:     var(--m1);
-      --accent-rgb: 84, 199, 255;
-    }
-  </style>
+<style>
+  :root { --accent: var(--m1); --accent-rgb: 84,199,255; }
+
+  /* ── Animated section entries ── */
+  .theory-section {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: sectionIn 0.5s ease forwards;
+  }
+  .theory-section:nth-child(1)  { animation-delay: 0.05s; }
+  .theory-section:nth-child(2)  { animation-delay: 0.10s; }
+  .theory-section:nth-child(3)  { animation-delay: 0.15s; }
+  .theory-section:nth-child(4)  { animation-delay: 0.20s; }
+  .theory-section:nth-child(5)  { animation-delay: 0.25s; }
+  .theory-section:nth-child(6)  { animation-delay: 0.30s; }
+  .theory-section:nth-child(7)  { animation-delay: 0.35s; }
+  .theory-section:nth-child(8)  { animation-delay: 0.40s; }
+  .theory-section:nth-child(9)  { animation-delay: 0.45s; }
+  @keyframes sectionIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Section heading with accent bar ── */
+  .theory-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 0.85rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid rgba(84,199,255,0.18);
+  }
+  .theory-section h3::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 1.1em;
+    border-radius: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── Info cards grid (replaces bullet lists) ── */
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .info-card {
+    background: rgba(84,199,255,0.06);
+    border: 1px solid rgba(84,199,255,0.18);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .info-card:hover {
+    background: rgba(84,199,255,0.12);
+    border-color: rgba(84,199,255,0.4);
+    transform: translateY(-2px);
+  }
+  .info-card strong { color: var(--accent); display: block; margin-bottom: 0.3rem; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  /* ── Exam tips row ── */
+  .exam-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.65rem;
+    margin-top: 0.5rem;
+  }
+  .exam-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    background: rgba(84,199,255,0.04);
+    border: 1px solid rgba(84,199,255,0.12);
+    border-radius: 8px;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.83rem;
+    line-height: 1.45;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .exam-tip:hover { background: rgba(84,199,255,0.09); border-color: rgba(84,199,255,0.3); }
+  .exam-tip::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 0.05em; }
+
+  /* ── Comparison table ── */
+  .cmp-table { width: 100%; border-collapse: collapse; margin-bottom: 0.5rem; font-size: 0.88rem; }
+  .cmp-table th { background: rgba(84,199,255,0.12); color: var(--accent); padding: 0.55rem 0.8rem; text-align: left; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .cmp-table td { padding: 0.5rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--muted); }
+  .cmp-table tr:hover td { background: rgba(255,255,255,0.02); color: var(--text); }
+</style>
 </head>
 <body>
-<div class="bg-canvas">
-  <div class="orb one"></div>
-</div>
+<div class="bg-canvas"><div class="orb one"></div></div>
 
 <div class="container">
   <header>
     <div class="header-left">
       <h1>Module 1: Programming Fundamentals</h1>
-      <p>Master the basics of Python and programming concepts</p>
+      <p>18% Exam Weight · Master Python basics and programming concepts</p>
     </div>
     <a href="index.html" class="back-btn">← Back to Overview</a>
   </header>
 
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab(event, 'theory')">Theory</button>
-    <button class="tab-btn" onclick="switchTab(event, 'cheatsheet')">Cheatsheet</button>
-    <button class="tab-btn" onclick="switchTab(event, 'mistakes')">Common Mistakes</button>
-    <button class="tab-btn" onclick="switchTab(event, 'pitfalls')">Pitfalls</button>
-    <button class="tab-btn" onclick="switchTab(event, 'flashcards')">Flashcards</button>
-    <button class="tab-btn" onclick="switchTab(event, 'quiz')">Quiz</button>
+    <button class="tab-btn active" onclick="switchTab(event,'theory')">Theory</button>
+    <button class="tab-btn" onclick="switchTab(event,'cheatsheet')">Cheatsheet</button>
+    <button class="tab-btn" onclick="switchTab(event,'mistakes')">Common Mistakes</button>
+    <button class="tab-btn" onclick="switchTab(event,'pitfalls')">Pitfalls</button>
+    <button class="tab-btn" onclick="switchTab(event,'flashcards')">Flashcards</button>
+    <button class="tab-btn" onclick="switchTab(event,'quiz')">Quiz</button>
   </div>
 
   <!-- Theory Tab -->
   <div id="theory" class="tab-content active">
     <div class="content-box">
       <h2>📚 Theory: Programming Fundamentals</h2>
-      
-      <h3>What is a Compiler?</h3>
-      <p>A compiler is a program that translates the entire source code to machine code at once before the program is executed. Examples: C, C++, Java (to bytecode).</p>
-      
-      <h3>What is an Interpreter?</h3>
-      <p>An interpreter executes the source code line by line and translates it during execution. Examples: Python, JavaScript, Ruby.</p>
-      
-      <h3>Python: A Hybrid System</h3>
-      <p>Python combines both approaches:</p>
-      <ul>
-        <li><strong>Compilation:</strong> The code is compiled to bytecode (.pyc files)</li>
-        <li><strong>Interpretation:</strong> The Python Virtual Machine (PVM) interprets the bytecode</li>
-      </ul>
-      
-      <h3>Python 2 vs Python 3</h3>
-      <table style="width: 100%; margin-bottom: 1rem; border-collapse: collapse;">
-        <tr>
-          <th>Feature</th>
-          <th>Python 2</th>
-          <th>Python 3</th>
-        </tr>
-        <tr>
-          <td>print</td>
-          <td>Statement: <code>print "text"</code></td>
-          <td>Function: <code>print("text")</code></td>
-        </tr>
-        <tr>
-          <td>Integer Division</td>
-          <td><code>5 / 2 = 2</code></td>
-          <td><code>5 / 2 = 2.5</code></td>
-        </tr>
-        <tr>
-          <td>Unicode</td>
-          <td>Default: str (bytes)</td>
-          <td>Default: str (Unicode)</td>
-        </tr>
-      </table>
-      
-      <h3>Variables and Data Types</h3>
-      <p><strong>Variable:</strong> A named container for a value. In Python, variables are dynamically typed.</p>
-      <p><strong>Basic Data Types:</strong></p>
-      <ul>
-        <li><code>int</code> - Integers (e.g., 42, -17)</li>
-        <li><code>float</code> - Decimals (e.g., 3.14, -2.5)</li>
-        <li><code>str</code> - Strings/Text (e.g., "Hello", 'World')</li>
-        <li><code>bool</code> - Boolean values (True, False)</li>
-      </ul>
 
-      <h3>Syntax Rules That Are Frequently Tested</h3>
-      <ul>
-        <li>Indentation is mandatory for code blocks.</li>
-        <li>Code blocks begin with a colon (<code>:</code>).</li>
-        <li>Python is case-sensitive: <code>name</code> and <code>Name</code> are different.</li>
-        <li>Valid identifiers start with a letter or underscore, then letters, digits, underscores.</li>
-      </ul>
+      <div class="theory-section">
+        <h3>Compiler vs Interpreter</h3>
+        <div class="info-cards">
+          <div class="info-card"><strong>Compiler</strong>Translates the <em>entire</em> source at once into an executable binary. Users run the result without needing the compiler. Examples: C, C++.</div>
+          <div class="info-card"><strong>Interpreter</strong>Executes source code <em>line by line</em> during runtime. Examples: Python (CPython), JavaScript, Ruby.</div>
+          <div class="info-card"><strong>Python (hybrid)</strong>CPython first compiles to bytecode (.pyc), then the Python VM (PVM) interprets that bytecode — combining both approaches.</div>
+        </div>
+      </div>
 
-      <h3>Literals and Number Bases</h3>
-      <pre class="code-block"><code>decimal = 42
-binary = 0b101010      # 42
-octal = 0o52           # 42
-hexadecimal = 0x2A     # 42
-million = 1_000_000    # readable numeric literal</code></pre>
+      <div class="theory-section">
+        <h3>Language Definition: Lexis · Syntax · Semantics</h3>
+        <div class="info-cards">
+          <div class="info-card"><strong>Lexis</strong>The set of valid words (tokens) — keywords, identifiers, literals, operators.</div>
+          <div class="info-card"><strong>Syntax</strong>Rules for building valid sentences (statements) from words. Describes grammatical structure.</div>
+          <div class="info-card"><strong>Semantics</strong>The meaning of syntactically correct sentences — what the program actually does.</div>
+        </div>
+      </div>
 
-      <h3>Operator Precedence (Python Docs Aligned)</h3>
-      <pre class="code-block"><code>()  **  +x/-x  * / // %  + -  comparisons  not  and  or
+      <div class="theory-section">
+        <h3>Python 2 vs Python 3</h3>
+        <table class="cmp-table">
+          <tr><th>Feature</th><th>Python 2</th><th>Python 3</th></tr>
+          <tr><td>print</td><td>Statement: <code>print "text"</code></td><td>Function: <code>print("text")</code></td></tr>
+          <tr><td>Integer Division</td><td><code>5 / 2 = 2</code></td><td><code>5 / 2 = 2.5</code></td></tr>
+          <tr><td>Unicode</td><td>Default: bytes</td><td>Default: Unicode str</td></tr>
+          <tr><td>Status</td><td>EOL since 2020</td><td>Current standard</td></tr>
+        </table>
+      </div>
 
-print(-2 ** 2)      # -4  (power before unary minus)
-print(2 ** 3 ** 2)  # 512 (right-to-left)</code></pre>
+      <div class="theory-section">
+        <h3>Variables and Data Types</h3>
+        <div class="info-cards">
+          <div class="info-card"><strong>int</strong>Integers: <code>42</code>, <code>-17</code>, <code>0</code></div>
+          <div class="info-card"><strong>float</strong>Decimals: <code>3.14</code>, <code>-2.5</code>, <code>1e10</code></div>
+          <div class="info-card"><strong>str</strong>Text: <code>"Hello"</code>, <code>'World'</code></div>
+          <div class="info-card"><strong>bool</strong>Boolean: <code>True</code>, <code>False</code></div>
+          <div class="info-card"><strong>Dynamic typing</strong>Variables need no declaration. The same name can be rebound to any type.</div>
+        </div>
+      </div>
 
-      <h3>Input/Output Essentials</h3>
-      <pre class="code-block"><code>name = input("Name: ")          # always str
-age = int(input("Age: "))       # cast for numeric logic
+      <div class="theory-section">
+        <h3>Syntax Rules — Frequently Tested</h3>
+        <div class="exam-tips">
+          <div class="exam-tip">Indentation is mandatory for code blocks (no braces).</div>
+          <div class="exam-tip">Code blocks open with a colon <code>:</code> — forget it and get SyntaxError.</div>
+          <div class="exam-tip">Python is case-sensitive: <code>name</code> ≠ <code>Name</code> ≠ <code>NAME</code>.</div>
+          <div class="exam-tip">Valid identifiers start with a letter or <code>_</code>, then letters/digits/<code>_</code> only.</div>
+          <div class="exam-tip">Reserved words (<code>for</code>, <code>and</code>, <code>True</code> …) are illegal as identifiers.</div>
+        </div>
+      </div>
 
-print("A", "B", sep="-", end="!")   # A-B!
+      <div class="theory-section">
+        <h3>Literals and Number Bases</h3>
+        <pre class="code-block"><code>decimal     = 42
+binary      = 0b101010    # 42
+octal       = 0o52        # 42
+hexadecimal = 0x2A        # 42
+million     = 1_000_000   # readable numeric literal</code></pre>
+      </div>
+
+      <div class="theory-section">
+        <h3>Operator Precedence</h3>
+        <pre class="code-block"><code># High → Low:
+# ()  →  **  →  +x/-x (unary)  →  * / // %  →  + -  →  comparisons  →  not  →  and  →  or
+
+print(-2 ** 2)      # -4   (** before unary minus)
+print(2 ** 3 ** 2)  # 512  (right-to-left: 2 ** 9)</code></pre>
+      </div>
+
+      <div class="theory-section">
+        <h3>Input / Output — Full Pattern</h3>
+        <pre class="code-block"><code># input() ALWAYS returns str — cast when needed
+name     = input("Name: ")
+age      = int(input("Age: "))
+velocity = float(input("Velocity [m/s]: "))
+
+# Exact string comparison: spaces and case matter!
+print(name == " Robert ")   # False if user typed: robert
+
+# print() keyword args
+print("A", "B", sep="-", end="!")  # A-B!
 score = 93.456
-print(f"Score: {score:.2f}")         # Score: 93.46</code></pre>
+print(f"Score: {score:.2f}")       # Score: 93.46
+print("x", "y", sep="|")          # x|y</code></pre>
+      </div>
 
-      <h3>High-Yield Input Patterns from New OCR Sets</h3>
-      <pre class="code-block"><code>password = input("Enter your password: ")
-velocity = float(input("Enter velocity [m/s]: "))
-version = int(input("Enter version number: "))
-
-# exam focus:
-# 1) input() gives str first
-# 2) cast only when numeric behavior is needed
-# 3) string comparisons are exact (case + spaces)</code></pre>
-
-      <h3>Exam-Simulator Patterns for Module 1</h3>
-      <ul>
-        <li><strong>Type conversion traps:</strong> <code>int(3.9)</code>, <code>float(4)</code>, <code>str(3)</code>, <code>bool("0")</code>.</li>
-        <li><strong>Operator traps:</strong> negative floor division, exponent precedence, chained operations.</li>
-        <li><strong>I/O traps:</strong> effect of <code>end=</code> in <code>print()</code> and <code>input()</code> string return type.</li>
-        <li><strong>Question formats:</strong> single-choice, multi-select, drag-and-drop, gap-fill, and code-fill style prompts can appear.</li>
-        <li><strong>Language theory terms:</strong> questions may explicitly test <code>lexis</code>, <code>syntax</code>, and <code>semantics</code>.</li>
-        <li><strong>Implementation terms:</strong> CPython is the default reference implementation of Python written in C.</li>
-        <li><strong>Answer workflow:</strong> first decide if the item is concept, syntax, or code-trace, then solve with the matching method.</li>
-        <li><strong>Identifier strategy:</strong> eliminate keywords/literals first (<code>True</code>, <code>and</code>, etc.), then apply naming rules.</li>
-        <li><strong>Arithmetic strategy:</strong> enforce precedence explicitly with temporary parentheses before computing values.</li>
-        <li><strong>Input workflow:</strong> annotate each prompt variable with expected type immediately after reading the code.</li>
-        <li><strong>String-equality trap:</strong> whitespace and capitalization are part of the value, so <code>" Robert "</code> differs from <code>"robert"</code>.</li>
-        <li><strong>Literal-vs-name check:</strong> reject reserved words and built-in literals first, then validate the remaining identifiers.</li>
-      </ul>
+      <div class="theory-section">
+        <h3>Exam Strategy — Key Patterns</h3>
+        <div class="exam-tips">
+          <div class="exam-tip"><strong>Type conversion:</strong> <code>int(3.9)→3</code>, <code>bool("0")→True</code>, <code>bool("")→False</code>.</div>
+          <div class="exam-tip"><strong>Operator traps:</strong> always add mental parentheses to enforce precedence before computing.</div>
+          <div class="exam-tip"><strong>Identifier strategy:</strong> eliminate keywords first, then apply naming rules to remaining options.</div>
+          <div class="exam-tip"><strong>Input workflow:</strong> annotate each variable with expected type immediately after reading.</div>
+          <div class="exam-tip"><strong>String equality:</strong> whitespace and case are part of the value — <code>" Robert "≠"robert"</code>.</div>
+          <div class="exam-tip"><strong>CPython:</strong> the default reference implementation of Python, written in C.</div>
+          <div class="exam-tip"><strong>Compilation fact:</strong> compilation creates a target artifact before runtime; end users don't need the compiler.</div>
+          <div class="exam-tip"><strong>Question formats:</strong> single-choice, multi-select, drag-and-drop, gap-fill all appear on PCEP.</div>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -153,93 +237,84 @@ version = int(input("Enter version number: "))
   <div id="cheatsheet" class="tab-content">
     <div class="content-box">
       <h2>📋 Cheatsheet: Quick Reference</h2>
-      
+
       <h3>Variables and Assignment</h3>
-      <pre class="code-block"><code>name = "Alice"
-age = 25
+      <pre class="code-block"><code>name   = "Alice"
+age    = 25
 weight = 65.5
 active = True</code></pre>
-      
-      <h3>Basic Operations</h3>
-      <pre class="code-block"><code># Arithmetic
-x = 10 + 5      # Addition: 15
-x = 10 - 5      # Subtraction: 5
-x = 10 * 5      # Multiplication: 50
-x = 10 / 5      # Division: 2.0
-x = 10 // 3     # Integer Division: 3
-x = 10 % 3      # Modulo: 1
 
-# Comparisons
-10 == 10        # True
-10 != 5         # True
-10 > 5          # True
-10 <= 10        # True</code></pre>
-      
+      <h3>Arithmetic Operators</h3>
+      <pre class="code-block"><code>x = 10 + 5      # Addition:        15
+x = 10 - 5      # Subtraction:     5
+x = 10 * 5      # Multiplication:  50
+x = 10 / 5      # Division:        2.0  (always float!)
+x = 10 // 3     # Floor Division:  3
+x = 10 % 3      # Modulo:          1
+x = 2 ** 10     # Exponentiation:  1024</code></pre>
+
+      <h3>Comparisons</h3>
+      <pre class="code-block"><code>10 == 10    # True    (equality)
+10 != 5     # True    (inequality)
+10 > 5      # True
+10 <= 10    # True</code></pre>
+
       <h3>Input and Output</h3>
-      <pre class="code-block"><code># Output
-print("Hello World")
-print(42)
+      <pre class="code-block"><code>name = input("Your name: ")          # always str
+age  = int(input("Your age: "))      # cast to int
+print("Hello", name, sep=", ")      # Hello, Alice
+print("Pi =", 3.14159, end="!\n")   # Pi = 3.14159!</code></pre>
 
-# Input
-name = input("Your name: ")
-age = int(input("Your age: "))</code></pre>
-      
       <h3>String Operations</h3>
       <pre class="code-block"><code>text = "Python"
-print(len(text))           # Length: 6
+print(len(text))           # 6
 print(text.upper())        # PYTHON
 print(text.lower())        # python
-print("Hello" + " World")  # Concatenation</code></pre>
-      
-      <h3>Comments</h3>
-      <pre class="code-block"><code># This is a comment
-x = 5  # Inline comment</code></pre>
+print("Hello" + " World")  # Hello World
+print("Py" * 3)            # PyPyPy</code></pre>
 
       <h3>Numeric Literals</h3>
-      <pre class="code-block"><code>0b1010     # binary
-0o17       # octal
-0xFF       # hexadecimal
+      <pre class="code-block"><code>0b1010     # binary  → 10
+0o17       # octal   → 15
+0xFF       # hex     → 255
 1_000_000  # underscores for readability</code></pre>
 
       <h3>Truthiness Quick Checks</h3>
-      <pre class="code-block"><code>bool("")      # False
-bool("0")     # True
-bool([])      # False
-bool([0])     # True
+      <pre class="code-block"><code>bool("")      # False   (empty string)
+bool("0")     # True    (non-empty string!)
+bool([])      # False   (empty list)
+bool([0])     # True    (non-empty list!)
 bool(None)    # False
 bool(0.0)     # False</code></pre>
 
       <h3>Conversion + Rounding</h3>
-      <pre class="code-block"><code>int(3.9)       # 3  (truncate)
-round(2.5)     # 2  (banker's rounding)
+      <pre class="code-block"><code>int(3.9)       # 3    (truncate, not round)
+int(-3.9)      # -3   (truncate toward zero)
+round(2.5)     # 2    (banker's rounding!)
 round(3.5)     # 4
 float("3.14")  # 3.14</code></pre>
 
-      <h3>Must-Remember I/O</h3>
-      <pre class="code-block"><code>user = input("User: ")      # str
-print("x", "y", sep="|")    # x|y
-print("Hi", end="...")      # no newline
-print("next")</code></pre>
-
       <h3>Input Casting Mini-Map</h3>
-      <pre class="code-block"><code>raw = input("Value: ")              # str
-as_int = int(raw)                   # for counting/indexing/integer math
-as_float = float(raw)               # for measurements/ratios
-same_text = (raw == "target")       # exact string match, no auto-trim</code></pre>
+      <pre class="code-block"><code>raw      = input("Value: ")        # str always
+as_int   = int(raw)                # counting/indexing
+as_float = float(raw)              # measurements/ratios
+exact    = (raw == "target")       # no auto-trim, exact match</code></pre>
 
-      <h3>Raw Exam Snapshot: Legal vs Illegal Identifiers</h3>
-      <pre class="code-block"><code># illegal (reserved or literal)
+      <h3>Legal vs Illegal Identifiers</h3>
+      <pre class="code-block"><code># Illegal – reserved words or literals
 and = 5      # SyntaxError
 True = 1     # SyntaxError
+for = 10     # SyntaxError
 
-# legal
+# Legal
 true_value = 5
 TRUE = 7
+_private = 9
 
+# Exam traps
 print(9 ** 3 ** 0 ** 1)               # 9
-name = input(); print(name == " Robert ")  # False for input: robert
-print("Py" * 3)                       # PyPyPy
-print(bool("None"))                   # True (non-empty string)</code></pre>
+print("Py" * 3)                        # PyPyPy
+print(bool("None"))                    # True (non-empty string)</code></pre>
     </div>
   </div>
 
@@ -247,312 +322,166 @@ print(bool("None"))                   # True (non-empty string)</code></pre>
   <div id="mistakes" class="tab-content">
     <div class="content-box">
       <h2>⚠️ Common Mistakes in Module 1</h2>
-      
+
       <div class="mistake-box">
-        <h3>Mistake 1: Confusing Python 2 and 3</h3>
-        <p><strong>Wrong (Python 2):</strong></p>
-        <pre class="code-block"><code>print "Hello"  # SyntaxError in Python 3!</code></pre>
-        <p><strong>Correct (Python 3):</strong></p>
-        <pre class="code-block"><code>print("Hello")  # Correct!</code></pre>
+        <h3>Mistake 1: Python 2 Print Syntax</h3>
+        <pre class="code-block"><code>print "Hello"   # SyntaxError in Python 3!</code></pre>
+        <pre class="code-block"><code>print("Hello")  # Correct</code></pre>
       </div>
-      
+
       <div class="mistake-box">
-        <h3>Mistake 2: Confusing Integer Division</h3>
-        <p><strong>In Python 3:</strong></p>
-        <pre class="code-block"><code>5 / 2 = 2.5   # True Division
-5 // 2 = 2    # Floor Division</code></pre>
-        <p class="mistake-note">Remember: In Python 2, 5/2 = 2, but in Python 3, 5/2 = 2.5!</p>
+        <h3>Mistake 2: Division Returns Float</h3>
+        <pre class="code-block"><code>5 / 2   # 2.5  — NOT 2 in Python 3
+5 // 2  # 2    — floor division</code></pre>
+        <p class="mistake-note">Python 2: 5/2 = 2. Python 3: 5/2 = 2.5.</p>
       </div>
-      
+
       <div class="mistake-box">
         <h3>Mistake 3: Invalid Variable Names</h3>
-        <p><strong>Invalid:</strong></p>
-        <pre class="code-block"><code>123var = 5      # Cannot start with digit
-var-name = 10   # Hyphen not allowed
-var name = 15   # Spaces not allowed</code></pre>
-        <p><strong>Valid:</strong></p>
-        <pre class="code-block"><code>var123 = 5          # OK
-_var_name = 10      # OK
-varName = 15        # OK (camelCase)</code></pre>
-      </div>
-      
-      <div class="mistake-box">
-        <h3>Mistake 4: Type Confusion</h3>
-        <p><strong>Problem:</strong></p>
-        <pre class="code-block"><code>age = "25"  # String, not integer!
-print(age + 5)  # TypeError!</code></pre>
-        <p><strong>Solution:</strong></p>
-        <pre class="code-block"><code>age = int("25")  # Convert to int
-print(age + 5)   # OK: 30</code></pre>
-      </div>
-      
-      <div class="mistake-box">
-        <h3>Mistake 5: Misunderstanding Compiler vs Interpreter</h3>
-        <p>Many think Python is purely interpreted. Actually:</p>
-        <ul>
-          <li>Python compiles to bytecode (.pyc)</li>
-          <li>The Python VM (PVM) then interprets this bytecode</li>
-          <li>This is a <strong>hybrid</strong> approach</li>
-        </ul>
+        <pre class="code-block"><code>123var  = 5   # starts with digit → SyntaxError
+var-name = 10  # hyphen → SyntaxError
+var name = 15  # space → SyntaxError</code></pre>
+        <pre class="code-block"><code>var123 = 5       # OK
+_var_name = 10   # OK
+varName = 15     # OK</code></pre>
       </div>
 
       <div class="mistake-box">
-        <h3>Mistake 6: Using <code>is</code> Instead of <code>==</code></h3>
-        <p><strong>Wrong:</strong></p>
-        <pre class="code-block"><code>x = 256
-y = 256
-print(x is y)   # identity check, not value check</code></pre>
-        <p><strong>Correct:</strong></p>
-        <pre class="code-block"><code>print(x == y)   # value comparison
-print(x is None)  # 'is' is ideal for None</code></pre>
+        <h3>Mistake 4: Type Confusion with input()</h3>
+        <pre class="code-block"><code>age = input("Age: ")   # str!
+print(age + 5)          # TypeError</code></pre>
+        <pre class="code-block"><code>age = int(input("Age: "))
+print(age + 5)           # 30</code></pre>
       </div>
 
       <div class="mistake-box">
-        <h3>Mistake 7: Assuming Standard Rounding Rules</h3>
-        <p><strong>Trap:</strong> Python uses banker's rounding for .5 cases.</p>
-        <pre class="code-block"><code>print(round(2.5))  # 2
+        <h3>Mistake 5: Python is Purely Interpreted</h3>
+        <p>Python <em>compiles</em> to bytecode (.pyc), then the PVM interprets it — a hybrid approach. CPython is the reference implementation.</p>
+      </div>
+
+      <div class="mistake-box">
+        <h3>Mistake 6: <code>is</code> Instead of <code>==</code></h3>
+        <pre class="code-block"><code>x = 256; y = 256
+print(x is y)    # identity — not reliable for values
+print(x == y)    # True — always use == for value comparison
+print(x is None) # OK — use is for None checks</code></pre>
+      </div>
+
+      <div class="mistake-box">
+        <h3>Mistake 7: Assuming Standard Rounding</h3>
+        <pre class="code-block"><code>print(round(2.5))  # 2 — banker's rounding!
 print(round(3.5))  # 4</code></pre>
       </div>
 
       <div class="mistake-box">
-        <h3>Mistake 8: Confusing Keywords with Similar-Looking Names</h3>
-        <p>From raw exam questions: <code>True</code> is illegal as identifier, but <code>TRUE</code> and <code>true_value</code> are legal.</p>
-        <pre class="code-block"><code># illegal
-for = 10
-True = 1
+        <h3>Mistake 8: Keywords as Identifiers</h3>
+        <pre class="code-block"><code>True = 1   # SyntaxError — True is a literal
+for  = 10  # SyntaxError — reserved word
 
-# legal
-TRUE = 1
-true_value = 10</code></pre>
+TRUE = 1         # legal
+true_value = 10  # legal</code></pre>
       </div>
 
       <div class="mistake-box">
-        <h3>Mistake 9: Assuming String Input Auto-Formats Itself</h3>
-        <p><strong>Trap from imported sets:</strong></p>
+        <h3>Mistake 9: String Input Auto-Formats</h3>
         <pre class="code-block"><code>name = input()
-print(name == " Robert ")   # False for input: robert</code></pre>
-        <p><strong>Safer pattern:</strong></p>
+print(name == " Robert ")   # False for input: robert
+# case + spaces must match exactly</code></pre>
         <pre class="code-block"><code>name = input().strip().lower()
-print(name == "robert")</code></pre>
+print(name == "robert")     # safe comparison</code></pre>
       </div>
     </div>
   </div>
 
-  <!-- Flashcards Tab -->
+  <!-- Pitfalls Tab -->
   <div id="pitfalls" class="tab-content">
     <div class="content-box">
     <h2>🚨 Critical Exam Pitfalls</h2>
-    <p class="pitfall-intro">These are the most common traps that catch even experienced programmers in the PCEP exam. Master these to avoid losing easy points!</p>
+    <p class="pitfall-intro">The most common traps on the PCEP exam. Master these to avoid losing easy points!</p>
     <div class="pitfalls-grid">
       <div class="pitfall-item">
-        <div class="pitfall-title">
-          <span class="pitfall-icon">🚨</span>
-          <span>Division Always Returns Float</span>
-        </div>
-        <div class="pitfall-wrong">
-          ❌ Wrong: <code>10/2 = 5</code>
-        </div>
-        <div class="pitfall-right">
-          ✓ Correct: <code>10/2 = 5.0</code>
-        </div>
-        <div class="pitfall-explanation">
-          The <code>/</code> operator ALWAYS returns a float, even when dividing evenly. Use <code>//</code> for integer division.
-        </div>
+        <div class="pitfall-title"><span class="pitfall-icon">🚨</span><span>Division Always Returns Float</span></div>
+        <div class="pitfall-wrong">❌ Wrong: <code>10/2 = 5</code></div>
+        <div class="pitfall-right">✓ Correct: <code>10/2 = 5.0</code></div>
+        <div class="pitfall-explanation"><code>/</code> always returns float. Use <code>//</code> for integer result.</div>
       </div>
       <div class="pitfall-item">
-        <div class="pitfall-title">
-          <span class="pitfall-icon">🚨</span>
-          <span>Floor Division with Negatives</span>
-        </div>
-        <div class="pitfall-wrong">
-          ❌ Wrong: <code>-7//2 = -3</code>
-        </div>
-        <div class="pitfall-right">
-          ✓ Correct: <code>-7//2 = -4</code>
-        </div>
-        <div class="pitfall-explanation">
-          Floor division rounds DOWN toward negative infinity, not toward zero. This is often counterintuitive with negative numbers.
-        </div>
+        <div class="pitfall-title"><span class="pitfall-icon">🚨</span><span>Floor Division with Negatives</span></div>
+        <div class="pitfall-wrong">❌ Wrong: <code>-7//2 = -3</code></div>
+        <div class="pitfall-right">✓ Correct: <code>-7//2 = -4</code></div>
+        <div class="pitfall-explanation">Floor division rounds toward negative infinity, not toward zero.</div>
       </div>
       <div class="pitfall-item">
-        <div class="pitfall-title">
-          <span class="pitfall-icon">🚨</span>
-          <span>int() Truncates, Doesn't Round</span>
-        </div>
-        <div class="pitfall-wrong">
-          ❌ Wrong: <code>int(3.9) = 4</code>
-        </div>
-        <div class="pitfall-right">
-          ✓ Correct: <code>int(3.9) = 3</code>
-        </div>
-        <div class="pitfall-explanation">
-          The <code>int()</code> function truncates (cuts off) the decimal part, it doesn't round. Use <code>round()</code> for rounding.
-        </div>
+        <div class="pitfall-title"><span class="pitfall-icon">🚨</span><span>int() Truncates, Not Rounds</span></div>
+        <div class="pitfall-wrong">❌ Wrong: <code>int(3.9) = 4</code></div>
+        <div class="pitfall-right">✓ Correct: <code>int(3.9) = 3</code></div>
+        <div class="pitfall-explanation"><code>int()</code> cuts the decimal — use <code>round()</code> to round.</div>
       </div>
       <div class="pitfall-item">
-        <div class="pitfall-title">
-          <span class="pitfall-icon">🚨</span>
-          <span>Exponentiation Before Negation</span>
-        </div>
-        <div class="pitfall-wrong">
-          ❌ Wrong: <code>-2**2 = 4</code>
-        </div>
-        <div class="pitfall-right">
-          ✓ Correct: <code>-2**2 = -4</code>
-        </div>
-        <div class="pitfall-explanation">
-          Exponentiation <code>**</code> has higher precedence than unary minus. <code>-2**2</code> means <code>-(2**2)</code>. Use <code>(-2)**2</code> for the square of -2.
-        </div>
+        <div class="pitfall-title"><span class="pitfall-icon">🚨</span><span>Exponentiation Before Negation</span></div>
+        <div class="pitfall-wrong">❌ Wrong: <code>-2**2 = 4</code></div>
+        <div class="pitfall-right">✓ Correct: <code>-2**2 = -4</code></div>
+        <div class="pitfall-explanation"><code>**</code> binds tighter than unary minus. <code>-2**2</code> = <code>-(2**2)</code>.</div>
       </div>
       <div class="pitfall-item">
-        <div class="pitfall-title">
-          <span class="pitfall-icon">🚨</span>
-          <span>Right-to-Left Exponentiation</span>
-        </div>
-        <div class="pitfall-wrong">
-          ❌ Wrong: <code>2**3**2 = 64</code>
-        </div>
-        <div class="pitfall-right">
-          ✓ Correct: <code>2**3**2 = 512</code>
-        </div>
-        <div class="pitfall-explanation">
-          Exponentiation is right-associative: <code>2**3**2 = 2**(3**2) = 2**9 = 512</code>, not <code>(2**3)**2 = 64</code>.
-        </div>
+        <div class="pitfall-title"><span class="pitfall-icon">🚨</span><span>Right-to-Left Exponentiation</span></div>
+        <div class="pitfall-wrong">❌ Wrong: <code>2**3**2 = 64</code></div>
+        <div class="pitfall-right">✓ Correct: <code>2**3**2 = 512</code></div>
+        <div class="pitfall-explanation"><code>2**(3**2)</code> = <code>2**9</code> = 512 (right-associative).</div>
       </div>
       <div class="pitfall-item">
-        <div class="pitfall-title">
-          <span class="pitfall-icon">🚨</span>
-          <span>bool() Truthiness Rules</span>
-        </div>
-        <div class="pitfall-wrong">
-          ❌ Wrong: <code>bool('0') = False, bool([0]) = False</code>
-        </div>
-        <div class="pitfall-right">
-          ✓ Correct: <code>bool('0') = True, bool([0]) = True</code>
-        </div>
-        <div class="pitfall-explanation">
-          Non-empty strings and non-empty lists are always <code>True</code>, regardless of their content. Only empty containers and 0 are falsy.
-        </div>
+        <div class="pitfall-title"><span class="pitfall-icon">🚨</span><span>bool() Truthiness Rules</span></div>
+        <div class="pitfall-wrong">❌ Wrong: <code>bool('0') = False, bool([0]) = False</code></div>
+        <div class="pitfall-right">✓ Correct: <code>bool('0') = True, bool([0]) = True</code></div>
+        <div class="pitfall-explanation">Non-empty strings and non-empty lists are always True, regardless of content.</div>
       </div>
       <div class="pitfall-item">
-        <div class="pitfall-title">
-          <span class="pitfall-icon">🚨</span>
-          <span>Operator Precedence</span>
-        </div>
-        <div class="pitfall-wrong">
-          ❌ Wrong: <code>5 + 3 * 2 = 16</code>
-        </div>
-        <div class="pitfall-right">
-          ✓ Correct: <code>5 + 3 * 2 = 11</code>
-        </div>
-        <div class="pitfall-explanation">
-          Multiplication and division have higher precedence than addition and subtraction. <code>3 * 2</code> is evaluated first, then <code>5 + 6 = 11</code>.
-        </div>
+        <div class="pitfall-title"><span class="pitfall-icon">🚨</span><span>Operator Precedence</span></div>
+        <div class="pitfall-wrong">❌ Wrong: <code>5 + 3 * 2 = 16</code></div>
+        <div class="pitfall-right">✓ Correct: <code>5 + 3 * 2 = 11</code></div>
+        <div class="pitfall-explanation"><code>*</code> before <code>+</code>: 3×2=6, then 5+6=11.</div>
       </div>
       <div class="pitfall-item">
-        <div class="pitfall-title">
-          <span class="pitfall-icon">🚨</span>
-          <span>input() Returns String</span>
-        </div>
-        <div class="pitfall-wrong">
-          ❌ Wrong: <code>age = input(); if age >= 18: ...</code>
-        </div>
-        <div class="pitfall-right">
-          ✓ Correct: <code>age = int(input()); if age >= 18: ...</code>
-        </div>
-        <div class="pitfall-explanation">
-          The <code>input()</code> function always returns a string, even for numeric input. You must convert it with <code>int()</code> or <code>float()</code>.
-        </div>
+        <div class="pitfall-title"><span class="pitfall-icon">🚨</span><span>input() Returns String</span></div>
+        <div class="pitfall-wrong">❌ Wrong: <code>age = input(); if age >= 18:</code></div>
+        <div class="pitfall-right">✓ Correct: <code>age = int(input()); if age >= 18:</code></div>
+        <div class="pitfall-explanation"><code>input()</code> always returns str — cast with <code>int()</code> or <code>float()</code>.</div>
       </div>
       <div class="pitfall-item">
-        <div class="pitfall-title">
-          <span class="pitfall-icon">🚨</span>
-          <span>print() Returns None</span>
-        </div>
-        <div class="pitfall-wrong">
-          ❌ Wrong: <code>result = print('hello')</code>
-        </div>
-        <div class="pitfall-right">
-          ✓ Correct: <code>print('hello'); result = 'hello'</code>
-        </div>
-        <div class="pitfall-explanation">
-          The <code>print()</code> function displays output but returns <code>None</code>. It's for side effects, not for returning values.
-        </div>
+        <div class="pitfall-title"><span class="pitfall-icon">🚨</span><span>print() Returns None</span></div>
+        <div class="pitfall-wrong">❌ Wrong: <code>result = print('hello')</code> has a value</div>
+        <div class="pitfall-right">✓ Correct: <code>print()</code> returns None — side effect only</div>
+        <div class="pitfall-explanation">Use <code>return</code> to pass values from functions, not <code>print()</code>.</div>
       </div>
       <div class="pitfall-item">
-        <div class="pitfall-title">
-          <span class="pitfall-icon">🚨</span>
-          <span>String + Number TypeError</span>
-        </div>
-        <div class="pitfall-wrong">
-          ❌ Wrong: <code>x = '3' + 3</code>
-        </div>
-        <div class="pitfall-right">
-          ✓ Correct: <code>x = str(3) + str(3) OR x = 3 + 3</code>
-        </div>
-        <div class="pitfall-explanation">
-          You cannot concatenate strings and numbers directly. Convert both to the same type first with <code>str()</code> or <code>int()</code>.
-        </div>
+        <div class="pitfall-title"><span class="pitfall-icon">🚨</span><span>String + Number TypeError</span></div>
+        <div class="pitfall-wrong">❌ Wrong: <code>x = '3' + 3</code></div>
+        <div class="pitfall-right">✓ Correct: <code>x = int('3') + 3  OR  str(3) + '3'</code></div>
+        <div class="pitfall-explanation">Cannot concatenate str and int — convert both to the same type first.</div>
       </div>
       <div class="pitfall-item">
-        <div class="pitfall-title">
-          <span class="pitfall-icon">🚨</span>
-          <span>round() Uses Banker's Rounding</span>
-        </div>
-        <div class="pitfall-wrong">
-          ❌ Wrong: <code>round(2.5) = 3</code>
-        </div>
-        <div class="pitfall-right">
-          ✓ Correct: <code>round(2.5) = 2, round(3.5) = 4</code>
-        </div>
-        <div class="pitfall-explanation">
-          Python uses bankers rounding for midpoint values. This appears in exam code-tracing questions.
-        </div>
+        <div class="pitfall-title"><span class="pitfall-icon">🚨</span><span>Banker's Rounding</span></div>
+        <div class="pitfall-wrong">❌ Wrong: <code>round(2.5) = 3</code></div>
+        <div class="pitfall-right">✓ Correct: <code>round(2.5) = 2, round(3.5) = 4</code></div>
+        <div class="pitfall-explanation">Python rounds .5 to the nearest even number — a common exam trap.</div>
       </div>
       <div class="pitfall-item">
-        <div class="pitfall-title">
-          <span class="pitfall-icon">🚨</span>
-          <span>Float Precision Is Not Exact</span>
-        </div>
-        <div class="pitfall-wrong">
-          ❌ Wrong: <code>0.1 + 0.2 == 0.3 is always True</code>
-        </div>
-        <div class="pitfall-right">
-          ✓ Correct: <code>0.1 + 0.2 == 0.3  # False</code>
-        </div>
-        <div class="pitfall-explanation">
-          Floating-point numbers are binary approximations. For exact decimal checks, avoid direct equality comparisons.
-        </div>
+        <div class="pitfall-title"><span class="pitfall-icon">🚨</span><span>Float Precision Is Not Exact</span></div>
+        <div class="pitfall-wrong">❌ Wrong: <code>0.1 + 0.2 == 0.3 is True</code></div>
+        <div class="pitfall-right">✓ Correct: <code>0.1 + 0.2 == 0.3  # False</code></div>
+        <div class="pitfall-explanation">Binary approximation: floating-point equality checks can fail unexpectedly.</div>
       </div>
       <div class="pitfall-item">
-        <div class="pitfall-title">
-          <span class="pitfall-icon">🚨</span>
-          <span>Keyword vs Identifier Trap</span>
-        </div>
-        <div class="pitfall-wrong">
-          ❌ Wrong: <code>True, for, and are valid variable names</code>
-        </div>
-        <div class="pitfall-right">
-          ✓ Correct: <code>true_value and TRUE are valid; True/for/and are illegal</code>
-        </div>
-        <div class="pitfall-explanation">
-          Raw PCEP questions repeatedly test reserved words and boolean literals. Similar spelling does not mean same identifier legality.
-        </div>
+        <div class="pitfall-title"><span class="pitfall-icon">🚨</span><span>Keyword vs Identifier</span></div>
+        <div class="pitfall-wrong">❌ Wrong: <code>True, for, and are valid variable names</code></div>
+        <div class="pitfall-right">✓ Correct: <code>TRUE, true_value are valid; True/for/and are illegal</code></div>
+        <div class="pitfall-explanation">Similar spelling ≠ same legality. Keywords and literals are off-limits as identifiers.</div>
       </div>
       <div class="pitfall-item">
-        <div class="pitfall-title">
-          <span class="pitfall-icon">🚨</span>
-          <span>String Equality Is Exact</span>
-        </div>
-        <div class="pitfall-wrong">
-          ❌ Wrong: <code>input_name == " Robert " will match robert</code>
-        </div>
-        <div class="pitfall-right">
-          ✓ Correct: <code>Case and spaces must match exactly unless you normalize first</code>
-        </div>
-        <div class="pitfall-explanation">
-          This appears in new OCR-derived items. Normalize user input with <code>strip()</code> and <code>lower()</code> before comparison when needed.
-        </div>
+        <div class="pitfall-title"><span class="pitfall-icon">🚨</span><span>String Equality Is Exact</span></div>
+        <div class="pitfall-wrong">❌ Wrong: <code>" Robert " == "robert"</code></div>
+        <div class="pitfall-right">✓ Correct: <code>Case and spaces must match exactly</code></div>
+        <div class="pitfall-explanation">Normalize with <code>strip()</code> and <code>lower()</code> before comparison when needed.</div>
       </div>
     </div>
   </div>
@@ -574,26 +503,22 @@ print(name == "robert")</code></pre>
   <div id="quiz" class="tab-content">
     <div class="quiz-progress-bar">
       <span class="quiz-progress-text" id="quiz-progress-text">0 of 0 answered</span>
-      <div class="quiz-progress-track">
-        <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
-      </div>
+      <div class="quiz-progress-track"><div class="quiz-progress-fill" id="quiz-progress-fill"></div></div>
       <span class="quiz-score-badge" id="quiz-score-badge">Score: 0/0</span>
     </div>
-    <div id="quiz-container">
-    </div>
-
+    <div id="quiz-container"></div>
     <button onclick="resetQuiz()" class="quiz-reset-btn">↺ Reset Quiz</button>
   </div>
 </div>
 
 <script>
-const flashcardsData = [{"q": "What execution model does Python use?","a": "Python compiles source to bytecode first, then the Python VM interprets that bytecode."},{"q": "What is the core Python 3 division rule?","a": "The / operator always returns float; // performs floor division."},{"q": "What does -2 ** 2 evaluate to?","a": "-4, because exponentiation has higher precedence than unary minus."},{"q": "What does 2 ** 3 ** 2 evaluate to?","a": "512, because exponentiation is right-associative."},{"q": "Name valid integer literal prefixes in Python.","a": "0b for binary, 0o for octal, 0x for hexadecimal."},{"q": "What does input() return?","a": "Always a string. You must cast with int() or float() for numeric operations."},{"q": "What are the common falsy values?","a": "0, 0.0, '', [], {}, (), None, False."},{"q": "Is bool('0') truthy or falsy?","a": "Truthy. Any non-empty string is True."},{"q": "What is the safest way to compare with None?","a": "Use identity: value is None (not == None)."},{"q": "What does int(3.9) return?","a": "3. int() truncates toward zero; it does not round."},{"q": "What does print() return?","a": "None. It performs output as a side effect."},{"q": "Why can 0.1 + 0.2 == 0.3 be False?","a": "Floating-point values are binary approximations, so exact decimal equality can fail."},{"q": "From raw questions: which names are illegal?","a": "Keywords and literals like for, and, True are illegal as identifiers."},{"q": "What is true about compilation in exam wording?","a": "Compilation happens before runtime and creates a target artifact that users can run."},{"q": "What exam baseline does the new source confirm for PCEP?","a": "30 questions, 45 minutes, and a 70% passing score."},{"q": "If user inputs robert, is name == ' Robert ' true?","a": "No. String comparison is exact and includes case and surrounding spaces."}];
-const quizData = [{"q": "What is the output of: print(10 / 4, 10 // 4, 10 % 4)?","options": ["2.5 2 2","2 2 2","2.5 2.5 2","2.0 2 0"],"correct": 0,"explanation": "/ returns float, // floor-divides, % gives remainder."},{"q": "Which identifier is valid in Python?","options": ["2name","full-name","_user_name","user name"],"correct": 2,"explanation": "Identifiers may start with letter or underscore and contain digits/underscores only."},{"q": "What is printed by: print(-2 ** 2, (-2) ** 2)?","options": ["4 4","-4 4","-4 -4","4 -4"],"correct": 1,"explanation": "Power binds before unary minus, so -2**2 is -(2**2)."},{"q": "What is the value of: 2 ** 3 ** 2 ?","options": ["64","256","512","729"],"correct": 2,"explanation": "Exponentiation is right-to-left: 2 ** (3 ** 2) = 2 ** 9."},{"q": "What is the type of input() return value?","options": ["int","float","bool","str"],"correct": 3,"explanation": "input() always returns a string."},{"q": "What does bool([0]) return?","options": ["False","True","0","TypeError"],"correct": 1,"explanation": "Non-empty containers are truthy, regardless of content."},{"q": "What does int(-3.9) return?","options": ["-4","-3","3","ValueError"],"correct": 1,"explanation": "int() truncates toward zero."},{"q": "What is the output of: print('A', 'B', sep='-', end='!')","options": ["A B","A-B!","A-B","A!B"],"correct": 1,"explanation": "sep joins arguments, end replaces newline."},{"q": "What does this produce? x = print('Hello'); print(x)","options": ["Hello\\nHello","Hello\\n0","Hello\\nNone","None\\nHello"],"correct": 2,"explanation": "print() returns None after printing Hello."},{"q": "Which statement about Python typing is correct?","options": ["Variables require explicit declarations","Python is statically typed","Python is dynamically typed","Types cannot change after assignment"],"correct": 2,"explanation": "Names can be rebound to values of different types."},{"q": "What is true about compiler vs interpreter in Python context?","options": ["Python uses only machine code compilation","Python is purely interpreted with no bytecode","Python compiles to bytecode and executes via VM","Python requires manual bytecode creation"],"correct": 2,"explanation": "CPython compiles source to bytecode then executes it on the PVM."},{"q": "Which expression is true?","options": ["round(2.5) == 3","0.1 + 0.2 == 0.3","bool('False') is False","bool('') is False"],"correct": 3,"explanation": "Only empty string is falsy. The other statements are common traps."},{"q": "Which identifier is illegal in Python?","options": ["true_value","value_true","True","_true"],"correct": 2,"explanation": "True is a boolean literal and cannot be used as an identifier."},{"q": "Which statement about compilation is correct?","options": ["Compiled code always runs slower than interpreted code","Every end user must have the compiler installed","Compilation creates a target artifact before runtime","Compilation is identical to line-by-line interpretation"],"correct": 2,"explanation": "Compilation produces target code before execution."},{"q": "What is the output of: print(9 ** 3 ** 0 ** 1)?","options": ["9","3","1","18"],"correct": 0,"explanation": "Exponentiation is right-associative: 9 ** (3 ** (0 ** 1)) = 9."},{"q": "User enters robert. What does this print? name = input(); print(name == ' Robert ')","options": ["True","False","NameError","It prints robert"],"correct": 1,"explanation": "Spaces and uppercase R make the comparison false."}];
+const flashcardsData = [{"q":"What execution model does Python use?","a":"Python compiles source to bytecode first, then the Python VM interprets that bytecode."},{"q":"What is the core Python 3 division rule?","a":"The / operator always returns float; // performs floor division."},{"q":"What does -2 ** 2 evaluate to?","a":"-4, because exponentiation has higher precedence than unary minus."},{"q":"What does 2 ** 3 ** 2 evaluate to?","a":"512, because exponentiation is right-associative: 2**(3**2)."},{"q":"Name valid integer literal prefixes in Python.","a":"0b for binary, 0o for octal, 0x for hexadecimal."},{"q":"What does input() return?","a":"Always a string. Cast with int() or float() for numeric operations."},{"q":"What are the common falsy values?","a":"0, 0.0, '', [], {}, (), None, False."},{"q":"Is bool('0') truthy or falsy?","a":"Truthy — any non-empty string is True."},{"q":"What is the safest way to compare with None?","a":"Use identity: value is None (not == None)."},{"q":"What does int(3.9) return?","a":"3. int() truncates toward zero; it does not round."},{"q":"What does print() return?","a":"None. It performs output as a side effect only."},{"q":"Why can 0.1 + 0.2 == 0.3 be False?","a":"Floating-point values are binary approximations — exact decimal equality can fail."},{"q":"Which names are illegal as identifiers?","a":"Keywords and literals: for, and, True, None cannot be used as variable names."},{"q":"What is a compiler's main characteristic?","a":"It translates the entire source into a target artifact before runtime; end users don't need the compiler."},{"q":"What does lexis mean in a programming language?","a":"The set of valid words (tokens): keywords, identifiers, literals, operators."},{"q":"If user inputs 'robert', is name == ' Robert ' true?","a":"No. String comparison is exact — case and surrounding spaces must match."}];
+const quizData = [{"q":"What is the output of: print(10 / 4, 10 // 4, 10 % 4)?","options":["2.5 2 2","2 2 2","2.5 2.5 2","2.0 2 0"],"correct":0,"explanation":"/ returns float, // floor-divides, % gives remainder."},{"q":"Which identifier is valid in Python?","options":["2name","full-name","_user_name","user name"],"correct":2,"explanation":"Identifiers may start with letter or underscore and contain digits/underscores only."},{"q":"What is printed by: print(-2 ** 2, (-2) ** 2)?","options":["4 4","-4 4","-4 -4","4 -4"],"correct":1,"explanation":"Power binds before unary minus, so -2**2 is -(2**2)."},{"q":"What is the value of: 2 ** 3 ** 2 ?","options":["64","256","512","729"],"correct":2,"explanation":"Exponentiation is right-to-left: 2 ** (3 ** 2) = 2 ** 9 = 512."},{"q":"What is the type of input() return value?","options":["int","float","bool","str"],"correct":3,"explanation":"input() always returns a string."},{"q":"What does bool([0]) return?","options":["False","True","0","TypeError"],"correct":1,"explanation":"Non-empty containers are truthy, regardless of content."},{"q":"What does int(-3.9) return?","options":["-4","-3","3","ValueError"],"correct":1,"explanation":"int() truncates toward zero."},{"q":"What is the output of: print('A', 'B', sep='-', end='!')","options":["A B","A-B!","A-B","A!B"],"correct":1,"explanation":"sep joins arguments, end replaces newline."},{"q":"What does this produce? x = print('Hello'); print(x)","options":["Hello\\nHello","Hello\\n0","Hello\\nNone","None\\nHello"],"correct":2,"explanation":"print() returns None after printing Hello."},{"q":"Which statement about Python typing is correct?","options":["Variables require explicit declarations","Python is statically typed","Python is dynamically typed","Types cannot change after assignment"],"correct":2,"explanation":"Names can be rebound to values of different types."},{"q":"What is true about compiler vs interpreter in Python context?","options":["Python uses only machine code compilation","Python is purely interpreted with no bytecode","Python compiles to bytecode and executes via VM","Python requires manual bytecode creation"],"correct":2,"explanation":"CPython compiles source to bytecode then executes it on the PVM."},{"q":"Which expression is true?","options":["round(2.5) == 3","0.1 + 0.2 == 0.3","bool('False') is False","bool('') is False"],"correct":3,"explanation":"Only empty string is falsy. The other statements are common traps."},{"q":"Which identifier is illegal in Python?","options":["true_value","value_true","True","_true"],"correct":2,"explanation":"True is a boolean literal and cannot be used as an identifier."},{"q":"Which statement about compilation is correct?","options":["Compiled code always runs slower than interpreted","Every end user must have the compiler installed","Compilation creates a target artifact before runtime","Compilation is identical to line-by-line interpretation"],"correct":2,"explanation":"Compilation produces target code before execution; end users need only the artifact."},{"q":"What is the output of: print(9 ** 3 ** 0 ** 1)?","options":["9","3","1","18"],"correct":0,"explanation":"Right-to-left: 9**(3**(0**1)) = 9**(3**0) = 9**1 = 9."},{"q":"User enters 'robert'. What does this print? name = input(); print(name == ' Robert ')","options":["True","False","NameError","It prints robert"],"correct":1,"explanation":"Spaces and uppercase R make the comparison false."}];
 
 let quizAnswered = {};
-let missedCards = new Set();   // indices of flashcards user marked as "missed"
-let shuffledOrder = [];        // current display order (indices into flashcardsData)
-let reviewMode = false;        // true = only show missed cards
+let missedCards = new Set();
+let shuffledOrder = [];
+let reviewMode = false;
 
 function switchTab(evt, tabName) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -604,65 +529,30 @@ function switchTab(evt, tabName) {
   if (tabName === 'quiz') initQuiz();
 }
 
-// ── Flashcard helpers ──────────────────────────────────────────────────────
-
-function buildOrder(indices) {
-  return indices !== undefined ? [...indices] : flashcardsData.map((_, i) => i);
-}
+function buildOrder(indices) { return indices !== undefined ? [...indices] : flashcardsData.map((_, i) => i); }
 
 function renderFlashcards(order) {
   const container = document.getElementById('flashcard-container');
   container.innerHTML = '';
-
   if (order.length === 0) {
     container.innerHTML = '<div class="fc-empty-state"><span>🎉</span>No missed cards — great job! Reset to start over.</div>';
-    updateFcCounter(order);
-    return;
+    updateFcCounter(order); return;
   }
-
   order.forEach((dataIdx, displayPos) => {
     const card = flashcardsData[dataIdx];
     const div = document.createElement('div');
     div.className = 'flashcard' + (missedCards.has(dataIdx) ? ' marked-wrong' : '');
-    div.dataset.flipped = 'false';
-    div.dataset.dataIdx = dataIdx;
-    div.innerHTML = `
-      <div class="flashcard-content">
-        <div class="flashcard-label">Question ${displayPos + 1} of ${order.length}</div>
-        <div class="flashcard-text">${card.q}</div>
-        <div class="flashcard-self-check">
-          <button class="self-check-btn knew" onclick="markCard(${dataIdx}, false, event)">✓ Got it</button>
-          <button class="self-check-btn missed" onclick="markCard(${dataIdx}, true, event)">✗ Missed</button>
-        </div>
-      </div>
-    `;
+    div.dataset.flipped = 'false'; div.dataset.dataIdx = dataIdx;
+    div.innerHTML = `<div class="flashcard-content"><div class="flashcard-label">Question ${displayPos + 1} of ${order.length}</div><div class="flashcard-text">${card.q}</div><div class="flashcard-self-check"><button class="self-check-btn knew" onclick="markCard(${dataIdx}, false, event)">✓ Got it</button><button class="self-check-btn missed" onclick="markCard(${dataIdx}, true, event)">✗ Missed</button></div></div>`;
     div.addEventListener('click', function(e) {
       if (e.target.closest('.self-check-btn')) return;
       const flipped = this.dataset.flipped === 'true';
-      this.dataset.flipped = String(!flipped);
-      this.classList.toggle('flipped');
+      this.dataset.flipped = String(!flipped); this.classList.toggle('flipped');
       const content = this.querySelector('.flashcard-content');
-      const pos = displayPos + 1;
-      const total = order.length;
-      if (!flipped) {
-        content.innerHTML = `
-          <div class="flashcard-label">Answer ${pos} of ${total}</div>
-          <div class="flashcard-text">${card.a}</div>
-          <div class="flashcard-self-check">
-            <button class="self-check-btn knew" onclick="markCard(${dataIdx}, false, event)">✓ Got it</button>
-            <button class="self-check-btn missed" onclick="markCard(${dataIdx}, true, event)">✗ Missed</button>
-          </div>
-        `;
-      } else {
-        content.innerHTML = `
-          <div class="flashcard-label">Question ${pos} of ${total}</div>
-          <div class="flashcard-text">${card.q}</div>
-          <div class="flashcard-self-check">
-            <button class="self-check-btn knew" onclick="markCard(${dataIdx}, false, event)">✓ Got it</button>
-            <button class="self-check-btn missed" onclick="markCard(${dataIdx}, true, event)">✗ Missed</button>
-          </div>
-        `;
-      }
+      const pos = displayPos + 1, total = order.length;
+      content.innerHTML = !flipped
+        ? `<div class="flashcard-label">Answer ${pos} of ${total}</div><div class="flashcard-text">${card.a}</div><div class="flashcard-self-check"><button class="self-check-btn knew" onclick="markCard(${dataIdx}, false, event)">✓ Got it</button><button class="self-check-btn missed" onclick="markCard(${dataIdx}, true, event)">✗ Missed</button></div>`
+        : `<div class="flashcard-label">Question ${pos} of ${total}</div><div class="flashcard-text">${card.q}</div><div class="flashcard-self-check"><button class="self-check-btn knew" onclick="markCard(${dataIdx}, false, event)">✓ Got it</button><button class="self-check-btn missed" onclick="markCard(${dataIdx}, true, event)">✗ Missed</button></div>`;
     });
     container.appendChild(div);
   });
@@ -671,87 +561,50 @@ function renderFlashcards(order) {
 
 function markCard(dataIdx, missed, event) {
   event.stopPropagation();
-  if (missed) {
-    missedCards.add(dataIdx);
-  } else {
-    missedCards.delete(dataIdx);
-  }
-  // Update visual state of this card
+  if (missed) missedCards.add(dataIdx); else missedCards.delete(dataIdx);
   const card = document.querySelector(`.flashcard[data-data-idx="${dataIdx}"]`);
-  if (card) {
-    card.classList.toggle('marked-wrong', missed);
-  }
+  if (card) card.classList.toggle('marked-wrong', missed);
   updateFcCounter(shuffledOrder);
-  // Show/hide "Review Missed" button
-  document.getElementById('fc-review-btn').style.display =
-    missedCards.size > 0 ? 'inline-flex' : 'none';
+  document.getElementById('fc-review-btn').style.display = missedCards.size > 0 ? 'inline-flex' : 'none';
 }
 
 function updateFcCounter(order) {
-  const counter = document.getElementById('fc-counter');
-  const badge = document.getElementById('fc-mode-badge');
-  const total = flashcardsData.length;
-  const missed = missedCards.size;
-  if (reviewMode) {
-    counter.textContent = `${order.length} missed card${order.length !== 1 ? 's' : ''}`;
-    badge.textContent = 'Review Mode';
-    badge.className = 'fc-mode-badge review';
-  } else {
-    counter.textContent = `${total} cards · ${missed} marked missed`;
-    badge.textContent = 'All Cards';
-    badge.className = 'fc-mode-badge';
-  }
+  const counter = document.getElementById('fc-counter'), badge = document.getElementById('fc-mode-badge');
+  if (reviewMode) { counter.textContent = `${order.length} missed card${order.length !== 1 ? 's' : ''}`; badge.textContent = 'Review Mode'; badge.className = 'fc-mode-badge review'; }
+  else { counter.textContent = `${flashcardsData.length} cards · ${missedCards.size} marked missed`; badge.textContent = 'All Cards'; badge.className = 'fc-mode-badge'; }
 }
 
 function initFlashcards() {
-  if (shuffledOrder.length === 0) {
-    shuffledOrder = buildOrder();
-  }
+  if (shuffledOrder.length === 0) shuffledOrder = buildOrder();
   if (document.getElementById('flashcard-container').children.length > 0) return;
   renderFlashcards(shuffledOrder);
 }
 
 function shuffleFlashcards() {
   const base = reviewMode ? [...missedCards] : flashcardsData.map((_, i) => i);
-  for (let i = base.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [base[i], base[j]] = [base[j], base[i]];
-  }
-  shuffledOrder = base;
-  renderFlashcards(shuffledOrder);
+  for (let i = base.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [base[i], base[j]] = [base[j], base[i]]; }
+  shuffledOrder = base; renderFlashcards(shuffledOrder);
 }
 
 function reviewMissed() {
-  if (missedCards.size === 0) return;
-  reviewMode = true;
-  shuffledOrder = [...missedCards];
-  renderFlashcards(shuffledOrder);
-  document.getElementById('fc-review-btn').classList.add('active');
+  if (missedCards.size === 0) return; reviewMode = true; shuffledOrder = [...missedCards];
+  renderFlashcards(shuffledOrder); document.getElementById('fc-review-btn').classList.add('active');
 }
 
 function resetFlashcards() {
-  reviewMode = false;
-  missedCards.clear();
-  shuffledOrder = flashcardsData.map((_, i) => i);
+  reviewMode = false; missedCards.clear(); shuffledOrder = flashcardsData.map((_, i) => i);
   document.getElementById('fc-review-btn').style.display = 'none';
   document.getElementById('fc-review-btn').classList.remove('active');
   renderFlashcards(shuffledOrder);
 }
 
-// ── Quiz helpers ───────────────────────────────────────────────────────────
-
 function updateQuizProgress() {
-  const answered = Object.keys(quizAnswered).length;
-  const total = quizData.length;
+  const answered = Object.keys(quizAnswered).length, total = quizData.length;
   const pct = total > 0 ? (answered / total) * 100 : 0;
   document.getElementById('quiz-progress-text').textContent = `${answered} of ${total} answered`;
   document.getElementById('quiz-progress-fill').style.width = pct + '%';
-
-  // also update score badge
   let correct = 0;
-  for (let i = 0; i < total; i++) {
-    if (quizAnswered[i] !== undefined && quizAnswered[i] === quizData[i].correct) correct++;
-  }
+  for (let i = 0; i < total; i++) { if (quizAnswered[i] !== undefined && quizAnswered[i] === quizData[i].correct) correct++; }
   document.getElementById('quiz-score-badge').textContent = `Score: ${correct}/${total}`;
 }
 
@@ -759,57 +612,36 @@ function initQuiz() {
   const container = document.getElementById('quiz-container');
   if (container.children.length > 0) return;
   quizData.forEach((q, qIdx) => {
-    const div = document.createElement('div');
-    div.className = 'quiz-question';
+    const div = document.createElement('div'); div.className = 'quiz-question';
     div.innerHTML = `<h3>Question ${qIdx + 1} of ${quizData.length}: ${q.q}</h3>`;
     q.options.forEach((opt, oIdx) => {
-      const label = document.createElement('label');
-      label.className = 'quiz-option';
-      label.innerHTML = `
-        <input type="radio" name="q${qIdx}" value="${oIdx}" onchange="answerQuestion(${qIdx}, ${oIdx})">
-        <span>${opt}</span>
-      `;
+      const label = document.createElement('label'); label.className = 'quiz-option';
+      label.innerHTML = `<input type="radio" name="q${qIdx}" value="${oIdx}" onchange="answerQuestion(${qIdx}, ${oIdx})"><span>${opt}</span>`;
       div.appendChild(label);
     });
-    const explanation = document.createElement('div');
-    explanation.id = `exp-${qIdx}`;
-    explanation.className = 'explanation';
-    explanation.style.display = 'none';
-    div.appendChild(explanation);
-    container.appendChild(div);
+    const explanation = document.createElement('div'); explanation.id = `exp-${qIdx}`; explanation.className = 'explanation'; explanation.style.display = 'none';
+    div.appendChild(explanation); container.appendChild(div);
   });
   updateQuizProgress();
 }
 
 function answerQuestion(qIdx, selected) {
   quizAnswered[qIdx] = selected;
-  const correct = quizData[qIdx].correct;
-  const isCorrect = selected === correct;
+  const correct = quizData[qIdx].correct, isCorrect = selected === correct;
   document.querySelectorAll(`input[name="q${qIdx}"]`).forEach((opt, idx) => {
-    opt.disabled = true;
-    const label = opt.parentElement;
+    opt.disabled = true; const label = opt.parentElement;
     label.classList.remove('correct', 'incorrect');
     if (idx === correct) label.classList.add('correct');
     else if (idx === selected && !isCorrect) label.classList.add('incorrect');
   });
   const exp = document.getElementById(`exp-${qIdx}`);
-  exp.style.display = 'block';
-  exp.className = `explanation ${isCorrect ? 'success' : 'error'}`;
-  exp.textContent = quizData[qIdx].explanation;
-  updateQuizProgress();
+  exp.style.display = 'block'; exp.className = `explanation ${isCorrect ? 'success' : 'error'}`;
+  exp.textContent = quizData[qIdx].explanation; updateQuizProgress();
 }
 
-function resetQuiz() {
-  quizAnswered = {};
-  document.getElementById('quiz-container').innerHTML = '';
-  updateQuizProgress();
-  initQuiz();
-}
+function resetQuiz() { quizAnswered = {}; document.getElementById('quiz-container').innerHTML = ''; updateQuizProgress(); initQuiz(); }
 
-document.addEventListener('DOMContentLoaded', function() {
-  initFlashcards();
-  initQuiz();
-});
+document.addEventListener('DOMContentLoaded', function() { initFlashcards(); initQuiz(); });
 </script>
 </body>
 </html>

@@ -13,6 +13,98 @@
       --accent:     var(--m4);
       --accent-rgb: 255, 138, 90;
     }
+
+    /* ── Theory tab animations ── */
+    @keyframes sectionIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .theory-section {
+      animation: sectionIn .45s ease both;
+    }
+    .theory-section:nth-child(1)  { animation-delay: .05s }
+    .theory-section:nth-child(2)  { animation-delay: .10s }
+    .theory-section:nth-child(3)  { animation-delay: .15s }
+    .theory-section:nth-child(4)  { animation-delay: .20s }
+    .theory-section:nth-child(5)  { animation-delay: .25s }
+    .theory-section:nth-child(6)  { animation-delay: .30s }
+    .theory-section:nth-child(7)  { animation-delay: .35s }
+    .theory-section:nth-child(8)  { animation-delay: .40s }
+    .theory-section h3 {
+      position: relative;
+      padding-left: .9rem;
+      color: var(--accent);
+    }
+    .theory-section h3::before {
+      content: '';
+      position: absolute;
+      left: 0; top: .15em;
+      width: 4px; height: 1em;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* ── Info cards grid ── */
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: .9rem;
+      margin: .6rem 0 1.2rem;
+    }
+    .info-card {
+      background: rgba(var(--accent-rgb), .08);
+      border: 1px solid rgba(var(--accent-rgb), .22);
+      border-radius: 10px;
+      padding: .85rem 1rem;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .info-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(var(--accent-rgb), .18);
+    }
+    .info-card-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: .82rem;
+      color: var(--accent);
+      margin-bottom: .3rem;
+    }
+    .info-card-body {
+      font-size: .82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ── Exam tips grid ── */
+    .exam-tips {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: .9rem;
+      margin: .6rem 0 1.2rem;
+    }
+    .exam-tip {
+      background: rgba(var(--accent-rgb), .06);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: .75rem 1rem;
+      font-size: .83rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    .exam-tip strong {
+      display: block;
+      color: var(--accent);
+      margin-bottom: .2rem;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    /* ── LEGB table ── */
+    .legb-table { width: 100%; border-collapse: collapse; margin: .6rem 0 1rem; font-size: .85rem; }
+    .legb-table th { background: rgba(var(--accent-rgb),.15); color: var(--accent); padding: .5rem .8rem; text-align: left; }
+    .legb-table td { padding: .45rem .8rem; border-bottom: 1px solid rgba(255,255,255,.06); color: var(--text-secondary); }
+    .legb-table tr:last-child td { border-bottom: none; }
   </style>
 </head>
 <body>
@@ -41,118 +133,184 @@
   <div id="theory" class="tab-content active">
     <div class="content-box">
       <h2>📚 Theory: Functions &amp; Exceptions</h2>
-      
-      <h3>Function Definitions</h3>
-      <pre class="code-block"><code>def greet(name, greeting="Hello"):
+
+      <div class="theory-section">
+        <h3>Function Definitions &amp; Default Arguments</h3>
+        <pre class="code-block"><code>def greet(name, greeting="Hello"):
     return f"{greeting}, {name}!"
 
 print(greet("Alice"))           # Hello, Alice!
-print(greet("Bob", "Hi"))       # Hi, Bob!</code></pre>
+print(greet("Bob", "Hi"))       # Hi, Bob!
 
-      <h3>*args and **kwargs</h3>
-      <pre class="code-block"><code>def func(*args):
+# Calling pattern — all three are valid for def f(x=0):
+f()       # uses default  → 0
+f(7)      # positional    → 7
+f(x=9)    # keyword       → 9</code></pre>
+      </div>
+
+      <div class="theory-section">
+        <h3>*args and **kwargs</h3>
+        <pre class="code-block"><code>def func(*args):          # tuple of positional args
     for arg in args:
         print(arg)
 
-def func(**kwargs):
+def func(**kwargs):       # dict of keyword args
     for key, val in kwargs.items():
         print(key, val)
 
-func(1, 2, 3)                  # *args as tuple
-func(name="Alice", age=30)     # **kwargs as dict</code></pre>
+func(1, 2, 3)             # *args → (1, 2, 3)
+func(name="Alice", age=30) # **kwargs → {'name':'Alice','age':30}</code></pre>
+        <p style="font-size:.83rem;color:var(--text-secondary);margin-top:.4rem">
+          Parameter order rule: <code>positional → *args → keyword-only / default → **kwargs</code>
+        </p>
+      </div>
 
-      <h3>Variable Scope</h3>
-      <pre class="code-block"><code>x = 10  # Global
+      <div class="theory-section">
+        <h3>Variable Scope — LEGB Model</h3>
+        <table class="legb-table">
+          <tr><th>Scope</th><th>Where</th><th>Keyword to write</th></tr>
+          <tr><td><strong style="color:var(--accent)">L</strong>ocal</td><td>Inside current function</td><td>—</td></tr>
+          <tr><td><strong style="color:var(--accent)">E</strong>nclosing</td><td>Outer function in closures</td><td><code>nonlocal</code></td></tr>
+          <tr><td><strong style="color:var(--accent)">G</strong>lobal</td><td>Module level</td><td><code>global</code></td></tr>
+          <tr><td><strong style="color:var(--accent)">B</strong>uilt-in</td><td>Python builtins</td><td>—</td></tr>
+        </table>
+        <pre class="code-block"><code>x = 10  # Global
 
 def func():
     y = 20  # Local
     global x
-    x = 15
+    x = 15  # mutates global
     return y
 
 func()
-print(x)  # 15</code></pre>
+print(x)  # 15 — global was modified</code></pre>
+      </div>
 
-      <h3>Exception Handling</h3>
-      <pre class="code-block"><code>try:
+      <div class="theory-section">
+        <h3>Exception Handling — try / except / else / finally</h3>
+        <pre class="code-block"><code>try:
     num = int("abc")
-except ValueError:
+except ValueError:          # specific first
     print("Invalid number!")
-except Exception:
+except Exception:           # general last
     print("Other error!")
 else:
-    print(f"Success: {num}")
+    print(f"Success: {num}")  # runs only if no exception
 finally:
-    print("Done!")</code></pre>
+    print("Done!")            # ALWAYS runs</code></pre>
+        <p style="font-size:.83rem;color:var(--text-secondary);margin-top:.4rem">
+          <code>finally</code> executes even when <code>return</code> or <code>break</code> appear inside <code>try</code>.
+          A <code>return</code> inside <code>finally</code> overrides any earlier <code>return</code>.
+        </p>
+      </div>
 
-      <h3>Common Exceptions</h3>
-      <ul>
-        <li><code>ValueError</code> - Invalid value</li>
-        <li><code>TypeError</code> - Wrong type</li>
-        <li><code>KeyError</code> - Missing key</li>
-        <li><code>IndexError</code> - Index out of range</li>
-        <li><code>ZeroDivisionError</code> - Division by zero</li>
-        <li><code>AttributeError</code> - Missing attribute</li>
-      </ul>
+      <div class="theory-section">
+        <h3>Common Exceptions</h3>
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-card-title">ValueError</div>
+            <div class="info-card-body">Right type, wrong value — e.g. <code>int("abc")</code></div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">TypeError</div>
+            <div class="info-card-body">Wrong type for operation — e.g. <code>None + 1</code>, <code>int_val[0]</code></div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">KeyError</div>
+            <div class="info-card-body">Dict key not found — <code>d["missing"]</code></div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">IndexError</div>
+            <div class="info-card-body">Sequence index out of range — <code>lst[99]</code></div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">ZeroDivisionError</div>
+            <div class="info-card-body">Division or modulo by zero — <code>5 / 0</code></div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">AttributeError</div>
+            <div class="info-card-body">Object has no such attribute — <code>None.upper()</code></div>
+          </div>
+        </div>
+      </div>
 
-      <h3>Parameter Order (Exam Favorite)</h3>
-      <pre class="code-block"><code>def func(a, b, *args, c=10, **kwargs):
-    pass
-
-# order:
-# positional -> *args -> keyword-only/default -> **kwargs</code></pre>
-
-      <h3>Scope Model (LEGB)</h3>
-      <ul>
-        <li><strong>L</strong>ocal</li>
-        <li><strong>E</strong>nclosing</li>
-        <li><strong>G</strong>lobal</li>
-        <li><strong>B</strong>uilt-in</li>
-      </ul>
-
-      <h3>Recursion and Generators (Module 4 Coverage)</h3>
-      <pre class="code-block"><code>def factorial(n):
+      <div class="theory-section">
+        <h3>Recursion, Generators &amp; Return-Type Safety</h3>
+        <pre class="code-block"><code># Recursion — base case is required
+def factorial(n):
     if n <= 1:
         return 1
-    return n * factorial(n - 1)   # base case + recursive case
+    return n * factorial(n - 1)
 
+# Generator — lazy value production via yield
 def count_up_to(n):
     i = 1
     while i <= n:
-        yield i                    # lazy generation
-        i += 1</code></pre>
+        yield i
+        i += 1
 
-      <h3>Return-Type Safety from New OCR Imports</h3>
-      <pre class="code-block"><code>def process(x):
-    return x + 1
+print(list(count_up_to(4)))   # [1, 2, 3, 4]
 
-value = process(3)   # 4 (int)
-# print(value[0])    # TypeError: int is not subscriptable
+# Return-type safety — always verify what a function returns
+# before indexing or arithmetic operations
+def process(x):
+    return x + 1        # returns int
+
+value = process(3)      # 4  (int, NOT subscriptable)
+# value[0]             # TypeError: 'int' object is not subscriptable
 
 def combine(a, b):
-    print(a + b)     # no explicit return -> None
+    print(a + b)        # no explicit return → None
 
 result = combine(2, 3)
-# print(result[0])   # TypeError: NoneType is not subscriptable</code></pre>
+# result[0]            # TypeError: 'NoneType' object is not subscriptable</code></pre>
+      </div>
 
-      <h3>Exam-Simulator Patterns for Module 4</h3>
-      <ul>
-        <li>Default argument behavior and missing required arguments.</li>
-        <li>Keyword arguments bind by name, not by position.</li>
-        <li>Functions without explicit <code>return</code> evaluate to <code>None</code>.</li>
-        <li>Converting a generator with <code>list(generator_obj)</code> is frequently tested.</li>
-        <li>Multi-select tasks often ask which function calls are valid for signatures with required and default parameters.</li>
-        <li>Argument-passing traces test immutable rebinding vs mutable in-place changes.</li>
-        <li>Using <code>None</code> in arithmetic (often from implicit returns) raises <code>TypeError</code>.</li>
-        <li>Local vs global scope in nested functions.</li>
-        <li>Exception ordering and effect of <code>finally</code>.</li>
-        <li>TypeError/ValueError reasoning questions.</li>
-        <li><strong>Call-validation rule:</strong> check required params first, then verify argument order (positional before keyword).</li>
-        <li><strong>Return rule:</strong> once <code>return</code> executes, the function exits; code after it is unreachable.</li>
-        <li><strong>Exception rule:</strong> order handlers from specific to general; <code>finally</code> still executes.</li>
-        <li><strong>Return-type rule:</strong> verify what a function returns before indexing or arithmetic operations.</li>
-        <li><strong>Arity rule:</strong> match argument count exactly with required parameters before evaluating expression logic.</li>
-      </ul>
+      <div class="theory-section">
+        <h3>Exam Strategy — Key Patterns</h3>
+        <div class="exam-tips">
+          <div class="exam-tip">
+            <strong>Call-Validation Rule</strong>
+            Check required params first; positional args must come before keyword args. Count required params vs supplied args before evaluating logic.
+          </div>
+          <div class="exam-tip">
+            <strong>Return Rule</strong>
+            Once <code>return</code> executes, the function exits immediately — code after it is unreachable.
+          </div>
+          <div class="exam-tip">
+            <strong>None Implicit Return</strong>
+            Functions without explicit <code>return</code> always return <code>None</code>. <code>None + 1</code> → TypeError.
+          </div>
+          <div class="exam-tip">
+            <strong>Return-Type Rule</strong>
+            Verify function return type before subscripting or arithmetic. int/None are not subscriptable.
+          </div>
+          <div class="exam-tip">
+            <strong>Exception Rule</strong>
+            Order handlers from specific → general; <code>finally</code> always runs regardless of exceptions or returns.
+          </div>
+          <div class="exam-tip">
+            <strong>Arity Rule</strong>
+            Match argument count exactly with required parameters before evaluating expression logic.
+          </div>
+          <div class="exam-tip">
+            <strong>Generator Rule</strong>
+            <code>list(generator_obj)</code> materializes lazy values. Generators cannot be rewound automatically.
+          </div>
+          <div class="exam-tip">
+            <strong>Scope Rule</strong>
+            Assignment inside a function creates a local — use <code>global</code> only when assigning to module-level names.
+          </div>
+          <div class="exam-tip">
+            <strong>Multi-Select Validity</strong>
+            Exam often asks which calls are valid for signatures with required + default params. Test each option independently.
+          </div>
+          <div class="exam-tip">
+            <strong>Immutable Rebind vs Mutable Mutation</strong>
+            Passing int/str: rebinding inside function does NOT affect caller. Passing list: in-place mutation DOES affect caller.
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -596,8 +754,9 @@ val = process(3)      # int
       </div>
     </div>
   </div>
-</div>
-    <div id="flashcards" class="tab-content">
+  </div>
+
+  <div id="flashcards" class="tab-content">
     <div class="flashcard-controls">
       <span class="fc-mode-badge" id="fc-mode-badge">All Cards</span>
       <span class="fc-counter" id="fc-counter"></span>
