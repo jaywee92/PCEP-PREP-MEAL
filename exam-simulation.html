@@ -3817,4 +3817,15 @@
         // Call this hook when transitioning to results
         function displayResultsWithHints() {
             originalDisplayResults(document.getElementById('resultsScreen'));
-        },
+        }
+
+        // Hook nextQuestion to refresh hint state on navigation
+        const _origNextQuestion = nextQuestion;
+        window.nextQuestion = function() {
+            _origNextQuestion.call(this);
+            updateHintDisplay();
+        };
+
+    </script>
+</body>
+</html>
