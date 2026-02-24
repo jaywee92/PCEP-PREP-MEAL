@@ -3,3 +3,6 @@
 .vscode/
 *.swp
 *.swo
+CLAUDE.md
+.claude/
+logs/
